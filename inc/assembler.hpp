@@ -5,7 +5,6 @@
 
 #include "exception.hpp"
 
-
 class Assembler{
 
 private:

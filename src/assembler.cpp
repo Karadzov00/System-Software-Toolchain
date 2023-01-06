@@ -1,4 +1,5 @@
 #include "../inc/assembler.hpp"
+#include "../inc/regex.hpp"
 
 bool Assembler::checkCmdArguments(int argc, char* argv[]){
   
@@ -10,9 +11,7 @@ bool Assembler::checkCmdArguments(int argc, char* argv[]){
   std::string outputFile = argv[2]; 
   std::string inputFile = argv[3]; 
 
-  std::regex optionArgRegex("^-o$"); 
-  std::regex outputFileRegex("^.*\\.o$"); 
-  std::regex inputFileRegex("^.*\\.s$"); 
+ 
 
   std::cout<<inputFile<<"\n"<<outputFile<<"\n"; 
 
