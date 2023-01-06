@@ -7,7 +7,17 @@
 int main(int argc, char* argv[]){
 
   std::cout <<"Entered main! \n"; 
-  Assembler::checkCmdArguments(argc, argv);
+  try
+  {
+    Assembler::checkCmdArguments(argc, argv);
+    Assembler::openParseFile(); 
+
+  }
+  catch(const std::exception& e)
+  {
+    std::cout << e.what() << '\n';
+  }
+  
   
   return 0; 
 }
