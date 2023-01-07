@@ -42,11 +42,11 @@ void Assembler::openParseFile(){
     smatch regexMatch;
     cleanCurrentLine = currentLine; 
     if(regex_search(currentLine, regexMatch, commentRegex)){
+      
       cout<<cleanCurrentLine<<"\n";//before replacement
       //removing all comments 
-      regex_replace(cleanCurrentLine, commentRegex, ""); 
+      cleanCurrentLine=regex_replace(cleanCurrentLine, commentRegex, ""); 
       cout<<cleanCurrentLine<<"\n";//after replacement 
-    
     }
   }
 

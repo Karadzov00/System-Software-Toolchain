@@ -1,4 +1,5 @@
 g++ ./src/assembler.cpp ./src/mainAsm.cpp -o asembler
+./asembler -o ./tests/main.o ./tests/main.s
 #g++ ./src/mainLinker.cpp ./src/linker.cpp -o linker
 #g++ ./src/emulator.cpp ./src/mainEmulator.cpp -o emulator
 
