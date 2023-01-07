@@ -2,7 +2,7 @@ g++ ./src/assembler.cpp ./src/mainAsm.cpp -o asembler
 #g++ ./src/mainLinker.cpp ./src/linker.cpp -o linker
 #g++ ./src/emulator.cpp ./src/mainEmulator.cpp -o emulator
 
-#ASSEMBLER=./asembler
+# ASSEMBLER=./asembler
 #LINKER=./linker
 #EMULATOR=./emulator
 #${ASSEMBLER} -o testAL12.o testAL12.s
@@ -27,9 +27,9 @@ g++ ./src/assembler.cpp ./src/mainAsm.cpp -o asembler
 #EMULATOR=./emulator
 #${EMULATOR} program.hex
 #------------------------
-#skripta za start asembler test
-#ASSEMBLER=./asembler
-#${ASSEMBLER} -o testAL12.o testAL12.s
+# skripta za start asembler test
+# ASSEMBLER=./asembler
+# ${ASSEMBLER} -o testAL12.o testAL12.s
 #------------------------
 #skripta za test sva 3
 #${ASSEMBLER} -o testALE1.o testALE1.s

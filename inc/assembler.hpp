@@ -3,6 +3,7 @@
 #include <regex>
 #include <string>
 #include <vector>
+#include <fstream>
 
 #include "exception.hpp"
 
@@ -16,6 +17,8 @@ private:
   static string optionArg;
   static string outputFile;
   static string inputFile;
+  static string currentLine; 
+  static string cleanCurrentLine; 
 
 
 public:
