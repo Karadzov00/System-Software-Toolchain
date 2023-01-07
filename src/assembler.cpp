@@ -37,24 +37,47 @@ void Assembler::openParseFile(){
   inFile.open(inputFile); 
   if(!inFile.is_open())throw FileNotOpenException();
   cout<<"File opened! \n";  
+  currLineNum=1; 
 
   while(getline(inFile, currentLine)){
     smatch regexMatch;
     if(regex_search(cleanCurrentLine, regexMatch, emptyLineRegex))
       continue; //if empty line skip iteration
 
+    formatLine(); 
+
+
+
+    cleanLines.push_back(cleanCurrentLine);  
+    currLineNum++; 
+  }
+
+
+}
+
+void Assembler::formatLine(){
+    smatch regexMatch;
     cleanCurrentLine = currentLine; 
     if(regex_search(cleanCurrentLine, regexMatch, commentRegex)){
       cout<<"comments \n"; 
       cout<<cleanCurrentLine<<"\n";//before replacement
-      //removing all comments 
+      //remove all comments 
       cleanCurrentLine=regex_replace(cleanCurrentLine, commentRegex, ""); 
       cout<<cleanCurrentLine<<"\n";//after replacement 
     }
+    // cout<<"whitespaces \n"; 
+    // cout<<cleanCurrentLine<<"\n";//before replacement
+  
+    //remove all unnecessary whitespaces
+    cleanCurrentLine = regex_replace(cleanCurrentLine, endLineSpaceRegex, ""); 
+    //remove mulitple spaces
+    cleanCurrentLine = regex_replace(cleanCurrentLine, additionalSpaceRegex, " "); 
+    //remove none or multiple spaces after comma
+    cleanCurrentLine = regex_replace(cleanCurrentLine, commaSpaceRegex, ", "); 
+    // cout<<cleanCurrentLine<<"\n"; 
 
-
-    cleanLines.push_back(cleanCurrentLine);  
-  }
-
-
+    //check if label is well written 
+    if(regex_search(cleanCurrentLine, regexMatch, somethingBeforeLabelRegex)){
+      throw BadInputFileSyntax(currLineNum); 
+    }
 }

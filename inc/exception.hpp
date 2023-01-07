@@ -1,4 +1,5 @@
 #include <exception>
+#include <string>
 
 class BadCmdArgsException:public std::exception{
 public:
@@ -11,5 +12,16 @@ class FileNotOpenException:public std::exception{
 public:
   const char* what()const throw(){
     return "File is not opened properly!"; 
+  }
+};
+
+class BadInputFileSyntax:public std::exception{
+public:
+  int line; 
+  BadInputFileSyntax(int line):line(line){} 
+  const char* what()const throw(){
+    std::string s = std::to_string(line);
+    std::string message = "Bad input file syntax! Error on line: "+s;
+    return message.c_str(); 
   }
 };
