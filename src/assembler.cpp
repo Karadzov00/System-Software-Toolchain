@@ -2,8 +2,8 @@
 #include "../inc/regex.hpp"
 
 string Assembler::optionArg="";
-string Assembler::outputFile="";
-string Assembler::inputFile =""; 
+string Assembler::cmdOutputFile="";
+string Assembler::cmdInputFile =""; 
 string Assembler::currentLine="";
 string Assembler::cleanCurrentLine="";
 
@@ -17,14 +17,14 @@ bool Assembler::checkCmdArguments(int argc, char* argv[]){
     if(!argv[i])throw BadCmdArgsException(); 
   }
   optionArg = argv[1]; 
-  outputFile = argv[2]; 
-  inputFile = argv[3]; 
+  cmdOutputFile = argv[2]; 
+  cmdInputFile = argv[3]; 
 
-  std::cout<<inputFile<<"\n"<<outputFile<<"\n"; 
+  std::cout<<cmdInputFile<<"\n"<<cmdOutputFile<<"\n"; 
 
   if(std::regex_match(optionArg, optionArgRegex) 
-  && std::regex_match(inputFile, inputFileRegex)
-  && std::regex_match(outputFile, outputFileRegex)){
+  && std::regex_match(cmdInputFile, inputFileRegex)
+  && std::regex_match(cmdOutputFile, outputFileRegex)){
     std::cout<<"Lepo zadati argumenti \n"; 
     return true; 
   }
@@ -40,14 +40,20 @@ void Assembler::openParseFile(){
 
   while(getline(inFile, currentLine)){
     smatch regexMatch;
+    if(regex_search(cleanCurrentLine, regexMatch, emptyLineRegex))
+      continue; //if empty line skip iteration
+
     cleanCurrentLine = currentLine; 
-    if(regex_search(currentLine, regexMatch, commentRegex)){
-      
+    if(regex_search(cleanCurrentLine, regexMatch, commentRegex)){
+      cout<<"comments \n"; 
       cout<<cleanCurrentLine<<"\n";//before replacement
       //removing all comments 
       cleanCurrentLine=regex_replace(cleanCurrentLine, commentRegex, ""); 
       cout<<cleanCurrentLine<<"\n";//after replacement 
     }
+
+
+    cleanLines.push_back(cleanCurrentLine);  
   }
 
 

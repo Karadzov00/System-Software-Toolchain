@@ -10,7 +10,9 @@ int main(int argc, char* argv[]){
   try
   {
     Assembler::checkCmdArguments(argc, argv);
-    Assembler::openParseFile(); 
+    Assembler assembler(Assembler::cmdInputFile,
+    Assembler::cmdOutputFile); 
+    assembler.openParseFile(); 
 
   }
   catch(const std::exception& e)

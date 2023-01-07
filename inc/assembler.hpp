@@ -5,6 +5,7 @@
 #include <vector>
 #include <fstream>
 
+
 #include "exception.hpp"
 
 using namespace std; 
@@ -15,16 +16,22 @@ private:
 
   vector<string> cleanLines; 
   static string optionArg;
-  static string outputFile;
-  static string inputFile;
+  string outputFile;
+  string inputFile;
+
   static string currentLine; 
   static string cleanCurrentLine; 
 
 
+
 public:
-  Assembler(); 
+  static string cmdOutputFile;
+  static string cmdInputFile;
+
+  Assembler(string inputFile, string outputFile):inputFile(inputFile),
+  outputFile(outputFile){}
   static bool checkCmdArguments(int argc, char* argv[]); 
-  static void openParseFile(); 
+  void openParseFile(); 
   void cleanInputFile(); 
 
 };
