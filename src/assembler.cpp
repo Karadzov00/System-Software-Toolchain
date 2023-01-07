@@ -59,11 +59,11 @@ void Assembler::formatLine(){
     smatch regexMatch;
     cleanCurrentLine = currentLine; 
     if(regex_search(cleanCurrentLine, regexMatch, commentRegex)){
-      cout<<"comments \n"; 
-      cout<<cleanCurrentLine<<"\n";//before replacement
+      // cout<<"comments \n"; 
+      // cout<<cleanCurrentLine<<"\n";//before replacement
       //remove all comments 
       cleanCurrentLine=regex_replace(cleanCurrentLine, commentRegex, ""); 
-      cout<<cleanCurrentLine<<"\n";//after replacement 
+      // cout<<cleanCurrentLine<<"\n";//after replacement 
     }
     // cout<<"whitespaces \n"; 
     // cout<<cleanCurrentLine<<"\n";//before replacement
@@ -80,25 +80,59 @@ void Assembler::formatLine(){
     if(regex_search(cleanCurrentLine, regexMatch, somethingBeforeLabelRegex)){
       throw BadInputFileSyntax(currLineNum); 
     }
+
+    checkIfExternDirective(); 
+    checkIfGlobalDirective(); 
+    checkIfSectionDirective(); 
+    checkIfWordDirective(); 
+    checkIfSkipDirective(); 
+    checkIfEndDirective(); 
+
+
 }
 
 void Assembler::checkIfExternDirective(){
+  smatch regexMatch; 
+  if(regex_search(cleanCurrentLine, regexMatch, externRegex)){
+    cout<<"extern \n";
+    cout<<cleanCurrentLine<<"\n"; 
+  }
 
 }
 void Assembler::checkIfGlobalDirective(){
-  
+  smatch regexMatch; 
+  if(regex_search(cleanCurrentLine, regexMatch, globalRegex)){
+    cout<<"global \n";
+    cout<<cleanCurrentLine<<"\n"; 
+  }
 }
 void Assembler::checkIfEndDirective(){
-  
+  smatch regexMatch; 
+  if(regex_search(cleanCurrentLine, regexMatch, endRegex)){
+    cout<<"end \n";
+    cout<<cleanCurrentLine<<"\n"; 
+  }  
 }
 void Assembler::checkIfSectionDirective(){
-  
+  smatch regexMatch; 
+  if(regex_search(cleanCurrentLine, regexMatch, sectionRegex)){
+    cout<<"section \n";
+    cout<<cleanCurrentLine<<"\n"; 
+  } 
 }
 void Assembler::checkIfSkipDirective(){
-  
+  smatch regexMatch; 
+  if(regex_search(cleanCurrentLine, regexMatch, skipRegex)){
+    cout<<"skip \n";
+    cout<<cleanCurrentLine<<"\n"; 
+  } 
 }
 void Assembler::checkIfWordDirective(){
-  
+  smatch regexMatch; 
+  if(regex_search(cleanCurrentLine, regexMatch, wordRegex)){
+    cout<<"word \n";
+    cout<<cleanCurrentLine<<"\n"; 
+  } 
 }
 
 
