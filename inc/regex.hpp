@@ -18,6 +18,7 @@ regex additionalSpaceRegex("[ ]{2,}");
 regex spaceRegex("[ ]*"); 
 regex commaSpaceRegex("[ ]?,[ ]?"); 
 
+//util regex
 string symbol = "[a-zA-Z][a-zA-Z0-9_]*";
 regex label("^\\s*[a-zA-Z][a-zA-Z0-9_]*:");
 regex onlyLabelInLineRegex("^\\s*[a-zA-Z][a-zA-Z0-9_]*:$"); 

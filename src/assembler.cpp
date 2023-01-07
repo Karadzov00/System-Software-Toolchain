@@ -40,13 +40,19 @@ void Assembler::openParseFile(){
   currLineNum=1; 
 
   while(getline(inFile, currentLine)){
+    instrDirNum=0; 
     smatch regexMatch;
     if(regex_search(cleanCurrentLine, regexMatch, emptyLineRegex))
       continue; //if empty line skip iteration
 
     formatLine(); 
 
-
+    checkIfExternDirective(); 
+    checkIfGlobalDirective(); 
+    checkIfSectionDirective(); 
+    checkIfWordDirective(); 
+    checkIfSkipDirective(); 
+    checkIfEndDirective(); 
 
     cleanLines.push_back(cleanCurrentLine);  
     currLineNum++; 
@@ -81,19 +87,14 @@ void Assembler::formatLine(){
       throw BadInputFileSyntax(currLineNum); 
     }
 
-    checkIfExternDirective(); 
-    checkIfGlobalDirective(); 
-    checkIfSectionDirective(); 
-    checkIfWordDirective(); 
-    checkIfSkipDirective(); 
-    checkIfEndDirective(); 
-
 
 }
 
 void Assembler::checkIfExternDirective(){
   smatch regexMatch; 
   if(regex_search(cleanCurrentLine, regexMatch, externRegex)){
+    if(instrDirNum>0)throw BadInputFileSyntax(currLineNum);
+    instrDirNum++; 
     cout<<"extern \n";
     cout<<cleanCurrentLine<<"\n"; 
   }
@@ -102,6 +103,8 @@ void Assembler::checkIfExternDirective(){
 void Assembler::checkIfGlobalDirective(){
   smatch regexMatch; 
   if(regex_search(cleanCurrentLine, regexMatch, globalRegex)){
+    if(instrDirNum>0)throw BadInputFileSyntax(currLineNum);
+    instrDirNum++; 
     cout<<"global \n";
     cout<<cleanCurrentLine<<"\n"; 
   }
@@ -109,6 +112,8 @@ void Assembler::checkIfGlobalDirective(){
 void Assembler::checkIfEndDirective(){
   smatch regexMatch; 
   if(regex_search(cleanCurrentLine, regexMatch, endRegex)){
+    if(instrDirNum>0)throw BadInputFileSyntax(currLineNum);
+    instrDirNum++; 
     cout<<"end \n";
     cout<<cleanCurrentLine<<"\n"; 
   }  
@@ -116,6 +121,8 @@ void Assembler::checkIfEndDirective(){
 void Assembler::checkIfSectionDirective(){
   smatch regexMatch; 
   if(regex_search(cleanCurrentLine, regexMatch, sectionRegex)){
+    if(instrDirNum>0)throw BadInputFileSyntax(currLineNum);
+    instrDirNum++; 
     cout<<"section \n";
     cout<<cleanCurrentLine<<"\n"; 
   } 
@@ -123,6 +130,8 @@ void Assembler::checkIfSectionDirective(){
 void Assembler::checkIfSkipDirective(){
   smatch regexMatch; 
   if(regex_search(cleanCurrentLine, regexMatch, skipRegex)){
+    if(instrDirNum>0)throw BadInputFileSyntax(currLineNum);
+    instrDirNum++; 
     cout<<"skip \n";
     cout<<cleanCurrentLine<<"\n"; 
   } 
@@ -130,6 +139,8 @@ void Assembler::checkIfSkipDirective(){
 void Assembler::checkIfWordDirective(){
   smatch regexMatch; 
   if(regex_search(cleanCurrentLine, regexMatch, wordRegex)){
+    if(instrDirNum>0)throw BadInputFileSyntax(currLineNum);
+    instrDirNum++; 
     cout<<"word \n";
     cout<<cleanCurrentLine<<"\n"; 
   } 

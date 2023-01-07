@@ -22,6 +22,7 @@ private:
   static string currentLine; 
   static string cleanCurrentLine; 
   int currLineNum; 
+  int instrDirNum; 
 
 
 
@@ -31,7 +32,8 @@ public:
 
   Assembler(string inputFile, string outputFile):inputFile(inputFile),
   outputFile(outputFile){
-    this->currLineNum=1; 
+    this->currLineNum=1;
+    this->instrDirNum=0;  
   }
   static bool checkCmdArguments(int argc, char* argv[]); 
   void openParseFile(); 
