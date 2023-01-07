@@ -81,3 +81,27 @@ void Assembler::formatLine(){
       throw BadInputFileSyntax(currLineNum); 
     }
 }
+
+void Assembler::checkIfExternDirective(){
+
+}
+void Assembler::checkIfGlobalDirective(){
+  
+}
+void Assembler::checkIfEndDirective(){
+  
+}
+void Assembler::checkIfSectionDirective(){
+  
+}
+void Assembler::checkIfSkipDirective(){
+  
+}
+void Assembler::checkIfWordDirective(){
+  
+}
+
+
+
+
+

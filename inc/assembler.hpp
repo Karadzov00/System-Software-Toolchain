@@ -37,5 +37,13 @@ public:
   void openParseFile(); 
   void formatLine(); 
   void cleanInputFile(); 
+  void checkIfGlobalDirective(); 
+  void checkIfExternDirective(); 
+  void checkIfSectionDirective(); 
+  void checkIfWordDirective(); 
+  void checkIfSkipDirective(); 
+  void checkIfEndDirective(); 
+
+
 
 };
