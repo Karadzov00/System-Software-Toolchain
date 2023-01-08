@@ -71,12 +71,12 @@ public:
   void formatLine(); 
   void cleanInputFile(); 
   bool checkIfLabel(string currLine);
-  void checkIfGlobalDirective(string currLine); 
-  void checkIfExternDirective(string currLine); 
-  void checkIfSectionDirective(string currLine); 
-  void checkIfWordDirective(string currLine); 
-  void checkIfSkipDirective(string currLine); 
-  void checkIfEndDirective(string currLine); 
+  bool checkIfGlobalDirective(string currLine); 
+  bool checkIfExternDirective(string currLine); 
+  bool checkIfSectionDirective(string currLine); 
+  bool checkIfWordDirective(string currLine); 
+  bool checkIfSkipDirective(string currLine); 
+  bool checkIfEndDirective(string currLine); 
 
   void processLabel(string currLine); 
   void processGlobalDirective(string currLine); 

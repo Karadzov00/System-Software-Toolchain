@@ -62,15 +62,23 @@ void Assembler::openParseFile(){
         continue; //if empty line skip iteration
     }
 
-    checkIfExternDirective(cleanCurrentLine); 
-    checkIfGlobalDirective(cleanCurrentLine); 
-    checkIfSectionDirective(cleanCurrentLine); 
-    checkIfWordDirective(cleanCurrentLine); 
-    checkIfSkipDirective(cleanCurrentLine); 
-    checkIfEndDirective(cleanCurrentLine); 
 
     cleanLines.push_back(cleanCurrentLine);  
     currLineNum++; 
+
+    if(checkIfExternDirective(cleanCurrentLine))continue; 
+    if(checkIfGlobalDirective(cleanCurrentLine))continue; 
+    if(checkIfSectionDirective(cleanCurrentLine))continue; 
+    if(checkIfWordDirective(cleanCurrentLine))continue; 
+    if(checkIfSkipDirective(cleanCurrentLine))continue; 
+    if(checkIfEndDirective(cleanCurrentLine))continue; 
+
+    //throw instruction/directive not found 
+
+  }
+  cout<<"TABELA SIMBOLA:"<<endl; 
+  for(symbolTableEntry entry:symbolTable){
+    cout<<"naziv simbola: "<<entry.symbolName<<endl;
   }
 
 
@@ -116,17 +124,18 @@ bool Assembler::checkIfLabel(string currLine){
   return false; 
 }
 
-void Assembler::checkIfExternDirective(string currLine){
+bool Assembler::checkIfExternDirective(string currLine){
   smatch regexMatch; 
   if(regex_search(currLine, regexMatch, externRegex)){
     if(instrDirNum>0)throw BadInputFileSyntax(currLineNum);
     instrDirNum++; 
     cout<<"extern \n";
     cout<<currLine<<"\n"; 
+    return true; 
   }
-
+  return false;
 }
-void Assembler::checkIfGlobalDirective(string currLine){
+bool Assembler::checkIfGlobalDirective(string currLine){
   smatch regexMatch; 
   if(regex_search(currLine, regexMatch, globalRegex)){
     if(instrDirNum>0)throw BadInputFileSyntax(currLineNum);
@@ -134,44 +143,53 @@ void Assembler::checkIfGlobalDirective(string currLine){
     cout<<"global \n";
     cout<<currLine<<"\n"; 
     processGlobalDirective(currLine); 
-
+    return true; 
   }
+  return false; 
 }
-void Assembler::checkIfEndDirective(string currLine){
+bool Assembler::checkIfEndDirective(string currLine){
   smatch regexMatch; 
   if(regex_search(currLine, regexMatch, endRegex)){
     if(instrDirNum>0)throw BadInputFileSyntax(currLineNum);
     instrDirNum++; 
     cout<<"end \n";
     cout<<currLine<<"\n"; 
+    return true; 
   }  
+  return false; 
 }
-void Assembler::checkIfSectionDirective(string currLine){
+bool Assembler::checkIfSectionDirective(string currLine){
   smatch regexMatch; 
   if(regex_search(currLine, regexMatch, sectionRegex)){
     if(instrDirNum>0)throw BadInputFileSyntax(currLineNum);
     instrDirNum++; 
     cout<<"section \n";
     cout<<currLine<<"\n"; 
+    return true; 
   } 
+  return false; 
 }
-void Assembler::checkIfSkipDirective(string currLine){
+bool Assembler::checkIfSkipDirective(string currLine){
   smatch regexMatch; 
   if(regex_search(currLine, regexMatch, skipRegex)){
     if(instrDirNum>0)throw BadInputFileSyntax(currLineNum);
     instrDirNum++; 
     cout<<"skip \n";
     cout<<currLine<<"\n"; 
+    return true; 
   } 
+  return false; 
 }
-void Assembler::checkIfWordDirective(string currLine){
+bool Assembler::checkIfWordDirective(string currLine){
   smatch regexMatch; 
   if(regex_search(currLine, regexMatch, wordRegex)){
     if(instrDirNum>0)throw BadInputFileSyntax(currLineNum);
     instrDirNum++; 
     cout<<"word \n";
     cout<<currLine<<"\n"; 
+    return true; 
   } 
+  return false; 
 }
 
 void Assembler::processLabel(string currLine){
@@ -189,13 +207,14 @@ void Assembler::processLabel(string currLine){
   for(symbolTableEntry entry: symbolTable){
     if(entry.symbolName.compare(symbolName)==0){
       //symbol exists in symbolTable
+      cout<<"symbol found is symbol table"<<endl; 
       found=true; 
       entry.sectionNum=currentSectionNumber; 
       entry.value=locationCounter; 
     }
   }
 
-  if(found=false){
+  if(!found){
     //symbol doesn't exist in symbolTable
     symbolTableEntry symTabEntry;
     symTabEntry.isDefined=true;
@@ -205,6 +224,9 @@ void Assembler::processLabel(string currLine){
     symTabEntry.symbolId= symbolId; 
     symTabEntry.symbolName=symbolName;
     symTabEntry.value=locationCounter;  
+    symbolId++; //increment static global id 
+    symbolTable.push_back(symTabEntry);
+    cout<<"simbol dodat u tabelu simbola"<<endl; 
   }
 
 }
