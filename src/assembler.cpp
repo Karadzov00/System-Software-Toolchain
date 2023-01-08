@@ -6,6 +6,7 @@ string Assembler::cmdOutputFile="";
 string Assembler::cmdInputFile =""; 
 string Assembler::currentLine="";
 string Assembler::cleanCurrentLine="";
+int Assembler::symbolId=0;
 
 using namespace std; 
 
