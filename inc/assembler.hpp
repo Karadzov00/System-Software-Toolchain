@@ -13,6 +13,9 @@ using namespace std;
 struct symbolUseEntry{
   int address; //address of LC where symbol is used 
   int type; //is symbol used as absolute ore relative addressing 
+  symbolUseEntry(){
+    address=0; type=0; 
+  }
 
 };
 
@@ -23,7 +26,12 @@ struct symbolTableEntry{
   bool isGlobal; 
   int symbolId;
   int sectionNum; 
+  bool isDefined;
   vector<symbolUseEntry> useVector; 
+  symbolTableEntry(){
+    symbolName=""; value=0; size=0; isGlobal=false; symbolId=0; sectionNum=0;
+    isDefined=false;
+  }
 };
 
 class Assembler{
@@ -41,11 +49,14 @@ private:
   int instrDirNum; 
 
   static int symbolId; 
+  static int sectionNumber;
+  static long locationCounter;  
+  static int currentSectionNumber; 
 
   vector<char> code; 
   vector<symbolTableEntry> symbolTable; 
   
-  
+
 public:
   static string cmdOutputFile;
   static string cmdInputFile;
@@ -59,19 +70,21 @@ public:
   void openParseFile(); 
   void formatLine(); 
   void cleanInputFile(); 
-  void checkIfGlobalDirective(); 
-  void checkIfExternDirective(); 
-  void checkIfSectionDirective(); 
-  void checkIfWordDirective(); 
-  void checkIfSkipDirective(); 
-  void checkIfEndDirective(); 
+  void checkIfLabel(string currLine);
+  void checkIfGlobalDirective(string currLine); 
+  void checkIfExternDirective(string currLine); 
+  void checkIfSectionDirective(string currLine); 
+  void checkIfWordDirective(string currLine); 
+  void checkIfSkipDirective(string currLine); 
+  void checkIfEndDirective(string currLine); 
 
-  void processGlobalDirective(); 
-  void processExternDirective(); 
-  void processSectionDirective(); 
-  void processWordDirective(); 
-  void processSkipDirective();
-  void processEndDirective(); 
+  void processLabel(string currLine); 
+  void processGlobalDirective(string currLine); 
+  void processExternDirective(string currLine); 
+  void processSectionDirective(string currLine); 
+  void processWordDirective(string currLine); 
+  void processSkipDirective(string currLine);
+  void processEndDirective(string currLine); 
 
 
 

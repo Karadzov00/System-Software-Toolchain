@@ -7,6 +7,9 @@ string Assembler::cmdInputFile ="";
 string Assembler::currentLine="";
 string Assembler::cleanCurrentLine="";
 int Assembler::symbolId=0;
+int Assembler::sectionNumber=0; 
+long Assembler::locationCounter=0; 
+int Assembler::currentSectionNumber=0; 
 
 using namespace std; 
 
@@ -48,12 +51,14 @@ void Assembler::openParseFile(){
 
     formatLine(); 
 
-    checkIfExternDirective(); 
-    checkIfGlobalDirective(); 
-    checkIfSectionDirective(); 
-    checkIfWordDirective(); 
-    checkIfSkipDirective(); 
-    checkIfEndDirective(); 
+    checkIfLabel(cleanCurrentLine); 
+
+    checkIfExternDirective(cleanCurrentLine); 
+    checkIfGlobalDirective(cleanCurrentLine); 
+    checkIfSectionDirective(cleanCurrentLine); 
+    checkIfWordDirective(cleanCurrentLine); 
+    checkIfSkipDirective(cleanCurrentLine); 
+    checkIfEndDirective(cleanCurrentLine); 
 
     cleanLines.push_back(cleanCurrentLine);  
     currLineNum++; 
@@ -91,60 +96,91 @@ void Assembler::formatLine(){
 
 }
 
-void Assembler::checkIfExternDirective(){
+void Assembler::checkIfLabel(string currLine){
   smatch regexMatch; 
-  if(regex_search(cleanCurrentLine, regexMatch, externRegex)){
+  if(regex_search(currLine, regexMatch, labelRegex)){
+    cout<<"label \n";
+    cout<<currLine<<"\n"; 
+    processLabel(currLine); 
+  }
+}
+
+void Assembler::checkIfExternDirective(string currLine){
+  smatch regexMatch; 
+  if(regex_search(currLine, regexMatch, externRegex)){
     if(instrDirNum>0)throw BadInputFileSyntax(currLineNum);
     instrDirNum++; 
     cout<<"extern \n";
-    cout<<cleanCurrentLine<<"\n"; 
+    cout<<currLine<<"\n"; 
   }
 
 }
-void Assembler::checkIfGlobalDirective(){
+void Assembler::checkIfGlobalDirective(string currLine){
   smatch regexMatch; 
-  if(regex_search(cleanCurrentLine, regexMatch, globalRegex)){
+  if(regex_search(currLine, regexMatch, globalRegex)){
     if(instrDirNum>0)throw BadInputFileSyntax(currLineNum);
     instrDirNum++; 
     cout<<"global \n";
-    cout<<cleanCurrentLine<<"\n"; 
+    cout<<currLine<<"\n"; 
+    processGlobalDirective(currLine); 
+
   }
 }
-void Assembler::checkIfEndDirective(){
+void Assembler::checkIfEndDirective(string currLine){
   smatch regexMatch; 
-  if(regex_search(cleanCurrentLine, regexMatch, endRegex)){
+  if(regex_search(currLine, regexMatch, endRegex)){
     if(instrDirNum>0)throw BadInputFileSyntax(currLineNum);
     instrDirNum++; 
     cout<<"end \n";
-    cout<<cleanCurrentLine<<"\n"; 
+    cout<<currLine<<"\n"; 
   }  
 }
-void Assembler::checkIfSectionDirective(){
+void Assembler::checkIfSectionDirective(string currLine){
   smatch regexMatch; 
-  if(regex_search(cleanCurrentLine, regexMatch, sectionRegex)){
+  if(regex_search(currLine, regexMatch, sectionRegex)){
     if(instrDirNum>0)throw BadInputFileSyntax(currLineNum);
     instrDirNum++; 
     cout<<"section \n";
-    cout<<cleanCurrentLine<<"\n"; 
+    cout<<currLine<<"\n"; 
   } 
 }
-void Assembler::checkIfSkipDirective(){
+void Assembler::checkIfSkipDirective(string currLine){
   smatch regexMatch; 
-  if(regex_search(cleanCurrentLine, regexMatch, skipRegex)){
+  if(regex_search(currLine, regexMatch, skipRegex)){
     if(instrDirNum>0)throw BadInputFileSyntax(currLineNum);
     instrDirNum++; 
     cout<<"skip \n";
-    cout<<cleanCurrentLine<<"\n"; 
+    cout<<currLine<<"\n"; 
   } 
 }
-void Assembler::checkIfWordDirective(){
+void Assembler::checkIfWordDirective(string currLine){
   smatch regexMatch; 
-  if(regex_search(cleanCurrentLine, regexMatch, wordRegex)){
+  if(regex_search(currLine, regexMatch, wordRegex)){
     if(instrDirNum>0)throw BadInputFileSyntax(currLineNum);
     instrDirNum++; 
     cout<<"word \n";
-    cout<<cleanCurrentLine<<"\n"; 
+    cout<<currLine<<"\n"; 
   } 
+}
+
+void Assembler::processLabel(string currLine){
+  regex symbolNameRegex("[a-zA-Z][a-zA-Z0-9_]*:"); 
+  smatch regexMatch;
+  string symbolName; 
+  if(regex_search(currLine, regexMatch, symbolNameRegex)){
+    symbolName=regexMatch[0];
+    cout<<"symbol name is: "<<symbolName<<"\n"; 
+  }
+  symbolName = symbolName.substr(0, currLine.size()-1);//to remove ':'
+  cout<<"only symbol name: "+symbolName+"\n"; 
+  for(auto entry: symbolTable){
+
+  }
+
+}
+
+void Assembler::processGlobalDirective(string currLine){
+
 }
 
 

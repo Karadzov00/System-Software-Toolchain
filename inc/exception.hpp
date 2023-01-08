@@ -28,8 +28,8 @@ public:
 
 class BadSynataxException:public std::exception{
 public:
-  string message;
-  BadSynataxException(string msg):message(msg){} 
+  std::string message;
+  BadSynataxException(std::string msg):message(msg){} 
   const char* what()const throw(){
     return message.c_str(); 
   }
