@@ -70,7 +70,7 @@ public:
   void openParseFile(); 
   void formatLine(); 
   void cleanInputFile(); 
-  void checkIfLabel(string currLine);
+  bool checkIfLabel(string currLine);
   void checkIfGlobalDirective(string currLine); 
   void checkIfExternDirective(string currLine); 
   void checkIfSectionDirective(string currLine); 

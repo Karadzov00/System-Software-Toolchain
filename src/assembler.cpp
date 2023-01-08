@@ -51,7 +51,16 @@ void Assembler::openParseFile(){
 
     formatLine(); 
 
-    checkIfLabel(cleanCurrentLine); 
+    bool labelLine;
+    labelLine = checkIfLabel(cleanCurrentLine);
+    if(labelLine){
+      //remove label from current line, instruction could be after label
+      cleanCurrentLine=regex_replace(cleanCurrentLine, labelRegex,"");
+      cout<<"label line after shortening \n";
+      cout<<cleanCurrentLine<<endl; 
+      if(regex_search(cleanCurrentLine, regexMatch, emptyLineRegex))
+        continue; //if empty line skip iteration
+    }
 
     checkIfExternDirective(cleanCurrentLine); 
     checkIfGlobalDirective(cleanCurrentLine); 
@@ -96,13 +105,15 @@ void Assembler::formatLine(){
 
 }
 
-void Assembler::checkIfLabel(string currLine){
+bool Assembler::checkIfLabel(string currLine){
   smatch regexMatch; 
   if(regex_search(currLine, regexMatch, labelRegex)){
     cout<<"label \n";
     cout<<currLine<<"\n"; 
     processLabel(currLine); 
+    return true; 
   }
+  return false; 
 }
 
 void Assembler::checkIfExternDirective(string currLine){
@@ -173,8 +184,27 @@ void Assembler::processLabel(string currLine){
   }
   symbolName = symbolName.substr(0, currLine.size()-1);//to remove ':'
   cout<<"only symbol name: "+symbolName+"\n"; 
-  for(auto entry: symbolTable){
+  
+  bool found = false; 
+  for(symbolTableEntry entry: symbolTable){
+    if(entry.symbolName.compare(symbolName)==0){
+      //symbol exists in symbolTable
+      found=true; 
+      entry.sectionNum=currentSectionNumber; 
+      entry.value=locationCounter; 
+    }
+  }
 
+  if(found=false){
+    //symbol doesn't exist in symbolTable
+    symbolTableEntry symTabEntry;
+    symTabEntry.isDefined=true;
+    symTabEntry.isGlobal=false;
+    symTabEntry.sectionNum=currentSectionNumber;
+    symTabEntry.size=0; 
+    symTabEntry.symbolId= symbolId; 
+    symTabEntry.symbolName=symbolName;
+    symTabEntry.value=locationCounter;  
   }
 
 }
