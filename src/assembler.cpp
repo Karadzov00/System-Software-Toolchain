@@ -240,13 +240,31 @@ void Assembler::processGlobalDirective(string currLine){
     cout<<s<<endl; 
   }
   cout<<"------------------"<<endl; 
-  // for(auto s:sectionTable){
-  //   //if we find symbol in section table 
-  //   if(find(symbols.begin(), symbols.end(), s.sectionName)!=symbols.end()){
-  //     string msg ="Section cant't be global! Error at line: "+ currentLine;
-  //     throw BadSynataxException(msg);
-  //   }
-  // }
+  for(auto s:symbols){
+    if(sectionTable.find(s)!=sectionTable.end()){
+      string msg ="Section cant't be global! Error at line: "+ currentLine;
+      throw BadSynataxException(msg);
+    }
+    if(symbolTable.find(s)==symbolTable.end()){
+      //if the symbol is not in symbol table
+      //add it to symbol table 
+      symbolTable[s].isDefined=true; 
+      symbolTable[s].isGlobal=true; 
+      symbolTable[s].sectionNum=currentSectionNumber; 
+      symbolTable[s].size=0;
+      symbolTable[s].symbolId=symbolId;
+      symbolTable[s].symbolName=s;
+      symbolTable[s].value=locationCounter;
+      symbolId++;
+      cout<<"simbol "<<s<<" added to the symbol table"<<endl; 
+
+    }
+    else if(symbolTable[symbol].sectionNum == 0){
+      string msg ="Extern symbol can't be global at the same time! Error at line: "+ currentLine;
+      throw BadSynataxException(msg);
+    }
+
+  }
 
   // //extern symbol can't be global at the same time 
   // for(auto s: symbols){
