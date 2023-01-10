@@ -207,7 +207,7 @@ void Assembler::processLabel(string currLine){
   for(symbolTableEntry entry: symbolTable){
     if(entry.symbolName.compare(symbolName)==0){
       //symbol exists in symbolTable
-      cout<<"symbol found is symbol table"<<endl; 
+      cout<<"symbol found in symbol table"<<endl; 
       found=true; 
       entry.sectionNum=currentSectionNumber; 
       entry.value=locationCounter; 
@@ -232,7 +232,19 @@ void Assembler::processLabel(string currLine){
 }
 
 void Assembler::processGlobalDirective(string currLine){
-
+  regex globalRgx(".global ");
+  currLine = regex_replace(currLine, globalRgx, ""); 
+  cout<<"after cutting global \n"<<currLine<<endl; 
+  vector<string> symbols; 
+  smatch match; 
+  while(regex_search(currLine, match, symbolRegex)){
+    symbols.push_back(match.str(0));
+    currLine = match.suffix().str(); 
+  }
+  cout<<"Symbols from symbol list:"<<endl; 
+  for(auto s:symbols){
+    cout<<s<<endl; 
+  }
 }
 
 
