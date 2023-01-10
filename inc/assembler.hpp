@@ -4,6 +4,7 @@
 #include <string>
 #include <vector>
 #include <fstream>
+#include <map>
 
 
 #include "exception.hpp"
@@ -62,8 +63,8 @@ private:
   static int currentSectionNumber; 
 
   vector<char> code; 
-  vector<symbolTableEntry> symbolTable; 
-  vector<sectionTableEntry> sectionTable; 
+  map<string, symbolTableEntry> symbolTable; 
+  map<string, sectionTableEntry> sectionTable; 
   
 
 public:

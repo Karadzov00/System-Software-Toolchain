@@ -77,8 +77,8 @@ void Assembler::openParseFile(){
 
   }
   cout<<"TABELA SIMBOLA:"<<endl; 
-  for(symbolTableEntry entry:symbolTable){
-    cout<<"naziv simbola: "<<entry.symbolName<<endl;
+  for (auto const& x : symbolTable){
+    cout<<"naziv simbola: "<<x.first<<endl;
   }
 
 
@@ -204,30 +204,24 @@ void Assembler::processLabel(string currLine){
   cout<<"only symbol name: "+symbolName+"\n"; 
   
   bool found = false; 
-  for(symbolTableEntry entry: symbolTable){
-    if(entry.symbolName.compare(symbolName)==0){
-      //symbol exists in symbolTable
+  if(symbolTable.find(symbolName)!=symbolTable.end()){
       cout<<"symbol found in symbol table"<<endl; 
       found=true; 
-      entry.sectionNum=currentSectionNumber; 
-      entry.value=locationCounter; 
-    }
+      symbolTable[symbolName].sectionNum=currentSectionNumber; 
+      symbolTable[symbolName].value=locationCounter; 
   }
-
-  if(!found){
-    //symbol doesn't exist in symbolTable
-    symbolTableEntry symTabEntry;
-    symTabEntry.isDefined=true;
-    symTabEntry.isGlobal=false;
-    symTabEntry.sectionNum=currentSectionNumber;
-    symTabEntry.size=0; 
-    symTabEntry.symbolId= symbolId; 
-    symTabEntry.symbolName=symbolName;
-    symTabEntry.value=locationCounter;  
-    symbolId++; //increment static global id 
-    symbolTable.push_back(symTabEntry);
+  else{
+    symbolTable[symbolName].isDefined=true; 
+    symbolTable[symbolName].isGlobal=false; 
+    symbolTable[symbolName].sectionNum=currentSectionNumber; 
+    symbolTable[symbolName].size=0;
+    symbolTable[symbolName].symbolId=symbolId;
+    symbolTable[symbolName].symbolName=symbolName;
+    symbolTable[symbolName].value=locationCounter;
+    symbolId++;
     cout<<"simbol dodat u tabelu simbola"<<endl; 
   }
+
 
 }
 
@@ -246,18 +240,18 @@ void Assembler::processGlobalDirective(string currLine){
     cout<<s<<endl; 
   }
   cout<<"------------------"<<endl; 
-  for(auto s:sectionTable){
-    //if we find symbol in section table 
-    if(find(symbols.begin(), symbols.end(), s.sectionName)!=symbols.end()){
-      string msg ="Section cant't be global! Error at line: "+ currentLine;
-      throw BadSynataxException(msg);
-    }
-  }
+  // for(auto s:sectionTable){
+  //   //if we find symbol in section table 
+  //   if(find(symbols.begin(), symbols.end(), s.sectionName)!=symbols.end()){
+  //     string msg ="Section cant't be global! Error at line: "+ currentLine;
+  //     throw BadSynataxException(msg);
+  //   }
+  // }
 
-  //extern symbol can't be global at the same time 
-  for(auto s: symbols){
+  // //extern symbol can't be global at the same time 
+  // for(auto s: symbols){
     
-  }
+  // }
 
 
 
