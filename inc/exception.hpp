@@ -29,6 +29,7 @@ public:
 class BadSynataxException:public std::exception{
 public:
   std::string message;
+  int line; 
   BadSynataxException(std::string msg):message(msg){} 
   const char* what()const throw(){
     return message.c_str(); 

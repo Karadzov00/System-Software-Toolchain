@@ -34,6 +34,14 @@ struct symbolTableEntry{
   }
 };
 
+struct sectionTableEntry{
+  string sectionName; 
+  int sectionId; 
+  long size; 
+  vector<char>code; 
+  long startAdress; 
+};
+
 class Assembler{
 
 private:
@@ -55,6 +63,7 @@ private:
 
   vector<char> code; 
   vector<symbolTableEntry> symbolTable; 
+  vector<sectionTableEntry> sectionTable; 
   
 
 public:

@@ -245,6 +245,22 @@ void Assembler::processGlobalDirective(string currLine){
   for(auto s:symbols){
     cout<<s<<endl; 
   }
+  cout<<"------------------"<<endl; 
+  for(auto s:sectionTable){
+    //if we find symbol in section table 
+    if(find(symbols.begin(), symbols.end(), s.sectionName)!=symbols.end()){
+      string msg ="Section cant't be global! Error at line: "+ currentLine;
+      throw BadSynataxException(msg);
+    }
+  }
+
+  //extern symbol can't be global at the same time 
+  for(auto s: symbols){
+    
+  }
+
+
+
 }
 
 
