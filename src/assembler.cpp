@@ -77,8 +77,9 @@ void Assembler::openParseFile(){
 
   }
   cout<<"TABELA SIMBOLA:"<<endl; 
+  cout<<"name \t isGlobal \t id \t section"<<endl;
   for (auto const& x : symbolTable){
-    cout<<"naziv simbola: "<<x.first<<endl;
+    cout<<x.second.symbolName<<"\t"<<x.second.isGlobal<<"\t"<<x.second.symbolId<<"\t"<<x.second.sectionNum<<endl;
   }
 
 
@@ -131,6 +132,7 @@ bool Assembler::checkIfExternDirective(string currLine){
     instrDirNum++; 
     cout<<"extern \n";
     cout<<currLine<<"\n"; 
+    processExternDirective(currLine); 
     return true; 
   }
   return false;
@@ -207,6 +209,7 @@ void Assembler::processLabel(string currLine){
   if(symbolTable.find(symbolName)!=symbolTable.end()){
       cout<<"symbol found in symbol table"<<endl; 
       found=true; 
+      symbolTable[symbolName].isDefined=true; 
       symbolTable[symbolName].sectionNum=currentSectionNumber; 
       symbolTable[symbolName].value=locationCounter; 
   }
@@ -242,37 +245,78 @@ void Assembler::processGlobalDirective(string currLine){
   cout<<"------------------"<<endl; 
   for(auto s:symbols){
     if(sectionTable.find(s)!=sectionTable.end()){
-      string msg ="Section cant't be global! Error at line: "+ currentLine;
+      string msg ="Section cant't be global! Error at line: "+ currLineNum;
       throw BadSynataxException(msg);
     }
     if(symbolTable.find(s)==symbolTable.end()){
       //if the symbol is not in symbol table
       //add it to symbol table 
-      symbolTable[s].isDefined=true; 
+      symbolTable[s].isDefined=false; 
       symbolTable[s].isGlobal=true; 
       symbolTable[s].sectionNum=currentSectionNumber; 
       symbolTable[s].size=0;
       symbolTable[s].symbolId=symbolId;
       symbolTable[s].symbolName=s;
-      symbolTable[s].value=locationCounter;
+      symbolTable[s].value=0;
       symbolId++;
-      cout<<"simbol "<<s<<" added to the symbol table"<<endl; 
+      cout<<"symbol "<<s<<" added to the symbol table"<<endl; 
 
     }
     else if(symbolTable[symbol].sectionNum == 0){
-      string msg ="Extern symbol can't be global at the same time! Error at line: "+ currentLine;
+      string msg ="Extern symbol can't be global at the same time! Error at line: "+ currLineNum;
       throw BadSynataxException(msg);
+    }
+    else{
+      symbolTable[s].isGlobal=true; 
     }
 
   }
 
-  // //extern symbol can't be global at the same time 
-  // for(auto s: symbols){
-    
-  // }
+}
 
-
-
+void Assembler::processExternDirective(string currLine){
+  regex externRgx(".extern ");
+  currLine = regex_replace(currLine, externRgx, ""); 
+  cout<<"after cutting extern \n"<<currLine<<endl; 
+  vector<string> symbols; 
+  smatch match; 
+  while(regex_search(currLine, match, symbolRegex)){
+    symbols.push_back(match.str(0));
+    currLine = match.suffix().str(); 
+  }
+  cout<<"Symbols from symbol list:"<<endl; 
+  for(auto s:symbols){
+    cout<<s<<endl; 
+  }
+  cout<<"------------------"<<endl; 
+  
+  for(auto s:symbols){
+    //check if symbol is already defined 
+    if(symbolTable.find(s)!=symbolTable.end() && symbolTable[s].isDefined==true){
+      string msg ="Symbol already defined! Error at line: "+ currentLine;
+      throw BadSynataxException(msg);
+    }
+    else if(symbolTable.find(s)!=symbolTable.end() && symbolTable[s].sectionNum>0){
+      string msg ="Global symbol can't be extern at the same time! Error at line: "+ currentLine;
+      throw BadSynataxException(msg);
+    }
+    else if(symbolTable.find(s)!=symbolTable.end()){
+      symbolTable[s].isGlobal=true; 
+      symbolTable[s].sectionNum=0; 
+    }
+    else if(symbolTable.find(s)==symbolTable.end()){
+      //add symbol to symbol table 
+      symbolTable[s].isDefined=false; 
+      symbolTable[s].isGlobal=true; 
+      symbolTable[s].sectionNum=0; //no section 
+      symbolTable[s].size=0;
+      symbolTable[s].symbolId=symbolId;
+      symbolTable[s].symbolName=s;
+      symbolTable[s].value=0;
+      symbolId++;
+      cout<<"symbol "<<s<<" added to the symbol table"<<endl; 
+    }
+  }
 }
 
 
