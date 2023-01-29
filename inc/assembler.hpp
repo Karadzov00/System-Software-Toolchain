@@ -13,9 +13,10 @@ using namespace std;
 
 struct symbolUseEntry{
   int address; //address of LC where symbol is used 
-  int type; //is symbol used as absolute ore relative addressing 
+  int type; //is symbol used as absolute or relative addressing - 0 for symbol, 1 for pcrel  
+  int section; //symbol reference 
   symbolUseEntry(){
-    address=0; type=0; 
+    address=0; type=0; section=0; 
   }
 
 };

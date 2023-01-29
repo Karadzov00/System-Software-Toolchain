@@ -81,6 +81,12 @@ void Assembler::openParseFile(){
   for (auto const& x : symbolTable){
     cout<<x.second.symbolName<<"\t"<<x.second.isGlobal<<"\t"<<x.second.symbolId<<"\t"<<x.second.sectionNum<<endl;
   }
+  cout<<"TABELA KORISCENJA:"<<endl; 
+  for (auto const& x : symbolTable){
+    for(auto u: x.second.useVector){
+      cout<<x.first<<": "<<u.address<<" "<<u.section<<" "<<u.type<<endl;
+    }
+  }
 
 
 }
@@ -167,6 +173,7 @@ bool Assembler::checkIfSectionDirective(string currLine){
     instrDirNum++; 
     cout<<"section \n";
     cout<<currLine<<"\n"; 
+    processSectionDirective(currLine); 
     return true; 
   } 
   return false; 
@@ -259,7 +266,15 @@ void Assembler::processGlobalDirective(string currLine){
       symbolTable[s].symbolName=s;
       symbolTable[s].value=0;
       symbolId++;
+      code.push_back('0'); //write 0 in code 
       cout<<"symbol "<<s<<" added to the symbol table"<<endl; 
+
+      //make symbol use entry 
+      symbolUseEntry symbUse; 
+      symbUse.address = locationCounter; 
+      symbUse.section = currentSectionNumber; 
+      symbUse.type = 0; 
+      symbolTable[s].useVector.push_back(symbUse); 
 
     }
     else if(symbolTable[symbol].sectionNum == 0){
@@ -317,6 +332,12 @@ void Assembler::processExternDirective(string currLine){
       cout<<"symbol "<<s<<" added to the symbol table"<<endl; 
     }
   }
+}
+
+void Assembler::processSectionDirective(string currLine){
+  //check if section is in symbolTable 
+  
+
 }
 
 
