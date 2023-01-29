@@ -84,6 +84,7 @@ void Assembler::openParseFile(){
   cout<< left<< setw(14)<<setfill(' ')<<"symbolID";
   cout<< left<< setw(14)<<setfill(' ')<<"sectionNum";
   cout<< left<< setw(14)<<setfill(' ')<<"size";
+  cout<< left<< setw(14)<<setfill(' ')<<"value";
   cout<<endl; 
   for (auto const& x : symbolTable){
     cout<< left<< setw(14)<<setfill(' ')<<x.second.symbolName;
@@ -91,14 +92,27 @@ void Assembler::openParseFile(){
     cout<< left<< setw(14)<<setfill(' ')<<x.second.symbolId;
     cout<< left<< setw(14)<<setfill(' ')<<x.second.sectionNum;
     cout<< left<< setw(14)<<setfill(' ')<<x.second.size;
+    cout<< left<< setw(14)<<setfill(' ')<<x.second.value;
     cout<<endl; 
 
     // cout<<x.second.symbolName<<"\t"<<x.second.isGlobal<<"\t"<<x.second.symbolId<<"\t"<<x.second.sectionNum<<"\t"<<x.second.size<<endl;
   }
   cout<<"TABELA KORISCENJA:"<<endl; 
+    cout<< left<< setw(14)<<setfill(' ')<<"symbol";
+    cout<< left<< setw(14)<<setfill(' ')<<"address";
+    cout<< left<< setw(14)<<setfill(' ')<<"section";
+    cout<< left<< setw(14)<<setfill(' ')<<"type";
+    cout<<endl; 
+
   for (auto const& x : symbolTable){
     for(auto u: x.second.useVector){
-      cout<<x.first<<": "<<u.address<<" "<<u.section<<" "<<u.type<<endl;
+      // cout<<x.first<<": "<<u.address<<" "<<u.section<<" "<<u.type<<endl;
+      cout<< left<< setw(14)<<setfill(' ')<<x.first;
+      cout<< left<< setw(14)<<setfill(' ')<<u.address;
+      cout<< left<< setw(14)<<setfill(' ')<<u.section;
+      cout<< left<< setw(14)<<setfill(' ')<<u.type;
+      cout<<endl; 
+
     }
   }
 
@@ -233,6 +247,12 @@ void Assembler::processLabel(string currLine){
       symbolTable[symbolName].isDefined=true; 
       symbolTable[symbolName].sectionNum=currentSectionNumber; 
       symbolTable[symbolName].value=locationCounter; 
+
+      symbolUseEntry symbUse; 
+      symbUse.address = locationCounter; 
+      symbUse.section = currentSectionNumber; 
+      symbUse.type = 0; 
+      symbolTable[symbolName].useVector.push_back(symbUse); 
   }
   else{
     symbolTable[symbolName].isDefined=true; 
@@ -244,6 +264,12 @@ void Assembler::processLabel(string currLine){
     symbolTable[symbolName].value=locationCounter;
     symbolId++;
     cout<<"simbol dodat u tabelu simbola"<<endl; 
+
+    symbolUseEntry symbUse; 
+    symbUse.address = locationCounter; 
+    symbUse.section = currentSectionNumber; 
+    symbUse.type = 0; 
+    symbolTable[symbolName].useVector.push_back(symbUse); 
   }
 
 
