@@ -1,5 +1,6 @@
 #include "../inc/assembler.hpp"
 #include "../inc/regex.hpp"
+#include <iomanip>
 
 string Assembler::optionArg="";
 string Assembler::cmdOutputFile="";
@@ -77,9 +78,22 @@ void Assembler::openParseFile(){
 
   }
   cout<<"TABELA SIMBOLA:"<<endl; 
-  cout<<"name \t isGlobal \t id \t section"<<endl;
+  // cout<<"name \t isGlobal \t id \t section \t size"<<endl;
+  cout<< left<< setw(14)<<setfill(' ')<<"symbolName";
+  cout<< left<< setw(14)<<setfill(' ')<<"isGlobal";
+  cout<< left<< setw(14)<<setfill(' ')<<"symbolID";
+  cout<< left<< setw(14)<<setfill(' ')<<"sectionNum";
+  cout<< left<< setw(14)<<setfill(' ')<<"size";
+  cout<<endl; 
   for (auto const& x : symbolTable){
-    cout<<x.second.symbolName<<"\t"<<x.second.isGlobal<<"\t"<<x.second.symbolId<<"\t"<<x.second.sectionNum<<endl;
+    cout<< left<< setw(14)<<setfill(' ')<<x.second.symbolName;
+    cout<< left<< setw(14)<<setfill(' ')<<x.second.isGlobal;
+    cout<< left<< setw(14)<<setfill(' ')<<x.second.symbolId;
+    cout<< left<< setw(14)<<setfill(' ')<<x.second.sectionNum;
+    cout<< left<< setw(14)<<setfill(' ')<<x.second.size;
+    cout<<endl; 
+
+    // cout<<x.second.symbolName<<"\t"<<x.second.isGlobal<<"\t"<<x.second.symbolId<<"\t"<<x.second.sectionNum<<"\t"<<x.second.size<<endl;
   }
   cout<<"TABELA KORISCENJA:"<<endl; 
   for (auto const& x : symbolTable){
@@ -224,7 +238,7 @@ void Assembler::processLabel(string currLine){
     symbolTable[symbolName].isDefined=true; 
     symbolTable[symbolName].isGlobal=false; 
     symbolTable[symbolName].sectionNum=currentSectionNumber; 
-    symbolTable[symbolName].size=0;
+    symbolTable[symbolName].size=-1;
     symbolTable[symbolName].symbolId=symbolId;
     symbolTable[symbolName].symbolName=symbolName;
     symbolTable[symbolName].value=locationCounter;
@@ -261,7 +275,7 @@ void Assembler::processGlobalDirective(string currLine){
       symbolTable[s].isDefined=false; 
       symbolTable[s].isGlobal=true; 
       symbolTable[s].sectionNum=currentSectionNumber; 
-      symbolTable[s].size=0;
+      symbolTable[s].size=-1;
       symbolTable[s].symbolId=symbolId;
       symbolTable[s].symbolName=s;
       symbolTable[s].value=0;
@@ -315,16 +329,16 @@ void Assembler::processExternDirective(string currLine){
       string msg ="Global symbol can't be extern at the same time! Error at line: "+ currentLine;
       throw BadSynataxException(msg);
     }
-    else if(symbolTable.find(s)!=symbolTable.end()){
+    else if(symbolTable.find(s)!=symbolTable.end()){  
       symbolTable[s].isGlobal=true; 
       symbolTable[s].sectionNum=0; 
-    }
+    } 
     else if(symbolTable.find(s)==symbolTable.end()){
       //add symbol to symbol table 
       symbolTable[s].isDefined=false; 
       symbolTable[s].isGlobal=true; 
       symbolTable[s].sectionNum=0; //no section 
-      symbolTable[s].size=0;
+      symbolTable[s].size=-1;
       symbolTable[s].symbolId=symbolId;
       symbolTable[s].symbolName=s;
       symbolTable[s].value=0;
@@ -335,8 +349,56 @@ void Assembler::processExternDirective(string currLine){
 }
 
 void Assembler::processSectionDirective(string currLine){
-  //check if section is in symbolTable 
+  char* line = new char[currLine.length()+1]; 
+  strcpy(line, currLine.c_str()); 
+  char* sectionLabel = strtok(line, " "); 
+  char* sectionName = strtok(NULL, " "); 
+  cout<<"section name is: "<<sectionName<<"\n"; 
+
   
+  //check if section is in symbolTable 
+  if(symbolTable.find(sectionName)!=symbolTable.end() && symbolTable[sectionName].size==-1){
+    //section exists in symbolTable 
+    for(auto symb: symbolTable){
+      if(symb.second.symbolId==currentSectionNumber){
+        symb.second.size=locationCounter; 
+        locationCounter=symbolTable[sectionName].size; //set lc to size of section that continues
+        break; 
+      }
+    }
+  }
+  else{
+    //section does not exist in symbol table 
+    //previous section closed, set its size 
+    for(auto symb: symbolTable){
+      if(symb.second.symbolId==currentSectionNumber){
+        symb.second.size=locationCounter; 
+        locationCounter=0; 
+        break; 
+      }
+    }
+
+    //new section opened 
+    currentSectionNumber=symbolId;
+    locationCounter=0;  
+    //create symbol table entry 
+    symbolTable[sectionName].isDefined=true; 
+    symbolTable[sectionName].isGlobal=true; 
+    symbolTable[sectionName].sectionNum=currentSectionNumber; 
+    symbolTable[sectionName].size=0;
+    symbolTable[sectionName].symbolId=symbolId;
+    symbolTable[sectionName].symbolName=sectionName;
+    symbolTable[sectionName].value=0;
+    symbolId++;
+    cout<<"section "<<sectionName<<" added to the symbol table"<<endl;
+
+    //create section table entry 
+    sectionTable[sectionName].sectionId=symbolId; 
+    sectionTable[sectionName].sectionName=sectionName; 
+    sectionTable[sectionName].size=0; 
+
+
+  }
 
 }
 
