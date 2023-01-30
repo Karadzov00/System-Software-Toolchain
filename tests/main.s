@@ -8,14 +8,12 @@
 .global value0, value1, value2, value3, value4, value5, value6
 
 .section my_code
+.skip 10
 my_start:
   ldr r6, $0xFEFE # init SP
 
   ldr r0, $4 # ivt entry number for isr_user0 
   int r0
-  .skip 10
-  .skip 0x23
-  .skip 2222
 
   ldr r0, $0
   push r0
@@ -71,8 +69,10 @@ my_start:
   halt
 
 .section my_data
+.skip 0xA
 value0:
 .word 0
+.skip 10
 value1:
 .word 0
 value2:

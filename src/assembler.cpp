@@ -440,16 +440,22 @@ void Assembler::processSkipDirective(string currLine){
   char* skipLabel = strtok(line, " "); 
   char* literal = strtok(NULL, " "); 
   char* pEnd; 
+  long bytes; 
   if(literal[0]=='0'){
     //hexadecimal literal
-    long bytes = strtol(literal, &pEnd, 16);
+    bytes = strtol(literal, &pEnd, 16);
     cout<<"skip literal is: "<<bytes<<"\n"; 
   }
   else{
     //decimal literal 
-    long bytes = strtol(literal, &pEnd, 10);
+    bytes = strtol(literal, &pEnd, 10);
     cout<<"skip literal is: "<<bytes<<"\n"; 
   }
+
+  for(int i=0; i<bytes; i++){
+    code.push_back('0'); 
+  }
+  locationCounter+=bytes; 
 
 }
 
