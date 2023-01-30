@@ -292,7 +292,7 @@ void Assembler::processGlobalDirective(string currLine){
   cout<<"------------------"<<endl; 
   for(auto s:symbols){
     if(sectionTable.find(s)!=sectionTable.end()){
-      string msg ="Section cant't be global! Error at line: "+ currLineNum;
+      string msg ="Section cant't be global! Error at line: "+ to_string(currLineNum);
       throw BadSynataxException(msg);
     }
     if(symbolTable.find(s)==symbolTable.end()){
@@ -318,7 +318,7 @@ void Assembler::processGlobalDirective(string currLine){
 
     }
     else if(symbolTable[symbol].sectionNum == 0){
-      string msg ="Extern symbol can't be global at the same time! Error at line: "+ currLineNum;
+      string msg ="Extern symbol can't be global at the same time! Error at line: "+ to_string(currLineNum);
       throw BadSynataxException(msg);
     }
     else{
@@ -348,11 +348,11 @@ void Assembler::processExternDirective(string currLine){
   for(auto s:symbols){
     //check if symbol is already defined 
     if(symbolTable.find(s)!=symbolTable.end() && symbolTable[s].isDefined==true){
-      string msg ="Symbol already defined! Error at line: "+ currentLine;
+      string msg ="Symbol already defined! Error at line: "+ to_string(currLineNum);
       throw BadSynataxException(msg);
     }
-    else if(symbolTable.find(s)!=symbolTable.end() && symbolTable[s].sectionNum>0){
-      string msg ="Global symbol can't be extern at the same time! Error at line: "+ currentLine;
+    else if(symbolTable.find(s)!=symbolTable.end() && symbolTable[s].sectionNum>=0){
+      string msg ="Global symbol can't be extern at the same time! Error at line: "+ to_string(currLineNum);
       throw BadSynataxException(msg);
     }
     else if(symbolTable.find(s)!=symbolTable.end()){  
@@ -392,6 +392,10 @@ void Assembler::processSectionDirective(string currLine){
         break; 
       }
     }
+  }
+  else if(symbolTable.find(sectionName)!=symbolTable.end() && symbolTable[sectionName].size!=-1){
+    //error: section already exists as a symbol
+
   }
   else{
     //section does not exist in symbol table 

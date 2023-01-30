@@ -32,6 +32,8 @@ public:
   int line; 
   BadSynataxException(std::string msg):message(msg){} 
   const char* what()const throw(){
-    return message.c_str(); 
+    char* msg = new char[message.length()+1]; 
+    strcpy(msg, message.c_str()); 
+    return msg; 
   }
 };

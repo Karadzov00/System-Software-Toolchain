@@ -3,6 +3,7 @@
 .extern mathAdd, mathSub, mathMul, mathDiv
 
 .global my_start
+.extern my_start
 
 .global value0, value1, value2, value3, value4, value5, value6
 
