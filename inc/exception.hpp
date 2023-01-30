@@ -15,6 +15,13 @@ public:
   }
 };
 
+class EndDirecitveNotFound:public std::exception{
+public:
+  const char* what()const throw(){
+    return "End directive not found!"; 
+  }
+};
+
 class BadInputFileSyntax:public std::exception{
 public:
   int line; 
@@ -37,3 +44,4 @@ public:
     return msg; 
   }
 };
+

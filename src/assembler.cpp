@@ -213,6 +213,7 @@ bool Assembler::checkIfSkipDirective(string currLine){
     instrDirNum++; 
     cout<<"skip \n";
     cout<<currLine<<"\n"; 
+    processSkipDirective(currLine); 
     return true; 
   } 
   return false; 
@@ -351,7 +352,7 @@ void Assembler::processExternDirective(string currLine){
       string msg ="Symbol already defined! Error at line: "+ to_string(currLineNum);
       throw BadSynataxException(msg);
     }
-    else if(symbolTable.find(s)!=symbolTable.end() && symbolTable[s].sectionNum>=0){
+    else if(symbolTable.find(s)!=symbolTable.end() && symbolTable[s].sectionNum>0){
       string msg ="Global symbol can't be extern at the same time! Error at line: "+ to_string(currLineNum);
       throw BadSynataxException(msg);
     }
@@ -395,7 +396,8 @@ void Assembler::processSectionDirective(string currLine){
   }
   else if(symbolTable.find(sectionName)!=symbolTable.end() && symbolTable[sectionName].size!=-1){
     //error: section already exists as a symbol
-
+      string msg ="Section already exists as a symbol! Error at line: "+ to_string(currLineNum);
+      throw BadSynataxException(msg);
   }
   else{
     //section does not exist in symbol table 
@@ -428,6 +430,25 @@ void Assembler::processSectionDirective(string currLine){
     sectionTable[sectionName].size=0; 
 
 
+  }
+
+}
+
+void Assembler::processSkipDirective(string currLine){
+  char* line = new char[currLine.length()+1]; 
+  strcpy(line, currLine.c_str()); 
+  char* skipLabel = strtok(line, " "); 
+  char* literal = strtok(NULL, " "); 
+  char* pEnd; 
+  if(literal[0]=='0'){
+    //hexadecimal literal
+    long bytes = strtol(literal, &pEnd, 16);
+    cout<<"skip literal is: "<<bytes<<"\n"; 
+  }
+  else{
+    //decimal literal 
+    long bytes = strtol(literal, &pEnd, 10);
+    cout<<"skip literal is: "<<bytes<<"\n"; 
   }
 
 }

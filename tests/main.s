@@ -13,6 +13,9 @@ my_start:
 
   ldr r0, $4 # ivt entry number for isr_user0 
   int r0
+  .skip 10
+  .skip 0x23
+  .skip 2222
 
   ldr r0, $0
   push r0
