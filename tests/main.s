@@ -8,7 +8,6 @@
 .global value0, value1, value2, value3, value4, value5, value6
 
 .section my_code
-.skip 10
 my_start:
   ldr r6, $0xFEFE # init SP
 
@@ -69,10 +68,8 @@ my_start:
   halt
 
 .section my_data
-.skip 0xA
 value0:
-.word 0
-.skip 10
+.word a, b, 5, 9, 0xFF
 value1:
 .word 0
 value2:

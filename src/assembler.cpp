@@ -225,6 +225,7 @@ bool Assembler::checkIfWordDirective(string currLine){
     instrDirNum++; 
     cout<<"word \n";
     cout<<currLine<<"\n"; 
+    processWordDirective(currLine); 
     return true; 
   } 
   return false; 
@@ -456,6 +457,47 @@ void Assembler::processSkipDirective(string currLine){
     code.push_back('0'); 
   }
   locationCounter+=bytes; 
+
+}
+
+
+void Assembler::processWordDirective(string currLine){
+  //check if section is opened 
+  if(currentSectionNumber==-1){
+    string msg ="Section not opened! Error at line: "+ to_string(currLineNum);
+    throw BadSynataxException(msg);
+  }
+
+  vector<int>literals; 
+
+  regex wordRgx(".word ");
+  currLine = regex_replace(currLine, wordRgx, ""); 
+  cout<<"after cutting word \n"<<currLine<<endl; 
+  vector<string> symbols; 
+  smatch match; 
+  while(regex_search(currLine, match, symbolRegex)){
+    if(isdigit(match.str(0)[0])){
+      //literal matched
+      literals.push_back(stoi(match.str(0), nullptr, 0)); 
+    }
+    else{
+      //symbol matched 
+      symbols.push_back(match.str(0));
+
+    }
+    currLine = match.suffix().str(); 
+  }
+  cout<<"WORD DIRECTIVE"<<endl; 
+  cout<<"Symbols from symbol list:"<<endl; 
+  for(auto s:symbols){
+    cout<<s<<endl; 
+  }
+  cout<<"------------------"<<endl; 
+  cout<<"Literals from literal list:"<<endl; 
+  for(auto l:literals){
+    cout<<l<<endl; 
+  }
+  cout<<"------------------"<<endl; 
 
 }
 

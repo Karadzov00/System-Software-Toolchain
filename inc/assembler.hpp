@@ -21,6 +21,13 @@ struct symbolUseEntry{
 
 };
 
+struct relocationEntry{
+  int offset; 
+  int type; 
+  int symbol; 
+  int addend; 
+}; 
+
 struct symbolTableEntry{
   string symbolName; 
   int value; 
