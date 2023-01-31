@@ -468,36 +468,39 @@ void Assembler::processWordDirective(string currLine){
     throw BadSynataxException(msg);
   }
 
-  vector<int>literals; 
+  vector<string>literals; 
 
   regex wordRgx(".word ");
   currLine = regex_replace(currLine, wordRgx, ""); 
   cout<<"after cutting word \n"<<currLine<<endl; 
   vector<string> symbols; 
-  smatch match; 
-  while(regex_search(currLine, match, symbolRegex)){
-    if(isdigit(match.str(0)[0])){
-      //literal matched
-      literals.push_back(stoi(match.str(0), nullptr, 0)); 
+
+  char* line = new char[currLine.length()+1]; 
+  strcpy(line, currLine.c_str()); 
+  char* sym = strtok(line, " ,"); 
+  while(sym!=NULL){
+    string str(sym); 
+    smatch regex_match; 
+    if(regex_search(str, regex_match, literalRegex)){
+      literals.push_back(str);
     }
     else{
-      //symbol matched 
-      symbols.push_back(match.str(0));
-
+      symbols.push_back(str); 
     }
-    currLine = match.suffix().str(); 
+    sym = strtok(NULL, " ,"); 
   }
-  cout<<"WORD DIRECTIVE"<<endl; 
-  cout<<"Symbols from symbol list:"<<endl; 
+  cout<<"word symbols:"<<endl; 
   for(auto s:symbols){
     cout<<s<<endl; 
   }
-  cout<<"------------------"<<endl; 
-  cout<<"Literals from literal list:"<<endl; 
+  
+  cout<<"word literals:"<<endl; 
   for(auto l:literals){
     cout<<l<<endl; 
   }
-  cout<<"------------------"<<endl; 
+  cout<<endl; 
+
+  
 
 }
 
