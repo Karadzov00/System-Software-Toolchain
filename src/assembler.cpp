@@ -561,6 +561,8 @@ void Assembler::processWordDirective(string currLine){
       symbUse.type = 0; 
       symbolTable[token].useVector.push_back(symbUse); 
 
+      //TODO make relocation entry 
+
 
     }
     sym = strtok(NULL, " ,"); 

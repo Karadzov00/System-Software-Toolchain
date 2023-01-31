@@ -69,7 +69,7 @@ my_start:
 
 .section my_data
 value0:
-.word 23, 345, 0x5E6, 923, 0xFF
+.word 23, 345, 0x5E6, a, 923, symb_a, new_symb, 0xFF
 value1:
 .word 0
 value2:
