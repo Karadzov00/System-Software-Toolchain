@@ -308,7 +308,6 @@ void Assembler::processGlobalDirective(string currLine){
       symbolTable[s].symbolName=s;
       symbolTable[s].value=0;
       symbolId++;
-      code.push_back('0'); //write 0 in code 
       cout<<"symbol "<<s<<" added to the symbol table"<<endl; 
 
       //make symbol use entry 
@@ -502,11 +501,12 @@ void Assembler::processWordDirective(string currLine){
         //dec literal 
         token = decToHex(stoi(token)); 
       }
+      cout<<"Token is: "<<token<<endl; 
       regex hexPrefix("0x"); 
-      regex_replace(token, hexPrefix, ""); 
+      token=regex_replace(token, hexPrefix, ""); 
 
       //convert int to hex 
-      
+
       for(int i=token.length();i<4;i++){
         code.push_back('0'); //add leading zeros 
       }
