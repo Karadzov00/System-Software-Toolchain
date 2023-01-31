@@ -122,11 +122,14 @@ void Assembler::openParseFile(){
     }
   }
 
-  cout<<"KOD:"<<endl;
-  for(auto c:code){
-    cout<<c;
-  }
+  cout<<"KOD SEKCIJA:"<<endl;
+  for(auto s:sectionTable){
+    cout<<"Ime sekcije: "<<s.first<<endl; 
+    for(auto c: s.second.code){
+      cout<<c; 
+    }
   cout<<endl;
+  }
 
 }
 
@@ -511,19 +514,22 @@ void Assembler::processWordDirective(string currLine){
       }
       else{
         //dec literal 
+        //convert dec to hex 
         token = decToHex(stoi(token)); 
       }
       cout<<"Token is: "<<token<<endl; 
       regex hexPrefix("0x"); 
       token=regex_replace(token, hexPrefix, ""); 
 
-      //convert int to hex 
+      //find cur section name via cur section number
+      string section = findSectionName(); 
+
 
       for(int i=token.length();i<4;i++){
-        code.push_back('0'); //add leading zeros 
+        sectionTable[section].code.push_back('0'); //add leading zeros 
       }
       for(int i=0; i<token.length(); i++){
-        code.push_back(token[i]); 
+        sectionTable[section].code.push_back(token[i]); 
       }
     }
     else{
@@ -548,13 +554,14 @@ void Assembler::processWordDirective(string currLine){
         if(symbolTable[token].isGlobal==false){
           //symbol is local
           string value = to_string(symbolTable[token].value);
-          //check if you have to cut first 2 characters for hex format 
           
+          string section = findSectionName(); 
+
           for(int i=value.length();i<4;i++){
-            code.push_back('0'); //add leading zeros 
+            sectionTable[section].code.push_back('0'); //add leading zeros 
           }
           for(int i=0; i<value.length(); i++){
-            code.push_back(value[i]); 
+            sectionTable[section].code.push_back(value[i]); 
           }
         }
         else{
@@ -617,6 +624,15 @@ int Assembler::hexToDec(string hex){
 
   return decimal_value; 
 }
+
+string Assembler::findSectionName(){
+  for(auto s:symbolTable){
+    if(s.second.symbolId==currentSectionNumber)
+      return s.second.symbolName; 
+  }
+  return nullptr; 
+} 
+
 
 
 

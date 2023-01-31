@@ -106,9 +106,11 @@ public:
   void processWordDirective(string currLine); 
   void processSkipDirective(string currLine);
   void processEndDirective(string currLine); 
+  
+  //helper functions
   string decToHex(int dec);
   int hexToDec(string hex); 
-
+  string findSectionName(); 
 
 
 };
