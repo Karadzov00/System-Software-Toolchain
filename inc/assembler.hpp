@@ -59,6 +59,7 @@ private:
   static string optionArg;
   string outputFile;
   string inputFile;
+  bool endFlag=false;
 
   static string currentLine; 
   static string cleanCurrentLine; 

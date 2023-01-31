@@ -66,7 +66,7 @@ my_start:
   ldr r6, value6
 
   halt
-
+.skip 10
 .section my_data
 value0:
 .word 23, 345, 0x5E6, a, 923, symb_a, new_symb, 0xFF

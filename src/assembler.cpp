@@ -45,6 +45,7 @@ void Assembler::openParseFile(){
   currLineNum=1; 
 
   while(getline(inFile, currentLine)){
+    if(endFlag)break; 
     instrDirNum=0; 
     smatch regexMatch;
     if(regex_search(cleanCurrentLine, regexMatch, emptyLineRegex))
@@ -73,9 +74,14 @@ void Assembler::openParseFile(){
     if(checkIfWordDirective(cleanCurrentLine))continue; 
     if(checkIfSkipDirective(cleanCurrentLine))continue; 
     if(checkIfEndDirective(cleanCurrentLine))continue; 
+    //check if instruction 
 
     //throw instruction/directive not found 
 
+  }
+  if(!endFlag){
+    string msg ="End directive doesn't exist! Error at line: "+ to_string(currLineNum);
+    throw BadSynataxException(msg);
   }
   cout<<"TABELA SIMBOLA:"<<endl; 
   // cout<<"name \t isGlobal \t id \t section \t size"<<endl;
@@ -116,6 +122,11 @@ void Assembler::openParseFile(){
     }
   }
 
+  cout<<"KOD:"<<endl;
+  for(auto c:code){
+    cout<<c;
+  }
+  cout<<endl;
 
 }
 
@@ -190,6 +201,7 @@ bool Assembler::checkIfEndDirective(string currLine){
     instrDirNum++; 
     cout<<"end \n";
     cout<<currLine<<"\n"; 
+    endFlag=true; 
     return true; 
   }  
   return false; 
