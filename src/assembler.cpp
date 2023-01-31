@@ -479,16 +479,93 @@ void Assembler::processWordDirective(string currLine){
   strcpy(line, currLine.c_str()); 
   char* sym = strtok(line, " ,"); 
   while(sym!=NULL){
-    string str(sym); 
+    string token(sym); 
     smatch regex_match; 
-    if(regex_search(str, regex_match, literalRegex)){
-      literals.push_back(str);
+    if(regex_search(token, regex_match, literalRegex)){
+      //literal parsed 
+      literals.push_back(token);
+      int lit = stoi(token); 
+      //literal must be withing range of 2 bytes 
+      if(lit>WORD_MAX || lit<WORD_MIN){
+        string msg ="Literal out of range! Error at line: "+ to_string(currLineNum);
+        throw BadSynataxException(msg);
+      }
+      
+      //TODO add hex regex 
+      regex hexRegex("0x[0-9A-Fa-f]+"); 
+      smatch sm; 
+      if(regex_search(token, sm, hexRegex)){
+        //hex literal 
+        
+      }
+      else{
+        //dec literal 
+        token = decToHex(stoi(token)); 
+      }
+      regex hexPrefix("0x"); 
+      regex_replace(token, hexPrefix, ""); 
+
+      //convert int to hex 
+      
+      for(int i=token.length();i<4;i++){
+        code.push_back('0'); //add leading zeros 
+      }
+      for(int i=0; i<token.length(); i++){
+        code.push_back(token[i]); 
+      }
     }
     else{
-      symbols.push_back(str); 
+      //symbol parsed 
+      symbols.push_back(token); 
+
+      //check if symbol is not in symbol table 
+      if(symbolTable.find(token)==symbolTable.end()){
+        //add symbol to symbol table 
+        symbolTable[token].isDefined=false; 
+        symbolTable[token].isGlobal=false; 
+        symbolTable[token].sectionNum=currentSectionNumber; //no section 
+        symbolTable[token].size=-1;
+        symbolTable[token].symbolId=symbolId;
+        symbolTable[token].symbolName=token;
+        symbolTable[token].value=0;
+        symbolId++;
+        cout<<"symbol "<<token<<" added to the symbol table"<<endl; 
+      }
+      else{
+        //symbol found in symbol table 
+        if(symbolTable[token].isGlobal==false){
+          //symbol is local
+          string value = to_string(symbolTable[token].value);
+          //check if you have to cut first 2 characters for hex format 
+          
+          for(int i=value.length();i<4;i++){
+            code.push_back('0'); //add leading zeros 
+          }
+          for(int i=0; i<value.length(); i++){
+            code.push_back(value[i]); 
+          }
+        }
+        else{
+          //symbol is global 
+          for(int i=0;i<4;i++){
+            code.push_back('0');
+          }
+        }
+      }
+
+      //add symbol to symbol use entry 
+      //make symbol use entry 
+      symbolUseEntry symbUse; 
+      symbUse.address = locationCounter; 
+      symbUse.section = currentSectionNumber; 
+      symbUse.type = 0; 
+      symbolTable[token].useVector.push_back(symbUse); 
+
+
     }
     sym = strtok(NULL, " ,"); 
   }
+
   cout<<"word symbols:"<<endl; 
   for(auto s:symbols){
     cout<<s<<endl; 
@@ -500,8 +577,31 @@ void Assembler::processWordDirective(string currLine){
   }
   cout<<endl; 
 
+  cout<<"CODE:"<<endl; 
+  for(auto c:code){
+    cout<<c; 
+  }
+  cout<<endl; 
+
   
 
+}
+
+
+string Assembler::decToHex(int dec){
+  std::stringstream ss;
+  ss<< std::hex << dec; // int decimal_value
+  std::string res ( ss.str() );
+  return res; 
+}
+
+int Assembler::hexToDec(string hex){
+  int decimal_value; 
+  std::stringstream ss;
+  ss  << hex; // std::string hex_value
+  ss >> std::hex >> decimal_value ; //int decimal_value
+
+  return decimal_value; 
 }
 
 

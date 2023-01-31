@@ -73,6 +73,8 @@ private:
   vector<char> code; 
   map<string, symbolTableEntry> symbolTable; 
   map<string, sectionTableEntry> sectionTable; 
+
+  enum wordRange{WORD_MAX=65536, WORD_MIN=-32768}; 
   
 
 public:
@@ -103,6 +105,8 @@ public:
   void processWordDirective(string currLine); 
   void processSkipDirective(string currLine);
   void processEndDirective(string currLine); 
+  string decToHex(int dec);
+  int hexToDec(string hex); 
 
 
 
