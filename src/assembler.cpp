@@ -123,10 +123,16 @@ void Assembler::openParseFile(){
   }
 
   cout<<"KOD SEKCIJA:"<<endl;
+  int cnt=1; 
   for(auto s:sectionTable){
     cout<<"Ime sekcije: "<<s.first<<endl; 
     for(auto c: s.second.code){
       cout<<c; 
+      if(cnt==4){
+        cout<<" ";
+        cnt=0; 
+      }
+      cnt++; 
     }
   cout<<endl;
   }
@@ -470,6 +476,9 @@ void Assembler::processSkipDirective(string currLine){
   for(int i=0; i<bytes; i++){
     code.push_back('0'); 
   }
+  string section = findSectionName(); 
+  sectionTable[section].size+=bytes;
+  symbolTable[section].size+=bytes; 
   locationCounter+=bytes; 
 
 }
@@ -531,6 +540,8 @@ void Assembler::processWordDirective(string currLine){
       for(int i=0; i<token.length(); i++){
         sectionTable[section].code.push_back(token[i]); 
       }
+      sectionTable[section].size+=2;
+      symbolTable[section].size+=2; 
     }
     else{
       //symbol parsed 
@@ -548,6 +559,12 @@ void Assembler::processWordDirective(string currLine){
         symbolTable[token].value=0;
         symbolId++;
         cout<<"symbol "<<token<<" added to the symbol table"<<endl; 
+        string section = findSectionName(); 
+        for(int i=0;i<4;i++){
+          sectionTable[section].code.push_back('0');
+        }
+        sectionTable[section].size+=2;
+        symbolTable[section].size+=2; 
       }
       else{
         //symbol found in symbol table 
@@ -563,12 +580,18 @@ void Assembler::processWordDirective(string currLine){
           for(int i=0; i<value.length(); i++){
             sectionTable[section].code.push_back(value[i]); 
           }
+          sectionTable[section].size+=2;
+          symbolTable[section].size+=2; 
         }
         else{
           //symbol is global 
+          string section = findSectionName(); 
+
           for(int i=0;i<4;i++){
-            code.push_back('0');
+            sectionTable[section].code.push_back('0');
           }
+          sectionTable[section].size+=2;
+          symbolTable[section].size+=2; 
         }
       }
 
