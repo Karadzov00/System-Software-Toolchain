@@ -305,9 +305,19 @@ bool Assembler::checkIfInstruction(string currLine){
       
       cout<<"OPERANDS ARE: "; 
       cout<<tokens[1]<<endl; 
-      string binary = decToBin(tokens[1]); 
-      cout<<"binary reg: "<<binary<<endl; 
-      code="00010000";
+
+      string binary_reg = registerCode(tokens[1]); 
+      cout<<"hex reg: "<<binary_reg<<endl; 
+      code="10";
+      code+=binary_reg;
+      code+="F"; 
+      cout<<"code for int instruction: "<<code<<endl;
+
+      //pushing into code 
+      for(int i=0; i<code.size(); i++){
+        sectionTable[currentSectionName].code.push_back(code[i]); 
+      }
+      locationCounter+=1;  
 
     }
     else if(operation=="push"){
@@ -319,7 +329,21 @@ bool Assembler::checkIfInstruction(string currLine){
       
     }
     else if(operation=="not"){
-      
+      cout<<"OPERANDS ARE: "; 
+      cout<<tokens[1]<<endl; 
+
+      string binary_reg = registerCode(tokens[1]); 
+      cout<<"hex reg: "<<binary_reg<<endl; 
+      code="80";
+      code+=binary_reg;
+      code+=binary_reg; 
+      cout<<"code for not instruction: "<<code<<endl;
+
+      //pushing into code 
+      for(int i=0; i<code.size(); i++){
+        sectionTable[currentSectionName].code.push_back(code[i]); 
+      }
+      locationCounter+=1;
     }
 
   }
@@ -746,6 +770,15 @@ string Assembler::decToBin(string dec){
   return binary; 
 }
 
+string Assembler::registerCode(string reg){
+
+  if(reg=="sp")return "6"; 
+  else if(reg=="pc")return "7"; 
+  else if(reg=="psw")return "8"; 
+  else return reg.substr(1,1); 
+  return ""; 
+
+}
 
 
 

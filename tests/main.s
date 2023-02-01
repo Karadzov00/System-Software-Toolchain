@@ -9,9 +9,16 @@
 
 .section my_code
 my_start:
+#edit code 
   int r6
   int psw
   int sp
+
+  not psw
+  not r4
+  not pc
+
+#end edit code 
   ldr r6, $0xFEFE # init SP
 
   ldr r0, $4 # ivt entry number for isr_user0 
