@@ -17,7 +17,8 @@ my_start:
   not psw
   not r4
   not pc
-
+  add r0, r1
+  add r4, r7
 #end edit code 
   ldr r6, $0xFEFE # init SP
 

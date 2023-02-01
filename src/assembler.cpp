@@ -263,21 +263,21 @@ bool Assembler::checkIfInstruction(string currLine){
     cout<<"OPERATION IS "+operation<<endl; 
     string code; 
     if(operation=="halt"){
-      code="00000000"; 
+      code="00"; 
       for(int i=0; i<code.size(); i++){
         sectionTable[currentSectionName].code.push_back(code[i]); 
       }
       locationCounter+=1; 
     }
     else if(operation=="iret"){
-      code="00100000"; 
+      code="20"; 
       for(int i=0; i<code.size(); i++){
         sectionTable[currentSectionName].code.push_back(code[i]); 
       }
       locationCounter+=1; 
     }
     else if(operation=="ret"){
-      code="01000000"; 
+      code="40"; 
       for(int i=0; i<code.size(); i++){
         sectionTable[currentSectionName].code.push_back(code[i]); 
       }
@@ -317,15 +317,16 @@ bool Assembler::checkIfInstruction(string currLine){
       for(int i=0; i<code.size(); i++){
         sectionTable[currentSectionName].code.push_back(code[i]); 
       }
-      locationCounter+=1;  
+      locationCounter+=2;  
 
     }
     else if(operation=="push"){
       //treat it as str
-
+      processInstruction(currLine); 
     }
     else if(operation=="pop"){
       //treat it as ldr
+      processInstruction(currLine); 
       
     }
     else if(operation=="not"){
@@ -343,11 +344,119 @@ bool Assembler::checkIfInstruction(string currLine){
       for(int i=0; i<code.size(); i++){
         sectionTable[currentSectionName].code.push_back(code[i]); 
       }
-      locationCounter+=1;
+      locationCounter+=2;
     }
 
   }
-  else if(regex_search(currLine, match, registersOnlyOneOperandRegex)){
+  else if(regex_search(currLine, match, registersTwoOperandRegex)){
+       //tokenize the line 
+    char* line = new char[currLine.length()+1]; 
+    strcpy(line, currLine.c_str()); 
+    char * token;
+    token = strtok(line," ,");
+    vector<string>tokens; 
+    while (token != NULL){
+      tokens.push_back(token); 
+      token = strtok (NULL, " ,");
+    }
+    string operation = tokens[0]; 
+    cout<<"OPERATION IS "+operation<<endl; 
+    string code; 
+
+    string reg1 = registerCode(tokens[1]);
+    string reg2 = registerCode(tokens[2]);
+    
+    if(operation=="xchg"){
+      code="60";
+      code+=reg1;
+      code+=reg2; 
+
+      //pushing into code 
+      for(int i=0; i<code.size(); i++){
+        sectionTable[currentSectionName].code.push_back(code[i]); 
+      }
+      locationCounter+=2;
+      cout<<"Code for xchg instruction: "<<code<<endl; 
+      
+    }
+    else if(operation=="add"){
+      code="70";
+      code+=reg1;
+      code+=reg2; 
+
+      //pushing into code 
+      for(int i=0; i<code.size(); i++){
+        sectionTable[currentSectionName].code.push_back(code[i]); 
+      }
+      locationCounter+=2;
+      cout<<"Code for add instruction: "<<code<<endl; 
+    }
+    else if(operation=="sub"){
+      code="71";
+      code+=reg1;
+      code+=reg2; 
+
+      //pushing into code 
+      for(int i=0; i<code.size(); i++){
+        sectionTable[currentSectionName].code.push_back(code[i]); 
+      }
+      locationCounter+=2;
+      cout<<"Code for sub instruction: "<<code<<endl;
+    }
+    else if(operation=="mul"){
+      code="72";
+      code+=reg1;
+      code+=reg2; 
+
+      //pushing into code 
+      for(int i=0; i<code.size(); i++){
+        sectionTable[currentSectionName].code.push_back(code[i]); 
+      }
+      locationCounter+=2;
+      cout<<"Code for mul instruction: "<<code<<endl;
+    }
+    else if(operation=="div"){
+      code="73";
+      code+=reg1;
+      code+=reg2; 
+
+      //pushing into code 
+      for(int i=0; i<code.size(); i++){
+        sectionTable[currentSectionName].code.push_back(code[i]); 
+      }
+      locationCounter+=2;
+      cout<<"Code for div instruction: "<<code<<endl;
+    }
+    else if(operation=="cmp"){
+      code="74";
+      code+=reg1;
+      code+=reg2; 
+
+      //pushing into code 
+      for(int i=0; i<code.size(); i++){
+        sectionTable[currentSectionName].code.push_back(code[i]); 
+      }
+      locationCounter+=2;
+      cout<<"Code for cmp instruction: "<<code<<endl;
+    }
+    else if(operation=="and"){
+      
+    }
+    else if(operation=="or"){
+      
+    }
+    else if(operation=="xor"){
+      
+    }
+    else if(operation=="test"){
+      
+    }
+    else if(operation=="shl"){
+      
+    }
+    else if(operation=="shr"){
+      
+    }
 
   }
   return true; 
@@ -735,8 +844,6 @@ void Assembler::processWordDirective(string currLine){
   }
   cout<<endl; 
 
-  
-
 }
 
 
@@ -778,6 +885,10 @@ string Assembler::registerCode(string reg){
   else return reg.substr(1,1); 
   return ""; 
 
+}
+
+void Assembler::processInstruction(string currLine){
+  // cout<<"Process instrucion line:"<<endl<<currLine<<endl; 
 }
 
 

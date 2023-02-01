@@ -108,7 +108,7 @@ public:
   void processWordDirective(string currLine); 
   void processSkipDirective(string currLine);
   void processEndDirective(string currLine); 
-
+  void processInstruction(string currLine); 
   
   //helper functions
   string decToHex(int dec);
@@ -116,5 +116,6 @@ public:
   string findSectionName(); 
   string decToBin(string dec);
   string registerCode(string reg);
+
 
 };
