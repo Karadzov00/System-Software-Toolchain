@@ -105,23 +105,42 @@ void Assembler::openParseFile(){
 
     // cout<<x.second.symbolName<<"\t"<<x.second.isGlobal<<"\t"<<x.second.symbolId<<"\t"<<x.second.sectionNum<<"\t"<<x.second.size<<endl;
   }
-  cout<<"TABELA KORISCENJA:"<<endl; 
-    cout<< left<< setw(14)<<setfill(' ')<<"symbol";
-    cout<< left<< setw(14)<<setfill(' ')<<"address";
-    cout<< left<< setw(14)<<setfill(' ')<<"section";
+  cout<<endl; 
+  // cout<<"TABELA KORISCENJA:"<<endl; 
+  //   cout<< left<< setw(14)<<setfill(' ')<<"symbol";
+  //   cout<< left<< setw(14)<<setfill(' ')<<"address";
+  //   cout<< left<< setw(14)<<setfill(' ')<<"section";
+  //   cout<< left<< setw(14)<<setfill(' ')<<"type";
+  //   cout<<endl; 
+
+  // for (auto const& x : symbolTable){
+  //   for(auto u: x.second.useVector){
+  //     // cout<<x.first<<": "<<u.address<<" "<<u.section<<" "<<u.type<<endl;
+  //     cout<< left<< setw(14)<<setfill(' ')<<x.first;
+  //     cout<< left<< setw(14)<<setfill(' ')<<u.address;
+  //     cout<< left<< setw(14)<<setfill(' ')<<u.section;
+  //     cout<< left<< setw(14)<<setfill(' ')<<u.type;
+  //     cout<<endl; 
+
+  //   }
+  // }
+
+  cout<<"RELOKACIONI ZAPISI SEKCIJE:"<<endl; 
+  for(auto s:sectionTable){
+    cout<<"sekcija: "<<s.second.sectionName<<endl; 
+    cout<< left<< setw(14)<<setfill(' ')<<"offset";
     cout<< left<< setw(14)<<setfill(' ')<<"type";
+    cout<< left<< setw(14)<<setfill(' ')<<"symbol";
+    cout<< left<< setw(14)<<setfill(' ')<<"addend";
     cout<<endl; 
-
-  for (auto const& x : symbolTable){
-    for(auto u: x.second.useVector){
-      // cout<<x.first<<": "<<u.address<<" "<<u.section<<" "<<u.type<<endl;
-      cout<< left<< setw(14)<<setfill(' ')<<x.first;
-      cout<< left<< setw(14)<<setfill(' ')<<u.address;
-      cout<< left<< setw(14)<<setfill(' ')<<u.section;
-      cout<< left<< setw(14)<<setfill(' ')<<u.type;
+    for(auto r:s.second.sectionRelocations){
+      cout<< left<< setw(14)<<setfill(' ')<<r.offset;
+      cout<< left<< setw(14)<<setfill(' ')<<r.type;
+      cout<< left<< setw(14)<<setfill(' ')<<r.symbol;
+      cout<< left<< setw(14)<<setfill(' ')<<r.addend;
       cout<<endl; 
-
     }
+    cout<<endl; 
   }
 
   cout<<"KOD SEKCIJA:"<<endl;
@@ -830,6 +849,18 @@ void Assembler::processWordDirective(string currLine){
         for(int i=0;i<4;i++){
           sectionTable[section].code.push_back('0');
         }
+
+        //add symbol to symbol use entry 
+        //make symbol use entry 
+        symbolUseEntry symbUse; 
+        symbUse.address = locationCounter; 
+        symbUse.section = currentSectionNumber; 
+        symbUse.type = 0; 
+        symbolTable[token].useVector.push_back(symbUse); 
+
+        //TODO make relocation entry 
+        addRelocation(locationCounter, 0, symbolTable[token].symbolId, 0, currentSectionName); 
+
         sectionTable[section].size+=2;
         symbolTable[section].size+=2; 
         locationCounter+=2; 
@@ -840,6 +871,9 @@ void Assembler::processWordDirective(string currLine){
         if(symbolTable[token].isGlobal==false){
           //symbol is local
           string value = to_string(symbolTable[token].value);
+          string hex_value = decToHex(symbolTable[token].value); 
+          regex hexPrefix("0x"); 
+          hex_value=regex_replace(hex_value, hexPrefix, ""); 
           
           string section = findSectionName(); 
 
@@ -847,7 +881,7 @@ void Assembler::processWordDirective(string currLine){
             sectionTable[section].code.push_back('0'); //add leading zeros 
           }
           for(int i=0; i<value.length(); i++){
-            sectionTable[section].code.push_back(value[i]); 
+            sectionTable[section].code.push_back(hex_value[i]); 
           }
           //add symbol to symbol use entry 
           //make symbol use entry 
@@ -863,6 +897,8 @@ void Assembler::processWordDirective(string currLine){
 
           sectionTable[section].size+=2;
           symbolTable[section].size+=2; 
+          locationCounter+=2; 
+
         }
         else{
           //symbol is global 
