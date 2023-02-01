@@ -440,22 +440,76 @@ bool Assembler::checkIfInstruction(string currLine){
       cout<<"Code for cmp instruction: "<<code<<endl;
     }
     else if(operation=="and"){
-      
+      code="81";
+      code+=reg1;
+      code+=reg2; 
+
+      //pushing into code 
+      for(int i=0; i<code.size(); i++){
+        sectionTable[currentSectionName].code.push_back(code[i]); 
+      }
+      locationCounter+=2;
+      cout<<"Code for and instruction: "<<code<<endl;
     }
     else if(operation=="or"){
-      
+      code="82";
+      code+=reg1;
+      code+=reg2; 
+
+      //pushing into code 
+      for(int i=0; i<code.size(); i++){
+        sectionTable[currentSectionName].code.push_back(code[i]); 
+      }
+      locationCounter+=2;
+      cout<<"Code for or instruction: "<<code<<endl;
     }
     else if(operation=="xor"){
-      
+      code="83";
+      code+=reg1;
+      code+=reg2; 
+
+      //pushing into code 
+      for(int i=0; i<code.size(); i++){
+        sectionTable[currentSectionName].code.push_back(code[i]); 
+      }
+      locationCounter+=2;
+      cout<<"Code for xor instruction: "<<code<<endl;
     }
     else if(operation=="test"){
-      
+      code="84";
+      code+=reg1;
+      code+=reg2; 
+
+      //pushing into code 
+      for(int i=0; i<code.size(); i++){
+        sectionTable[currentSectionName].code.push_back(code[i]); 
+      }
+      locationCounter+=2;
+      cout<<"Code for test instruction: "<<code<<endl;
     }
     else if(operation=="shl"){
-      
+      code="90";
+      code+=reg1;
+      code+=reg2; 
+
+      //pushing into code 
+      for(int i=0; i<code.size(); i++){
+        sectionTable[currentSectionName].code.push_back(code[i]); 
+      }
+      locationCounter+=2;
+      cout<<"Code for shl instruction: "<<code<<endl;
     }
     else if(operation=="shr"){
-      
+      code="91";
+      code+=reg1;
+      code+=reg2; 
+
+      //pushing into code 
+      for(int i=0; i<code.size(); i++){
+        sectionTable[currentSectionName].code.push_back(code[i]); 
+      }
+      locationCounter+=2;
+      cout<<"Code for shr instruction: "<<code<<endl;
     }
 
   }
