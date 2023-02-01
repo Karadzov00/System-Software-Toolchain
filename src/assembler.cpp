@@ -73,7 +73,8 @@ void Assembler::openParseFile(){
     if(checkIfSectionDirective(cleanCurrentLine))continue; 
     if(checkIfWordDirective(cleanCurrentLine))continue; 
     if(checkIfSkipDirective(cleanCurrentLine))continue; 
-    if(checkIfEndDirective(cleanCurrentLine))continue; 
+    if(checkIfEndDirective(cleanCurrentLine))continue;
+    if(checkIfInstruction(cleanCurrentLine))continue;  
     //check if instruction 
 
     //throw instruction/directive not found 
@@ -128,7 +129,7 @@ void Assembler::openParseFile(){
     cout<<"Ime sekcije: "<<s.first<<endl; 
     for(auto c: s.second.code){
       cout<<c; 
-      if(cnt==4){
+      if(cnt==2){
         cout<<" ";
         cnt=0; 
       }
@@ -542,6 +543,7 @@ void Assembler::processWordDirective(string currLine){
       }
       sectionTable[section].size+=2;
       symbolTable[section].size+=2; 
+      locationCounter+=2; 
     }
     else{
       //symbol parsed 
@@ -565,6 +567,8 @@ void Assembler::processWordDirective(string currLine){
         }
         sectionTable[section].size+=2;
         symbolTable[section].size+=2; 
+        locationCounter+=2; 
+
       }
       else{
         //symbol found in symbol table 
@@ -592,6 +596,8 @@ void Assembler::processWordDirective(string currLine){
           }
           sectionTable[section].size+=2;
           symbolTable[section].size+=2; 
+          locationCounter+=2; 
+
         }
       }
 

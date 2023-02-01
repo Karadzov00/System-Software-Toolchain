@@ -33,3 +33,8 @@ regex sectionRegex("\\.section (([a-zA-Z][a-zA-Z0-9_]*)+)");
 regex wordRegex(".word ([a-zA-Z][a-zA-Z0-9_]*|((\\b0x[a-fA-F0-9]+)|(\\b[-]?[0-9]+)))(, [a-zA-Z][a-zA-Z0-9_]*|(, ((\\b0x[a-fA-F0-9]+)|(\\b[-]?[0-9]+))))*");
 regex skipRegex("\\.skip ((\\b0x[a-fA-F0-9]+)|(\\b[-]?[0-9]+))");
 regex endRegex("\\.end$");
+
+//register only regexs 
+regex registersOnlyNoOperandRegex("^(halt|iret|ret)$");
+regex registersOnlyOneOperandRegex("^(int|push|pop|not) ((r[0-7])|(pc|sp|psw))$"); 
+regex registersOnlyTwoOperandRegex("^(xchg|add|sub|mul|div|cmp|and|or|xor|test|shl|shr) ((r[0-7])|(pc|sp|psw)), ((r[0-7])|(pc|sp|psw))$"); 

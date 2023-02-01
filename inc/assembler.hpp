@@ -98,7 +98,8 @@ public:
   bool checkIfWordDirective(string currLine); 
   bool checkIfSkipDirective(string currLine); 
   bool checkIfEndDirective(string currLine); 
-
+  bool checkIfInstruction(string currLine); 
+  
   void processLabel(string currLine); 
   void processGlobalDirective(string currLine); 
   void processExternDirective(string currLine); 
@@ -106,6 +107,7 @@ public:
   void processWordDirective(string currLine); 
   void processSkipDirective(string currLine);
   void processEndDirective(string currLine); 
+
   
   //helper functions
   string decToHex(int dec);
