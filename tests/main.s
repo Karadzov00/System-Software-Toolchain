@@ -9,6 +9,9 @@
 
 .section my_code
 my_start:
+  int r6
+  int psw
+  int sp
   ldr r6, $0xFEFE # init SP
 
   ldr r0, $4 # ivt entry number for isr_user0 

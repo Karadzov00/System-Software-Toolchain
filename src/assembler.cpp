@@ -1,6 +1,7 @@
 #include "../inc/assembler.hpp"
 #include "../inc/regex.hpp"
 #include <iomanip>
+#include <bitset>
 
 string Assembler::optionArg="";
 string Assembler::cmdOutputFile="";
@@ -64,7 +65,6 @@ void Assembler::openParseFile(){
       if(regex_search(cleanCurrentLine, regexMatch, emptyLineRegex))
         continue; //if empty line skip iteration
     }
-
 
     cleanLines.push_back(cleanCurrentLine);  
     currLineNum++; 
@@ -155,6 +155,8 @@ void Assembler::formatLine(){
     // cout<<cleanCurrentLine<<"\n";//before replacement
   
     //remove all unnecessary whitespaces
+    cleanCurrentLine = regex_replace(cleanCurrentLine, startLineSpaceRegex, ""); 
+
     cleanCurrentLine = regex_replace(cleanCurrentLine, endLineSpaceRegex, ""); 
     //remove mulitple spaces
     cleanCurrentLine = regex_replace(cleanCurrentLine, additionalSpaceRegex, " "); 
@@ -258,6 +260,7 @@ bool Assembler::checkIfInstruction(string currLine){
   smatch match; 
   if(regex_search(currLine, match, noOperandRegex)){
     string operation = match[0]; 
+    cout<<"OPERATION IS "+operation<<endl; 
     string code; 
     if(operation=="halt"){
       code="00000000"; 
@@ -283,10 +286,47 @@ bool Assembler::checkIfInstruction(string currLine){
   }
   else if(regex_search(currLine, match, registersOnlyOneOperandRegex)){
 
+    //tokenize the line 
+    char* line = new char[currLine.length()+1]; 
+    strcpy(line, currLine.c_str()); 
+    char * token;
+    token = strtok(line," ,");
+    vector<string>tokens; 
+    while (token != NULL){
+      tokens.push_back(token); 
+      token = strtok (NULL, " ,");
+    }
+    string operation = tokens[0]; 
+    cout<<"OPERATION IS "+operation<<endl; 
+    string code; 
+
+
+    if(operation=="int"){
+      
+      cout<<"OPERANDS ARE: "; 
+      cout<<tokens[1]<<endl; 
+      string binary = decToBin(tokens[1]); 
+      cout<<"binary reg: "<<binary<<endl; 
+      code="00010000";
+
+    }
+    else if(operation=="push"){
+      //treat it as str
+
+    }
+    else if(operation=="pop"){
+      //treat it as ldr
+      
+    }
+    else if(operation=="not"){
+      
+    }
+
   }
   else if(regex_search(currLine, match, registersOnlyOneOperandRegex)){
 
   }
+  return true; 
 
 }
 
@@ -699,6 +739,12 @@ string Assembler::findSectionName(){
   }
   return nullptr; 
 } 
+
+string Assembler::decToBin(string dec){
+  int dec_num = stoi(dec);
+  std::string binary = std::bitset<4>(dec_num).to_string(); //to binary
+  return binary; 
+}
 
 
 

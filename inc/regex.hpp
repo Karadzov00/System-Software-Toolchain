@@ -38,3 +38,4 @@ regex endRegex("\\.end$");
 regex noOperandRegex("^(halt|iret|ret)$");
 regex registersOnlyOneOperandRegex("^(int|push|pop|not) ((r[0-7])|(pc|sp|psw))$"); 
 regex registersOnlyTwoOperandRegex("^(xchg|add|sub|mul|div|cmp|and|or|xor|test|shl|shr) ((r[0-7])|(pc|sp|psw)), ((r[0-7])|(pc|sp|psw))$"); 
+regex registerRegex("(r[0-7])|(pc|sp|psw)");

@@ -114,6 +114,7 @@ public:
   string decToHex(int dec);
   int hexToDec(string hex); 
   string findSectionName(); 
+  string decToBin(string dec);
 
 
 };
