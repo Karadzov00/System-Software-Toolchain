@@ -49,6 +49,7 @@ struct sectionTableEntry{
   long size; 
   vector<char>code; 
   long startAdress; 
+  vector<relocationEntry>sectionRelocations; 
 };
 
 class Assembler{
@@ -109,6 +110,7 @@ public:
   void processSkipDirective(string currLine);
   void processEndDirective(string currLine); 
   void processInstruction(string currLine); 
+  void addRelocation(int offset, int type, int symbol, int addend, string currSectionName); 
   
   //helper functions
   string decToHex(int dec);

@@ -849,6 +849,18 @@ void Assembler::processWordDirective(string currLine){
           for(int i=0; i<value.length(); i++){
             sectionTable[section].code.push_back(value[i]); 
           }
+          //add symbol to symbol use entry 
+          //make symbol use entry 
+          symbolUseEntry symbUse; 
+          symbUse.address = locationCounter; 
+          symbUse.section = currentSectionNumber; 
+          symbUse.type = 0; 
+          symbolTable[token].useVector.push_back(symbUse); 
+
+          //TODO make relocation entry 
+          addRelocation(locationCounter, 0, symbolTable[token].symbolId, 0, currentSectionName);
+
+
           sectionTable[section].size+=2;
           symbolTable[section].size+=2; 
         }
@@ -859,24 +871,23 @@ void Assembler::processWordDirective(string currLine){
           for(int i=0;i<4;i++){
             sectionTable[section].code.push_back('0');
           }
+          //add symbol to symbol use entry 
+          //make symbol use entry 
+          symbolUseEntry symbUse; 
+          symbUse.address = locationCounter; 
+          symbUse.section = currentSectionNumber; 
+          symbUse.type = 0; 
+          symbolTable[token].useVector.push_back(symbUse); 
+
+          //TODO make relocation entry 
+          addRelocation(locationCounter, 0, symbolTable[token].symbolId, 0, currentSectionName); 
+
           sectionTable[section].size+=2;
           symbolTable[section].size+=2; 
           locationCounter+=2; 
 
         }
       }
-
-      //add symbol to symbol use entry 
-      //make symbol use entry 
-      symbolUseEntry symbUse; 
-      symbUse.address = locationCounter; 
-      symbUse.section = currentSectionNumber; 
-      symbUse.type = 0; 
-      symbolTable[token].useVector.push_back(symbUse); 
-
-      //TODO make relocation entry 
-
-
     }
     sym = strtok(NULL, " ,"); 
   }
@@ -940,6 +951,17 @@ string Assembler::registerCode(string reg){
   return ""; 
 
 }
+
+void Assembler::addRelocation(int offset, int type, int symbol, int addend, string currSectionName){
+   relocationEntry reloc;
+   reloc.offset=offset; 
+   reloc.type=type; 
+   reloc.symbol=symbol; 
+   reloc.addend=addend; 
+   sectionTable[currentSectionName].sectionRelocations.push_back(reloc);  
+
+}
+
 
 void Assembler::processInstruction(string currLine){
   // cout<<"Process instrucion line:"<<endl<<currLine<<endl; 
