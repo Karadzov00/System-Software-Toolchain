@@ -70,6 +70,7 @@ private:
   static int sectionNumber;
   static long locationCounter;  
   static int currentSectionNumber; 
+  static string currentSectionName; 
 
   vector<char> code; 
   map<string, symbolTableEntry> symbolTable; 

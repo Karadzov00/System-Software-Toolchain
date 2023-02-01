@@ -11,6 +11,7 @@ int Assembler::symbolId=0;
 int Assembler::sectionNumber=0; 
 long Assembler::locationCounter=0; 
 int Assembler::currentSectionNumber=0; 
+string Assembler::currentSectionName=""; 
 
 using namespace std; 
 
@@ -253,6 +254,42 @@ bool Assembler::checkIfWordDirective(string currLine){
   return false; 
 }
 
+bool Assembler::checkIfInstruction(string currLine){
+  smatch match; 
+  if(regex_search(currLine, match, noOperandRegex)){
+    string operation = match[0]; 
+    string code; 
+    if(operation=="halt"){
+      code="00000000"; 
+      for(int i=0; i<code.size(); i++){
+        sectionTable[currentSectionName].code.push_back(code[i]); 
+      }
+      locationCounter+=1; 
+    }
+    else if(operation=="iret"){
+      code="00100000"; 
+      for(int i=0; i<code.size(); i++){
+        sectionTable[currentSectionName].code.push_back(code[i]); 
+      }
+      locationCounter+=1; 
+    }
+    else if(operation=="ret"){
+      code="01000000"; 
+      for(int i=0; i<code.size(); i++){
+        sectionTable[currentSectionName].code.push_back(code[i]); 
+      }
+      locationCounter+=1; 
+    }
+  }
+  else if(regex_search(currLine, match, registersOnlyOneOperandRegex)){
+
+  }
+  else if(regex_search(currLine, match, registersOnlyOneOperandRegex)){
+
+  }
+
+}
+
 void Assembler::processLabel(string currLine){
   regex symbolNameRegex("[a-zA-Z][a-zA-Z0-9_]*:"); 
   smatch regexMatch;
@@ -434,6 +471,7 @@ void Assembler::processSectionDirective(string currLine){
 
     //new section opened 
     currentSectionNumber=symbolId;
+    currentSectionName = sectionName; 
     locationCounter=0;  
     //create symbol table entry 
     symbolTable[sectionName].isDefined=true; 
@@ -661,6 +699,7 @@ string Assembler::findSectionName(){
   }
   return nullptr; 
 } 
+
 
 
 
