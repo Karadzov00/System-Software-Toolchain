@@ -365,7 +365,6 @@ bool Assembler::checkIfInstruction(string currLine){
       }
       locationCounter+=2;
     }
-
   }
   else if(regex_search(currLine, match, registersTwoOperandRegex)){
        //tokenize the line 
@@ -531,6 +530,9 @@ bool Assembler::checkIfInstruction(string currLine){
       cout<<"Code for shr instruction: "<<code<<endl;
     }
 
+  }
+  else{
+    processInstruction(currLine); 
   }
   return true; 
 
@@ -1001,6 +1003,26 @@ void Assembler::addRelocation(int offset, int type, int symbol, int addend, stri
 
 void Assembler::processInstruction(string currLine){
   // cout<<"Process instrucion line:"<<endl<<currLine<<endl; 
+  smatch match; 
+  if(regex_search(currLine, match, ldrStrRegex)){
+    cout<<endl<<"Curr ldr/str line: "<<currLine<<endl;
+    vector<string>tokens; 
+
+    char* line = new char[currLine.length()+1]; 
+    strcpy(line, currLine.c_str()); 
+    char * token;
+    token = strtok(line," ,");
+    while (token != NULL){
+      tokens.push_back(token); 
+      token = strtok (NULL, " ,");
+    }
+
+    cout<<"Lista tokena iz ldr/str:"<<endl; 
+    for(auto t:tokens){
+      cout<<t<<endl; 
+    }
+  }
+  //else if jmp regex 
 }
 
 
