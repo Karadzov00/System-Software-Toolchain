@@ -39,3 +39,12 @@ regex noOperandRegex("^(halt|iret|ret)$");
 regex registersOnlyOneOperandRegex("^(int|push|pop|not) ((r[0-7])|(pc|sp|psw))$"); 
 regex registersTwoOperandRegex("^(xchg|add|sub|mul|div|cmp|and|or|xor|test|shl|shr) ((r[0-7])|(pc|sp|psw)), ((r[0-7])|(pc|sp|psw))$"); 
 regex registerRegex("(r[0-7])|(pc|sp|psw)");
+
+//ldr/str regexs 
+regex ldrStrRegex("^(ldr|str) (r[0-7]|pc|sp|psw),.*$"); 
+regex ldrStrImmediateRegex("^\\$(([a-zA-Z][a-zA-Z0-9_]*)|(0x[0-9A-Fa-f]+)|(-?[0-9]+))$"); 
+regex ldrStrRegDirRegex("^(r[0-7])|(pc|sp|psw)$");
+regex ldrStrRegIndRegex("^\\[(r[0-7]|pc|sp|psw)\\]$");
+regex ldrStrRegIndDispRegex("^\\[(r[0-7]|pc|sp|psw)[ ]*\\+[ ]*((0x[0-9A-Fa-f]+)|([0-9]+))\\]$");
+regex ldrStrMemDirRegex("^(([a-zA-Z][a-zA-Z0-9_]*)|(0x[0-9A-Fa-f]+)|([0-9]+))$");
+regex ldrStrPcRelRegex("^%[a-zA-Z][a-zA-Z0-9_]*$"); 
