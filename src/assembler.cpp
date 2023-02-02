@@ -1352,6 +1352,48 @@ void Assembler::processInstruction(string currLine){
       cout<<"reg indirektno sa pomerajem"<<endl;
       cout<<operand;
       cout<<endl;
+
+      string reg_code = registerCode(tokens[1]); 
+      code.append("F"); 
+      code.append(reg_code); //RS
+      code.append("0");//UP
+      code.append("3"); //AM
+
+      regex symbRgx("^[a-zA-Z][a-zA-Z0-9_]*$"); 
+      //check if operand is symbol
+      if(regex_search(tokens[2], match, symbRgx)){
+        //operand is symbol
+        cout<<"operand is symbol"<<endl; 
+        //make relocation entry 
+        string value = processSymbol(tokens[2], locationCounter+3);
+        code.append(value); 
+        cout<<"code"<<endl;
+        cout<<code<<endl; 
+        for(int i=0; i<code.length(); i++){
+          sectionTable[currentSectionName].code.push_back(code[i]); 
+        }
+        locationCounter+=5;
+
+      }
+      else{
+        //operand is literal
+        cout<<"operand is literal"<<endl; 
+        operand = literalToHex(tokens[2]); 
+        cout<<"operand: "<<operand<<endl;
+        for(int i=operand.length(); i<4; i++){
+          code.append("0"); 
+        }
+        for(int i=0; i<operand.length(); i++){
+          code+=operand[i]; 
+        }
+        cout<<"code"<<endl;
+        cout<<code<<endl; 
+        for(int i=0; i<code.length(); i++){
+          sectionTable[currentSectionName].code.push_back(code[i]); 
+        }
+        locationCounter+=5;
+
+      }
     }
     else if(regex_search(operand, match, jmpMemDirRegex)){
       cout<<"mem direktno"<<endl;

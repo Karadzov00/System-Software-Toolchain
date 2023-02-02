@@ -248,6 +248,10 @@ r4
 operand: *[r4 + 0xFF]
 reg indirektno sa pomerajem
 *[r4 + 0xFF]
+operand is literal
+operand: FF
+code
+50F40300FF
 
 Current line: jmp *[r4+a]
 Lista tokena iz ldr/str:
@@ -257,6 +261,10 @@ a
 operand: *[r4+a]
 reg indirektno sa pomerajem
 *[r4+a]
+operand is symbol
+value of symbol a is 000A
+code
+50F403000A
 
 Current line: jmp %a
 Lista tokena iz ldr/str:
@@ -286,9 +294,10 @@ sekcija: jumps
 offset        type          symbol        addend        
 8             0             1             0             
 18            0             1             0             
+37            0             1             0             
 
 KOD SEKCIJA:
 Ime sekcije: data
 A0 40 00 00 FF A0 50 00 00 EA A0 50 00 00 82 A0 40 00 00 0A A0 40 04 00 FF A0 40 04 00 0A A0 45 01 A0 54 02 A0 54 03 00 FF A0 54 03 00 0A 
 Ime sekcije: jumps
-50 F0 00 00 FF 52 F0 00 00 0A 50 F0 04 00 FF 30 F0 04 00 0A 52 F4 01 53 F4 02 50 F8 02 
+50 F0 00 00 FF 52 F0 00 00 0A 50 F0 04 00 FF 30 F0 04 00 0A 52 F4 01 53 F4 02 50 F8 02 50 F4 03 00 FF 50 F4 03 00 0A 
