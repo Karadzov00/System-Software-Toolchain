@@ -112,10 +112,13 @@ public:
   void processInstruction(string currLine); 
   void addRelocation(int offset, int type, int symbol, int addend, string currSectionName); 
   string processSymbol(string symbol, int lc); 
+  string processSymbolForRelocation(string token, int lc); 
 
   //helper functions
   string decToHex(int dec);
   int hexToDec(string hex); 
+  string binToHex(string bin); 
+  string decToBin(int n);
   string findSectionName(); 
   string decToBin(string dec);
   string registerCode(string reg);

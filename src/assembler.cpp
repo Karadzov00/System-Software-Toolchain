@@ -234,6 +234,7 @@ bool Assembler::checkIfEndDirective(string currLine){
     cout<<"end \n";
     cout<<currLine<<"\n"; 
     endFlag=true; 
+    symbolTable[currentSectionName].size=locationCounter; 
     return true; 
   }  
   return false; 
@@ -1233,6 +1234,26 @@ void Assembler::processInstruction(string currLine){
       cout<<operand; 
       cout<<endl;
 
+      if(operation=="ldr")code="A0";
+      else if(operation=="str")code="B0";
+
+      string reg_code = registerCode(reg); 
+      code.append(reg_code); 
+      code.append("7"); //RS is pc reg 
+      code.append("03"); //UP AM 
+      operand = operand.substr(1, operand.length()); 
+
+      string value = processSymbolForRelocation(operand, locationCounter);
+      code.append(value); 
+      cout<<"code"<<endl;
+      cout<<code<<endl; 
+      for(int i=0; i<code.length(); i++){
+        sectionTable[currentSectionName].code.push_back(code[i]); 
+      }
+      locationCounter+=5;
+
+      
+
     }
 
   }
@@ -1476,6 +1497,26 @@ string Assembler::literalToHex(string token){
   return token; 
 }
 
+string Assembler::binToHex(string binary_str){
+  bitset<8> set(binary_str);  
+  stringstream res;
+  res << hex << uppercase << set.to_ulong();
+  return res.str();
+}
+
+string Assembler::decToBin(int n){
+  stringstream ss((n < 0) ? "1" : "0"); // the first bit, for any integer, indicates if its negative or not
+    if (n < 0)
+        n = -(n+1); // read about two complement!
+    int mask = 1 << 6; // Since int8_t has only 8 bits you just need to have your mask initialized to 2^6 (equivalent to 0b01000000) as your initial mask that will help you to detect the 7 following bits, from left to right.
+
+    while (mask) {
+        ss << ((mask & n) ? "1" : "0"); // if the bit of the mask matches the bit of n then we add it to the string.
+        mask >>= 1; // 0b01000000 becomes 0b00100000 and so on
+    }
+    return ss.str();
+}
+
 
 string Assembler::processSymbol(string token, int lc){
   string symbValue; 
@@ -1549,6 +1590,84 @@ string Assembler::processSymbol(string token, int lc){
 
   }
 }
+
+string Assembler::processSymbolForRelocation(string token, int lc){
+    string symbValue; 
+  //check if symbol is not in symbol table 
+  if(symbolTable.find(token)==symbolTable.end()){
+    //add symbol to symbol table 
+    symbolTable[token].isDefined=false; 
+    symbolTable[token].isGlobal=false; 
+    symbolTable[token].sectionNum=currentSectionNumber; //no section 
+    symbolTable[token].size=-1;
+    symbolTable[token].symbolId=symbolId;
+    symbolTable[token].symbolName=token;
+    symbolTable[token].value=0;
+    symbolId++;
+    cout<<"symbol "<<token<<" added to the symbol table"<<endl; 
+
+    //add symbol to symbol use entry 
+    //make symbol use entry 
+    symbolUseEntry symbUse; 
+    symbUse.address = lc; 
+    symbUse.section = currentSectionNumber; 
+    symbUse.type = 0; 
+    symbolTable[token].useVector.push_back(symbUse); 
+
+    //TODO make relocation entry 
+    // addRelocation(lc, 0, symbolTable[token].symbolId, 0, currentSectionName); 
+
+    string value="FEFF";//it's -2 in twos complement but in little endian format 
+    return value; 
+  }
+  else{
+    //symbol is in symbol table 
+    if(symbolTable[token].isGlobal==false){
+      //symbol is local
+      //add symbol to symbol use entry 
+      //make symbol use entry 
+      symbolUseEntry symbUse; 
+      symbUse.address = lc; 
+      symbUse.section = currentSectionNumber; 
+      symbUse.type = 0; 
+      symbolTable[token].useVector.push_back(symbUse); 
+
+      //TODO make relocation entry 
+      // addRelocation(lc, 0, symbolTable[token].symbolId, 0, currentSectionName); 
+    
+      string symbValue = literalToHex(to_string(symbolTable[token].value)); 
+      string value;
+      int decValue = hexToDec(symbValue); 
+
+      for(int i=symbValue.length(); i<4; i++){
+        //add leading zeros
+        value+="0";
+      }
+      for(int i=0; i<symbValue.length(); i++){
+        value+=symbValue[i]; 
+      }
+      cout<<"value of symbol "+token+" is "+value<<endl; 
+      return value; 
+
+    }
+    else{
+      //symbol is global
+      symbolUseEntry symbUse; 
+      symbUse.address = lc; 
+      symbUse.section = currentSectionNumber; 
+      symbUse.type = 0; 
+      symbolTable[token].useVector.push_back(symbUse); 
+
+      //TODO make relocation entry 
+      addRelocation(lc, 0, symbolTable[token].symbolId, 0, currentSectionName); 
+      
+      string value="FEFF";
+      return value;  
+    }
+
+  }
+}
+
 
 
 

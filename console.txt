@@ -185,6 +185,13 @@ operand is symbol
 value of symbol a is 000A
 code
 52F000000A
+label 
+d:
+symbol name is: d:
+only symbol name: d
+simbol dodat u tabelu simbola
+label line after shortening 
+
 
 Current line: jmp *0xFF
 Lista tokena iz ldr/str:
@@ -219,6 +226,13 @@ reg direktno
 *r4
 code
 52F401
+label 
+e:
+symbol name is: e:
+only symbol name: e
+simbol dodat u tabelu simbola
+label line after shortening 
+
 
 Current line: jgt *[r4]
 Lista tokena iz ldr/str:
@@ -280,8 +294,10 @@ symbolName    isGlobal      symbolID      sectionNum    value         size
 a             0             1             0             10            -1            
 b             0             2             0             15            -1            
 c             0             3             0             20            -1            
+d             0             5             4             10            -1            
 data          1             0             0             0             10            
-jumps         1             4             4             0             0             
+e             0             6             4             23            -1            
+jumps         1             4             4             0             39            
 
 RELOKACIONI ZAPISI SEKCIJE:
 sekcija: data
