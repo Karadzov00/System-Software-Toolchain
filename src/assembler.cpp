@@ -1048,6 +1048,8 @@ void Assembler::processInstruction(string currLine){
         //operand is symbol
         cout<<"operand is symbol"<<endl; 
         //make relocation entry 
+
+
       } 
       else{
         //operand is literal
@@ -1062,6 +1064,10 @@ void Assembler::processInstruction(string currLine){
         }
         cout<<"code"<<endl;
         cout<<code<<endl; 
+        for(int i=0; i<code.length(); i++){
+          sectionTable[currentSectionName].code.push_back(code[i]); 
+        }
+
 
 
       }
@@ -1180,6 +1186,80 @@ string Assembler::literalToHex(string token){
     token[i]=toupper(token[i]); 
   }
   return token; 
+}
+
+
+string Assembler::processSymbol(string token){
+  string symbValue; 
+  //check if symbol is not in symbol table 
+  if(symbolTable.find(token)==symbolTable.end()){
+    //add symbol to symbol table 
+    symbolTable[token].isDefined=false; 
+    symbolTable[token].isGlobal=false; 
+    symbolTable[token].sectionNum=currentSectionNumber; //no section 
+    symbolTable[token].size=-1;
+    symbolTable[token].symbolId=symbolId;
+    symbolTable[token].symbolName=token;
+    symbolTable[token].value=0;
+    symbolId++;
+    cout<<"symbol "<<token<<" added to the symbol table"<<endl; 
+
+    //add symbol to symbol use entry 
+    //make symbol use entry 
+    symbolUseEntry symbUse; 
+    symbUse.address = locationCounter; 
+    symbUse.section = currentSectionNumber; 
+    symbUse.type = 0; 
+    symbolTable[token].useVector.push_back(symbUse); 
+
+    //TODO make relocation entry 
+    addRelocation(locationCounter+3, 0, symbolTable[token].symbolId, 0, currentSectionName); 
+    string value="0000"; 
+    return value; 
+  }
+  else{
+    //symbol is in symbol table 
+    if(symbolTable[token].isGlobal==false){
+      //symbol is local
+      //add symbol to symbol use entry 
+      //make symbol use entry 
+      symbolUseEntry symbUse; 
+      symbUse.address = locationCounter; 
+      symbUse.section = currentSectionNumber; 
+      symbUse.type = 0; 
+      symbolTable[token].useVector.push_back(symbUse); 
+
+      //TODO make relocation entry 
+      addRelocation(locationCounter+3, 0, symbolTable[token].symbolId, 0, currentSectionName); 
+    
+      string symbValue = literalToHex(to_string(symbolTable[token].value)); 
+      string value;
+      for(int i=symbValue.length(); i<4; i++){
+        //add leading zeros
+        value+="0";
+      }
+      for(int i=0; i<symbValue.length(); i++){
+        value+=symbValue[i]; 
+      }
+      cout<<"value of symbol "+token+" is "+value<<endl; 
+      return value; 
+
+    }
+    else{
+      //symbol is global
+      symbolUseEntry symbUse; 
+      symbUse.address = locationCounter; 
+      symbUse.section = currentSectionNumber; 
+      symbUse.type = 0; 
+      symbolTable[token].useVector.push_back(symbUse); 
+
+      //TODO make relocation entry 
+      addRelocation(locationCounter+3, 0, symbolTable[token].symbolId, 0, currentSectionName); 
+      string value="0000";
+      return value;  
+    }
+
+  }
 }
 
 
