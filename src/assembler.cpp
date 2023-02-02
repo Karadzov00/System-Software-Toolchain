@@ -1098,7 +1098,63 @@ void Assembler::processInstruction(string currLine){
     }
 
   }
-  //else if jmp regex 
+  else if(regex_search(currLine, match, jmpRegex)){
+    //jmp type instruction 
+    cout<<endl<<"Current line: "<<currLine<<endl;
+    vector<string>tokens; 
+
+    char* line = new char[currLine.length()+1]; 
+    strcpy(line, currLine.c_str()); 
+    char * token;
+    token = strtok(line," ,[]+*%");
+    while (token != NULL){
+      tokens.push_back(token); 
+      token = strtok (NULL, " ,[]+*%");
+    }
+
+    cout<<"Lista tokena iz ldr/str:"<<endl; 
+    for(auto t:tokens){
+      cout<<t<<endl; 
+    }
+
+    string operation = tokens[0]; 
+    regex instrOnly("^(jmp|call|jeq|jne|jgt)[ ]+"); 
+    string operand = regex_replace(currLine, instrOnly, "");
+    cout<<"operand: "<<operand<<endl;
+
+    if(regex_search(operand, match, jmpImmediateRegex)){
+      cout<<"neposredno"<<endl;
+      cout<<operand;
+      cout<<endl;
+    }
+    else if(regex_search(operand, match, jmpRegDirRegex)){
+      cout<<"reg direktno"<<endl;
+      cout<<operand;
+      cout<<endl;
+    }
+    else if(regex_search(operand, match, jmpRegIndRegex)){
+      cout<<"reg indirektno"<<endl;
+      cout<<operand;
+      cout<<endl;
+    }
+    else if(regex_search(operand, match, jmpRegIndDispRegex)){
+      cout<<"reg indirektno sa pomerajem"<<endl;
+      cout<<operand;
+      cout<<endl;
+    }
+    else if(regex_search(operand, match, jmpMemDirRegex)){
+      cout<<"mem direktno"<<endl;
+      cout<<operand;
+      cout<<endl;
+    }
+    else if(regex_search(operand, match, jmpPcRelRegex)){
+      cout<<"pc relativno"<<endl;
+      cout<<operand;
+      cout<<endl;
+    }
+
+
+  }
 }
 
 string Assembler::literalToHex(string token){

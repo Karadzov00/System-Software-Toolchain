@@ -12,7 +12,6 @@ $0xFF
 neposredno
 $0xFF
 operand is literal
-Token is: 0xFF
 operand: FF
 code
 A0400000FF
@@ -25,7 +24,6 @@ $234
 neposredno
 $234
 operand is literal
-Token is: ea
 operand: EA
 code
 A0500000EA
@@ -38,7 +36,6 @@ $130
 neposredno
 $130
 operand is literal
-Token is: 82
 operand: 82
 code
 A050000082
@@ -109,4 +106,86 @@ r4
 a
 reg indirektno sa pomerajem
 r4 a
-End directive doesn't exist! Error at line: 14
+
+Current line: jmp 0xFF
+Lista tokena iz ldr/str:
+jmp
+0xFF
+operand: 0xFF
+neposredno
+0xFF
+
+Current line: jmp a
+Lista tokena iz ldr/str:
+jmp
+a
+operand: a
+neposredno
+a
+
+Current line: jmp *0xFF
+Lista tokena iz ldr/str:
+jmp
+0xFF
+operand: *0xFF
+mem direktno
+*0xFF
+
+Current line: call *a
+Lista tokena iz ldr/str:
+call
+a
+operand: *a
+mem direktno
+*a
+
+Current line: jne *r4
+Lista tokena iz ldr/str:
+jne
+r4
+operand: *r4
+reg direktno
+*r4
+
+Current line: jgt *[r4]
+Lista tokena iz ldr/str:
+jgt
+r4
+operand: *[r4]
+reg indirektno
+*[r4]
+
+Current line: jmp *[psw]
+Lista tokena iz ldr/str:
+jmp
+psw
+operand: *[psw]
+reg indirektno
+*[psw]
+
+Current line: jmp *[r4 + 0xFF]
+Lista tokena iz ldr/str:
+jmp
+r4
+0xFF
+operand: *[r4 + 0xFF]
+reg indirektno sa pomerajem
+*[r4 + 0xFF]
+
+Current line: jmp *[r4+a]
+Lista tokena iz ldr/str:
+jmp
+r4
+a
+operand: *[r4+a]
+reg indirektno sa pomerajem
+*[r4+a]
+
+Current line: jmp %a
+Lista tokena iz ldr/str:
+jmp
+a
+operand: %a
+pc relativno
+%a
+End directive doesn't exist! Error at line: 26
