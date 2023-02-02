@@ -1011,10 +1011,10 @@ void Assembler::processInstruction(string currLine){
     char* line = new char[currLine.length()+1]; 
     strcpy(line, currLine.c_str()); 
     char * token;
-    token = strtok(line," ,");
+    token = strtok(line," ,[]+");
     while (token != NULL){
       tokens.push_back(token); 
-      token = strtok (NULL, " ,");
+      token = strtok (NULL, " ,[]+");
     }
 
     cout<<"Lista tokena iz ldr/str:"<<endl; 
@@ -1031,20 +1031,20 @@ void Assembler::processInstruction(string currLine){
       cout<<operand;
       cout<<endl;
     }
-    else if(regex_search(operand, match, ldrStrRegDirRegex)){
-      cout<<"reg direktno"<<endl;
-      cout<<operand; 
-      cout<<endl;
-
-    }
-    else if(regex_search(operand, match, ldrStrRegIndRegex)){
+    else if(regex_search(currLine, match, ldrStrRegIndRegex)){
       cout<<"reg indirektno"<<endl;
       cout<<operand; 
       cout<<endl;
 
     }
-    else if(regex_search(operand, match, ldrStrRegIndDispRegex)){
+    else if(regex_search(currLine, match, ldrStrRegIndDispRegex)){
       cout<<"reg indirektno sa pomerajem"<<endl;
+      cout<<tokens[2]<<" "<<tokens[3]; 
+      cout<<endl;
+
+    }
+    else if(regex_search(operand, match, ldrStrRegDirRegex)){
+      cout<<"reg direktno"<<endl;
       cout<<operand; 
       cout<<endl;
 

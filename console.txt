@@ -1,588 +1,80 @@
 Entered main! 
-./tests/main.s
-./tests/main.o
+./tests/test.s
+./tests/test.o
 Lepo zadati argumenti 
 File opened! 
-extern 
-.extern mathAdd, mathSub, mathMul, mathDiv
-after cutting extern 
-mathAdd, mathSub, mathMul, mathDiv
-Symbols from symbol list:
-mathAdd
-mathSub
-mathMul
-mathDiv
-------------------
-symbol mathAdd added to the symbol table
-symbol mathSub added to the symbol table
-symbol mathMul added to the symbol table
-symbol mathDiv added to the symbol table
-global 
-.global my_start
-after cutting global 
-my_start
-Symbols from symbol list:
-my_start
-------------------
-symbol my_start added to the symbol table
-extern 
-.extern my_start
-after cutting extern 
-my_start
-Symbols from symbol list:
-my_start
-------------------
-global 
-.global value0, value1, value2, value3, value4, value5, value6
-after cutting global 
-value0, value1, value2, value3, value4, value5, value6
-Symbols from symbol list:
-value0
-value1
-value2
-value3
-value4
-value5
-value6
-------------------
-symbol value0 added to the symbol table
-symbol value1 added to the symbol table
-symbol value2 added to the symbol table
-symbol value3 added to the symbol table
-symbol value4 added to the symbol table
-symbol value5 added to the symbol table
-symbol value6 added to the symbol table
-section 
-.section my_code
-section name is: my_code
-section my_code added to the symbol table
-label 
-my_start:
-symbol name is: my_start:
-only symbol name: my_start
-symbol found in symbol table
-label line after shortening 
 
-OPERATION IS int
-OPERANDS ARE: r6
-hex reg: 6
-code for int instruction: 106F
-OPERATION IS int
-OPERANDS ARE: psw
-hex reg: 8
-code for int instruction: 108F
-OPERATION IS int
-OPERANDS ARE: sp
-hex reg: 6
-code for int instruction: 106F
-OPERATION IS not
-OPERANDS ARE: psw
-hex reg: 8
-code for not instruction: 8088
-OPERATION IS not
-OPERANDS ARE: r4
-hex reg: 4
-code for not instruction: 8044
-OPERATION IS not
-OPERANDS ARE: pc
-hex reg: 7
-code for not instruction: 8077
-OPERATION IS add
-Code for add instruction: 7001
-OPERATION IS add
-Code for add instruction: 7047
-
-Current line: ldr r6, $0xFEFE
-Lista tokena iz ldr/str:
-ldr
-r6
-$0xFEFE
-neposredno
-$0xFEFE
-
-Current line: ldr r0, $4
-Lista tokena iz ldr/str:
-ldr
-r0
-$4
-neposredno
-$4
-OPERATION IS int
-OPERANDS ARE: r0
-hex reg: 0
-code for int instruction: 100F
-
-Current line: ldr r0, $0
-Lista tokena iz ldr/str:
-ldr
-r0
-$0
-neposredno
-$0
-OPERATION IS push
-
-Current line: ldr r0, $1
-Lista tokena iz ldr/str:
-ldr
-r0
-$1
-neposredno
-$1
-OPERATION IS push
-
-Current line: str r0, value1
-Lista tokena iz ldr/str:
-str
-r0
-value1
-mem direktno
-value1
-
-Current line: ldr r0, $1
-Lista tokena iz ldr/str:
-ldr
-r0
-$1
-neposredno
-$1
-OPERATION IS push
-
-Current line: ldr r0, $1
-Lista tokena iz ldr/str:
-ldr
-r0
-$1
-neposredno
-$1
-OPERATION IS push
-
-Current line: str r0, value2
-Lista tokena iz ldr/str:
-str
-r0
-value2
-mem direktno
-value2
-
-Current line: ldr r0, $8
-Lista tokena iz ldr/str:
-ldr
-r0
-$8
-neposredno
-$8
-OPERATION IS push
-
-Current line: ldr r0, $11
-Lista tokena iz ldr/str:
-ldr
-r0
-$11
-neposredno
-$11
-OPERATION IS push
-
-Current line: ldr r0, $2
-Lista tokena iz ldr/str:
-ldr
-r0
-$2
-neposredno
-$2
-
-Current line: ldr r1, $destinations
-Lista tokena iz ldr/str:
-ldr
-r1
-$destinations
-neposredno
-$destinations
-OPERATION IS add
-Code for add instruction: 7001
-
-Current line: str r0, value3
-Lista tokena iz ldr/str:
-str
-r0
-value3
-mem direktno
-value3
-
-Current line: ldr r0, $2
-Lista tokena iz ldr/str:
-ldr
-r0
-$2
-neposredno
-$2
-OPERATION IS push
-
-Current line: ldr r0, $2
-Lista tokena iz ldr/str:
-ldr
-r0
-$2
-neposredno
-$2
-OPERATION IS push
-
-Current line: ldr r0, $4
-Lista tokena iz ldr/str:
-ldr
-r0
-$4
-neposredno
-$4
-
-Current line: str r0, value4
-Lista tokena iz ldr/str:
-str
-r0
-value4
-mem direktno
-value4
-
-Current line: ldr r0, $5
-Lista tokena iz ldr/str:
-ldr
-r0
-$5
-neposredno
-$5
-OPERATION IS push
-
-Current line: ldr r0, $25
-Lista tokena iz ldr/str:
-ldr
-r0
-$25
-neposredno
-$25
-OPERATION IS push
-
-Current line: ldr r0, $6
-Lista tokena iz ldr/str:
-ldr
-r0
-$6
-neposredno
-$6
-
-Current line: ldr r1, $destinations
-Lista tokena iz ldr/str:
-ldr
-r1
-$destinations
-neposredno
-$destinations
-OPERATION IS add
-Code for add instruction: 7001
-
-Current line: ldr r0, [r0]
-Lista tokena iz ldr/str:
-ldr
-r0
-[r0]
-reg indirektno
-[r0]
-
-Current line: str r0, value5
-Lista tokena iz ldr/str:
-str
-r0
-value5
-mem direktno
-value5
-
-Current line: ldr r0, value0
-Lista tokena iz ldr/str:
-ldr
-r0
-value0
-mem direktno
-value0
-
-Current line: ldr r1, value1
-Lista tokena iz ldr/str:
-ldr
-r1
-value1
-mem direktno
-value1
-
-Current line: ldr r2, value2
-Lista tokena iz ldr/str:
-ldr
-r2
-value2
-mem direktno
-value2
-
-Current line: ldr r3, value3
-Lista tokena iz ldr/str:
-ldr
-r3
-value3
-mem direktno
-value3
-
-Current line: ldr r4, value4
+Current line: ldr r4, $0xFF
 Lista tokena iz ldr/str:
 ldr
 r4
-value4
-mem direktno
-value4
+$0xFF
+neposredno
+$0xFF
 
-Current line: ldr r5, value5
+Current line: ldr r4, $a
+Lista tokena iz ldr/str:
+ldr
+r4
+$a
+neposredno
+$a
+
+Current line: ldr r4, 0xFF
+Lista tokena iz ldr/str:
+ldr
+r4
+0xFF
+mem direktno
+0xFF
+
+Current line: ldr r4, a
+Lista tokena iz ldr/str:
+ldr
+r4
+a
+mem direktno
+a
+
+Current line: ldr r4, %a
+Lista tokena iz ldr/str:
+ldr
+r4
+%a
+pc relativno
+%a
+
+Current line: ldr r4, r5
+Lista tokena iz ldr/str:
+ldr
+r4
+r5
+reg direktno
+r5
+
+Current line: ldr r5, [r4]
 Lista tokena iz ldr/str:
 ldr
 r5
-value5
-mem direktno
-value5
+r4
+reg indirektno
+r4
 
-Current line: ldr r6, value6
+Current line: ldr r5, [r4 + 0xFF]
 Lista tokena iz ldr/str:
 ldr
-r6
-value6
-mem direktno
-value6
-OPERATION IS halt
-skip 
-.skip 10
-skip literal is: 10
-section 
-.section my_data
-section name is: my_data
-section my_data added to the symbol table
-label 
-value0:
-symbol name is: value0:
-only symbol name: value0
-symbol found in symbol table
-label line after shortening 
-
-word 
-.word 23, 345, 0x5E6, a, 923, symb_a, new_symb, 0xFF
-after cutting word 
-23, 345, 0x5E6, a, 923, symb_a, new_symb, 0xFF
-Token is: 17
-Token is: 159
-Token is: 0x5E6
-symbol a added to the symbol table
-Token is: 39b
-symbol symb_a added to the symbol table
-symbol new_symb added to the symbol table
-Token is: 0xFF
-word symbols:
-a
-symb_a
-new_symb
-word literals:
-23
-345
-0x5E6
-923
+r5
+r4
 0xFF
+reg indirektno sa pomerajem
+r4 0xFF
 
-CODE:
-0000000000
-label 
-value1:
-symbol name is: value1:
-only symbol name: value1
-symbol found in symbol table
-label line after shortening 
-
-word 
-.word 0
-after cutting word 
-0
-Token is: 0
-word symbols:
-word literals:
-0
-
-CODE:
-0000000000
-label 
-value2:
-symbol name is: value2:
-only symbol name: value2
-symbol found in symbol table
-label line after shortening 
-
-word 
-.word 0
-after cutting word 
-0
-Token is: 0
-word symbols:
-word literals:
-0
-
-CODE:
-0000000000
-label 
-value3:
-symbol name is: value3:
-only symbol name: value3
-symbol found in symbol table
-label line after shortening 
-
-word 
-.word 0
-after cutting word 
-0
-Token is: 0
-word symbols:
-word literals:
-0
-
-CODE:
-0000000000
-label 
-value4:
-symbol name is: value4:
-only symbol name: value4
-symbol found in symbol table
-label line after shortening 
-
-word 
-.word 0
-after cutting word 
-0
-Token is: 0
-word symbols:
-word literals:
-0
-
-CODE:
-0000000000
-label 
-value5:
-symbol name is: value5:
-only symbol name: value5
-symbol found in symbol table
-label line after shortening 
-
-word 
-.word 0
-after cutting word 
-0
-Token is: 0
-word symbols:
-word literals:
-0
-
-CODE:
-0000000000
-label 
-value6:
-symbol name is: value6:
-only symbol name: value6
-symbol found in symbol table
-label line after shortening 
-
-word 
-.word 0
-after cutting word 
-0
-Token is: 0
-word symbols:
-word literals:
-0
-
-CODE:
-0000000000
-label 
-destinations:
-symbol name is: destinations:
-only symbol name: destinations
-simbol dodat u tabelu simbola
-label line after shortening 
-
-word 
-.word mathAdd
-after cutting word 
-mathAdd
-word symbols:
-mathAdd
-word literals:
-
-CODE:
-0000000000
-word 
-.word mathSub
-after cutting word 
-mathSub
-word symbols:
-mathSub
-word literals:
-
-CODE:
-0000000000
-word 
-.word mathMul
-after cutting word 
-mathMul
-word symbols:
-mathMul
-word literals:
-
-CODE:
-0000000000
-word 
-.word mathDiv
-after cutting word 
-mathDiv
-word symbols:
-mathDiv
-word literals:
-
-CODE:
-0000000000
-end 
-.end
-TABELA SIMBOLA:
-symbolName    isGlobal      symbolID      sectionNum    size          value         
-a             0             14            13            -1            0             
-destinations  0             17            13            -1            28            
-mathAdd       1             0             0             -1            0             
-mathDiv       1             3             0             -1            0             
-mathMul       1             2             0             -1            0             
-mathSub       1             1             0             -1            0             
-my_code       1             12            12            10            0             
-my_data       1             13            13            36            0             
-my_start      1             4             12            -1            0             
-new_symb      0             16            13            -1            0             
-symb_a        0             15            13            -1            0             
-value0        1             5             13            -1            0             
-value1        1             6             13            -1            16            
-value2        1             7             13            -1            18            
-value3        1             8             13            -1            20            
-value4        1             9             13            -1            22            
-value5        1             10            13            -1            24            
-value6        1             11            13            -1            26            
-
-RELOKACIONI ZAPISI SEKCIJE:
-sekcija: my_code
-offset        type          symbol        addend        
-
-sekcija: my_data
-offset        type          symbol        addend        
-6             0             14            0             
-10            0             15            0             
-12            0             16            0             
-28            0             0             0             
-30            0             1             0             
-32            0             2             0             
-34            0             3             0             
-
-KOD SEKCIJA:
-Ime sekcije: my_code
-10 6F 10 8F 10 6F 80 88 80 44 80 77 70 01 70 47 10 0F 70 01 70 01 00 
-Ime sekcije: my_data
-00 17 01 59 05 E6 00 00 03 9b 00 00 00 00 00 FF 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+Current line: ldr r5, [r4 + a]
+Lista tokena iz ldr/str:
+ldr
+r5
+r4
+a
+reg indirektno sa pomerajem
+r4 a
+End directive doesn't exist! Error at line: 12
