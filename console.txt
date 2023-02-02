@@ -165,6 +165,10 @@ jmp
 operand: 0xFF
 neposredno
 0xFF
+operand is literal
+operand: FF
+code
+50F00000FF
 
 Current line: jmp a
 Lista tokena iz ldr/str:
@@ -173,6 +177,10 @@ a
 operand: a
 neposredno
 a
+operand is symbol
+value of symbol a is 000A
+code
+50F000000A
 
 Current line: jmp *0xFF
 Lista tokena iz ldr/str:
@@ -254,7 +262,8 @@ offset        type          symbol        addend
 28            0             1             0             
 38            0             1             0             
 54            0             1             0             
+64            0             1             0             
 
 KOD SEKCIJA:
 Ime sekcije: data
-A0 40 00 00 FF A0 50 00 00 EA A0 50 00 00 82 A0 40 00 00 0A A0 40 04 00 FF A0 40 04 00 0A A0 45 01 A0 54 02 A0 54 03 00 FF A0 54 03 00 0A 
+A0 40 00 00 FF A0 50 00 00 EA A0 50 00 00 82 A0 40 00 00 0A A0 40 04 00 FF A0 40 04 00 0A A0 45 01 A0 54 02 A0 54 03 00 FF A0 54 03 00 0A 50 F0 00 00 FF 50 F0 00 00 0A 

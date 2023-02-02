@@ -1259,11 +1259,58 @@ void Assembler::processInstruction(string currLine){
     regex instrOnly("^(jmp|call|jeq|jne|jgt)[ ]+"); 
     string operand = regex_replace(currLine, instrOnly, "");
     cout<<"operand: "<<operand<<endl;
+    string code; 
+    //instrDesc
+    if(operation=="jmp")code.append("50");
+    else if(operation=="jeq")code.append("51");
+    else if(operation=="jne")code.append("52");
+    else if(operation=="jgt")code.append("53");
+
 
     if(regex_search(operand, match, jmpImmediateRegex)){
       cout<<"neposredno"<<endl;
       cout<<operand;
       cout<<endl;
+
+      code.append("F0");//RD RS 
+      code.append("00"); //UP AM
+
+      regex symbRgx("^[a-zA-Z][a-zA-Z0-9_]*$"); 
+      //check if operand is symbol
+      if(regex_search(operand, match, symbRgx)){
+        //operand is symbol
+        cout<<"operand is symbol"<<endl; 
+        //make relocation entry 
+        string value = processSymbol(operand, locationCounter+3);
+        code.append(value); 
+        cout<<"code"<<endl;
+        cout<<code<<endl; 
+        for(int i=0; i<code.length(); i++){
+          sectionTable[currentSectionName].code.push_back(code[i]); 
+        }
+        locationCounter+=5;
+
+      } 
+      else{
+        //operand is literal
+        cout<<"operand is literal"<<endl; 
+        operand = literalToHex(operand); 
+        cout<<"operand: "<<operand<<endl;
+        for(int i=operand.length(); i<4; i++){
+          code+="0"; 
+        }
+        for(int i=0; i<operand.length(); i++){
+          code+=operand[i]; 
+        }
+        cout<<"code"<<endl;
+        cout<<code<<endl; 
+        for(int i=0; i<code.length(); i++){
+          sectionTable[currentSectionName].code.push_back(code[i]); 
+        }
+        locationCounter+=5;
+
+      }
+
     }
     else if(regex_search(operand, match, jmpRegDirRegex)){
       cout<<"reg direktno"<<endl;
