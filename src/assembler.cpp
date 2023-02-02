@@ -91,16 +91,16 @@ void Assembler::openParseFile(){
   cout<< left<< setw(14)<<setfill(' ')<<"isGlobal";
   cout<< left<< setw(14)<<setfill(' ')<<"symbolID";
   cout<< left<< setw(14)<<setfill(' ')<<"sectionNum";
-  cout<< left<< setw(14)<<setfill(' ')<<"size";
   cout<< left<< setw(14)<<setfill(' ')<<"value";
+  cout<< left<< setw(14)<<setfill(' ')<<"size";
   cout<<endl; 
   for (auto const& x : symbolTable){
     cout<< left<< setw(14)<<setfill(' ')<<x.second.symbolName;
     cout<< left<< setw(14)<<setfill(' ')<<x.second.isGlobal;
     cout<< left<< setw(14)<<setfill(' ')<<x.second.symbolId;
     cout<< left<< setw(14)<<setfill(' ')<<x.second.sectionNum;
-    cout<< left<< setw(14)<<setfill(' ')<<x.second.size;
     cout<< left<< setw(14)<<setfill(' ')<<x.second.value;
+    cout<< left<< setw(14)<<setfill(' ')<<x.second.size;
     cout<<endl; 
 
     // cout<<x.second.symbolName<<"\t"<<x.second.isGlobal<<"\t"<<x.second.symbolId<<"\t"<<x.second.sectionNum<<"\t"<<x.second.size<<endl;
@@ -1083,6 +1083,21 @@ void Assembler::processInstruction(string currLine){
       cout<<operand; 
       cout<<endl;
 
+      if(operation=="ldr")code="A0";
+      else if(operation=="str")code="B0";
+
+      string reg_code = registerCode(reg); 
+      string reg_code2 = registerCode(operand);
+      code.append(reg_code);//RD
+      code.append(reg_code2); //RS
+      code.append("0");//UP
+      code.append("2"); //AM
+      cout<<"code"<<endl;
+      cout<<code<<endl; 
+      for(int i=0; i<code.length(); i++){
+        sectionTable[currentSectionName].code.push_back(code[i]); 
+      }
+      locationCounter+=3;      
 
 
     }
@@ -1091,13 +1106,75 @@ void Assembler::processInstruction(string currLine){
       cout<<tokens[2]<<" "<<tokens[3]; 
       cout<<endl;
 
+      if(operation=="ldr")code="A0";
+      else if(operation=="str")code="B0";
+
+      string reg_code = registerCode(tokens[1]); 
+      string reg_code2 = registerCode(tokens[2]);
+      code.append(reg_code);//RD
+      code.append(reg_code2); //RS
+      code.append("0");//UP
+      code.append("3"); //AM
+
+      regex symbRgx("^[a-zA-Z][a-zA-Z0-9_]*$"); 
+      //check if operand is symbol
+      if(regex_search(tokens[3], match, symbRgx)){
+        //operand is symbol
+        cout<<"operand is symbol"<<endl; 
+        //make relocation entry 
+        string value = processSymbol(tokens[3], locationCounter+3);
+        code.append(value); 
+        cout<<"code"<<endl;
+        cout<<code<<endl; 
+        for(int i=0; i<code.length(); i++){
+          sectionTable[currentSectionName].code.push_back(code[i]); 
+        }
+        locationCounter+=5;
+
+      }
+      else{
+        //operand is literal
+        cout<<"operand is literal"<<endl; 
+        operand = literalToHex(tokens[3]); 
+        cout<<"operand: "<<operand<<endl;
+        for(int i=operand.length(); i<4; i++){
+          code.append("0"); 
+        }
+        for(int i=0; i<operand.length(); i++){
+          code+=operand[i]; 
+        }
+        cout<<"code"<<endl;
+        cout<<code<<endl; 
+        for(int i=0; i<code.length(); i++){
+          sectionTable[currentSectionName].code.push_back(code[i]); 
+        }
+        locationCounter+=5;
+
+      }
+
+
+
     }
     else if(regex_search(operand, match, ldrStrRegDirRegex)){
       cout<<"reg direktno"<<endl;
       cout<<operand; 
       cout<<endl;
 
+      if(operation=="ldr")code="A0";
+      else if(operation=="str")code="B0";
 
+      string reg_code = registerCode(reg); 
+      string reg_code2 = registerCode(operand);
+      code.append(reg_code);//RD
+      code.append(reg_code2); //RS
+      code.append("0");//UP
+      code.append("1"); //AM
+      cout<<"code"<<endl;
+      cout<<code<<endl; 
+      for(int i=0; i<code.length(); i++){
+        sectionTable[currentSectionName].code.push_back(code[i]); 
+      }
+      locationCounter+=3;
 
     }
     else if(regex_search(operand, match, ldrStrMemDirRegex)){

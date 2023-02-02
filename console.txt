@@ -119,6 +119,8 @@ r4
 r5
 reg direktno
 r5
+code
+A04501
 
 Current line: ldr r5, [r4]
 Lista tokena iz ldr/str:
@@ -127,6 +129,8 @@ r5
 r4
 reg indirektno
 r4
+code
+A05402
 
 Current line: ldr r5, [r4 + 0xFF]
 Lista tokena iz ldr/str:
@@ -136,6 +140,10 @@ r4
 0xFF
 reg indirektno sa pomerajem
 r4 0xFF
+operand is literal
+operand: FF
+code
+A0540300FF
 
 Current line: ldr r5, [r4 + a]
 Lista tokena iz ldr/str:
@@ -145,6 +153,10 @@ r4
 a
 reg indirektno sa pomerajem
 r4 a
+operand is symbol
+value of symbol a is 000A
+code
+A05403000A
 
 Current line: jmp 0xFF
 Lista tokena iz ldr/str:
@@ -230,18 +242,19 @@ pc relativno
 end 
 .end
 TABELA SIMBOLA:
-symbolName    isGlobal      symbolID      sectionNum    size          value         
-a             0             1             0             -1            10            
-b             0             2             0             -1            15            
-c             0             3             0             -1            20            
-data          1             0             0             10            0             
+symbolName    isGlobal      symbolID      sectionNum    value         size          
+a             0             1             0             10            -1            
+b             0             2             0             15            -1            
+c             0             3             0             20            -1            
+data          1             0             0             0             10            
 
 RELOKACIONI ZAPISI SEKCIJE:
 sekcija: data
 offset        type          symbol        addend        
 28            0             1             0             
 38            0             1             0             
+54            0             1             0             
 
 KOD SEKCIJA:
 Ime sekcije: data
-A0 40 00 00 FF A0 50 00 00 EA A0 50 00 00 82 A0 40 00 00 0A A0 40 04 00 FF A0 40 04 00 0A 
+A0 40 00 00 FF A0 50 00 00 EA A0 50 00 00 82 A0 40 00 00 0A A0 40 04 00 FF A0 40 04 00 0A A0 45 01 A0 54 02 A0 54 03 00 FF A0 54 03 00 0A 
