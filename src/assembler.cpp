@@ -1005,7 +1005,7 @@ void Assembler::processInstruction(string currLine){
   // cout<<"Process instrucion line:"<<endl<<currLine<<endl; 
   smatch match; 
   if(regex_search(currLine, match, ldrStrRegex)){
-    cout<<endl<<"Curr ldr/str line: "<<currLine<<endl;
+    cout<<endl<<"Current line: "<<currLine<<endl;
     vector<string>tokens; 
 
     char* line = new char[currLine.length()+1]; 
@@ -1021,6 +1021,47 @@ void Assembler::processInstruction(string currLine){
     for(auto t:tokens){
       cout<<t<<endl; 
     }
+
+    string operation = tokens[0]; 
+    string reg = tokens[1]; 
+    string operand = tokens[2]; 
+
+    if(regex_search(operand, match, ldrStrImmediateRegex)){
+      cout<<"neposredno"<<endl;
+      cout<<operand;
+      cout<<endl;
+    }
+    else if(regex_search(operand, match, ldrStrRegDirRegex)){
+      cout<<"reg direktno"<<endl;
+      cout<<operand; 
+      cout<<endl;
+
+    }
+    else if(regex_search(operand, match, ldrStrRegIndRegex)){
+      cout<<"reg indirektno"<<endl;
+      cout<<operand; 
+      cout<<endl;
+
+    }
+    else if(regex_search(operand, match, ldrStrRegIndDispRegex)){
+      cout<<"reg indirektno sa pomerajem"<<endl;
+      cout<<operand; 
+      cout<<endl;
+
+    }
+    else if(regex_search(operand, match, ldrStrMemDirRegex)){
+      cout<<"mem direktno"<<endl;
+      cout<<operand; 
+      cout<<endl;
+
+    }
+    else if(regex_search(operand, match, ldrStrPcRelRegex)){
+      cout<<"pc relativno"<<endl;
+      cout<<operand; 
+      cout<<endl;
+
+    }
+
   }
   //else if jmp regex 
 }
