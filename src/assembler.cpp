@@ -1116,10 +1116,10 @@ string Assembler::literalToHex(string token){
     //dec literal 
     token = decToHex(stoi(token)); 
   }
-  cout<<"Token is: "<<token<<endl; 
+  // cout<<"Token is: "<<token<<endl; 
   regex hexPrefix("0x"); 
   token=regex_replace(token, hexPrefix, "");
-  
+
   for (int i=0; i<token.length(); i++){
     token[i]=toupper(token[i]); 
   }

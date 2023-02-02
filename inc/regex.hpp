@@ -48,3 +48,12 @@ regex ldrStrRegIndRegex("\\[(r[0-7]|pc|sp|psw)\\]");
 regex ldrStrRegIndDispRegex("\\[(r[0-7]|pc|sp|psw)[ ]*\\+[ ]*(([a-zA-Z][a-zA-Z0-9_]*)|(0x[0-9A-Fa-f]+)|([0-9]+))\\]");
 regex ldrStrMemDirRegex("^(([a-zA-Z][a-zA-Z0-9_]*)|(0x[0-9A-Fa-f]+)|([0-9]+))$");
 regex ldrStrPcRelRegex("^%[a-zA-Z][a-zA-Z0-9_]*$"); 
+
+//jump instructions regexs 
+regex jmpRegex("^(jmp|call|jeq|jne|jgt).*$"); 
+regex jmpImmediateRegex("^(([a-zA-Z][a-zA-Z0-9_]*)|(0x[0-9A-Fa-f]+)|([0-9]+))$");
+regex jmpRegDirRegex("^\\*(r[0-7])|(pc|sp|psw)$");
+regex jmpRegIndRegex("\\*\\[(r[0-7]|pc|sp|psw)\\]");
+regex jmpRegIndDispRegex("^\\*\\[(r[0-7]|pc|sp|psw)[ ]*\\+[ ]*(([a-zA-Z][a-zA-Z0-9_]*)|(0x[0-9A-Fa-f]+)|([0-9]+))\\]$");
+regex jmpMemDirRegex("^\\*(([a-zA-Z][a-zA-Z0-9_]*)|(0x[0-9A-Fa-f]+)|([0-9]+))$");
+regex jmpPcRelRegex("^%[a-zA-Z][a-zA-Z0-9_]*$"); 
