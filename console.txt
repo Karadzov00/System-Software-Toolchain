@@ -157,6 +157,10 @@ operand is symbol
 value of symbol a is 000A
 code
 A05403000A
+section 
+.section jumps
+section name is: jumps
+section jumps added to the symbol table
 
 Current line: jmp 0xFF
 Lista tokena iz ldr/str:
@@ -170,18 +174,6 @@ operand: FF
 code
 50F00000FF
 
-Current line: jeq a
-Lista tokena iz ldr/str:
-jeq
-a
-operand: a
-neposredno
-a
-operand is symbol
-value of symbol a is 000A
-code
-51F000000A
-
 Current line: jne a
 Lista tokena iz ldr/str:
 jne
@@ -193,18 +185,6 @@ operand is symbol
 value of symbol a is 000A
 code
 52F000000A
-
-Current line: jmp a
-Lista tokena iz ldr/str:
-jmp
-a
-operand: a
-neposredno
-a
-operand is symbol
-value of symbol a is 000A
-code
-50F000000A
 
 Current line: jmp *0xFF
 Lista tokena iz ldr/str:
@@ -237,6 +217,8 @@ r4
 operand: *r4
 reg direktno
 *r4
+code
+52F401
 
 Current line: jgt *[r4]
 Lista tokena iz ldr/str:
@@ -245,6 +227,8 @@ r4
 operand: *[r4]
 reg indirektno
 *[r4]
+code
+53F402
 
 Current line: jmp *[psw]
 Lista tokena iz ldr/str:
@@ -253,6 +237,8 @@ psw
 operand: *[psw]
 reg indirektno
 *[psw]
+code
+50F802
 
 Current line: jmp *[r4 + 0xFF]
 Lista tokena iz ldr/str:
@@ -287,6 +273,7 @@ a             0             1             0             10            -1
 b             0             2             0             15            -1            
 c             0             3             0             20            -1            
 data          1             0             0             0             10            
+jumps         1             4             4             0             0             
 
 RELOKACIONI ZAPISI SEKCIJE:
 sekcija: data
@@ -294,11 +281,14 @@ offset        type          symbol        addend
 28            0             1             0             
 38            0             1             0             
 54            0             1             0             
-64            0             1             0             
-69            0             1             0             
-74            0             1             0             
-84            0             1             0             
+
+sekcija: jumps
+offset        type          symbol        addend        
+8             0             1             0             
+18            0             1             0             
 
 KOD SEKCIJA:
 Ime sekcije: data
-A0 40 00 00 FF A0 50 00 00 EA A0 50 00 00 82 A0 40 00 00 0A A0 40 04 00 FF A0 40 04 00 0A A0 45 01 A0 54 02 A0 54 03 00 FF A0 54 03 00 0A 50 F0 00 00 FF 51 F0 00 00 0A 52 F0 00 00 0A 50 F0 00 00 0A 50 F0 04 00 FF 30 F0 04 00 0A 
+A0 40 00 00 FF A0 50 00 00 EA A0 50 00 00 82 A0 40 00 00 0A A0 40 04 00 FF A0 40 04 00 0A A0 45 01 A0 54 02 A0 54 03 00 FF A0 54 03 00 0A 
+Ime sekcije: jumps
+50 F0 00 00 FF 52 F0 00 00 0A 50 F0 04 00 FF 30 F0 04 00 0A 52 F4 01 53 F4 02 50 F8 02 

@@ -1317,11 +1317,36 @@ void Assembler::processInstruction(string currLine){
       cout<<"reg direktno"<<endl;
       cout<<operand;
       cout<<endl;
+
+      string reg_code = registerCode(tokens[1]); 
+      code.append("F");//RD RS 
+      code.append(reg_code);//RD RS 
+      code.append("01"); //UP AM
+      cout<<"code"<<endl;
+      cout<<code<<endl; 
+      for(int i=0; i<code.length(); i++){
+        sectionTable[currentSectionName].code.push_back(code[i]); 
+      }
+      locationCounter+=3;
     }
     else if(regex_search(operand, match, jmpRegIndRegex)){
       cout<<"reg indirektno"<<endl;
       cout<<operand;
       cout<<endl;
+
+      string reg_code = registerCode(tokens[1]); 
+      code.append("F"); 
+      code.append(reg_code); //RS
+      code.append("0");//UP
+      code.append("2"); //AM
+      cout<<"code"<<endl;
+      cout<<code<<endl; 
+      for(int i=0; i<code.length(); i++){
+        sectionTable[currentSectionName].code.push_back(code[i]); 
+      }
+      locationCounter+=3;
+
+
     }
     else if(regex_search(operand, match, jmpRegIndDispRegex)){
       cout<<"reg indirektno sa pomerajem"<<endl;

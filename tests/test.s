@@ -16,11 +16,9 @@ ldr r5, [r4]
 ldr r5, [r4 + 0xFF]
 ldr r5, [r4 + a]
 
-
+.section jumps
 jmp 0xFF
-jeq a
 jne a
-jmp a
 jmp *0xFF
 call *a
 jne *r4
