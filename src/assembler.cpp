@@ -1025,11 +1025,46 @@ void Assembler::processInstruction(string currLine){
     string operation = tokens[0]; 
     string reg = tokens[1]; 
     string operand = tokens[2]; 
+    string code; 
 
     if(regex_search(operand, match, ldrStrImmediateRegex)){
       cout<<"neposredno"<<endl;
       cout<<operand;
       cout<<endl;
+
+      if(operation=="ldr")code="A0";
+      else if(operation=="str")code="B0";
+
+      string reg_code = registerCode(reg); 
+      code+=reg_code;//RD
+      code+="0";//RS
+      code+="0";//UP
+      code+="0"; //AM
+
+      regex symbRgx("^[a-zA-Z][a-zA-Z0-9_]*$"); 
+      operand=operand.substr(1,operand.length());
+      //check if operand is symbol
+      if(regex_search(operand, match, symbRgx)){
+        //operand is symbol
+        cout<<"operand is symbol"<<endl; 
+        //make relocation entry 
+      } 
+      else{
+        //operand is literal
+        cout<<"operand is literal"<<endl; 
+        operand = literalToHex(operand); 
+        cout<<"operand: "<<operand<<endl;
+        for(int i=operand.length(); i<4; i++){
+          code+="0"; 
+        }
+        for(int i=0; i<operand.length(); i++){
+          code+=operand[i]; 
+        }
+        cout<<"code"<<endl;
+        cout<<code<<endl; 
+
+
+      }
     }
     else if(regex_search(currLine, match, ldrStrRegIndRegex)){
       cout<<"reg indirektno"<<endl;
@@ -1065,6 +1100,32 @@ void Assembler::processInstruction(string currLine){
   }
   //else if jmp regex 
 }
+
+string Assembler::literalToHex(string token){
+  int lit = stoi(token); 
+  //literal must be withing range of 2 bytes 
+  if(lit>WORD_MAX || lit<WORD_MIN){
+    string msg ="Literal out of range! Error at line: "+ to_string(currLineNum);
+    throw BadSynataxException(msg);
+  }
+  
+  //TODO add hex regex 
+  regex hexRegex("0x[0-9A-Fa-f]+"); 
+  smatch sm; 
+  if(!regex_search(token, sm, hexRegex)){
+    //dec literal 
+    token = decToHex(stoi(token)); 
+  }
+  cout<<"Token is: "<<token<<endl; 
+  regex hexPrefix("0x"); 
+  token=regex_replace(token, hexPrefix, "");
+  
+  for (int i=0; i<token.length(); i++){
+    token[i]=toupper(token[i]); 
+  }
+  return token; 
+}
+
 
 
 

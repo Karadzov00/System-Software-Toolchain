@@ -11,6 +11,37 @@ r4
 $0xFF
 neposredno
 $0xFF
+operand is literal
+Token is: 0xFF
+operand: FF
+code
+A0400000FF
+
+Current line: ldr r5, $234
+Lista tokena iz ldr/str:
+ldr
+r5
+$234
+neposredno
+$234
+operand is literal
+Token is: ea
+operand: EA
+code
+A0500000EA
+
+Current line: ldr r5, $130
+Lista tokena iz ldr/str:
+ldr
+r5
+$130
+neposredno
+$130
+operand is literal
+Token is: 82
+operand: 82
+code
+A050000082
 
 Current line: ldr r4, $a
 Lista tokena iz ldr/str:
@@ -19,6 +50,7 @@ r4
 $a
 neposredno
 $a
+operand is symbol
 
 Current line: ldr r4, 0xFF
 Lista tokena iz ldr/str:
@@ -77,4 +109,4 @@ r4
 a
 reg indirektno sa pomerajem
 r4 a
-End directive doesn't exist! Error at line: 12
+End directive doesn't exist! Error at line: 14

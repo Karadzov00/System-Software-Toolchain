@@ -118,6 +118,7 @@ public:
   string findSectionName(); 
   string decToBin(string dec);
   string registerCode(string reg);
+  string literalToHex(string token);
 
 
 };
