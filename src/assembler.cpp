@@ -1048,7 +1048,7 @@ void Assembler::processInstruction(string currLine){
         //operand is symbol
         cout<<"operand is symbol"<<endl; 
         //make relocation entry 
-        string value = processSymbol(operand);
+        string value = processSymbol(operand, locationCounter+3);
         code.append(value); 
         cout<<"code"<<endl;
         cout<<code<<endl; 
@@ -1097,6 +1097,8 @@ void Assembler::processInstruction(string currLine){
       cout<<operand; 
       cout<<endl;
 
+
+
     }
     else if(regex_search(operand, match, ldrStrMemDirRegex)){
       cout<<"mem direktno"<<endl;
@@ -1117,7 +1119,7 @@ void Assembler::processInstruction(string currLine){
         //operand is symbol
         cout<<"operand is symbol"<<endl; 
         //make relocation entry 
-        string value = processSymbol(operand);
+        string value = processSymbol(operand, locationCounter+3);
         code.append(value); 
         cout<<"code"<<endl;
         cout<<code<<endl; 
@@ -1242,7 +1244,7 @@ string Assembler::literalToHex(string token){
 }
 
 
-string Assembler::processSymbol(string token){
+string Assembler::processSymbol(string token, int lc){
   string symbValue; 
   //check if symbol is not in symbol table 
   if(symbolTable.find(token)==symbolTable.end()){
@@ -1260,13 +1262,13 @@ string Assembler::processSymbol(string token){
     //add symbol to symbol use entry 
     //make symbol use entry 
     symbolUseEntry symbUse; 
-    symbUse.address = locationCounter; 
+    symbUse.address = lc; 
     symbUse.section = currentSectionNumber; 
     symbUse.type = 0; 
     symbolTable[token].useVector.push_back(symbUse); 
 
     //TODO make relocation entry 
-    addRelocation(locationCounter+3, 0, symbolTable[token].symbolId, 0, currentSectionName); 
+    addRelocation(lc, 0, symbolTable[token].symbolId, 0, currentSectionName); 
     string value="0000"; 
     return value; 
   }
@@ -1277,13 +1279,13 @@ string Assembler::processSymbol(string token){
       //add symbol to symbol use entry 
       //make symbol use entry 
       symbolUseEntry symbUse; 
-      symbUse.address = locationCounter; 
+      symbUse.address = lc; 
       symbUse.section = currentSectionNumber; 
       symbUse.type = 0; 
       symbolTable[token].useVector.push_back(symbUse); 
 
       //TODO make relocation entry 
-      addRelocation(locationCounter+3, 0, symbolTable[token].symbolId, 0, currentSectionName); 
+      addRelocation(lc, 0, symbolTable[token].symbolId, 0, currentSectionName); 
     
       string symbValue = literalToHex(to_string(symbolTable[token].value)); 
       string value;
@@ -1301,13 +1303,13 @@ string Assembler::processSymbol(string token){
     else{
       //symbol is global
       symbolUseEntry symbUse; 
-      symbUse.address = locationCounter; 
+      symbUse.address = lc; 
       symbUse.section = currentSectionNumber; 
       symbUse.type = 0; 
       symbolTable[token].useVector.push_back(symbUse); 
 
       //TODO make relocation entry 
-      addRelocation(locationCounter+3, 0, symbolTable[token].symbolId, 0, currentSectionName); 
+      addRelocation(lc, 0, symbolTable[token].symbolId, 0, currentSectionName); 
       string value="0000";
       return value;  
     }

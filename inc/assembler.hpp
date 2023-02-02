@@ -111,7 +111,7 @@ public:
   void processEndDirective(string currLine); 
   void processInstruction(string currLine); 
   void addRelocation(int offset, int type, int symbol, int addend, string currSectionName); 
-  string processSymbol(string symbol); 
+  string processSymbol(string symbol, int lc); 
 
   //helper functions
   string decToHex(int dec);

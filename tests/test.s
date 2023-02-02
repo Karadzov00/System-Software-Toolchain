@@ -3,7 +3,9 @@
 .skip 10
 a:
 ldr r4, $0xFF
+b:
 ldr r5, $234
+c:
 ldr r5, $130
 ldr r4, $a #za ovo mora relokacioni zapis da se generise, jer ne znamo da li je lokalan ili globalan
 ldr r4, 0xFF

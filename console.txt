@@ -29,6 +29,13 @@ operand is literal
 operand: FF
 code
 A0400000FF
+label 
+b:
+symbol name is: b:
+only symbol name: b
+simbol dodat u tabelu simbola
+label line after shortening 
+
 
 Current line: ldr r5, $234
 Lista tokena iz ldr/str:
@@ -41,6 +48,13 @@ operand is literal
 operand: EA
 code
 A0500000EA
+label 
+c:
+symbol name is: c:
+only symbol name: c
+simbol dodat u tabelu simbola
+label line after shortening 
+
 
 Current line: ldr r5, $130
 Lista tokena iz ldr/str:
@@ -218,6 +232,8 @@ end
 TABELA SIMBOLA:
 symbolName    isGlobal      symbolID      sectionNum    size          value         
 a             0             1             0             -1            10            
+b             0             2             0             -1            15            
+c             0             3             0             -1            20            
 data          1             0             0             10            0             
 
 RELOKACIONI ZAPISI SEKCIJE:
