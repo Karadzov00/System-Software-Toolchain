@@ -1,5 +1,7 @@
 
-
+.section data
+.skip 10
+a:
 ldr r4, $0xFF
 ldr r5, $234
 ldr r5, $130
@@ -23,3 +25,6 @@ jmp *[psw]
 jmp *[r4 + 0xFF]
 jmp *[r4+a]
 jmp %a
+
+
+.end

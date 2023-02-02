@@ -1048,7 +1048,14 @@ void Assembler::processInstruction(string currLine){
         //operand is symbol
         cout<<"operand is symbol"<<endl; 
         //make relocation entry 
-
+        string value = processSymbol(operand);
+        code.append(value); 
+        cout<<"code"<<endl;
+        cout<<code<<endl; 
+        for(int i=0; i<code.length(); i++){
+          sectionTable[currentSectionName].code.push_back(code[i]); 
+        }
+        locationCounter+=5;
 
       } 
       else{
@@ -1067,8 +1074,7 @@ void Assembler::processInstruction(string currLine){
         for(int i=0; i<code.length(); i++){
           sectionTable[currentSectionName].code.push_back(code[i]); 
         }
-
-
+        locationCounter+=5;
 
       }
     }
@@ -1076,6 +1082,8 @@ void Assembler::processInstruction(string currLine){
       cout<<"reg indirektno"<<endl;
       cout<<operand; 
       cout<<endl;
+
+
 
     }
     else if(regex_search(currLine, match, ldrStrRegIndDispRegex)){
@@ -1094,6 +1102,51 @@ void Assembler::processInstruction(string currLine){
       cout<<"mem direktno"<<endl;
       cout<<operand; 
       cout<<endl;
+
+      if(operation=="ldr")code="A0";
+      else if(operation=="str")code="B0";
+
+      string reg_code = registerCode(reg); 
+      code.append(reg_code);//RD
+      code.append("0"); //RS
+      code.append("0");//UP
+      code.append("4"); //AM
+      regex symbRgx("^[a-zA-Z][a-zA-Z0-9_]*$"); 
+      //check if operand is symbol
+      if(regex_search(operand, match, symbRgx)){
+        //operand is symbol
+        cout<<"operand is symbol"<<endl; 
+        //make relocation entry 
+        string value = processSymbol(operand);
+        code.append(value); 
+        cout<<"code"<<endl;
+        cout<<code<<endl; 
+        for(int i=0; i<code.length(); i++){
+          sectionTable[currentSectionName].code.push_back(code[i]); 
+        }
+        locationCounter+=5;
+
+      } 
+      else{
+        //operand is literal
+        cout<<"operand is literal"<<endl; 
+        operand = literalToHex(operand); 
+        cout<<"operand: "<<operand<<endl;
+        for(int i=operand.length(); i<4; i++){
+          code.append("0"); 
+        }
+        for(int i=0; i<operand.length(); i++){
+          code+=operand[i]; 
+        }
+        cout<<"code"<<endl;
+        cout<<code<<endl; 
+        for(int i=0; i<code.length(); i++){
+          sectionTable[currentSectionName].code.push_back(code[i]); 
+        }
+        locationCounter+=5;
+
+      }
+
 
     }
     else if(regex_search(operand, match, ldrStrPcRelRegex)){
