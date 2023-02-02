@@ -18,6 +18,8 @@ ldr r5, [r4 + a]
 
 
 jmp 0xFF
+jeq a
+jne a
 jmp a
 jmp *0xFF
 call *a

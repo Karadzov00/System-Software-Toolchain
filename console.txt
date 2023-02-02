@@ -170,6 +170,30 @@ operand: FF
 code
 50F00000FF
 
+Current line: jeq a
+Lista tokena iz ldr/str:
+jeq
+a
+operand: a
+neposredno
+a
+operand is symbol
+value of symbol a is 000A
+code
+51F000000A
+
+Current line: jne a
+Lista tokena iz ldr/str:
+jne
+a
+operand: a
+neposredno
+a
+operand is symbol
+value of symbol a is 000A
+code
+52F000000A
+
 Current line: jmp a
 Lista tokena iz ldr/str:
 jmp
@@ -189,6 +213,10 @@ jmp
 operand: *0xFF
 mem direktno
 *0xFF
+operand is literal
+operand: FF
+code
+50F00400FF
 
 Current line: call *a
 Lista tokena iz ldr/str:
@@ -197,6 +225,10 @@ a
 operand: *a
 mem direktno
 *a
+operand is symbol
+value of symbol a is 000A
+code
+30F004000A
 
 Current line: jne *r4
 Lista tokena iz ldr/str:
@@ -263,7 +295,10 @@ offset        type          symbol        addend
 38            0             1             0             
 54            0             1             0             
 64            0             1             0             
+69            0             1             0             
+74            0             1             0             
+84            0             1             0             
 
 KOD SEKCIJA:
 Ime sekcije: data
-A0 40 00 00 FF A0 50 00 00 EA A0 50 00 00 82 A0 40 00 00 0A A0 40 04 00 FF A0 40 04 00 0A A0 45 01 A0 54 02 A0 54 03 00 FF A0 54 03 00 0A 50 F0 00 00 FF 50 F0 00 00 0A 
+A0 40 00 00 FF A0 50 00 00 EA A0 50 00 00 82 A0 40 00 00 0A A0 40 04 00 FF A0 40 04 00 0A A0 45 01 A0 54 02 A0 54 03 00 FF A0 54 03 00 0A 50 F0 00 00 FF 51 F0 00 00 0A 52 F0 00 00 0A 50 F0 00 00 0A 50 F0 04 00 FF 30 F0 04 00 0A 
