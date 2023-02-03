@@ -317,7 +317,7 @@ bool Assembler::checkIfInstruction(string currLine){
       token = strtok (NULL, " ,");
     }
     string operation = tokens[0]; 
-    cout<<"OPERATION IS "+operation<<endl; 
+    cout<<endl<<"OPERATION IS "+operation<<endl; 
     string code; 
 
 
@@ -342,11 +342,46 @@ bool Assembler::checkIfInstruction(string currLine){
     }
     else if(operation=="push"){
       //treat it as str
-      processInstruction(currLine); 
+
+      cout<<"push - reg indirektno"<<endl;
+      cout<<tokens[1]; 
+      cout<<endl;
+
+      code="B0"; 
+
+      string reg_code2 = registerCode(tokens[1]);
+      code.append("6");//RD is sp 
+      code.append(reg_code2); //RS
+      code.append("1");//UP predecrement 
+      code.append("2"); //AM
+      cout<<"code"<<endl;
+      cout<<code<<endl; 
+      for(int i=0; i<code.length(); i++){
+        sectionTable[currentSectionName].code.push_back(code[i]); 
+      }
+      locationCounter+=3;  
+      
     }
     else if(operation=="pop"){
       //treat it as ldr
-      processInstruction(currLine); 
+      //postincrement 
+      cout<<"pop - reg indirektno"<<endl;
+      cout<<tokens[1]; 
+      cout<<endl;
+
+      code="A0"; 
+
+      string reg_code2 = registerCode(tokens[1]);
+      code.append("6");//RD is sp 
+      code.append(reg_code2); //RS
+      code.append("4");//UP postincrement 
+      code.append("2"); //AM
+      cout<<"code"<<endl;
+      cout<<code<<endl; 
+      for(int i=0; i<code.length(); i++){
+        sectionTable[currentSectionName].code.push_back(code[i]); 
+      }
+      locationCounter+=3;
       
     }
     else if(operation=="not"){

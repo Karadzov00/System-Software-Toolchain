@@ -339,6 +339,18 @@ hex value: 8
 value of little endian symbol a is 0800
 code
 50F7050800
+
+OPERATION IS push
+push - reg indirektno
+r5
+code
+B06512
+
+OPERATION IS pop
+pop - reg indirektno
+r3
+code
+A06342
 end 
 .end
 TABELA SIMBOLA:
@@ -350,7 +362,7 @@ d             0             7             6             10            -1
 data          1             1             1             0             10            
 e             0             8             6             23            -1            
 glb           1             0             0             0             -1            
-jumps         1             6             6             0             44            
+jumps         1             6             6             0             50            
 random        0             5             1             0             -1            
 
 RELOKACIONI ZAPISI SEKCIJE:
@@ -375,4 +387,4 @@ KOD SEKCIJA:
 Ime sekcije: data
 A0 40 00 00 FF A0 50 00 00 EA A0 50 00 00 82 A0 40 00 00 0A A0 40 04 00 FF A0 40 04 00 0A A0 47 03 08 00 A0 37 03 0D 00 A0 37 03 00 00 A0 37 03 FE FF A0 45 01 A0 54 02 A0 54 03 00 FF A0 54 03 00 0A 
 Ime sekcije: jumps
-50 F0 00 00 FF 52 F0 00 00 0A 50 F0 04 00 FF 30 F0 04 00 0A 52 F4 01 53 F4 02 50 F8 02 50 F4 03 00 FF 50 F4 03 00 0A 50 F7 05 08 00 
+50 F0 00 00 FF 52 F0 00 00 0A 50 F0 04 00 FF 30 F0 04 00 0A 52 F4 01 53 F4 02 50 F8 02 50 F4 03 00 FF 50 F4 03 00 0A 50 F7 05 08 00 B0 65 12 A0 63 42 

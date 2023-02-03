@@ -33,5 +33,8 @@ jmp *[r4 + 0xFF]
 jmp *[r4+a]
 jmp %a
 
+push r5
+pop r3
+
 
 .end
