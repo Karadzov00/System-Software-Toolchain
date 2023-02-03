@@ -148,6 +148,7 @@ void Assembler::openParseFile(){
   int cntNewLine=1; 
   for(auto s:sectionTable){
     cout<<"Ime sekcije: "<<s.first<<endl; 
+    cntNewLine=1; 
     for(auto c: s.second.code){
       cout<<c; 
       if(cnt==2){
@@ -802,8 +803,8 @@ void Assembler::processSkipDirective(string currLine){
     cout<<"skip literal is: "<<bytes<<"\n"; 
   }
 
-  for(int i=0; i<bytes; i++){
-    code.push_back('0'); 
+  for(int i=0; i<bytes*2; i++){
+    sectionTable[currentSectionName].code.push_back('0'); 
   }
   string section = findSectionName(); 
   sectionTable[section].size+=bytes;
