@@ -1830,7 +1830,7 @@ void Assembler::backpatch(){
             cout<<"pcrel addr -> new value: "+newValue<<endl; 
 
         }
-
+        //TODO 3rd case: not defined symbol 
       }
       else if(symbUse.type==2){
         //word directive - little endian
