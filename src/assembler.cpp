@@ -87,28 +87,12 @@ void Assembler::openParseFile(){
   }
 
   backpatch(); 
+  printSymbolTable();
+  printRelocations(); 
+  printCode(); 
+  printToFile(); 
 
-  cout<<"TABELA SIMBOLA:"<<endl; 
-  // cout<<"name \t isGlobal \t id \t section \t size"<<endl;
-  cout<< left<< setw(14)<<setfill(' ')<<"symbolName";
-  cout<< left<< setw(14)<<setfill(' ')<<"isGlobal";
-  cout<< left<< setw(14)<<setfill(' ')<<"symbolID";
-  cout<< left<< setw(14)<<setfill(' ')<<"sectionNum";
-  cout<< left<< setw(14)<<setfill(' ')<<"value";
-  cout<< left<< setw(14)<<setfill(' ')<<"size";
-  cout<<endl; 
-  for (auto const& x : symbolTable){
-    cout<< left<< setw(14)<<setfill(' ')<<x.second.symbolName;
-    cout<< left<< setw(14)<<setfill(' ')<<x.second.isGlobal;
-    cout<< left<< setw(14)<<setfill(' ')<<x.second.symbolId;
-    cout<< left<< setw(14)<<setfill(' ')<<x.second.sectionNum;
-    cout<< left<< setw(14)<<setfill(' ')<<x.second.value;
-    cout<< left<< setw(14)<<setfill(' ')<<x.second.size;
-    cout<<endl; 
 
-    // cout<<x.second.symbolName<<"\t"<<x.second.isGlobal<<"\t"<<x.second.symbolId<<"\t"<<x.second.sectionNum<<"\t"<<x.second.size<<endl;
-  }
-  cout<<endl; 
   // cout<<"TABELA KORISCENJA:"<<endl; 
   //   cout<< left<< setw(14)<<setfill(' ')<<"symbol";
   //   cout<< left<< setw(14)<<setfill(' ')<<"address";
@@ -128,45 +112,8 @@ void Assembler::openParseFile(){
   //   }
   // }
 
-  cout<<"RELOKACIONI ZAPISI SEKCIJE:"<<endl; 
-  for(auto s:sectionTable){
-    cout<<"sekcija: "<<s.second.sectionName<<endl; 
-    cout<< left<< setw(14)<<setfill(' ')<<"offset";
-    cout<< left<< setw(14)<<setfill(' ')<<"type";
-    cout<< left<< setw(14)<<setfill(' ')<<"symbol";
-    cout<< left<< setw(14)<<setfill(' ')<<"addend";
-    cout<<endl; 
-    for(auto r:s.second.sectionRelocations){
-      cout<< left<< setw(14)<<setfill(' ')<<r.offset;
-      cout<< left<< setw(14)<<setfill(' ')<<r.type;
-      cout<< left<< setw(14)<<setfill(' ')<<r.symbol;
-      cout<< left<< setw(14)<<setfill(' ')<<r.addend;
-      cout<<endl; 
-    }
-    cout<<endl; 
-  }
 
-  cout<<"KOD SEKCIJA:"<<endl;
-  int cnt=1; 
-  int cntNewLine=1; 
-  for(auto s:sectionTable){
-    cout<<"Ime sekcije: "<<s.first<<endl; 
-    cntNewLine=1; 
-    for(auto c: s.second.code){
-      cout<<c; 
-      if(cnt==2){
-        cout<<" ";
-        cnt=0; 
-      }
-      if(cntNewLine==20){
-        cout<<endl;
-        cntNewLine=0; 
-      }
-      cnt++; 
-      cntNewLine++; 
-    }
-  cout<<endl;
-  }
+
 
 }
 
@@ -1587,6 +1534,139 @@ string Assembler::findSymbolName(int sectionNum){
       return s.second.symbolName;
   }
   return "";
+}
+
+void Assembler::printSymbolTable(){
+  cout<<"TABELA SIMBOLA:"<<endl; 
+  // cout<<"name \t isGlobal \t id \t section \t size"<<endl;
+  cout<< left<< setw(14)<<setfill(' ')<<"symbolName";
+  cout<< left<< setw(14)<<setfill(' ')<<"isGlobal";
+  cout<< left<< setw(14)<<setfill(' ')<<"symbolID";
+  cout<< left<< setw(14)<<setfill(' ')<<"sectionNum";
+  cout<< left<< setw(14)<<setfill(' ')<<"value";
+  cout<< left<< setw(14)<<setfill(' ')<<"size";
+  cout<<endl; 
+  for (auto const& x : symbolTable){
+    cout<< left<< setw(14)<<setfill(' ')<<x.second.symbolName;
+    cout<< left<< setw(14)<<setfill(' ')<<x.second.isGlobal;
+    cout<< left<< setw(14)<<setfill(' ')<<x.second.symbolId;
+    cout<< left<< setw(14)<<setfill(' ')<<x.second.sectionNum;
+    cout<< left<< setw(14)<<setfill(' ')<<x.second.value;
+    cout<< left<< setw(14)<<setfill(' ')<<x.second.size;
+    cout<<endl; 
+
+    // cout<<x.second.symbolName<<"\t"<<x.second.isGlobal<<"\t"<<x.second.symbolId<<"\t"<<x.second.sectionNum<<"\t"<<x.second.size<<endl;
+  }
+  cout<<endl; 
+}
+void Assembler::printRelocations(){
+  cout<<"RELOKACIONI ZAPISI SEKCIJE:"<<endl; 
+  for(auto s:sectionTable){
+    cout<<"sekcija: "<<s.second.sectionName<<endl; 
+    cout<< left<< setw(14)<<setfill(' ')<<"offset";
+    cout<< left<< setw(14)<<setfill(' ')<<"type";
+    cout<< left<< setw(14)<<setfill(' ')<<"symbol";
+    cout<< left<< setw(14)<<setfill(' ')<<"addend";
+    cout<<endl; 
+    for(auto r:s.second.sectionRelocations){
+      cout<< left<< setw(14)<<setfill(' ')<<r.offset;
+      cout<< left<< setw(14)<<setfill(' ')<<r.type;
+      cout<< left<< setw(14)<<setfill(' ')<<r.symbol;
+      cout<< left<< setw(14)<<setfill(' ')<<r.addend;
+      cout<<endl; 
+    }
+    cout<<endl; 
+  }
+}
+void Assembler::printCode(){
+
+  cout<<"KOD SEKCIJA:"<<endl;
+  int cnt=1; 
+  int cntNewLine=1; 
+  for(auto s:sectionTable){
+    cout<<"Ime sekcije: "<<s.first<<endl; 
+    cntNewLine=1; 
+    for(auto c: s.second.code){
+      cout<<c; 
+      if(cnt==2){
+        cout<<" ";
+        cnt=0; 
+      }
+      if(cntNewLine==20){
+        cout<<endl;
+        cntNewLine=0; 
+      }
+      cnt++; 
+      cntNewLine++; 
+    }
+  cout<<endl;
+  }
+}
+
+void Assembler::printToFile(){
+  ofstream myfile;
+  myfile.open (cmdOutputFile);
+
+  myfile<<"TABELA SIMBOLA:"<<endl; 
+  // cout<<"name \t isGlobal \t id \t section \t size"<<endl;
+  myfile<< left<< setw(14)<<setfill(' ')<<"symbolName";
+  myfile<< left<< setw(14)<<setfill(' ')<<"isGlobal";
+  myfile<< left<< setw(14)<<setfill(' ')<<"symbolID";
+  myfile<< left<< setw(14)<<setfill(' ')<<"sectionNum";
+  myfile<< left<< setw(14)<<setfill(' ')<<"value";
+  myfile<< left<< setw(14)<<setfill(' ')<<"size";
+  myfile<<endl; 
+  for (auto const& x : symbolTable){
+    myfile<< left<< setw(14)<<setfill(' ')<<x.second.symbolName;
+    myfile<< left<< setw(14)<<setfill(' ')<<x.second.isGlobal;
+    myfile<< left<< setw(14)<<setfill(' ')<<x.second.symbolId;
+    myfile<< left<< setw(14)<<setfill(' ')<<x.second.sectionNum;
+    myfile<< left<< setw(14)<<setfill(' ')<<x.second.value;
+    myfile<< left<< setw(14)<<setfill(' ')<<x.second.size;
+    myfile<<endl; 
+
+    // cout<<x.second.symbolName<<"\t"<<x.second.isGlobal<<"\t"<<x.second.symbolId<<"\t"<<x.second.sectionNum<<"\t"<<x.second.size<<endl;
+  }
+  myfile<<endl; 
+  myfile<<"RELOKACIONI ZAPISI SEKCIJE:"<<endl; 
+  for(auto s:sectionTable){
+    myfile<<"sekcija: "<<s.second.sectionName<<endl; 
+    myfile<< left<< setw(14)<<setfill(' ')<<"offset";
+    myfile<< left<< setw(14)<<setfill(' ')<<"type";
+    myfile<< left<< setw(14)<<setfill(' ')<<"symbol";
+    myfile<< left<< setw(14)<<setfill(' ')<<"addend";
+    myfile<<endl; 
+    for(auto r:s.second.sectionRelocations){
+      myfile<< left<< setw(14)<<setfill(' ')<<r.offset;
+      myfile<< left<< setw(14)<<setfill(' ')<<r.type;
+      myfile<< left<< setw(14)<<setfill(' ')<<r.symbol;
+      myfile<< left<< setw(14)<<setfill(' ')<<r.addend;
+      myfile<<endl; 
+    }
+    myfile<<endl; 
+  }
+
+  myfile<<"KOD SEKCIJA:"<<endl;
+  int cnt=1; 
+  int cntNewLine=1; 
+  for(auto s:sectionTable){
+    myfile<<"Ime sekcije: "<<s.first<<endl; 
+    cntNewLine=1; 
+    for(auto c: s.second.code){
+      myfile<<c; 
+      if(cnt==2){
+        myfile<<" ";
+        cnt=0; 
+      }
+      if(cntNewLine==20){
+        myfile<<endl;
+        cntNewLine=0; 
+      }
+      cnt++; 
+      cntNewLine++; 
+    }
+  myfile<<endl;
+  }
 }
 
 

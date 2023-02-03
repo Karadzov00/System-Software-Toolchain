@@ -127,6 +127,11 @@ public:
   string literalToHex(string token);
   string decimalToHex(int decimal);
   string findSymbolName(int sectionNum);
+  void printSymbolTable(); 
+  void printRelocations(); 
+  void printCode(); 
+  void printToFile(); 
+
 
 
 };
