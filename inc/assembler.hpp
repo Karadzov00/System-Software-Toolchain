@@ -131,6 +131,7 @@ public:
   void printRelocations(); 
   void printCode(); 
   void printToFile(); 
+  void printLinkerInput(); 
 
 
 

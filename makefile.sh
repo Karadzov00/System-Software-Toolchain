@@ -1,8 +1,8 @@
 g++ ./src/assembler.cpp ./src/mainAsm.cpp -o asembler
 # ./asembler -o ./tests/main.o ./tests/main.s
 # ./asembler -o ./tests/math.o ./tests/math.s
-# ./asembler -o ./tests/test.o ./tests/test.s
-./asembler -o ./tests/test1.o ./tests/test1.s
+./asembler -o ./tests/test.o ./tests/test.s
+# ./asembler -o ./tests/test1.o ./tests/test1.s
 
 
 #g++ ./src/mainLinker.cpp ./src/linker.cpp -o linker

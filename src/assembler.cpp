@@ -91,6 +91,7 @@ void Assembler::openParseFile(){
   printRelocations(); 
   printCode(); 
   printToFile(); 
+  printLinkerInput(); 
 
 
   // cout<<"TABELA KORISCENJA:"<<endl; 
@@ -1666,8 +1667,50 @@ void Assembler::printToFile(){
       cntNewLine++; 
     }
   myfile<<endl;
+  myfile<<endl;
   }
 }
+
+void Assembler::printLinkerInput(){
+  ofstream myfile;
+  myfile.open ("linker_input.o");
+  for (auto const& x : symbolTable){
+    myfile<<x.second.symbolName<<":";
+    myfile<<x.second.isGlobal<<":";
+    myfile<<x.second.symbolId<<":";
+    myfile<<x.second.sectionNum<<":";
+    myfile<<x.second.value<<":";
+    myfile<<x.second.size; 
+    myfile<<endl; 
+  }
+  for(auto s:sectionTable){
+    myfile<<"section begin"<<endl; 
+    myfile<<s.second.sectionName<<endl; 
+    for(auto r:s.second.sectionRelocations){
+      myfile<<r.offset<<":";
+      myfile<<r.type<<":";
+      myfile<<r.symbol<<":";
+      myfile<<r.addend;
+      myfile<<endl;
+    }
+    myfile<<"code of section:"<<endl;
+    int cnt=1; 
+    for(auto c: s.second.code){
+      myfile<<c; 
+      if(cnt==2){
+        myfile<<":";
+        cnt=0; 
+      }
+      cnt++; 
+    }
+    myfile<<endl; 
+    myfile<<"section end"<<endl;
+
+  }
+
+  
+}
+
 
 
 
