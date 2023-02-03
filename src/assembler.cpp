@@ -145,6 +145,7 @@ void Assembler::openParseFile(){
 
   cout<<"KOD SEKCIJA:"<<endl;
   int cnt=1; 
+  int cntNewLine=1; 
   for(auto s:sectionTable){
     cout<<"Ime sekcije: "<<s.first<<endl; 
     for(auto c: s.second.code){
@@ -153,7 +154,12 @@ void Assembler::openParseFile(){
         cout<<" ";
         cnt=0; 
       }
+      if(cntNewLine==20){
+        cout<<endl;
+        cntNewLine=0; 
+      }
       cnt++; 
+      cntNewLine++; 
     }
   cout<<endl;
   }
@@ -593,11 +599,11 @@ void Assembler::processLabel(string currLine){
       symbolTable[symbolName].sectionNum=currentSectionNumber; 
       symbolTable[symbolName].value=locationCounter; 
 
-      symbolUseEntry symbUse; 
-      symbUse.address = locationCounter; 
-      symbUse.section = currentSectionNumber; 
-      symbUse.type = 0; 
-      symbolTable[symbolName].useVector.push_back(symbUse); 
+      // symbolUseEntry symbUse; 
+      // symbUse.address = locationCounter; 
+      // symbUse.section = currentSectionNumber; 
+      // symbUse.type = 0; 
+      // symbolTable[symbolName].useVector.push_back(symbUse); 
   }
   else{
     symbolTable[symbolName].isDefined=true; 
@@ -610,11 +616,11 @@ void Assembler::processLabel(string currLine){
     symbolId++;
     cout<<"simbol dodat u tabelu simbola"<<endl; 
 
-    symbolUseEntry symbUse; 
-    symbUse.address = locationCounter; 
-    symbUse.section = currentSectionNumber; 
-    symbUse.type = 0; 
-    symbolTable[symbolName].useVector.push_back(symbUse); 
+    // symbolUseEntry symbUse; 
+    // symbUse.address = locationCounter; 
+    // symbUse.section = currentSectionNumber; 
+    // symbUse.type = 0; 
+    // symbolTable[symbolName].useVector.push_back(symbUse); 
   }
 
 
@@ -654,11 +660,11 @@ void Assembler::processGlobalDirective(string currLine){
       cout<<"symbol "<<s<<" added to the symbol table"<<endl; 
 
       //make symbol use entry 
-      symbolUseEntry symbUse; 
-      symbUse.address = locationCounter; 
-      symbUse.section = currentSectionNumber; 
-      symbUse.type = 0; 
-      symbolTable[s].useVector.push_back(symbUse); 
+      // symbolUseEntry symbUse; 
+      // symbUse.address = locationCounter; 
+      // symbUse.section = currentSectionNumber; 
+      // symbUse.type = 0; 
+      // symbolTable[s].useVector.push_back(symbUse); 
 
     }
     else if(symbolTable[symbol].sectionNum == 0){
