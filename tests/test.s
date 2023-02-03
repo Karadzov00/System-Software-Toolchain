@@ -1,6 +1,7 @@
 .global glb
 .section data
-.skip 10
+.skip 4
+.word a,b,c
 a:
 ldr r4, $0xFF
 b:

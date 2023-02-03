@@ -16,13 +16,28 @@ section
 section name is: data
 section data added to the symbol table
 skip 
-.skip 10
-skip literal is: 10
+.skip 4
+skip literal is: 4
+word 
+.word a, b, c
+after cutting word 
+a, b, c
+symbol a added to the symbol table
+symbol b added to the symbol table
+symbol c added to the symbol table
+word symbols:
+a
+b
+c
+word literals:
+
+CODE:
+
 label 
 a:
 symbol name is: a:
 only symbol name: a
-simbol dodat u tabelu simbola
+symbol found in symbol table
 label line after shortening 
 
 
@@ -41,7 +56,7 @@ label
 b:
 symbol name is: b:
 only symbol name: b
-simbol dodat u tabelu simbola
+symbol found in symbol table
 label line after shortening 
 
 
@@ -60,7 +75,7 @@ label
 c:
 symbol name is: c:
 only symbol name: c
-simbol dodat u tabelu simbola
+symbol found in symbol table
 label line after shortening 
 
 
@@ -370,6 +385,52 @@ CODE:
 
 end 
 .end
+offset:8
+old value: 0000
+word -> new value: 0A00
+offset:56
+old value: 000A
+absolute addr -> new value: 000A
+offset:76
+old value: 000A
+absolute addr -> new value: 000A
+offset:86
+old value: 0800
+offset:148
+old value: 000A
+absolute addr -> new value: 000A
+offset:16
+old value: 000A
+absolute addr -> new value: 000A
+offset:36
+old value: 000A
+absolute addr -> new value: 000A
+offset:74
+old value: 000A
+absolute addr -> new value: 000A
+offset:84
+old value: 0800
+offset:12
+old value: 0000
+word -> new value: 0F00
+offset:96
+old value: 0D00
+offset:16
+old value: 0000
+word -> new value: 1400
+offset:100
+old value: 0A00
+word -> new value: 0A00
+offset:104
+old value: 1700
+word -> new value: 1700
+offset:116
+old value: FEFF
+offset:108
+old value: 0000
+word -> new value: 0000
+offset:106
+old value: 0000
 TABELA SIMBOLA:
 symbolName    isGlobal      symbolID      sectionNum    value         size          
 a             0             2             1             10            -1            
@@ -386,6 +447,9 @@ random        0             5             1             0             -1
 RELOKACIONI ZAPISI SEKCIJE:
 sekcija: data
 offset        type          symbol        addend        
+4             0             2             0             
+6             0             3             0             
+8             0             4             0             
 28            0             2             0             
 38            0             2             0             
 43            1             2             0             
@@ -406,7 +470,7 @@ offset        type          symbol        addend
 
 KOD SEKCIJA:
 Ime sekcije: data
-00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 0A 00 0F 00 14 00 
 A0 40 00 00 FF A0 50 00 00 EA 
 A0 50 00 00 82 A0 40 00 00 0A 
 A0 40 04 00 FF A0 40 04 00 0A 

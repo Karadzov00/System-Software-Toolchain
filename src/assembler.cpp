@@ -85,6 +85,9 @@ void Assembler::openParseFile(){
     string msg ="End directive doesn't exist! Error at line: "+ to_string(currLineNum);
     throw BadSynataxException(msg);
   }
+
+  backpatch(); 
+
   cout<<"TABELA SIMBOLA:"<<endl; 
   // cout<<"name \t isGlobal \t id \t section \t size"<<endl;
   cout<< left<< setw(14)<<setfill(' ')<<"symbolName";
@@ -1578,6 +1581,15 @@ string Assembler::decimalToHex(int decimal) {
     return hex;
 }
 
+string Assembler::findSymbolName(int sectionNum){
+  for(auto s:symbolTable){
+    if(s.second.symbolId==sectionNum)
+      return s.second.symbolName;
+  }
+  return "";
+}
+
+
 
 string Assembler::processSymbol(string token, int lc){
   string symbValue; 
@@ -1742,6 +1754,49 @@ string Assembler::processSymbolForRelocation(string token, int lc){
 void Assembler::backpatch(){
   for(auto& s:symbolTable){
     for(auto& symbUse:s.second.useVector){
+      string section = findSymbolName(symbUse.section);
+      string symbol = s.second.symbolName; 
+      int value = s.second.value; //updated value in symTable 
+      string hexValue = literalToHex(to_string(value)); 
+      for(int i=hexValue.length(); i<4; i++){
+        hexValue.insert(0,"0"); 
+      }
+      int offset = symbUse.address*2; 
+      cout<<"offset:"+to_string(offset)<<endl; 
+      string oldValue, newValue; 
+      for(int i=0; i<4; i++){
+        oldValue.push_back(sectionTable[section].code[offset+i]); 
+      }
+      cout<<"old value: "+oldValue<<endl; 
+
+      if(symbUse.type==0){
+        //absolute addressing - big endian 
+        sectionTable[section].code[offset]=hexValue[0]; 
+        sectionTable[section].code[offset+1]=hexValue[1]; 
+        sectionTable[section].code[offset+2]=hexValue[2]; 
+        sectionTable[section].code[offset+3]=hexValue[3]; 
+        for(int i=0; i<4; i++){
+          newValue.push_back(sectionTable[section].code[offset+i]); 
+        }
+        cout<<"absolute addr -> new value: "+newValue<<endl; 
+
+
+      }
+      else if(symbUse.type==1){
+        //pcrel addressing - little endian
+
+      }
+      else if(symbUse.type==2){
+        //word directive - little endian
+        sectionTable[section].code[offset]=hexValue[2]; 
+        sectionTable[section].code[offset+1]=hexValue[3]; 
+        sectionTable[section].code[offset+2]=hexValue[0]; 
+        sectionTable[section].code[offset+3]=hexValue[1]; 
+        for(int i=0; i<4; i++){
+          newValue.push_back(sectionTable[section].code[offset+i]); 
+        }
+        cout<<"word -> new value: "+newValue<<endl; 
+      }
       
     }
   }
