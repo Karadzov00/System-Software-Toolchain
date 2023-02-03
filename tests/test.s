@@ -36,5 +36,7 @@ jmp %a
 push r5
 pop r3
 
+.word d, e, m
+
 
 .end

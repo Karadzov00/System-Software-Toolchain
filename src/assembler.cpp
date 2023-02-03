@@ -909,16 +909,24 @@ void Assembler::processWordDirective(string currLine){
         if(symbolTable[token].isGlobal==false){
           //symbol is local
           string value = to_string(symbolTable[token].value);
-          string hex_value = decToHex(symbolTable[token].value); 
-          regex hexPrefix("0x"); 
-          hex_value=regex_replace(hex_value, hexPrefix, ""); 
+          string hex_value = literalToHex(value); 
+          // regex hexPrefix("0x"); 
+          // hex_value=regex_replace(hex_value, hexPrefix, ""); 
           
           string section = findSectionName(); 
 
-          for(int i=value.length();i<4;i++){
-            sectionTable[section].code.push_back('0'); //add leading zeros 
+
+          for(int i=hex_value.length();i<4;i++){
+            hex_value.insert(0,"0"); //add leading zeros 
           }
-          for(int i=0; i<value.length(); i++){
+          cout<<"big endian value: "+hex_value<<endl; 
+          //make it little endian - rotate bytes in symbValue
+          string tmp=hex_value.substr(0,2);
+          hex_value = hex_value.substr(2,2); 
+          hex_value.append(tmp); 
+          cout<<"little endian value: "+hex_value<<endl; 
+
+          for(int i=0; i<hex_value.length(); i++){
             sectionTable[section].code.push_back(hex_value[i]); 
           }
           //add symbol to symbol use entry 

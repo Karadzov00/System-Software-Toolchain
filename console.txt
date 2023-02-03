@@ -351,6 +351,23 @@ pop - reg indirektno
 r3
 code
 A06342
+word 
+.word d, e, m
+after cutting word 
+d, e, m
+big endian value: 000A
+little endian value: 0A00
+big endian value: 0017
+little endian value: 1700
+symbol m added to the symbol table
+word symbols:
+d
+e
+m
+word literals:
+
+CODE:
+0000000000
 end 
 .end
 TABELA SIMBOLA:
@@ -362,7 +379,8 @@ d             0             7             6             10            -1
 data          1             1             1             0             10            
 e             0             8             6             23            -1            
 glb           1             0             0             0             -1            
-jumps         1             6             6             0             50            
+jumps         1             6             6             0             56            
+m             0             9             6             0             -1            
 random        0             5             1             0             -1            
 
 RELOKACIONI ZAPISI SEKCIJE:
@@ -382,9 +400,12 @@ offset        type          symbol        addend
 18            0             2             0             
 37            0             2             0             
 42            1             2             0             
+50            0             7             0             
+52            0             8             0             
+54            0             9             0             
 
 KOD SEKCIJA:
 Ime sekcije: data
 A0 40 00 00 FF A0 50 00 00 EA A0 50 00 00 82 A0 40 00 00 0A A0 40 04 00 FF A0 40 04 00 0A A0 47 03 08 00 A0 37 03 0D 00 A0 37 03 00 00 A0 37 03 FE FF A0 45 01 A0 54 02 A0 54 03 00 FF A0 54 03 00 0A 
 Ime sekcije: jumps
-50 F0 00 00 FF 52 F0 00 00 0A 50 F0 04 00 FF 30 F0 04 00 0A 52 F4 01 53 F4 02 50 F8 02 50 F4 03 00 FF 50 F4 03 00 0A 50 F7 05 08 00 B0 65 12 A0 63 42 
+50 F0 00 00 FF 52 F0 00 00 0A 50 F0 04 00 FF 30 F0 04 00 0A 52 F4 01 53 F4 02 50 F8 02 50 F4 03 00 FF 50 F4 03 00 0A 50 F7 05 08 00 B0 65 12 A0 63 42 0A 00 17 00 00 00 
