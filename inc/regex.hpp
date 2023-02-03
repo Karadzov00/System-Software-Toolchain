@@ -8,6 +8,7 @@ using namespace std;
 regex optionArgRegex("^-o$");
 regex outputFileRegex("^.*\\.o$");
 regex inputFileRegex("^.*\\.s$");
+regex linkerCmdRegex("^linker[ ]+(-hex)[ ]+(-o)[ ]+([a-zA-Z][a-zA-Z0-9_]*).hex[ ]+([a-zA-Z][a-zA-Z0-9_]*.o[ ]*)+$");
 
 // pretty formating regex
 regex commentRegex("#.*");
