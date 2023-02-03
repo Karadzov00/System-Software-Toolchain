@@ -1622,7 +1622,7 @@ string Assembler::processSymbolForRelocation(string token, int lc){
     symbolUseEntry symbUse; 
     symbUse.address = lc+3; 
     symbUse.section = currentSectionNumber; 
-    symbUse.type = 0; 
+    symbUse.type = 1; 
     symbolTable[token].useVector.push_back(symbUse); 
 
     //TODO make relocation entry 
@@ -1640,7 +1640,7 @@ string Assembler::processSymbolForRelocation(string token, int lc){
       symbolUseEntry symbUse; 
       symbUse.address = lc+3; 
       symbUse.section = currentSectionNumber; 
-      symbUse.type = 0; 
+      symbUse.type = 1; 
       symbolTable[token].useVector.push_back(symbUse); 
 
       //TODO make relocation entry 
@@ -1676,7 +1676,7 @@ string Assembler::processSymbolForRelocation(string token, int lc){
       symbolUseEntry symbUse; 
       symbUse.address = lc+3; 
       symbUse.section = currentSectionNumber; 
-      symbUse.type = 0; 
+      symbUse.type = 1; 
       symbolTable[token].useVector.push_back(symbUse); 
 
       //TODO make relocation entry 
@@ -1688,6 +1688,15 @@ string Assembler::processSymbolForRelocation(string token, int lc){
 
   }
 }
+
+void Assembler::backpatch(){
+  for(auto& s:symbolTable){
+    for(auto& symbUse:s.second.useVector){
+      
+    }
+  }
+} 
+
 
 
 

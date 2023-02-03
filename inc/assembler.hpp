@@ -113,6 +113,7 @@ public:
   void addRelocation(int offset, int type, int symbol, int addend, string currSectionName); 
   string processSymbol(string symbol, int lc); 
   string processSymbolForRelocation(string token, int lc); 
+  void backpatch(); 
 
   //helper functions
   string decToHex(int dec);
