@@ -2,6 +2,7 @@
 .section data
 .skip 4
 .word a,b,c
+ldr r2, c
 a:
 ldr r4, $0xFF
 b:

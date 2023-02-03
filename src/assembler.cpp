@@ -1762,6 +1762,7 @@ void Assembler::backpatch(){
         hexValue.insert(0,"0"); 
       }
       int offset = symbUse.address*2; 
+      cout<<"symbol "+symbol<<endl; 
       cout<<"offset:"+to_string(offset)<<endl; 
       string oldValue, newValue; 
       for(int i=0; i<4; i++){
@@ -1784,6 +1785,51 @@ void Assembler::backpatch(){
       }
       else if(symbUse.type==1){
         //pcrel addressing - little endian
+
+        //if symbol is global 
+        if(s.second.isGlobal==true){
+          hexValue="FEFF"; 
+          sectionTable[section].code[offset]=hexValue[0]; 
+          sectionTable[section].code[offset+1]=hexValue[1]; 
+          sectionTable[section].code[offset+2]=hexValue[2]; 
+          sectionTable[section].code[offset+3]=hexValue[3]; 
+          for(int i=0; i<4; i++){
+            newValue.push_back(sectionTable[section].code[offset+i]); 
+          }
+          cout<<"pcrel addr -> new value: "+newValue<<endl; 
+        }
+        //if symbol is local
+        else if(s.second.isGlobal==false){
+            int val = s.second.value-2; 
+            hexValue= decimalToHex(val); 
+            cout<<"bin value: "+hexValue<<endl; 
+            hexValue=binToHex16bit(hexValue); 
+            cout<<"hex value: "+hexValue<<endl; 
+            string value; 
+
+            for(int i=hexValue.length(); i<4; i++){
+              //add leading zeros
+              value+="0";
+            }
+            for(int i=0; i<hexValue.length(); i++){
+              value+=hexValue[i]; 
+            }
+
+            //make it little endian - rotate bytes in symbValue
+            string tmp=value.substr(0,2);
+            value = value.substr(2,2); 
+            value.append(tmp);
+          
+            sectionTable[section].code[offset]=value[0]; 
+            sectionTable[section].code[offset+1]=value[1]; 
+            sectionTable[section].code[offset+2]=value[2]; 
+            sectionTable[section].code[offset+3]=value[3]; 
+            for(int i=0; i<4; i++){
+              newValue.push_back(sectionTable[section].code[offset+i]); 
+            }
+            cout<<"pcrel addr -> new value: "+newValue<<endl; 
+
+        }
 
       }
       else if(symbUse.type==2){
