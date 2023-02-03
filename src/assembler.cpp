@@ -900,7 +900,7 @@ void Assembler::processWordDirective(string currLine){
         symbolUseEntry symbUse; 
         symbUse.address = locationCounter; 
         symbUse.section = currentSectionNumber; 
-        symbUse.type = 0; 
+        symbUse.type = 2; 
         symbolTable[token].useVector.push_back(symbUse); 
 
         //TODO make relocation entry 
@@ -941,7 +941,7 @@ void Assembler::processWordDirective(string currLine){
           symbolUseEntry symbUse; 
           symbUse.address = locationCounter; 
           symbUse.section = currentSectionNumber; 
-          symbUse.type = 0; 
+          symbUse.type = 2; 
           symbolTable[token].useVector.push_back(symbUse); 
 
           //TODO make relocation entry 
@@ -965,7 +965,7 @@ void Assembler::processWordDirective(string currLine){
           symbolUseEntry symbUse; 
           symbUse.address = locationCounter; 
           symbUse.section = currentSectionNumber; 
-          symbUse.type = 0; 
+          symbUse.type = 2; 
           symbolTable[token].useVector.push_back(symbUse); 
 
           //TODO make relocation entry 
