@@ -1252,8 +1252,6 @@ void Assembler::processInstruction(string currLine){
       }
       locationCounter+=5;
 
-      
-
     }
 
   }
@@ -1504,17 +1502,17 @@ string Assembler::binToHex(string binary_str){
   return res.str();
 }
 
-string Assembler::decToBin(int n){
-  stringstream ss((n < 0) ? "1" : "0"); // the first bit, for any integer, indicates if its negative or not
-    if (n < 0)
-        n = -(n+1); // read about two complement!
-    int mask = 1 << 6; // Since int8_t has only 8 bits you just need to have your mask initialized to 2^6 (equivalent to 0b01000000) as your initial mask that will help you to detect the 7 following bits, from left to right.
+string Assembler::binToHex16bit(string bin){
+  bitset<16> set(bin);  
+  stringstream res;
+  res << hex << uppercase << set.to_ulong();
+  return res.str();
+}
 
-    while (mask) {
-        ss << ((mask & n) ? "1" : "0"); // if the bit of the mask matches the bit of n then we add it to the string.
-        mask >>= 1; // 0b01000000 becomes 0b00100000 and so on
-    }
-    return ss.str();
+string Assembler::decimalToHex(int decimal) {
+    std::bitset<16> binary(decimal);
+    std::string hex = std::bitset<16>(binary).to_string();
+    return hex;
 }
 
 
@@ -1635,9 +1633,12 @@ string Assembler::processSymbolForRelocation(string token, int lc){
       //TODO make relocation entry 
       // addRelocation(lc, 0, symbolTable[token].symbolId, 0, currentSectionName); 
     
-      string symbValue = literalToHex(to_string(symbolTable[token].value)); 
-      string value;
-      int decValue = hexToDec(symbValue); 
+      int val = -symbolTable[token].value; 
+      symbValue= decimalToHex(val); 
+      cout<<"twos complement: "+symbValue<<endl; 
+      symbValue=binToHex16bit(symbValue); 
+      cout<<"twos complement: "+symbValue<<endl; 
+      string value; 
 
       for(int i=symbValue.length(); i<4; i++){
         //add leading zeros
@@ -1646,7 +1647,14 @@ string Assembler::processSymbolForRelocation(string token, int lc){
       for(int i=0; i<symbValue.length(); i++){
         value+=symbValue[i]; 
       }
-      cout<<"value of symbol "+token+" is "+value<<endl; 
+
+      //make it little endian - rotate bytes in symbValue
+      string tmp=value.substr(0,2);
+      value = value.substr(2,2); 
+      value.append(tmp); 
+
+
+      cout<<"value of little endian symbol "+token+" is "+value<<endl; 
       return value; 
 
     }

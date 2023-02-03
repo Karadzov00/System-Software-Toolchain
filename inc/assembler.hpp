@@ -118,11 +118,13 @@ public:
   string decToHex(int dec);
   int hexToDec(string hex); 
   string binToHex(string bin); 
-  string decToBin(int n);
+  string binToHex16bit(string bin); 
+  string TwosComplement(int n);
   string findSectionName(); 
   string decToBin(string dec);
   string registerCode(string reg);
   string literalToHex(string token);
+  string decimalToHex(int decimal);
 
 
 };
