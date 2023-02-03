@@ -1613,9 +1613,9 @@ string Assembler::processSymbolForRelocation(string token, int lc){
     symbolTable[token].useVector.push_back(symbUse); 
 
     //TODO make relocation entry 
-    // addRelocation(lc, 0, symbolTable[token].symbolId, 0, currentSectionName); 
+    addRelocation(lc+3, 1, symbolTable[token].symbolId, 0, currentSectionName); 
 
-    string value="FEFF";//it's -2 in twos complement but in little endian format 
+    string value="0000";
     return value; 
   }
   else{
@@ -1631,13 +1631,13 @@ string Assembler::processSymbolForRelocation(string token, int lc){
       symbolTable[token].useVector.push_back(symbUse); 
 
       //TODO make relocation entry 
-      // addRelocation(lc, 0, symbolTable[token].symbolId, 0, currentSectionName); 
+      addRelocation(lc+3, 1, symbolTable[token].symbolId, 0, currentSectionName); 
     
-      int val = -symbolTable[token].value; 
+      int val = symbolTable[token].value-2; 
       symbValue= decimalToHex(val); 
-      cout<<"twos complement: "+symbValue<<endl; 
+      cout<<"bin value: "+symbValue<<endl; 
       symbValue=binToHex16bit(symbValue); 
-      cout<<"twos complement: "+symbValue<<endl; 
+      cout<<"hex value: "+symbValue<<endl; 
       string value; 
 
       for(int i=symbValue.length(); i<4; i++){
@@ -1667,9 +1667,9 @@ string Assembler::processSymbolForRelocation(string token, int lc){
       symbolTable[token].useVector.push_back(symbUse); 
 
       //TODO make relocation entry 
-      addRelocation(lc, 0, symbolTable[token].symbolId, 0, currentSectionName); 
+      addRelocation(lc+3, 1, symbolTable[token].symbolId, 0, currentSectionName); 
       
-      string value="FEFF";
+      string value="FEFF";//it's -2 in twos complement but in little endian format 
       return value;  
     }
 

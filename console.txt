@@ -3,6 +3,14 @@ Entered main!
 ./tests/test.o
 Lepo zadati argumenti 
 File opened! 
+global 
+.global glb
+after cutting global 
+glb
+Symbols from symbol list:
+glb
+------------------
+symbol glb added to the symbol table
 section 
 .section data
 section name is: data
@@ -111,11 +119,45 @@ r4
 %a
 pc relativno
 %a
-twos complement: 1111111111110110
-twos complement: FFF6
-value of symbol a is F6FF
+bin value: 0000000000001000
+hex value: 8
+value of little endian symbol a is 0800
 code
-A04703F6FF
+A047030800
+
+Current line: ldr r3, %b
+Lista tokena iz ldr/str:
+ldr
+r3
+%b
+pc relativno
+%b
+bin value: 0000000000001101
+hex value: D
+value of little endian symbol b is 0D00
+code
+A037030D00
+
+Current line: ldr r3, %random
+Lista tokena iz ldr/str:
+ldr
+r3
+%random
+pc relativno
+%random
+symbol random added to the symbol table
+code
+A037030000
+
+Current line: ldr r3, %glb
+Lista tokena iz ldr/str:
+ldr
+r3
+%glb
+pc relativno
+%glb
+code
+A03703FEFF
 
 Current line: ldr r4, r5
 Lista tokena iz ldr/str:
@@ -296,29 +338,32 @@ end
 .end
 TABELA SIMBOLA:
 symbolName    isGlobal      symbolID      sectionNum    value         size          
-a             0             1             0             10            -1            
-b             0             2             0             15            -1            
-c             0             3             0             20            -1            
-d             0             5             4             10            -1            
-data          1             0             0             0             10            
-e             0             6             4             23            -1            
-jumps         1             4             4             0             39            
+a             0             2             1             10            -1            
+b             0             3             1             15            -1            
+c             0             4             1             20            -1            
+d             0             7             6             10            -1            
+data          1             1             1             0             10            
+e             0             8             6             23            -1            
+glb           1             0             0             0             -1            
+jumps         1             6             6             0             39            
+random        0             5             1             0             -1            
 
 RELOKACIONI ZAPISI SEKCIJE:
 sekcija: data
 offset        type          symbol        addend        
-28            0             1             0             
-38            0             1             0             
-59            0             1             0             
+28            0             2             0             
+38            0             2             0             
+55            0             0             0             
+74            0             2             0             
 
 sekcija: jumps
 offset        type          symbol        addend        
-8             0             1             0             
-18            0             1             0             
-37            0             1             0             
+8             0             2             0             
+18            0             2             0             
+37            0             2             0             
 
 KOD SEKCIJA:
 Ime sekcije: data
-A0 40 00 00 FF A0 50 00 00 EA A0 50 00 00 82 A0 40 00 00 0A A0 40 04 00 FF A0 40 04 00 0A A0 47 03 F6 FF A0 45 01 A0 54 02 A0 54 03 00 FF A0 54 03 00 0A 
+A0 40 00 00 FF A0 50 00 00 EA A0 50 00 00 82 A0 40 00 00 0A A0 40 04 00 FF A0 40 04 00 0A A0 47 03 08 00 A0 37 03 0D 00 A0 37 03 00 00 A0 37 03 FE FF A0 45 01 A0 54 02 A0 54 03 00 FF A0 54 03 00 0A 
 Ime sekcije: jumps
 50 F0 00 00 FF 52 F0 00 00 0A 50 F0 04 00 FF 30 F0 04 00 0A 52 F4 01 53 F4 02 50 F8 02 50 F4 03 00 FF 50 F4 03 00 0A 
