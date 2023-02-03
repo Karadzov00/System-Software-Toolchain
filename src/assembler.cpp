@@ -1464,6 +1464,19 @@ void Assembler::processInstruction(string currLine){
       cout<<"pc relativno"<<endl;
       cout<<operand;
       cout<<endl;
+      code.append("F"); //RD
+      code.append("7"); //RS is pc reg 
+      code.append("05"); //UP AM 
+      operand = operand.substr(1, operand.length()); 
+
+      string value = processSymbolForRelocation(operand, locationCounter);
+      code.append(value); 
+      cout<<"code"<<endl;
+      cout<<code<<endl; 
+      for(int i=0; i<code.length(); i++){
+        sectionTable[currentSectionName].code.push_back(code[i]); 
+      }
+      locationCounter+=5;
     }
 
 
@@ -1607,7 +1620,7 @@ string Assembler::processSymbolForRelocation(string token, int lc){
     //add symbol to symbol use entry 
     //make symbol use entry 
     symbolUseEntry symbUse; 
-    symbUse.address = lc; 
+    symbUse.address = lc+3; 
     symbUse.section = currentSectionNumber; 
     symbUse.type = 0; 
     symbolTable[token].useVector.push_back(symbUse); 
@@ -1625,7 +1638,7 @@ string Assembler::processSymbolForRelocation(string token, int lc){
       //add symbol to symbol use entry 
       //make symbol use entry 
       symbolUseEntry symbUse; 
-      symbUse.address = lc; 
+      symbUse.address = lc+3; 
       symbUse.section = currentSectionNumber; 
       symbUse.type = 0; 
       symbolTable[token].useVector.push_back(symbUse); 
@@ -1661,7 +1674,7 @@ string Assembler::processSymbolForRelocation(string token, int lc){
     else{
       //symbol is global
       symbolUseEntry symbUse; 
-      symbUse.address = lc; 
+      symbUse.address = lc+3; 
       symbUse.section = currentSectionNumber; 
       symbUse.type = 0; 
       symbolTable[token].useVector.push_back(symbUse); 
