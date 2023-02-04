@@ -49,6 +49,33 @@ void Linker::openParseFile(){
         cout<<inputFile+" - File opened! \n";  
         currLineNum=1; 
 
+        while(getline(inFile, currentLine)){
+
+        }
+
     }
 
+}
+
+vector<string> Linker::toklenizeLine(string line, string delimiters){
+
+    char *cstr = new char[line.length() + 1];
+    strcpy(cstr, line.c_str());
+
+    char *delim = new char[delimiters.length() + 1];
+    strcpy(delim, line.c_str());
+
+    char str[] ="- This, a sample string.";
+    char * pch;
+    vector<string>tokens; 
+    printf ("Splitting string \"%s\" into tokens:\n",cstr);
+    pch = strtok (cstr,delim);
+    while (pch != NULL)
+    {
+        string token(pch); 
+        tokens.push_back(token); 
+        cout<<token; 
+        pch = strtok (NULL, delim);
+    }
+    return tokens; 
 }
