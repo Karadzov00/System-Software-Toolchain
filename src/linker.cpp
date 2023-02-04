@@ -122,6 +122,9 @@ void Linker::openParseFile(){
 
         }
     }
+    printSymbolTable(); 
+    printGlobalSymbolTable(); 
+    
     for(auto inputFile:inputFiles){
         fstream inFile;
         inFile.open(inputFile); 
@@ -135,8 +138,6 @@ void Linker::openParseFile(){
     }
 
 
-    printSymbolTable(); 
-    printGlobalSymbolTable(); 
 
 }
 

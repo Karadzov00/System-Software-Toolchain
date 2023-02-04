@@ -499,12 +499,12 @@ hex value: FFFE
 pcrel addr -> new value: FEFF
 TABELA SIMBOLA:
 symbolName    isGlobal      symbolID      sectionNum    value         size          
-UNDEFINED     1             0             0             0             0             
+UNDEFINED     1             0             0             0             -1            
 a             0             3             2             20            -1            
 b             0             4             2             25            -1            
 c             0             5             2             30            -1            
 d             0             8             7             10            -1            
-data          1             2             2             0             86            
+data          1             2             2             0             85            
 e             0             9             7             23            -1            
 glb           1             1             0             0             -1            
 jumps         1             7             7             0             56            

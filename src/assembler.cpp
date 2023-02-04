@@ -705,7 +705,7 @@ void Assembler::processSectionDirective(string currLine){
   else{
     //section does not exist in symbol table 
     //previous section closed, set its size 
-    symbolTable[currentSectionName].size=locationCounter;
+    symbolTable[currentSectionName].size=locationCounter-1;
     
     //new section opened 
     currentSectionNumber=symbolId;

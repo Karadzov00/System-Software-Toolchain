@@ -1,6 +1,6 @@
 TABELA SIMBOLA:
 symbolName    isGlobal      symbolID      sectionNum    value         size          
-UNDEFINED     1             0             0             0             0             
+UNDEFINED     1             0             0             0             -1            
 math          1             5             5             0             86            
 mathAdd       1             1             5             10            -1            
 mathDiv       1             4             5             67            -1            
