@@ -97,6 +97,7 @@ void Linker::openParseFile(){
                     sectionSizes[name]=size;  
                     cout<<"section: "+name<<", size:"+to_string(size)<<endl; 
                     allSectionsSize+=size; 
+                    sections.push_back(name); 
                 }
                 else{
                     //section already exists 
@@ -111,10 +112,17 @@ void Linker::openParseFile(){
 
     }
     int lc=0; 
-    for(auto s:sectionSizes){
-        cout<<"section: "+s.first<<", size:"+to_string(s.second)<<endl; 
-        sectionAdresses[s.first]=lc; 
-        lc+=s.second; 
+    //TOFIX iteriranje kroz mapu nije ovde fifo
+    cout<<"SECTIONS FIFO"<<endl; 
+    for(int i=0; i<sections.size(); i++){
+        cout<<sections[i]<<endl; 
+    }
+
+    for(auto s:sections){
+        //fifo order for sections 
+        cout<<"section: "+s<<", size:"+to_string(sectionSizes[s])<<endl; 
+        sectionAdresses[s]=lc; 
+        lc+=sectionSizes[s]; 
     }
     cout<<endl; 
 

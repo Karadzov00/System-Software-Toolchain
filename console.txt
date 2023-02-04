@@ -80,10 +80,16 @@ TOKENS ARE: value5 1 11 15 10 -1
 size is -1
 TOKENS ARE: value6 1 12 15 12 -1 
 size is -1
+SECTIONS FIFO
+UNDEFINED
+ivt
+my_code
+math
+my_data
 section: UNDEFINED, size:0
 section: ivt, size:16
-section: math, size:86
 section: my_code, size:216
+section: math, size:86
 section: my_data, size:22
 
 TABELA SIMBOLA:
@@ -108,17 +114,17 @@ value6        1             18            my_data       12            -1
 
 section: UNDEFINED, address:0
 section: ivt, address:0
-section: math, address:16
-section: my_code, address:102
+section: math, address:232
+section: my_code, address:16
 section: my_data, address:318
 
 GLOBALNA TABELA SIMBOLA:
 symbolName    address       
-mathAdd       26            
-mathDiv       83            
-mathMul       64            
-mathSub       45            
-my_start      102           
+mathAdd       242           
+mathDiv       299           
+mathMul       280           
+mathSub       261           
+my_start      16            
 value0        318           
 value1        320           
 value2        322           

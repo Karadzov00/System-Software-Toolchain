@@ -67,7 +67,7 @@ private:
     map<string, int>globalSymbolTable; //symbol -> global address
     static int globalId; 
     map<int, string>fileSections; //section number -> section name //local mapping for each file 
-
+    vector<string>sections; //ordered by file appearences in files 
 
 
 
