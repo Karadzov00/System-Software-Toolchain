@@ -78,5 +78,6 @@ public:
     vector<string> tokenizeLine(string line, string delimiters); 
     void printSymbolTable(); 
     string findSectionName(int num); 
+    void printGlobalSymbolTable(); 
 
 };

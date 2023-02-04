@@ -85,6 +85,9 @@ section: ivt, address:0
 section: math, address:16
 section: my_code, address:102
 section: my_data, address:308
+./tests/ivt.o - File opened! 
+./tests/math.o - File opened! 
+./tests/main.o - File opened! 
 TABELA SIMBOLA:
 symbolName    isGlobal      symbolID      sectionNum    value         size          
 destinations  0             14            15            14            -1            
@@ -105,3 +108,17 @@ value4        1             10            15            8             -1
 value5        1             11            15            10            -1            
 value6        1             12            15            12            -1            
 
+GLOBALNA TABELA SIMBOLA:
+symbolName    address       
+mathAdd       10            
+mathDiv       67            
+mathMul       48            
+mathSub       29            
+my_start      102           
+value0        308           
+value1        310           
+value2        312           
+value3        314           
+value4        316           
+value5        318           
+value6        320           

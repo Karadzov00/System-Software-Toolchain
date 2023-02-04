@@ -122,9 +122,21 @@ void Linker::openParseFile(){
 
         }
     }
+    for(auto inputFile:inputFiles){
+        fstream inFile;
+        inFile.open(inputFile); 
+        if(!inFile.is_open())throw FileNotOpenException();
+        cout<<inputFile+" - File opened! \n";  
+        currLineNum=1; 
+
+        while(getline(inFile, currentLine)){
+
+        }
+    }
 
 
     printSymbolTable(); 
+    printGlobalSymbolTable(); 
 
 }
 
@@ -151,6 +163,22 @@ void Linker::printSymbolTable(){
     // cout<<x.second.symbolName<<"\t"<<x.second.isGlobal<<"\t"<<x.second.symbolId<<"\t"<<x.second.sectionNum<<"\t"<<x.second.size<<endl;
   }
   cout<<endl; 
+
+}
+
+void Linker::printGlobalSymbolTable(){
+  cout<<"GLOBALNA TABELA SIMBOLA:"<<endl; 
+  cout<< left<< setw(14)<<setfill(' ')<<"symbolName";
+  cout<< left<< setw(14)<<setfill(' ')<<"address";
+  cout<<endl; 
+
+  for (auto const& x : globalSymbolTable){
+    cout<< left<< setw(14)<<setfill(' ')<<x.first;
+    cout<< left<< setw(14)<<setfill(' ')<<x.second;
+    cout<<endl; 
+  }
+
+
 
 }
 
