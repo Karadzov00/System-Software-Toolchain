@@ -100,6 +100,7 @@ void Linker::openParseFile(){
                 }
                 else{
                     //section already exists 
+                    cout<<"Section already exists"<<endl; 
                     sectionSizes[name]+=size;  
                     cout<<"section: "+name<<", size:"+to_string(size)<<endl; 
                     allSectionsSize+=size; 
@@ -116,9 +117,6 @@ void Linker::openParseFile(){
         lc+=s.second; 
     }
     cout<<endl; 
-    for(auto s:sectionAdresses){
-        cout<<"section: "+s.first<<", address:"+to_string(s.second)<<endl; 
-    }
 
     for(auto s:symbolTable){
         string section = s.second.sectionName; 
@@ -126,9 +124,9 @@ void Linker::openParseFile(){
         if(s.second.isGlobal==1 && s.second.size==-1){
             //symbol is global and not a section
             //add it to global symbol table 
-            cout<<"symbol: "<<s.first<<endl;
-            cout<<"section: "<<section<<endl;
-            cout<<"section address: "<<to_string(sectionAdresses[section])<<endl;
+            // cout<<"symbol: "<<s.first<<endl;
+            // cout<<"section: "<<section<<endl;
+            // cout<<"section address: "<<to_string(sectionAdresses[section])<<endl;
 
             int globalAddress = sectionAdresses[section]+s.second.value; 
             
@@ -137,6 +135,10 @@ void Linker::openParseFile(){
         }
     }
     printSymbolTable(); 
+    for(auto s:sectionAdresses){
+        cout<<"section: "+s.first<<", address:"+to_string(s.second)<<endl; 
+    }
+    cout<<endl; 
     printGlobalSymbolTable(); 
 
     for(auto inputFile:inputFiles){

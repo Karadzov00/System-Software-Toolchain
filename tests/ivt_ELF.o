@@ -1,11 +1,12 @@
 TABELA SIMBOLA:
 symbolName    isGlobal      symbolID      sectionNum    value         size          
-UNDEFINED     1             0             0             0             -1            
+UNDEFINED     1             0             0             0             0             
 isr_reset     1             1             0             0             -1            
 isr_terminal  1             3             0             0             -1            
 isr_timer     1             2             0             0             -1            
 isr_user0     1             4             0             0             -1            
 ivt           1             5             5             0             16            
+my_code       1             6             6             0             10            
 
 RELOKACIONI ZAPISI SEKCIJE:
 sekcija: UNDEFINED
@@ -18,6 +19,9 @@ offset        type          symbol        addend
 6             0             3             0             
 8             0             4             0             
 
+sekcija: my_code
+offset        type          symbol        addend        
+
 KOD SEKCIJA:
 Ime sekcije: UNDEFINED
 
@@ -25,4 +29,8 @@ Ime sekcije: UNDEFINED
 Ime sekcije: ivt
 00 00 00 00 00 00 00 00 00 00 
 00 00 00 00 00 00 
+
+Ime sekcije: my_code
+00 00 00 00 00 00 00 00 00 00 
+
 

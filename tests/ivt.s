@@ -9,4 +9,8 @@
 .word isr_terminal
 .word isr_user0
 .skip 6
+
+.section my_code
+.skip 10 
+
 .end
