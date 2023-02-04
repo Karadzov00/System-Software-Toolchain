@@ -16,6 +16,7 @@ private:
     vector<string>inputFiles; 
     string outputFile; 
     string optionArg; 
+    int currLineNum; 
 
 
 public:

@@ -787,6 +787,7 @@ void Assembler::processWordDirective(string currLine){
     smatch regex_match; 
     if(regex_search(token, regex_match, literalRegex)){
       //literal parsed 
+      cout<<"string is literal"<<endl; 
       literals.push_back(token);
       int lit = stoi(token); 
       //literal must be withing range of 2 bytes 

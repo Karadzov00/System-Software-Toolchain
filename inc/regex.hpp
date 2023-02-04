@@ -22,7 +22,7 @@ regex commaSpaceRegex("[ ]?,[ ]?");
 // util regex
 string symbol = "[a-zA-Z][a-zA-Z0-9_]*";
 regex symbolRegex("[a-zA-Z][a-zA-Z0-9_]*");
-regex literalRegex("(0x[0-9A-Fa-f]+)|([0-9]+)"); 
+regex literalRegex("^((0x[0-9A-Fa-f]+)|([0-9]+))$"); 
 regex labelRegex("^\\s*[a-zA-Z][a-zA-Z0-9_]*:");
 regex onlyLabelInLineRegex("^\\s*[a-zA-Z][a-zA-Z0-9_]*:$");
 regex somethingBeforeLabelRegex("\\S+[ ]+[a-zA-Z][a-zA-Z0-9_]*:");

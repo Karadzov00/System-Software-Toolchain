@@ -1,0 +1,14 @@
+isr_reset:1:0:0:0:-1
+isr_terminal:1:2:0:0:-1
+isr_timer:1:1:0:0:-1
+isr_user0:1:3:0:0:-1
+ivt:1:4:4:0:16
+section begin
+ivt
+0:0:0:0
+4:0:1:0
+6:0:2:0
+8:0:3:0
+code of section:
+00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:
+section end

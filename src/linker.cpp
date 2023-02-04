@@ -19,11 +19,22 @@ bool Linker::checkCmdArguments(int argc, char* argv[]){
         }
     }
         
-
-    cout<<outputFile<<endl;
+    regex inputRgx("^.*\\.o$");
+    // cout<<outputFile<<endl;
     for(auto f:inputFiles){
         cout<<f<<endl; 
+        if(!std::regex_match(f, inputRgx))
+            throw BadCmdArgsException(); 
+
     } 
+
+    regex outRgx("^.*\\.hex$");
+
+    if(std::regex_match(optionArg, optionArgRegex) 
+  && std::regex_match(outputFile, outRgx)){
+    std::cout<<"Lepo zadati argumenti \n"; 
+    return true; 
+  }
 
 
     throw BadCmdArgsException(); 
@@ -31,5 +42,13 @@ bool Linker::checkCmdArguments(int argc, char* argv[]){
 
 }
 void Linker::openParseFile(){
+    for(auto inputFile:inputFiles){
+        fstream inFile;
+        inFile.open(inputFile); 
+        if(!inFile.is_open())throw FileNotOpenException();
+        cout<<inputFile+" - File opened! \n";  
+        currLineNum=1; 
+
+    }
 
 }

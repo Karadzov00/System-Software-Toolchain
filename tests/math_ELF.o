@@ -1,0 +1,24 @@
+TABELA SIMBOLA:
+symbolName    isGlobal      symbolID      sectionNum    value         size          
+math          1             4             4             0             86            
+mathAdd       1             0             4             10            -1            
+mathDiv       1             3             4             67            -1            
+mathMul       1             2             4             48            -1            
+mathSub       1             1             4             29            -1            
+
+RELOKACIONI ZAPISI SEKCIJE:
+sekcija: math
+offset        type          symbol        addend        
+
+KOD SEKCIJA:
+Ime sekcije: math
+81 12 82 34 83 45 84 01 91 62 
+B0 61 12 A0 06 03 00 04 A0 16 
+03 00 06 70 01 A0 61 42 40 B0 
+61 12 A0 06 03 00 04 A0 16 03 
+00 06 71 01 A0 61 42 40 B0 61 
+12 A0 06 03 00 04 A0 16 03 00 
+06 72 01 A0 61 42 40 B0 61 12 
+A0 06 03 00 04 A0 16 03 00 06 
+73 01 A0 61 42 40 
+

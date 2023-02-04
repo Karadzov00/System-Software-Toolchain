@@ -1,0 +1,21 @@
+TABELA SIMBOLA:
+symbolName    isGlobal      symbolID      sectionNum    value         size          
+isr_reset     1             0             0             0             -1            
+isr_terminal  1             2             0             0             -1            
+isr_timer     1             1             0             0             -1            
+isr_user0     1             3             0             0             -1            
+ivt           1             4             4             0             16            
+
+RELOKACIONI ZAPISI SEKCIJE:
+sekcija: ivt
+offset        type          symbol        addend        
+0             0             0             0             
+4             0             1             0             
+6             0             2             0             
+8             0             3             0             
+
+KOD SEKCIJA:
+Ime sekcije: ivt
+00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 
+

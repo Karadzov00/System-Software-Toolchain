@@ -10,6 +10,7 @@ int main(int argc, char* argv[]){
   {
     Linker linker; 
     linker.checkCmdArguments(argc, argv);
+    linker.openParseFile(); 
    
 
   }
