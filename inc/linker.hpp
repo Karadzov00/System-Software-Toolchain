@@ -34,6 +34,7 @@ struct symbolTableEntry{
   bool isGlobal; 
   int symbolId;
   int sectionNum; 
+  string sectionName; 
   bool isDefined;
   vector<symbolUseEntry> useVector; 
   symbolTableEntry(){
@@ -64,6 +65,9 @@ private:
     int allSectionsSize=0; 
     map<string, symbolTableEntry> symbolTable; 
     map<string, int>globalSymbolTable; //symbol -> global address
+    static int globalId; 
+    map<int, string>fileSections; //section number -> section name //local mapping for each file 
+
 
 
 

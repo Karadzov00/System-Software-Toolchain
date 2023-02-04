@@ -3,6 +3,7 @@
 #include <iomanip>
 #include <bitset>
 
+int Linker::globalId=1; 
 
 bool Linker::checkCmdArguments(int argc, char* argv[]){
     for (int i = 0; i < argc; i++){
@@ -48,7 +49,7 @@ void Linker::openParseFile(){
         if(!inFile.is_open())throw FileNotOpenException();
         cout<<inputFile+" - File opened! \n";  
         currLineNum=1; 
-
+        fileSections.clear(); //since it's local clear content 
         while(getline(inFile, currentLine)){
             if(currentLine=="section begin")break; 
             vector<string>tokens; 
@@ -72,15 +73,23 @@ void Linker::openParseFile(){
                 symbolTable[name].isGlobal=isGlobal; 
                 symbolTable[name].sectionNum=sectionNum; //no section 
                 symbolTable[name].size=size;
-                symbolTable[name].symbolId=symbolId;
+                symbolTable[name].symbolId=globalId++;
                 symbolTable[name].symbolName=name;
-                symbolTable[name].value=value;     
+                symbolTable[name].value=value; 
+                if(size==-1){
+                    symbolTable[name].sectionName=fileSections[sectionNum];     
+                }   
+                else{
+                    symbolTable[name].sectionName=name;  
+                    fileSections[symbolId]=name;   
+                } 
+
             }
-                
+            //TODO dodaj polje section name u globalnu tabelu simbola 
 
             if(size!=-1){
                 //it is a section 
-
+                 //local mapping for each file 
                 //check if it exists in hash map
                 if(sectionSizes.find(name)==sectionSizes.end()){
                     cout<<"USAO"<<endl; 
@@ -112,19 +121,24 @@ void Linker::openParseFile(){
     }
 
     for(auto s:symbolTable){
-        int sectionNum = s.second.sectionNum; 
-        string section = findSectionName(sectionNum); 
+        string section = s.second.sectionName; 
+
         if(s.second.isGlobal==1 && s.second.size==-1){
             //symbol is global and not a section
             //add it to global symbol table 
+            cout<<"symbol: "<<s.first<<endl;
+            cout<<"section: "<<section<<endl;
+            cout<<"section address: "<<to_string(sectionAdresses[section])<<endl;
+
             int globalAddress = sectionAdresses[section]+s.second.value; 
+            
             globalSymbolTable[s.first]=globalAddress; 
 
         }
     }
     printSymbolTable(); 
     printGlobalSymbolTable(); 
-    
+
     for(auto inputFile:inputFiles){
         fstream inFile;
         inFile.open(inputFile); 
@@ -148,7 +162,7 @@ void Linker::printSymbolTable(){
   cout<< left<< setw(14)<<setfill(' ')<<"symbolName";
   cout<< left<< setw(14)<<setfill(' ')<<"isGlobal";
   cout<< left<< setw(14)<<setfill(' ')<<"symbolID";
-  cout<< left<< setw(14)<<setfill(' ')<<"sectionNum";
+  cout<< left<< setw(14)<<setfill(' ')<<"sectionName";
   cout<< left<< setw(14)<<setfill(' ')<<"value";
   cout<< left<< setw(14)<<setfill(' ')<<"size";
   cout<<endl; 
@@ -156,7 +170,7 @@ void Linker::printSymbolTable(){
     cout<< left<< setw(14)<<setfill(' ')<<x.second.symbolName;
     cout<< left<< setw(14)<<setfill(' ')<<x.second.isGlobal;
     cout<< left<< setw(14)<<setfill(' ')<<x.second.symbolId;
-    cout<< left<< setw(14)<<setfill(' ')<<x.second.sectionNum;
+    cout<< left<< setw(14)<<setfill(' ')<<x.second.sectionName;
     cout<< left<< setw(14)<<setfill(' ')<<x.second.value;
     cout<< left<< setw(14)<<setfill(' ')<<x.second.size;
     cout<<endl; 
