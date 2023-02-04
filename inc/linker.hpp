@@ -69,6 +69,6 @@ public:
     void openParseFile(); 
 
     //helper functions 
-    vector<string> toklenizeLine(string line, string delimiters); 
+    vector<string> tokenizeLine(string line, string delimiters); 
 
 };
