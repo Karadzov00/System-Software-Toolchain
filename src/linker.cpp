@@ -3,6 +3,7 @@
 #include <iomanip>
 #include <bitset>
 
+
 int Linker::globalId=1; 
 
 bool Linker::checkCmdArguments(int argc, char* argv[]){
@@ -49,6 +50,7 @@ void Linker::openParseFile(){
         if(!inFile.is_open())throw FileNotOpenException();
         cout<<inputFile+" - File opened! \n";  
         currLineNum=1; 
+        partionedSections.clear(); 
         fileSections.clear(); //since it's local clear content 
         while(getline(inFile, currentLine)){
             if(currentLine=="section begin")break; 
@@ -76,6 +78,7 @@ void Linker::openParseFile(){
                 symbolTable[name].symbolId=globalId++;
                 symbolTable[name].symbolName=name;
                 symbolTable[name].value=value; 
+                symbolTable[name].file=inputFile; 
                 if(size==-1){
                     symbolTable[name].sectionName=fileSections[sectionNum];     
                 }   
@@ -87,26 +90,45 @@ void Linker::openParseFile(){
             }
             //TODO dodaj polje section name u globalnu tabelu simbola 
 
-            if(size!=-1){
+            if(size!=-1 && name!="UNDEFINED"){
                 //it is a section 
                  //local mapping for each file 
                 //check if it exists in hash map
                 if(sectionSizes.find(name)==sectionSizes.end()){
-                    cout<<"USAO"<<endl; 
+                    cout<<"New section"<<endl; 
                     //not in hash map
                     sectionSizes[name]=size;  
                     cout<<"section: "+name<<", size:"+to_string(size)<<endl; 
                     allSectionsSize+=size; 
                     sections.push_back(name); 
+                    fileSectionEntry entry; 
+                    entry.name=name; 
+                    entry.file=inputFile; 
+                    entry.offset=0; //offset compared to other same name sections
+                    entry.id=symbolId; 
+                    partionedSections.push_back(entry); 
+
                 }
                 else{
                     //section already exists 
                     cout<<"Section already exists"<<endl; 
+                    fileSectionEntry entry; 
+                    entry.name=name; 
+                    entry.file=inputFile; 
+                    entry.id=symbolId; 
+                    entry.offset=sectionSizes[name]; //offset compared to other same name sections
+                    partionedSections.push_back(entry); 
+                    cout<<"section: "+name<<", offset:"+to_string(sectionSizes[name])<<endl; 
                     sectionSizes[name]+=size;  
-                    cout<<"section: "+name<<", size:"+to_string(size)<<endl; 
+                    cout<<"section: "+name<<", new size:"+to_string(sectionSizes[name])<<endl; 
                     allSectionsSize+=size; 
-
                 }
+            }
+            sort(partionedSections.begin(), partionedSections.end(), [](fileSectionEntry a, fileSectionEntry b) {
+                return a.id < b.id;
+            });
+            for(auto ps: partionedSections){
+                globalSections.push_back(ps); 
             }
         }
 
@@ -145,6 +167,10 @@ void Linker::openParseFile(){
     printSymbolTable(); 
     for(auto s:sectionAdresses){
         cout<<"section: "+s.first<<", address:"+to_string(s.second)<<endl; 
+    }
+    cout<<endl; 
+    for(auto ps: partionedSections){
+        cout<<"section: "+ps.name<<", file: "+ps.file<<", offset:"+to_string(ps.offset)<<endl; 
     }
     cout<<endl; 
     printGlobalSymbolTable(); 

@@ -35,6 +35,7 @@ struct symbolTableEntry{
   int symbolId;
   int sectionNum; 
   string sectionName; 
+  string file; 
   bool isDefined;
   vector<symbolUseEntry> useVector; 
   symbolTableEntry(){
@@ -50,6 +51,13 @@ struct sectionTableEntry{
   vector<char>code; 
   long startAdress; 
   vector<relocationEntry>sectionRelocations; 
+};
+
+struct fileSectionEntry{
+  string name;
+  string file; 
+  int offset;  
+  int id; //for fifo order 
 };
 
 class Linker{
@@ -68,8 +76,8 @@ private:
     static int globalId; 
     map<int, string>fileSections; //section number -> section name //local mapping for each file 
     vector<string>sections; //ordered by file appearences in files 
-
-
+    vector<fileSectionEntry>partionedSections; 
+    vector<fileSectionEntry>globalSections; 
 
 
 public:

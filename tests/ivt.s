@@ -12,5 +12,7 @@
 
 .section my_code
 .skip 10 
+.section math
+.skip 50
 
 .end
