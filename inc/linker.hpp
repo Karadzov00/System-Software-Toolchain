@@ -60,6 +60,8 @@ private:
     int currLineNum; 
     string currentLine; 
     map<string, int>sectionSizes; 
+    map<string, int>sectionAdresses; 
+    int allSectionsSize=0; 
 
 
 public:

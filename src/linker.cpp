@@ -50,6 +50,7 @@ void Linker::openParseFile(){
         currLineNum=1; 
 
         while(getline(inFile, currentLine)){
+            if(currentLine=="section begin")break; 
             vector<string>tokens; 
             tokens=tokenizeLine(currentLine, ":"); 
                 cout<<"TOKENS ARE: ";  
@@ -57,8 +58,46 @@ void Linker::openParseFile(){
                 cout<<t<<" "; 
             }
             cout<<endl; 
+            string name = tokens[0];
+            int isGlobal = stoi(tokens[1]);
+            int symbolId = stoi(tokens[2]);
+            int sectionNum = stoi(tokens[3]);
+            int value = stoi(tokens[4]);
+            int size = stoi(tokens[5]);
+            cout<<"size is "<<size<<endl; 
+            
 
+            if(size!=-1){
+                //it is a section 
+
+                //check if it exists in hash map
+                if(sectionSizes.find(name)==sectionSizes.end()){
+                    cout<<"USAO"<<endl; 
+                    //not in hash map
+                    sectionSizes[name]=size;  
+                    cout<<"section: "+name<<", size:"+to_string(size)<<endl; 
+                    allSectionsSize+=size; 
+                }
+                else{
+                    //section already exists 
+                    sectionSizes[name]+=size;  
+                    cout<<"section: "+name<<", size:"+to_string(size)<<endl; 
+                    allSectionsSize+=size; 
+
+                }
+            }
         }
+
+    }
+    int lc=0; 
+    for(auto s:sectionSizes){
+        cout<<"section: "+s.first<<", size:"+to_string(s.second)<<endl; 
+        lc+=s.second; 
+        sectionAdresses[s.first]=lc; 
+    }
+    cout<<endl; 
+    for(auto s:sectionAdresses){
+        cout<<"section: "+s.first<<", address:"+to_string(s.second)<<endl; 
 
     }
 
