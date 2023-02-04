@@ -124,20 +124,21 @@ void Linker::openParseFile(){
                     allSectionsSize+=size; 
                 }
             }
-            sort(partionedSections.begin(), partionedSections.end(), [](fileSectionEntry a, fileSectionEntry b) {
-                return a.id < b.id;
-            });
-            for(auto ps: partionedSections){
-                globalSections.push_back(ps); 
-            }
+        }
+        sort(partionedSections.begin(), partionedSections.end(), [](fileSectionEntry a, fileSectionEntry b) {
+            return a.id < b.id;
+        });
+
+        for(auto ps: partionedSections){
+            globalSections.push_back(ps); 
         }
 
     }
     int lc=0; 
     //TOFIX iteriranje kroz mapu nije ovde fifo
     cout<<"SECTIONS FIFO"<<endl; 
-    for(int i=0; i<sections.size(); i++){
-        cout<<sections[i]<<endl; 
+    for(auto s:globalSections){
+        cout<<s.name<<" "<<s.file<<" "<<s.offset<<endl; 
     }
 
     for(auto s:sections){

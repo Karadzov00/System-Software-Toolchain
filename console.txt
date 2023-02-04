@@ -81,10 +81,12 @@ size is -1
 TOKENS ARE: value6 1 12 15 12 -1 
 size is -1
 SECTIONS FIFO
-ivt
-math
-my_code
-my_data
+ivt ./tests/ivt.o 0
+my_code ./tests/ivt.o 0
+math ./tests/ivt.o 0
+math ./tests/math.o 50
+my_code ./tests/main.o 10
+my_data ./tests/main.o 0
 section: ivt, size:16
 section: math, size:136
 section: my_code, size:216
@@ -115,10 +117,6 @@ section: math, address:16
 section: my_code, address:152
 section: my_data, address:368
 
-section: ivt, file: ./tests/ivt.o, offset:0
-section: math, file: ./tests/ivt.o, offset:0
-section: my_code, file: ./tests/ivt.o, offset:0
-section: math, file: ./tests/math.o, offset:50
 section: my_code, file: ./tests/main.o, offset:10
 section: my_data, file: ./tests/main.o, offset:0
 
