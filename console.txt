@@ -40,9 +40,7 @@ size is -1
 TOKENS ARE: UNDEFINED 1 0 0 0 0 
 size is 0
 section: UNDEFINED, size:0
-TOKENS ARE: a 0 16 15 0 -1 
-size is -1
-TOKENS ARE: destinations 0 14 15 28 -1 
+TOKENS ARE: destinations 0 14 15 14 -1 
 size is -1
 TOKENS ARE: mathAdd 1 1 0 0 -1 
 size is -1
@@ -52,42 +50,58 @@ TOKENS ARE: mathMul 1 3 0 0 -1
 size is -1
 TOKENS ARE: mathSub 1 2 0 0 -1 
 size is -1
-TOKENS ARE: my_code 1 13 13 0 232 
-size is 232
+TOKENS ARE: my_code 1 13 13 0 206 
+size is 206
 USAO
-section: my_code, size:232
-TOKENS ARE: my_data 1 15 15 0 36 
-size is 36
+section: my_code, size:206
+TOKENS ARE: my_data 1 15 15 0 22 
+size is 22
 USAO
-section: my_data, size:36
+section: my_data, size:22
 TOKENS ARE: my_start 1 5 13 0 -1 
-size is -1
-TOKENS ARE: new_symb 0 18 15 0 -1 
-size is -1
-TOKENS ARE: symb_a 0 17 15 0 -1 
 size is -1
 TOKENS ARE: value0 1 6 15 0 -1 
 size is -1
-TOKENS ARE: value1 1 7 15 16 -1 
+TOKENS ARE: value1 1 7 15 2 -1 
 size is -1
-TOKENS ARE: value2 1 8 15 18 -1 
+TOKENS ARE: value2 1 8 15 4 -1 
 size is -1
-TOKENS ARE: value3 1 9 15 20 -1 
+TOKENS ARE: value3 1 9 15 6 -1 
 size is -1
-TOKENS ARE: value4 1 10 15 22 -1 
+TOKENS ARE: value4 1 10 15 8 -1 
 size is -1
-TOKENS ARE: value5 1 11 15 24 -1 
+TOKENS ARE: value5 1 11 15 10 -1 
 size is -1
-TOKENS ARE: value6 1 12 15 26 -1 
+TOKENS ARE: value6 1 12 15 12 -1 
 size is -1
 section: UNDEFINED, size:0
 section: ivt, size:16
 section: math, size:86
-section: my_code, size:232
-section: my_data, size:36
+section: my_code, size:206
+section: my_data, size:22
 
 section: UNDEFINED, address:0
 section: ivt, address:0
 section: math, address:16
 section: my_code, address:102
-section: my_data, address:334
+section: my_data, address:308
+TABELA SIMBOLA:
+symbolName    isGlobal      symbolID      sectionNum    value         size          
+destinations  0             14            15            14            -1            
+ivt           1             5             5             0             16            
+math          1             5             5             0             86            
+mathAdd       1             1             5             10            -1            
+mathDiv       1             4             5             67            -1            
+mathMul       1             3             5             48            -1            
+mathSub       1             2             5             29            -1            
+my_code       1             13            13            0             206           
+my_data       1             15            15            0             22            
+my_start      1             5             13            0             -1            
+value0        1             6             15            0             -1            
+value1        1             7             15            2             -1            
+value2        1             8             15            4             -1            
+value3        1             9             15            6             -1            
+value4        1             10            15            8             -1            
+value5        1             11            15            10            -1            
+value6        1             12            15            12            -1            
+

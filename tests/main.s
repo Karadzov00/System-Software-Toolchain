@@ -3,23 +3,11 @@
 .extern mathAdd, mathSub, mathMul, mathDiv
 
 .global my_start
-.extern my_start
 
 .global value0, value1, value2, value3, value4, value5, value6
 
 .section my_code
 my_start:
-#edit code 
-  int r6
-  int psw
-  int sp
-
-  not psw
-  not r4
-  not pc
-  add r0, r1
-  add r4, r7
-#end edit code 
   ldr r6, $0xFEFE # init SP
 
   ldr r0, $4 # ivt entry number for isr_user0 
@@ -77,10 +65,10 @@ my_start:
   ldr r6, value6
 
   halt
-.skip 10
+
 .section my_data
 value0:
-.word 23, 345, 0x5E6, a, 923, symb_a, new_symb, 0xFF
+.word 0
 value1:
 .word 0
 value2:

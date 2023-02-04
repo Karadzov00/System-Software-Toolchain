@@ -76,7 +76,6 @@ private:
   vector<char> code; 
   map<string, symbolTableEntry> symbolTable; 
   map<string, sectionTableEntry> sectionTable; 
-
   enum wordRange{WORD_MAX=65536, WORD_MIN=-32768}; 
   
 

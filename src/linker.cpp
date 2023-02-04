@@ -64,8 +64,19 @@ void Linker::openParseFile(){
             int sectionNum = stoi(tokens[3]);
             int value = stoi(tokens[4]);
             int size = stoi(tokens[5]);
-            cout<<"size is "<<size<<endl; 
+            cout<<"size is "<<size<<endl;
             
+            //TODO detect double definition 
+            if(sectionNum!=0){
+                //if symbol is defined 
+                symbolTable[name].isGlobal=isGlobal; 
+                symbolTable[name].sectionNum=sectionNum; //no section 
+                symbolTable[name].size=size;
+                symbolTable[name].symbolId=symbolId;
+                symbolTable[name].symbolName=name;
+                symbolTable[name].value=value;     
+            }
+                
 
             if(size!=-1){
                 //it is a section 
@@ -98,10 +109,59 @@ void Linker::openParseFile(){
     cout<<endl; 
     for(auto s:sectionAdresses){
         cout<<"section: "+s.first<<", address:"+to_string(s.second)<<endl; 
-
     }
 
+    for(auto s:symbolTable){
+        int sectionNum = s.second.sectionNum; 
+        string section = findSectionName(sectionNum); 
+        if(s.second.isGlobal==1 && s.second.size==-1){
+            //symbol is global and not a section
+            //add it to global symbol table 
+            int globalAddress = sectionAdresses[section]+s.second.value; 
+            globalSymbolTable[s.first]=globalAddress; 
+
+        }
+    }
+
+
+    printSymbolTable(); 
+
 }
+
+void Linker::printSymbolTable(){
+
+  cout<<"TABELA SIMBOLA:"<<endl; 
+  // cout<<"name \t isGlobal \t id \t section \t size"<<endl;
+  cout<< left<< setw(14)<<setfill(' ')<<"symbolName";
+  cout<< left<< setw(14)<<setfill(' ')<<"isGlobal";
+  cout<< left<< setw(14)<<setfill(' ')<<"symbolID";
+  cout<< left<< setw(14)<<setfill(' ')<<"sectionNum";
+  cout<< left<< setw(14)<<setfill(' ')<<"value";
+  cout<< left<< setw(14)<<setfill(' ')<<"size";
+  cout<<endl; 
+  for (auto const& x : symbolTable){
+    cout<< left<< setw(14)<<setfill(' ')<<x.second.symbolName;
+    cout<< left<< setw(14)<<setfill(' ')<<x.second.isGlobal;
+    cout<< left<< setw(14)<<setfill(' ')<<x.second.symbolId;
+    cout<< left<< setw(14)<<setfill(' ')<<x.second.sectionNum;
+    cout<< left<< setw(14)<<setfill(' ')<<x.second.value;
+    cout<< left<< setw(14)<<setfill(' ')<<x.second.size;
+    cout<<endl; 
+
+    // cout<<x.second.symbolName<<"\t"<<x.second.isGlobal<<"\t"<<x.second.symbolId<<"\t"<<x.second.sectionNum<<"\t"<<x.second.size<<endl;
+  }
+  cout<<endl; 
+
+}
+
+string Linker::findSectionName(int num){
+    for(auto s:symbolTable){
+        if(s.second.symbolId==num)
+            return s.second.symbolName; 
+    }
+    return ""; 
+} 
+
 
 vector<string> Linker::tokenizeLine(string line, string delimiters){
 

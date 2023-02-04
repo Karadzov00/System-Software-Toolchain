@@ -62,6 +62,10 @@ private:
     map<string, int>sectionSizes; 
     map<string, int>sectionAdresses; 
     int allSectionsSize=0; 
+    map<string, symbolTableEntry> symbolTable; 
+    map<string, int>globalSymbolTable; //symbol -> global address
+
+
 
 
 public:
@@ -72,5 +76,7 @@ public:
 
     //helper functions 
     vector<string> tokenizeLine(string line, string delimiters); 
+    void printSymbolTable(); 
+    string findSectionName(int num); 
 
 };

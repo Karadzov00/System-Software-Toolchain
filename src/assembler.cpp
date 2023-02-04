@@ -854,7 +854,7 @@ void Assembler::processWordDirective(string currLine){
         //add symbol to symbol table 
         symbolTable[token].isDefined=false; 
         symbolTable[token].isGlobal=false; 
-        symbolTable[token].sectionNum=currentSectionNumber; //no section 
+        symbolTable[token].sectionNum=0; //no section 
         symbolTable[token].size=-1;
         symbolTable[token].symbolId=symbolId;
         symbolTable[token].symbolName=token;
@@ -1745,7 +1745,7 @@ string Assembler::processSymbol(string token, int lc){
     //add symbol to symbol table 
     symbolTable[token].isDefined=false; 
     symbolTable[token].isGlobal=false; 
-    symbolTable[token].sectionNum=currentSectionNumber; //no section 
+    symbolTable[token].sectionNum=0; //no section 
     symbolTable[token].size=-1;
     symbolTable[token].symbolId=symbolId;
     symbolTable[token].symbolName=token;
@@ -1818,7 +1818,7 @@ string Assembler::processSymbolForRelocation(string token, int lc){
     //add symbol to symbol table 
     symbolTable[token].isDefined=false; 
     symbolTable[token].isGlobal=false; 
-    symbolTable[token].sectionNum=currentSectionNumber; //no section 
+    symbolTable[token].sectionNum=0; //no section 
     symbolTable[token].size=-1;
     symbolTable[token].symbolId=symbolId;
     symbolTable[token].symbolName=token;
