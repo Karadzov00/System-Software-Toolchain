@@ -5,8 +5,10 @@ g++ ./src/assembler.cpp ./src/mainAsm.cpp -o asembler
 # ./asembler -o ./tests/test1.o ./tests/test1.s
 
 
-#g++ ./src/mainLinker.cpp ./src/linker.cpp -o linker
+# g++ ./src/mainLinker.cpp ./src/linker.cpp -o linker
+# ./linker -hex -o ./tests/program.hex ./tests/ivt.o ./tests/math.o ./tests/main.o 
 #g++ ./src/emulator.cpp ./src/mainEmulator.cpp -o emulator
+
 
 # ASSEMBLER=./asembler
 #LINKER=./linker

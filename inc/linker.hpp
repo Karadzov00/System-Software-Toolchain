@@ -15,9 +15,13 @@ private:
 
     vector<string>inputFiles; 
     string outputFile; 
+    string optionArg; 
+
 
 public:
-  static bool checkCmdArguments(int argc, char* argv[]); 
-  void openParseFile(); 
+
+    Linker(){}
+    bool checkCmdArguments(int argc, char* argv[]); 
+    void openParseFile(); 
 
 };

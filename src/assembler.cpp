@@ -1606,7 +1606,9 @@ void Assembler::printCode(){
 
 void Assembler::printToFile(){
   ofstream myfile;
-  myfile.open (cmdOutputFile);
+  string outFile = inputFile.substr(0,inputFile.length()-2); 
+  outFile.append("_ELF.o"); 
+  myfile.open (outFile);
 
   myfile<<"TABELA SIMBOLA:"<<endl; 
   // cout<<"name \t isGlobal \t id \t section \t size"<<endl;
@@ -1673,7 +1675,9 @@ void Assembler::printToFile(){
 
 void Assembler::printLinkerInput(){
   ofstream myfile;
-  myfile.open ("linker_input.o");
+  string outFile = inputFile.substr(0,inputFile.length()-2); 
+  outFile.append(".o"); 
+  myfile.open(outputFile);
   for (auto const& x : symbolTable){
     myfile<<x.second.symbolName<<":";
     myfile<<x.second.isGlobal<<":";

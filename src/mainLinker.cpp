@@ -8,10 +8,9 @@ int main(int argc, char* argv[]){
   std::cout <<"Entered main! \n"; 
   try
   {
-    Linker::checkCmdArguments(argc, argv);
-    Linker linker(Linker::cmdInputFile,
-    Linker::cmdOutputFile); 
-    linker.openParseFile(); 
+    Linker linker; 
+    linker.checkCmdArguments(argc, argv);
+   
 
   }
   catch(const std::exception& e)
