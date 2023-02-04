@@ -1,56 +1,63 @@
 TABELA SIMBOLA:
 symbolName    isGlobal      symbolID      sectionNum    value         size          
-a             0             15            14            0             -1            
-destinations  0             13            14            28            -1            
-mathAdd       1             0             0             0             -1            
-mathDiv       1             3             0             0             -1            
-mathMul       1             2             0             0             -1            
-mathSub       1             1             0             0             -1            
-my_code       1             12            12            0             10            
-my_data       1             14            14            0             36            
-my_start      1             4             12            0             -1            
-new_symb      0             17            14            0             -1            
-symb_a        0             16            14            0             -1            
-value0        1             5             14            0             -1            
-value1        1             6             14            16            -1            
-value2        1             7             14            18            -1            
-value3        1             8             14            20            -1            
-value4        1             9             14            22            -1            
-value5        1             10            14            24            -1            
-value6        1             11            14            26            -1            
+UNDEFINED     1             0             0             0             0             
+a             0             16            15            0             -1            
+destinations  0             14            15            28            -1            
+mathAdd       1             1             0             0             -1            
+mathDiv       1             4             0             0             -1            
+mathMul       1             3             0             0             -1            
+mathSub       1             2             0             0             -1            
+my_code       1             13            13            0             232           
+my_data       1             15            15            0             36            
+my_start      1             5             13            0             -1            
+new_symb      0             18            15            0             -1            
+symb_a        0             17            15            0             -1            
+value0        1             6             15            0             -1            
+value1        1             7             15            16            -1            
+value2        1             8             15            18            -1            
+value3        1             9             15            20            -1            
+value4        1             10            15            22            -1            
+value5        1             11            15            24            -1            
+value6        1             12            15            26            -1            
 
 RELOKACIONI ZAPISI SEKCIJE:
+sekcija: UNDEFINED
+offset        type          symbol        addend        
+
 sekcija: my_code
 offset        type          symbol        addend        
-47            0             0             0             
-52            0             6             0             
-73            1             0             0             
-78            0             7             0             
-104           0             13            0             
-114           0             8             0             
-140           0             13            0             
-145           0             9             0             
-171           0             13            0             
-184           0             10            0             
-189           0             5             0             
-194           0             6             0             
-199           0             7             0             
-204           0             8             0             
-209           0             9             0             
-214           0             10            0             
-219           0             11            0             
+47            0             1             0             
+52            0             7             0             
+73            1             1             0             
+78            0             8             0             
+104           0             14            0             
+114           0             9             0             
+140           0             14            0             
+145           0             10            0             
+171           0             14            0             
+184           0             11            0             
+189           0             6             0             
+194           0             7             0             
+199           0             8             0             
+204           0             9             0             
+209           0             10            0             
+214           0             11            0             
+219           0             12            0             
 
 sekcija: my_data
 offset        type          symbol        addend        
-6             0             15            0             
-10            0             16            0             
-12            0             17            0             
-28            0             0             0             
-30            0             1             0             
-32            0             2             0             
-34            0             3             0             
+6             0             16            0             
+10            0             17            0             
+12            0             18            0             
+28            0             1             0             
+30            0             2             0             
+32            0             3             0             
+34            0             4             0             
 
 KOD SEKCIJA:
+Ime sekcije: UNDEFINED
+
+
 Ime sekcije: my_code
 10 6F 10 8F 10 6F 80 88 80 44 
 80 77 70 01 70 47 A0 60 00 FE 

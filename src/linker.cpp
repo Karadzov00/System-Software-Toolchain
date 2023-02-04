@@ -92,8 +92,8 @@ void Linker::openParseFile(){
     int lc=0; 
     for(auto s:sectionSizes){
         cout<<"section: "+s.first<<", size:"+to_string(s.second)<<endl; 
-        lc+=s.second; 
         sectionAdresses[s.first]=lc; 
+        lc+=s.second; 
     }
     cout<<endl; 
     for(auto s:sectionAdresses){

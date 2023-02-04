@@ -4,78 +4,90 @@ Entered main!
 ./tests/main.o
 Lepo zadati argumenti 
 ./tests/ivt.o - File opened! 
-TOKENS ARE: isr_reset 1 0 0 0 -1 
+TOKENS ARE: UNDEFINED 1 0 0 0 0 
+size is 0
+USAO
+section: UNDEFINED, size:0
+TOKENS ARE: isr_reset 1 1 0 0 -1 
 size is -1
-TOKENS ARE: isr_terminal 1 2 0 0 -1 
+TOKENS ARE: isr_terminal 1 3 0 0 -1 
 size is -1
-TOKENS ARE: isr_timer 1 1 0 0 -1 
+TOKENS ARE: isr_timer 1 2 0 0 -1 
 size is -1
-TOKENS ARE: isr_user0 1 3 0 0 -1 
+TOKENS ARE: isr_user0 1 4 0 0 -1 
 size is -1
-TOKENS ARE: ivt 1 4 4 0 16 
+TOKENS ARE: ivt 1 5 5 0 16 
 size is 16
 USAO
 section: ivt, size:16
 ./tests/math.o - File opened! 
-TOKENS ARE: math 1 4 4 0 86 
+TOKENS ARE: UNDEFINED 1 0 0 0 0 
+size is 0
+section: UNDEFINED, size:0
+TOKENS ARE: math 1 5 5 0 86 
 size is 86
 USAO
 section: math, size:86
-TOKENS ARE: mathAdd 1 0 4 10 -1 
+TOKENS ARE: mathAdd 1 1 5 10 -1 
 size is -1
-TOKENS ARE: mathDiv 1 3 4 67 -1 
+TOKENS ARE: mathDiv 1 4 5 67 -1 
 size is -1
-TOKENS ARE: mathMul 1 2 4 48 -1 
+TOKENS ARE: mathMul 1 3 5 48 -1 
 size is -1
-TOKENS ARE: mathSub 1 1 4 29 -1 
+TOKENS ARE: mathSub 1 2 5 29 -1 
 size is -1
 ./tests/main.o - File opened! 
-TOKENS ARE: a 0 15 14 0 -1 
+TOKENS ARE: UNDEFINED 1 0 0 0 0 
+size is 0
+section: UNDEFINED, size:0
+TOKENS ARE: a 0 16 15 0 -1 
 size is -1
-TOKENS ARE: destinations 0 13 14 28 -1 
+TOKENS ARE: destinations 0 14 15 28 -1 
 size is -1
-TOKENS ARE: mathAdd 1 0 0 0 -1 
+TOKENS ARE: mathAdd 1 1 0 0 -1 
 size is -1
-TOKENS ARE: mathDiv 1 3 0 0 -1 
+TOKENS ARE: mathDiv 1 4 0 0 -1 
 size is -1
-TOKENS ARE: mathMul 1 2 0 0 -1 
+TOKENS ARE: mathMul 1 3 0 0 -1 
 size is -1
-TOKENS ARE: mathSub 1 1 0 0 -1 
+TOKENS ARE: mathSub 1 2 0 0 -1 
 size is -1
-TOKENS ARE: my_code 1 12 12 0 10 
-size is 10
+TOKENS ARE: my_code 1 13 13 0 232 
+size is 232
 USAO
-section: my_code, size:10
-TOKENS ARE: my_data 1 14 14 0 36 
+section: my_code, size:232
+TOKENS ARE: my_data 1 15 15 0 36 
 size is 36
 USAO
 section: my_data, size:36
-TOKENS ARE: my_start 1 4 12 0 -1 
+TOKENS ARE: my_start 1 5 13 0 -1 
 size is -1
-TOKENS ARE: new_symb 0 17 14 0 -1 
+TOKENS ARE: new_symb 0 18 15 0 -1 
 size is -1
-TOKENS ARE: symb_a 0 16 14 0 -1 
+TOKENS ARE: symb_a 0 17 15 0 -1 
 size is -1
-TOKENS ARE: value0 1 5 14 0 -1 
+TOKENS ARE: value0 1 6 15 0 -1 
 size is -1
-TOKENS ARE: value1 1 6 14 16 -1 
+TOKENS ARE: value1 1 7 15 16 -1 
 size is -1
-TOKENS ARE: value2 1 7 14 18 -1 
+TOKENS ARE: value2 1 8 15 18 -1 
 size is -1
-TOKENS ARE: value3 1 8 14 20 -1 
+TOKENS ARE: value3 1 9 15 20 -1 
 size is -1
-TOKENS ARE: value4 1 9 14 22 -1 
+TOKENS ARE: value4 1 10 15 22 -1 
 size is -1
-TOKENS ARE: value5 1 10 14 24 -1 
+TOKENS ARE: value5 1 11 15 24 -1 
 size is -1
-TOKENS ARE: value6 1 11 14 26 -1 
+TOKENS ARE: value6 1 12 15 26 -1 
 size is -1
+section: UNDEFINED, size:0
 section: ivt, size:16
 section: math, size:86
-section: my_code, size:10
+section: my_code, size:232
 section: my_data, size:36
 
-section: ivt, address:16
-section: math, address:102
-section: my_code, address:112
-section: my_data, address:148
+section: UNDEFINED, address:0
+section: ivt, address:0
+section: math, address:16
+section: my_code, address:102
+section: my_data, address:334

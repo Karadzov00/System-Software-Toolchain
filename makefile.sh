@@ -1,8 +1,8 @@
 g++ ./src/assembler.cpp ./src/mainAsm.cpp -o asembler
-./asembler -o ./tests/main.o ./tests/main.s
+./asembler -o ./tests/main.o ./tests/main.s > console_asm.txt
 ./asembler -o ./tests/math.o ./tests/math.s
 ./asembler -o ./tests/ivt.o ./tests/ivt.s
-# ./asembler -o ./tests/test.o ./tests/test.s
+./asembler -o ./tests/test.o ./tests/test.s > console_asm.txt 
 # ./asembler -o ./tests/test1.o ./tests/test1.s
 
 

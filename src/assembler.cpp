@@ -45,6 +45,7 @@ void Assembler::openParseFile(){
   if(!inFile.is_open())throw FileNotOpenException();
   cout<<"File opened! \n";  
   currLineNum=1; 
+  createUndefinedSection("UNDEFINED"); 
 
   while(getline(inFile, currentLine)){
     if(endFlag)break; 
@@ -54,6 +55,7 @@ void Assembler::openParseFile(){
       continue; //if empty line skip iteration
 
     formatLine(); 
+
 
     bool labelLine;
     labelLine = checkIfLabel(cleanCurrentLine);
@@ -703,14 +705,8 @@ void Assembler::processSectionDirective(string currLine){
   else{
     //section does not exist in symbol table 
     //previous section closed, set its size 
-    for(auto symb: symbolTable){
-      if(symb.second.symbolId==currentSectionNumber){
-        symb.second.size=locationCounter; 
-        locationCounter=0; 
-        break; 
-      }
-    }
-
+    symbolTable[currentSectionName].size=locationCounter;
+    
     //new section opened 
     currentSectionNumber=symbolId;
     currentSectionName = sectionName; 
@@ -733,6 +729,29 @@ void Assembler::processSectionDirective(string currLine){
 
 
   }
+
+}
+
+
+void Assembler::createUndefinedSection(string sectionName){
+  currentSectionNumber=symbolId;
+  currentSectionName = sectionName; 
+  locationCounter=0;  
+  //create symbol table entry 
+  symbolTable[sectionName].isDefined=true; 
+  symbolTable[sectionName].isGlobal=true; 
+  symbolTable[sectionName].sectionNum=currentSectionNumber; 
+  symbolTable[sectionName].size=0;
+  symbolTable[sectionName].symbolId=symbolId;
+  symbolTable[sectionName].symbolName=sectionName;
+  symbolTable[sectionName].value=0;
+  symbolId++;
+  cout<<"section "<<sectionName<<" added to the symbol table"<<endl;
+
+  //create section table entry 
+  sectionTable[sectionName].sectionId=symbolId; 
+  sectionTable[sectionName].sectionName=sectionName; 
+  sectionTable[sectionName].size=0; 
 
 }
 

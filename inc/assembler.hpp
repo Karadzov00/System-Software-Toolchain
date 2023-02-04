@@ -132,6 +132,7 @@ public:
   void printCode(); 
   void printToFile(); 
   void printLinkerInput(); 
+  void createUndefinedSection(string sectionName); 
 
 
 

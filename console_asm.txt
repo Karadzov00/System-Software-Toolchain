@@ -1,0 +1,562 @@
+Entered main! 
+./tests/test.s
+./tests/test.o
+Lepo zadati argumenti 
+File opened! 
+section UNDEFINED added to the symbol table
+global 
+.global glb
+after cutting global 
+glb
+Symbols from symbol list:
+glb
+------------------
+symbol glb added to the symbol table
+section 
+.section data
+section name is: data
+section data added to the symbol table
+skip 
+.skip 4
+skip literal is: 4
+word 
+.word a, b, c
+after cutting word 
+a, b, c
+symbol a added to the symbol table
+symbol b added to the symbol table
+symbol c added to the symbol table
+word symbols:
+a
+b
+c
+word literals:
+
+CODE:
+
+
+Current line: ldr r2, c
+Lista tokena iz ldr/str:
+ldr
+r2
+c
+mem direktno
+c
+operand is symbol
+value of symbol c is 0000
+code
+A020040000
+
+Current line: ldr sp, %a
+Lista tokena iz ldr/str:
+ldr
+sp
+%a
+pc relativno
+%a
+bin value: 1111111111111110
+hex value: FFFE
+value of little endian symbol a is FEFF
+code
+A06703FEFF
+label 
+a:
+symbol name is: a:
+only symbol name: a
+symbol found in symbol table
+label line after shortening 
+
+
+Current line: ldr r4, $0xFF
+Lista tokena iz ldr/str:
+ldr
+r4
+$0xFF
+neposredno
+$0xFF
+operand is literal
+operand: FF
+code
+A0400000FF
+label 
+b:
+symbol name is: b:
+only symbol name: b
+symbol found in symbol table
+label line after shortening 
+
+
+Current line: ldr r5, $234
+Lista tokena iz ldr/str:
+ldr
+r5
+$234
+neposredno
+$234
+operand is literal
+operand: EA
+code
+A0500000EA
+label 
+c:
+symbol name is: c:
+only symbol name: c
+symbol found in symbol table
+label line after shortening 
+
+
+Current line: ldr r5, $130
+Lista tokena iz ldr/str:
+ldr
+r5
+$130
+neposredno
+$130
+operand is literal
+operand: 82
+code
+A050000082
+
+Current line: ldr r4, $a
+Lista tokena iz ldr/str:
+ldr
+r4
+$a
+neposredno
+$a
+operand is symbol
+value of symbol a is 0014
+code
+A040000014
+
+Current line: ldr r4, 0xFF
+Lista tokena iz ldr/str:
+ldr
+r4
+0xFF
+mem direktno
+0xFF
+operand is literal
+operand: FF
+code
+A0400400FF
+
+Current line: ldr r4, a
+Lista tokena iz ldr/str:
+ldr
+r4
+a
+mem direktno
+a
+operand is symbol
+value of symbol a is 0014
+code
+A040040014
+
+Current line: ldr r4, %a
+Lista tokena iz ldr/str:
+ldr
+r4
+%a
+pc relativno
+%a
+bin value: 0000000000010010
+hex value: 12
+value of little endian symbol a is 1200
+code
+A047031200
+
+Current line: ldr r3, %b
+Lista tokena iz ldr/str:
+ldr
+r3
+%b
+pc relativno
+%b
+bin value: 0000000000010111
+hex value: 17
+value of little endian symbol b is 1700
+code
+A037031700
+
+Current line: ldr r3, %random
+Lista tokena iz ldr/str:
+ldr
+r3
+%random
+pc relativno
+%random
+symbol random added to the symbol table
+code
+A037030000
+
+Current line: ldr r3, %glb
+Lista tokena iz ldr/str:
+ldr
+r3
+%glb
+pc relativno
+%glb
+code
+A03703FEFF
+
+Current line: ldr r4, r5
+Lista tokena iz ldr/str:
+ldr
+r4
+r5
+reg direktno
+r5
+code
+A04501
+
+Current line: ldr r5, [r4]
+Lista tokena iz ldr/str:
+ldr
+r5
+r4
+reg indirektno
+r4
+code
+A05402
+
+Current line: ldr r5, [r4 + 0xFF]
+Lista tokena iz ldr/str:
+ldr
+r5
+r4
+0xFF
+reg indirektno sa pomerajem
+r4 0xFF
+operand is literal
+operand: FF
+code
+A0540300FF
+
+Current line: ldr r5, [r4 + a]
+Lista tokena iz ldr/str:
+ldr
+r5
+r4
+a
+reg indirektno sa pomerajem
+r4 a
+operand is symbol
+value of symbol a is 0014
+code
+A054030014
+section 
+.section jumps
+section name is: jumps
+section jumps added to the symbol table
+
+Current line: jmp 0xFF
+Lista tokena iz ldr/str:
+jmp
+0xFF
+operand: 0xFF
+neposredno
+0xFF
+operand is literal
+operand: FF
+code
+50F00000FF
+
+Current line: jne a
+Lista tokena iz ldr/str:
+jne
+a
+operand: a
+neposredno
+a
+operand is symbol
+value of symbol a is 0014
+code
+52F0000014
+label 
+d:
+symbol name is: d:
+only symbol name: d
+simbol dodat u tabelu simbola
+label line after shortening 
+
+
+Current line: jmp *0xFF
+Lista tokena iz ldr/str:
+jmp
+0xFF
+operand: *0xFF
+mem direktno
+*0xFF
+operand is literal
+operand: FF
+code
+50F00400FF
+
+Current line: call *a
+Lista tokena iz ldr/str:
+call
+a
+operand: *a
+mem direktno
+*a
+operand is symbol
+value of symbol a is 0014
+code
+30F0040014
+
+Current line: jne *r4
+Lista tokena iz ldr/str:
+jne
+r4
+operand: *r4
+reg direktno
+*r4
+code
+52F401
+label 
+e:
+symbol name is: e:
+only symbol name: e
+simbol dodat u tabelu simbola
+label line after shortening 
+
+
+Current line: jgt *[r4]
+Lista tokena iz ldr/str:
+jgt
+r4
+operand: *[r4]
+reg indirektno
+*[r4]
+code
+53F402
+
+Current line: jmp *[psw]
+Lista tokena iz ldr/str:
+jmp
+psw
+operand: *[psw]
+reg indirektno
+*[psw]
+code
+50F802
+
+Current line: jmp *[r4 + 0xFF]
+Lista tokena iz ldr/str:
+jmp
+r4
+0xFF
+operand: *[r4 + 0xFF]
+reg indirektno sa pomerajem
+*[r4 + 0xFF]
+operand is literal
+operand: FF
+code
+50F40300FF
+
+Current line: jmp *[r4+a]
+Lista tokena iz ldr/str:
+jmp
+r4
+a
+operand: *[r4+a]
+reg indirektno sa pomerajem
+*[r4+a]
+operand is symbol
+value of symbol a is 0014
+code
+50F4030014
+
+Current line: jmp %a
+Lista tokena iz ldr/str:
+jmp
+a
+operand: %a
+pc relativno
+%a
+bin value: 0000000000010010
+hex value: 12
+value of little endian symbol a is 1200
+code
+50F7051200
+
+OPERATION IS push
+push - reg indirektno
+r5
+code
+B06512
+
+OPERATION IS pop
+pop - reg indirektno
+r3
+code
+A06342
+word 
+.word d, e, m
+after cutting word 
+d, e, m
+big endian value: 000A
+little endian value: 0A00
+big endian value: 0017
+little endian value: 1700
+symbol m added to the symbol table
+word symbols:
+d
+e
+m
+word literals:
+
+CODE:
+
+end 
+.end
+symbol a
+offset:8
+old value: 0000
+word -> new value: 1400
+symbol a
+offset:36
+old value: FEFF
+bin value: 0000000000010010
+hex value: 12
+pcrel addr -> new value: 1200
+symbol a
+offset:76
+old value: 0014
+absolute addr -> new value: 0014
+symbol a
+offset:96
+old value: 0014
+absolute addr -> new value: 0014
+symbol a
+offset:106
+old value: 1200
+bin value: 0000000000010010
+hex value: 12
+pcrel addr -> new value: 1200
+symbol a
+offset:168
+old value: 0014
+absolute addr -> new value: 0014
+symbol a
+offset:16
+old value: 0014
+absolute addr -> new value: 0014
+symbol a
+offset:36
+old value: 0014
+absolute addr -> new value: 0014
+symbol a
+offset:74
+old value: 0014
+absolute addr -> new value: 0014
+symbol a
+offset:84
+old value: 1200
+bin value: 0000000000010010
+hex value: 12
+pcrel addr -> new value: 1200
+symbol b
+offset:12
+old value: 0000
+word -> new value: 1900
+symbol b
+offset:116
+old value: 1700
+bin value: 0000000000010111
+hex value: 17
+pcrel addr -> new value: 1700
+symbol c
+offset:16
+old value: 0000
+word -> new value: 1E00
+symbol c
+offset:26
+old value: 0000
+absolute addr -> new value: 001E
+symbol d
+offset:100
+old value: 0A00
+word -> new value: 0A00
+symbol e
+offset:104
+old value: 1700
+word -> new value: 1700
+symbol glb
+offset:136
+old value: FEFF
+pcrel addr -> new value: FEFF
+symbol m
+offset:108
+old value: 0000
+word -> new value: 0000
+symbol random
+offset:126
+old value: 0000
+bin value: 1111111111111110
+hex value: FFFE
+pcrel addr -> new value: FEFF
+TABELA SIMBOLA:
+symbolName    isGlobal      symbolID      sectionNum    value         size          
+UNDEFINED     1             0             0             0             0             
+a             0             3             2             20            -1            
+b             0             4             2             25            -1            
+c             0             5             2             30            -1            
+d             0             8             7             10            -1            
+data          1             2             2             0             86            
+e             0             9             7             23            -1            
+glb           1             1             0             0             -1            
+jumps         1             7             7             0             56            
+m             0             10            7             0             -1            
+random        0             6             2             0             -1            
+
+RELOKACIONI ZAPISI SEKCIJE:
+sekcija: UNDEFINED
+offset        type          symbol        addend        
+
+sekcija: data
+offset        type          symbol        addend        
+4             0             3             0             
+6             0             4             0             
+8             0             5             0             
+13            0             5             0             
+18            1             3             0             
+38            0             3             0             
+48            0             3             0             
+53            1             3             0             
+58            1             4             0             
+63            1             6             0             
+68            1             1             0             
+84            0             3             0             
+
+sekcija: jumps
+offset        type          symbol        addend        
+8             0             3             0             
+18            0             3             0             
+37            0             3             0             
+42            1             3             0             
+50            0             8             0             
+52            0             9             0             
+54            0             10            0             
+
+KOD SEKCIJA:
+Ime sekcije: UNDEFINED
+
+Ime sekcije: data
+00 00 00 00 14 00 19 00 1E 00 
+A0 20 04 00 1E A0 67 03 12 00 
+A0 40 00 00 FF A0 50 00 00 EA 
+A0 50 00 00 82 A0 40 00 00 14 
+A0 40 04 00 FF A0 40 04 00 14 
+A0 47 03 12 00 A0 37 03 17 00 
+A0 37 03 FE FF A0 37 03 FE FF 
+A0 45 01 A0 54 02 A0 54 03 00 
+FF A0 54 03 00 14 
+Ime sekcije: jumps
+50 F0 00 00 FF 52 F0 00 00 14 
+50 F0 04 00 FF 30 F0 04 00 14 
+52 F4 01 53 F4 02 50 F8 02 50 
+F4 03 00 FF 50 F4 03 00 14 50 
+F7 05 12 00 B0 65 12 A0 63 42 
+0A 00 17 00 00 00 
