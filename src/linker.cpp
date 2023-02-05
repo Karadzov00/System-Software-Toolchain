@@ -285,6 +285,7 @@ void Linker::remakeCode(string code, string currentSection){
             string globalValue; 
             if(symbolTable[symbol].isGlobal==1){
                 globalValue = literalToHex(to_string(globalSymbolTable[symbol])); 
+                cout<<"global value dec: "+to_string(globalSymbolTable[symbol])<<endl; 
             }
             else{
                 //symbol is local 
@@ -292,12 +293,13 @@ void Linker::remakeCode(string code, string currentSection){
                 int offs = findFileSectionOffset(localSymbolTable[symbol].file, section);
                 int val = offs + localSymbolTable[symbol].value;  
                 globalValue=literalToHex(to_string(val)); 
+                cout<<"global value dec: "+val<<endl; 
             }
-            cout<<"global value: "+globalValue<<endl; 
+            cout<<"global value hex: "+globalValue<<endl; 
             cout<<"offset: "+to_string(offset)<<endl; 
             cout<<"type: "+to_string(r.type)<<endl; 
 
-            //convert new value to hex 
+            //absoulte addressing 
             if(r.type==0){
                 //write new value in code 
                 int position = offset*2; 
@@ -314,9 +316,36 @@ void Linker::remakeCode(string code, string currentSection){
                 //add remade code to global code for emulator 
                 
             }
-            else{
+            //pcrel - little endian 
+            else if(r.type==1){
 
             }
+            //for word directive - little endian 
+            else if(r.type==2){
+                //write new value in code 
+                int position = offset*2; 
+                //make it little endian - rotate bytes in symbValue
+                cout<<"big endian: "+globalValue<<endl; 
+                string tmp=globalValue.substr(0,2);
+                globalValue = globalValue.substr(2,2); 
+                globalValue.append(tmp);
+                cout<<"little endian: "+globalValue<<endl; 
+
+
+                for(int i=0; i<4; i++){
+                    code[position+i]=globalValue[i]; 
+                }
+                cout<<"new code"<<endl; 
+                printCode(code); 
+                cout<<endl; 
+
+                //add remade code to sections code  
+                sectionsCode[currentSection]=code; 
+
+                //add remade code to global code for emulator 
+
+            }
+
         }
     }
 

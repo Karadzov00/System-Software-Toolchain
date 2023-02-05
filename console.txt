@@ -25,17 +25,17 @@ section: ivt, size:16
 ./tests/math.o - File opened! 
 TOKENS ARE: UNDEFINED 1 0 0 0 0 
 size is 0
-TOKENS ARE: math 1 5 5 0 86 
-size is 86
+TOKENS ARE: math 1 5 5 0 76 
+size is 76
 New section
-section: math, size:86
-TOKENS ARE: mathAdd 1 1 5 10 -1 
+section: math, size:76
+TOKENS ARE: mathAdd 1 1 5 0 -1 
 size is -1
-TOKENS ARE: mathDiv 1 4 5 67 -1 
+TOKENS ARE: mathDiv 1 4 5 57 -1 
 size is -1
-TOKENS ARE: mathMul 1 3 5 48 -1 
+TOKENS ARE: mathMul 1 3 5 38 -1 
 size is -1
-TOKENS ARE: mathSub 1 2 5 29 -1 
+TOKENS ARE: mathSub 1 2 5 19 -1 
 size is -1
 ./tests/main.o - File opened! 
 TOKENS ARE: UNDEFINED 1 0 0 0 0 
@@ -127,11 +127,11 @@ isr_terminal  1             21            isr           0             -1
 isr_timer     1             23            isr           0             -1            
 isr_user0     1             25            isr           0             -1            
 ivt           1             1             ivt           0             16            
-math          1             2             math          0             86            
-mathAdd       1             3             math          10            -1            
-mathDiv       1             4             math          67            -1            
-mathMul       1             5             math          48            -1            
-mathSub       1             6             math          29            -1            
+math          1             2             math          0             76            
+mathAdd       1             3             math          0             -1            
+mathDiv       1             4             math          57            -1            
+mathMul       1             5             math          38            -1            
+mathSub       1             6             math          19            -1            
 my_code       1             8             my_code       0             206           
 my_data       1             9             my_data       0             22            
 my_start      1             10            my_code       0             -1            
@@ -146,7 +146,7 @@ value6        1             17            my_data       12            -1
 
 SECTIONS FIFO
 section ivt ./tests/ivt.o; offset: 0; size:16
-section math ./tests/math.o; offset: 0; size:86
+section math ./tests/math.o; offset: 0; size:76
 section my_code ./tests/main.o; offset: 0; size:206
 section my_data ./tests/main.o; offset: 0; size:22
 section isr ./tests/isr_reset.o; offset: 0; size:33
@@ -154,84 +154,96 @@ section isr ./tests/isr_terminal.o; offset: 5; size:33
 section isr ./tests/isr_timer.o; offset: 6; size:33
 section isr ./tests/isr_user0.o; offset: 7; size:33
 
-section: isr, address:330
+section: isr, address:320
 section: ivt, address:0
 section: math, address:16
-section: my_code, address:102
-section: my_data, address:308
+section: my_code, address:92
+section: my_data, address:298
 
 GLOBALNA TABELA SIMBOLA:
 symbolName    address       
-isr           337           
-isr_reset     330           
-isr_terminal  335           
-isr_timer     336           
-isr_user0     337           
+isr           327           
+isr_reset     320           
+isr_terminal  325           
+isr_timer     326           
+isr_user0     327           
 ivt           0             
 math          16            
-mathAdd       26            
-mathDiv       83            
-mathMul       64            
-mathSub       45            
-my_code       102           
-my_data       308           
-my_start      102           
-value0        308           
-value1        310           
-value2        312           
-value3        314           
-value4        316           
-value5        318           
-value6        320           
+mathAdd       16            
+mathDiv       73            
+mathMul       54            
+mathSub       35            
+my_code       92            
+my_data       298           
+my_start      92            
+value0        298           
+value1        300           
+value2        302           
+value3        304           
+value4        306           
+value5        308           
+value6        310           
 ./tests/ivt.o - File opened! 
 ivt
-0:0:1:0
-0 0 1 0 
-4:0:2:0
-4 0 2 0 
-6:0:3:0
-6 0 3 0 
-8:0:4:0
-8 0 4 0 
+0:2:1:0
+0 2 1 0 
+4:2:2:0
+4 2 2 0 
+6:2:3:0
+6 2 3 0 
+8:2:4:0
+8 2 4 0 
 00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:
 00000000000000000000000000000000
 relocation symbols:
 symbol: isr_reset
-global value: 014A
+global value dec: 320
+global value hex: 0140
 offset: 0
-type: 0
+type: 2
+big endian: 0140
+little endian: 4001
 new code
-01 4A 00 00 00 00 00 00 00 00 
+40 01 00 00 00 00 00 00 00 00 
 00 00 00 00 00 00 
 
 symbol: isr_timer
-global value: 0150
+global value dec: 326
+global value hex: 0146
 offset: 4
-type: 0
+type: 2
+big endian: 0146
+little endian: 4601
 new code
-01 4A 00 00 01 50 00 00 00 00 
+40 01 00 00 46 01 00 00 00 00 
 00 00 00 00 00 00 
 
 symbol: isr_terminal
-global value: 014F
+global value dec: 325
+global value hex: 0145
 offset: 6
-type: 0
+type: 2
+big endian: 0145
+little endian: 4501
 new code
-01 4A 00 00 01 50 01 4F 00 00 
+40 01 00 00 46 01 45 01 00 00 
 00 00 00 00 00 00 
 
 symbol: isr_user0
-global value: 0151
+global value dec: 327
+global value hex: 0147
 offset: 8
-type: 0
+type: 2
+big endian: 0147
+little endian: 4701
 new code
-01 4A 00 00 01 50 01 4F 01 51 
+40 01 00 00 46 01 45 01 47 01 
 00 00 00 00 00 00 
 
 ./tests/math.o - File opened! 
 math
-81:12:82:34:83:45:84:01:91:62:B0:61:12:A0:06:03:00:04:A0:16:03:00:06:70:01:A0:61:42:40:B0:61:12:A0:06:03:00:04:A0:16:03:00:06:71:01:A0:61:42:40:B0:61:12:A0:06:03:00:04:A0:16:03:00:06:72:01:A0:61:42:40:B0:61:12:A0:06:03:00:04:A0:16:03:00:06:73:01:A0:61:42:40:
-81128234834584019162B06112A006030004A0160300067001A0614240B06112A006030004A0160300067101A0614240B06112A006030004A0160300067201A0614240B06112A006030004A0160300067301A0614240
+B0:61:12:A0:06:03:00:04:A0:16:03:00:06:70:01:A0:61:42:40:B0:61:12:A0:06:03:00:04:A0:16:03:00:06:71:01:A0:61:42:40:B0:61:12:A0:06:03:00:04:A0:16:03:00:06:72:01:A0:61:42:40:B0:61:12:A0:06:03:00:04:A0:16:03:00:06:73:01:A0:61:42:40:
+B06112A006030004A0160300067001A0614240B06112A006030004A0160300067101A0614240B06112A006030004A0160300067201A0614240B06112A006030004A0160300067301A0614240
 relocation symbols:
 ./tests/main.o - File opened! 
 my_code
@@ -273,14 +285,15 @@ A0:60:00:FE:FE:A0:00:00:00:04:10:0F:A0:00:00:00:00:B0:60:12:A0:00:00:00:01:B0:60
 A06000FEFEA000000004100FA000000000B06012A000000001B0601230F0000000B000040002A000000001B06012A000000001B0601230F705FEFFB000040004A000000008B06012A00000000BB06012A000000002A01000000E700130F002B000040006A000000002B06012A000000002B06012A00000000430F003000EB000040008A000000005B06012A000000019B06012A000000006A01000000E7001A0000230F001B00004000AA000040000A010040002A020040004A030040006A040040008A05004000AA06004000C00
 relocation symbols:
 symbol: mathAdd
-global value: 001A
+global value dec: 16
+global value hex: 0010
 offset: 31
 type: 0
 new code
 A0 60 00 FE FE A0 00 00 00 04 
 10 0F A0 00 00 00 00 B0 60 12 
 A0 00 00 00 01 B0 60 12 30 F0 
-00 00 1A B0 00 04 00 02 A0 00 
+00 00 10 B0 00 04 00 02 A0 00 
 00 00 01 B0 60 12 A0 00 00 00 
 01 B0 60 12 30 F7 05 FE FF B0 
 00 04 00 04 A0 00 00 00 08 B0 
@@ -300,14 +313,15 @@ A0 40 04 00 08 A0 50 04 00 0A
 A0 60 04 00 0C 00 
 
 symbol: value1
-global value: 0136
+global value dec: 300
+global value hex: 012C
 offset: 36
 type: 0
 new code
 A0 60 00 FE FE A0 00 00 00 04 
 10 0F A0 00 00 00 00 B0 60 12 
 A0 00 00 00 01 B0 60 12 30 F0 
-00 00 1A B0 00 04 01 36 A0 00 
+00 00 10 B0 00 04 01 2C A0 00 
 00 00 01 B0 60 12 A0 00 00 00 
 01 B0 60 12 30 F7 05 FE FF B0 
 00 04 00 04 A0 00 00 00 08 B0 
@@ -327,21 +341,23 @@ A0 40 04 00 08 A0 50 04 00 0A
 A0 60 04 00 0C 00 
 
 symbol: mathAdd
-global value: 001A
+global value dec: 16
+global value hex: 0010
 offset: 57
 type: 1
 symbol: value2
-global value: 0138
+global value dec: 302
+global value hex: 012E
 offset: 62
 type: 0
 new code
 A0 60 00 FE FE A0 00 00 00 04 
 10 0F A0 00 00 00 00 B0 60 12 
 A0 00 00 00 01 B0 60 12 30 F0 
-00 00 1A B0 00 04 01 36 A0 00 
+00 00 10 B0 00 04 01 2C A0 00 
 00 00 01 B0 60 12 A0 00 00 00 
 01 B0 60 12 30 F7 05 FE FF B0 
-00 04 01 38 A0 00 00 00 08 B0 
+00 04 01 2E A0 00 00 00 08 B0 
 60 12 A0 00 00 00 0B B0 60 12 
 A0 00 00 00 02 A0 10 00 00 0E 
 70 01 30 F0 02 B0 00 04 00 06 
@@ -358,19 +374,20 @@ A0 40 04 00 08 A0 50 04 00 0A
 A0 60 04 00 0C 00 
 
 symbol: destinations
-global value: 0142
+_insert
+global value hex: 0138
 offset: 88
 type: 0
 new code
 A0 60 00 FE FE A0 00 00 00 04 
 10 0F A0 00 00 00 00 B0 60 12 
 A0 00 00 00 01 B0 60 12 30 F0 
-00 00 1A B0 00 04 01 36 A0 00 
+00 00 10 B0 00 04 01 2C A0 00 
 00 00 01 B0 60 12 A0 00 00 00 
 01 B0 60 12 30 F7 05 FE FF B0 
-00 04 01 38 A0 00 00 00 08 B0 
+00 04 01 2E A0 00 00 00 08 B0 
 60 12 A0 00 00 00 0B B0 60 12 
-A0 00 00 00 02 A0 10 00 01 42 
+A0 00 00 00 02 A0 10 00 01 38 
 70 01 30 F0 02 B0 00 04 00 06 
 A0 00 00 00 02 B0 60 12 A0 00 
 00 00 02 B0 60 12 A0 00 00 00 
@@ -385,20 +402,21 @@ A0 40 04 00 08 A0 50 04 00 0A
 A0 60 04 00 0C 00 
 
 symbol: value3
-global value: 013A
+global value dec: 304
+global value hex: 0130
 offset: 98
 type: 0
 new code
 A0 60 00 FE FE A0 00 00 00 04 
 10 0F A0 00 00 00 00 B0 60 12 
 A0 00 00 00 01 B0 60 12 30 F0 
-00 00 1A B0 00 04 01 36 A0 00 
+00 00 10 B0 00 04 01 2C A0 00 
 00 00 01 B0 60 12 A0 00 00 00 
 01 B0 60 12 30 F7 05 FE FF B0 
-00 04 01 38 A0 00 00 00 08 B0 
+00 04 01 2E A0 00 00 00 08 B0 
 60 12 A0 00 00 00 0B B0 60 12 
-A0 00 00 00 02 A0 10 00 01 42 
-70 01 30 F0 02 B0 00 04 01 3A 
+A0 00 00 00 02 A0 10 00 01 38 
+70 01 30 F0 02 B0 00 04 01 30 
 A0 00 00 00 02 B0 60 12 A0 00 
 00 00 02 B0 60 12 A0 00 00 00 
 04 30 F0 03 00 0E B0 00 04 00 
@@ -412,23 +430,24 @@ A0 40 04 00 08 A0 50 04 00 0A
 A0 60 04 00 0C 00 
 
 symbol: destinations
-global value: 0142
+_insert
+global value hex: 0138
 offset: 124
 type: 0
 new code
 A0 60 00 FE FE A0 00 00 00 04 
 10 0F A0 00 00 00 00 B0 60 12 
 A0 00 00 00 01 B0 60 12 30 F0 
-00 00 1A B0 00 04 01 36 A0 00 
+00 00 10 B0 00 04 01 2C A0 00 
 00 00 01 B0 60 12 A0 00 00 00 
 01 B0 60 12 30 F7 05 FE FF B0 
-00 04 01 38 A0 00 00 00 08 B0 
+00 04 01 2E A0 00 00 00 08 B0 
 60 12 A0 00 00 00 0B B0 60 12 
-A0 00 00 00 02 A0 10 00 01 42 
-70 01 30 F0 02 B0 00 04 01 3A 
+A0 00 00 00 02 A0 10 00 01 38 
+70 01 30 F0 02 B0 00 04 01 30 
 A0 00 00 00 02 B0 60 12 A0 00 
 00 00 02 B0 60 12 A0 00 00 00 
-04 30 F0 03 01 42 B0 00 04 00 
+04 30 F0 03 01 38 B0 00 04 00 
 08 A0 00 00 00 05 B0 60 12 A0 
 00 00 00 19 B0 60 12 A0 00 00 
 00 06 A0 10 00 00 0E 70 01 A0 
@@ -439,24 +458,25 @@ A0 40 04 00 08 A0 50 04 00 0A
 A0 60 04 00 0C 00 
 
 symbol: value4
-global value: 013C
+global value dec: 306
+global value hex: 0132
 offset: 129
 type: 0
 new code
 A0 60 00 FE FE A0 00 00 00 04 
 10 0F A0 00 00 00 00 B0 60 12 
 A0 00 00 00 01 B0 60 12 30 F0 
-00 00 1A B0 00 04 01 36 A0 00 
+00 00 10 B0 00 04 01 2C A0 00 
 00 00 01 B0 60 12 A0 00 00 00 
 01 B0 60 12 30 F7 05 FE FF B0 
-00 04 01 38 A0 00 00 00 08 B0 
+00 04 01 2E A0 00 00 00 08 B0 
 60 12 A0 00 00 00 0B B0 60 12 
-A0 00 00 00 02 A0 10 00 01 42 
-70 01 30 F0 02 B0 00 04 01 3A 
+A0 00 00 00 02 A0 10 00 01 38 
+70 01 30 F0 02 B0 00 04 01 30 
 A0 00 00 00 02 B0 60 12 A0 00 
 00 00 02 B0 60 12 A0 00 00 00 
-04 30 F0 03 01 42 B0 00 04 01 
-3C A0 00 00 00 05 B0 60 12 A0 
+04 30 F0 03 01 38 B0 00 04 01 
+32 A0 00 00 00 05 B0 60 12 A0 
 00 00 00 19 B0 60 12 A0 00 00 
 00 06 A0 10 00 00 0E 70 01 A0 
 00 02 30 F0 01 B0 00 04 00 0A 
@@ -466,26 +486,27 @@ A0 40 04 00 08 A0 50 04 00 0A
 A0 60 04 00 0C 00 
 
 symbol: destinations
-global value: 0142
+_insert
+global value hex: 0138
 offset: 155
 type: 0
 new code
 A0 60 00 FE FE A0 00 00 00 04 
 10 0F A0 00 00 00 00 B0 60 12 
 A0 00 00 00 01 B0 60 12 30 F0 
-00 00 1A B0 00 04 01 36 A0 00 
+00 00 10 B0 00 04 01 2C A0 00 
 00 00 01 B0 60 12 A0 00 00 00 
 01 B0 60 12 30 F7 05 FE FF B0 
-00 04 01 38 A0 00 00 00 08 B0 
+00 04 01 2E A0 00 00 00 08 B0 
 60 12 A0 00 00 00 0B B0 60 12 
-A0 00 00 00 02 A0 10 00 01 42 
-70 01 30 F0 02 B0 00 04 01 3A 
+A0 00 00 00 02 A0 10 00 01 38 
+70 01 30 F0 02 B0 00 04 01 30 
 A0 00 00 00 02 B0 60 12 A0 00 
 00 00 02 B0 60 12 A0 00 00 00 
-04 30 F0 03 01 42 B0 00 04 01 
-3C A0 00 00 00 05 B0 60 12 A0 
+04 30 F0 03 01 38 B0 00 04 01 
+32 A0 00 00 00 05 B0 60 12 A0 
 00 00 00 19 B0 60 12 A0 00 00 
-00 06 A0 10 00 01 42 70 01 A0 
+00 06 A0 10 00 01 38 70 01 A0 
 00 02 30 F0 01 B0 00 04 00 0A 
 A0 00 04 00 00 A0 10 04 00 02 
 A0 20 04 00 04 A0 30 04 00 06 
@@ -493,268 +514,288 @@ A0 40 04 00 08 A0 50 04 00 0A
 A0 60 04 00 0C 00 
 
 symbol: value5
-global value: 013E
+global value dec: 308
+global value hex: 0134
 offset: 168
 type: 0
 new code
 A0 60 00 FE FE A0 00 00 00 04 
 10 0F A0 00 00 00 00 B0 60 12 
 A0 00 00 00 01 B0 60 12 30 F0 
-00 00 1A B0 00 04 01 36 A0 00 
+00 00 10 B0 00 04 01 2C A0 00 
 00 00 01 B0 60 12 A0 00 00 00 
 01 B0 60 12 30 F7 05 FE FF B0 
-00 04 01 38 A0 00 00 00 08 B0 
+00 04 01 2E A0 00 00 00 08 B0 
 60 12 A0 00 00 00 0B B0 60 12 
-A0 00 00 00 02 A0 10 00 01 42 
-70 01 30 F0 02 B0 00 04 01 3A 
+A0 00 00 00 02 A0 10 00 01 38 
+70 01 30 F0 02 B0 00 04 01 30 
 A0 00 00 00 02 B0 60 12 A0 00 
 00 00 02 B0 60 12 A0 00 00 00 
-04 30 F0 03 01 42 B0 00 04 01 
-3C A0 00 00 00 05 B0 60 12 A0 
+04 30 F0 03 01 38 B0 00 04 01 
+32 A0 00 00 00 05 B0 60 12 A0 
 00 00 00 19 B0 60 12 A0 00 00 
-00 06 A0 10 00 01 42 70 01 A0 
-00 02 30 F0 01 B0 00 04 01 3E 
+00 06 A0 10 00 01 38 70 01 A0 
+00 02 30 F0 01 B0 00 04 01 34 
 A0 00 04 00 00 A0 10 04 00 02 
 A0 20 04 00 04 A0 30 04 00 06 
 A0 40 04 00 08 A0 50 04 00 0A 
 A0 60 04 00 0C 00 
 
 symbol: value0
-global value: 0134
+global value dec: 298
+global value hex: 012A
 offset: 173
 type: 0
 new code
 A0 60 00 FE FE A0 00 00 00 04 
 10 0F A0 00 00 00 00 B0 60 12 
 A0 00 00 00 01 B0 60 12 30 F0 
-00 00 1A B0 00 04 01 36 A0 00 
+00 00 10 B0 00 04 01 2C A0 00 
 00 00 01 B0 60 12 A0 00 00 00 
 01 B0 60 12 30 F7 05 FE FF B0 
-00 04 01 38 A0 00 00 00 08 B0 
+00 04 01 2E A0 00 00 00 08 B0 
 60 12 A0 00 00 00 0B B0 60 12 
-A0 00 00 00 02 A0 10 00 01 42 
-70 01 30 F0 02 B0 00 04 01 3A 
+A0 00 00 00 02 A0 10 00 01 38 
+70 01 30 F0 02 B0 00 04 01 30 
 A0 00 00 00 02 B0 60 12 A0 00 
 00 00 02 B0 60 12 A0 00 00 00 
-04 30 F0 03 01 42 B0 00 04 01 
-3C A0 00 00 00 05 B0 60 12 A0 
+04 30 F0 03 01 38 B0 00 04 01 
+32 A0 00 00 00 05 B0 60 12 A0 
 00 00 00 19 B0 60 12 A0 00 00 
-00 06 A0 10 00 01 42 70 01 A0 
-00 02 30 F0 01 B0 00 04 01 3E 
-A0 00 04 01 34 A0 10 04 00 02 
+00 06 A0 10 00 01 38 70 01 A0 
+00 02 30 F0 01 B0 00 04 01 34 
+A0 00 04 01 2A A0 10 04 00 02 
 A0 20 04 00 04 A0 30 04 00 06 
 A0 40 04 00 08 A0 50 04 00 0A 
 A0 60 04 00 0C 00 
 
 symbol: value1
-global value: 0136
+global value dec: 300
+global value hex: 012C
 offset: 178
 type: 0
 new code
 A0 60 00 FE FE A0 00 00 00 04 
 10 0F A0 00 00 00 00 B0 60 12 
 A0 00 00 00 01 B0 60 12 30 F0 
-00 00 1A B0 00 04 01 36 A0 00 
+00 00 10 B0 00 04 01 2C A0 00 
 00 00 01 B0 60 12 A0 00 00 00 
 01 B0 60 12 30 F7 05 FE FF B0 
-00 04 01 38 A0 00 00 00 08 B0 
+00 04 01 2E A0 00 00 00 08 B0 
 60 12 A0 00 00 00 0B B0 60 12 
-A0 00 00 00 02 A0 10 00 01 42 
-70 01 30 F0 02 B0 00 04 01 3A 
+A0 00 00 00 02 A0 10 00 01 38 
+70 01 30 F0 02 B0 00 04 01 30 
 A0 00 00 00 02 B0 60 12 A0 00 
 00 00 02 B0 60 12 A0 00 00 00 
-04 30 F0 03 01 42 B0 00 04 01 
-3C A0 00 00 00 05 B0 60 12 A0 
+04 30 F0 03 01 38 B0 00 04 01 
+32 A0 00 00 00 05 B0 60 12 A0 
 00 00 00 19 B0 60 12 A0 00 00 
-00 06 A0 10 00 01 42 70 01 A0 
-00 02 30 F0 01 B0 00 04 01 3E 
-A0 00 04 01 34 A0 10 04 01 36 
+00 06 A0 10 00 01 38 70 01 A0 
+00 02 30 F0 01 B0 00 04 01 34 
+A0 00 04 01 2A A0 10 04 01 2C 
 A0 20 04 00 04 A0 30 04 00 06 
 A0 40 04 00 08 A0 50 04 00 0A 
 A0 60 04 00 0C 00 
 
 symbol: value2
-global value: 0138
+global value dec: 302
+global value hex: 012E
 offset: 183
 type: 0
 new code
 A0 60 00 FE FE A0 00 00 00 04 
 10 0F A0 00 00 00 00 B0 60 12 
 A0 00 00 00 01 B0 60 12 30 F0 
-00 00 1A B0 00 04 01 36 A0 00 
+00 00 10 B0 00 04 01 2C A0 00 
 00 00 01 B0 60 12 A0 00 00 00 
 01 B0 60 12 30 F7 05 FE FF B0 
-00 04 01 38 A0 00 00 00 08 B0 
+00 04 01 2E A0 00 00 00 08 B0 
 60 12 A0 00 00 00 0B B0 60 12 
-A0 00 00 00 02 A0 10 00 01 42 
-70 01 30 F0 02 B0 00 04 01 3A 
+A0 00 00 00 02 A0 10 00 01 38 
+70 01 30 F0 02 B0 00 04 01 30 
 A0 00 00 00 02 B0 60 12 A0 00 
 00 00 02 B0 60 12 A0 00 00 00 
-04 30 F0 03 01 42 B0 00 04 01 
-3C A0 00 00 00 05 B0 60 12 A0 
+04 30 F0 03 01 38 B0 00 04 01 
+32 A0 00 00 00 05 B0 60 12 A0 
 00 00 00 19 B0 60 12 A0 00 00 
-00 06 A0 10 00 01 42 70 01 A0 
-00 02 30 F0 01 B0 00 04 01 3E 
-A0 00 04 01 34 A0 10 04 01 36 
-A0 20 04 01 38 A0 30 04 00 06 
+00 06 A0 10 00 01 38 70 01 A0 
+00 02 30 F0 01 B0 00 04 01 34 
+A0 00 04 01 2A A0 10 04 01 2C 
+A0 20 04 01 2E A0 30 04 00 06 
 A0 40 04 00 08 A0 50 04 00 0A 
 A0 60 04 00 0C 00 
 
 symbol: value3
-global value: 013A
+global value dec: 304
+global value hex: 0130
 offset: 188
 type: 0
 new code
 A0 60 00 FE FE A0 00 00 00 04 
 10 0F A0 00 00 00 00 B0 60 12 
 A0 00 00 00 01 B0 60 12 30 F0 
-00 00 1A B0 00 04 01 36 A0 00 
+00 00 10 B0 00 04 01 2C A0 00 
 00 00 01 B0 60 12 A0 00 00 00 
 01 B0 60 12 30 F7 05 FE FF B0 
-00 04 01 38 A0 00 00 00 08 B0 
+00 04 01 2E A0 00 00 00 08 B0 
 60 12 A0 00 00 00 0B B0 60 12 
-A0 00 00 00 02 A0 10 00 01 42 
-70 01 30 F0 02 B0 00 04 01 3A 
+A0 00 00 00 02 A0 10 00 01 38 
+70 01 30 F0 02 B0 00 04 01 30 
 A0 00 00 00 02 B0 60 12 A0 00 
 00 00 02 B0 60 12 A0 00 00 00 
-04 30 F0 03 01 42 B0 00 04 01 
-3C A0 00 00 00 05 B0 60 12 A0 
+04 30 F0 03 01 38 B0 00 04 01 
+32 A0 00 00 00 05 B0 60 12 A0 
 00 00 00 19 B0 60 12 A0 00 00 
-00 06 A0 10 00 01 42 70 01 A0 
-00 02 30 F0 01 B0 00 04 01 3E 
-A0 00 04 01 34 A0 10 04 01 36 
-A0 20 04 01 38 A0 30 04 01 3A 
+00 06 A0 10 00 01 38 70 01 A0 
+00 02 30 F0 01 B0 00 04 01 34 
+A0 00 04 01 2A A0 10 04 01 2C 
+A0 20 04 01 2E A0 30 04 01 30 
 A0 40 04 00 08 A0 50 04 00 0A 
 A0 60 04 00 0C 00 
 
 symbol: value4
-global value: 013C
+global value dec: 306
+global value hex: 0132
 offset: 193
 type: 0
 new code
 A0 60 00 FE FE A0 00 00 00 04 
 10 0F A0 00 00 00 00 B0 60 12 
 A0 00 00 00 01 B0 60 12 30 F0 
-00 00 1A B0 00 04 01 36 A0 00 
+00 00 10 B0 00 04 01 2C A0 00 
 00 00 01 B0 60 12 A0 00 00 00 
 01 B0 60 12 30 F7 05 FE FF B0 
-00 04 01 38 A0 00 00 00 08 B0 
+00 04 01 2E A0 00 00 00 08 B0 
 60 12 A0 00 00 00 0B B0 60 12 
-A0 00 00 00 02 A0 10 00 01 42 
-70 01 30 F0 02 B0 00 04 01 3A 
+A0 00 00 00 02 A0 10 00 01 38 
+70 01 30 F0 02 B0 00 04 01 30 
 A0 00 00 00 02 B0 60 12 A0 00 
 00 00 02 B0 60 12 A0 00 00 00 
-04 30 F0 03 01 42 B0 00 04 01 
-3C A0 00 00 00 05 B0 60 12 A0 
+04 30 F0 03 01 38 B0 00 04 01 
+32 A0 00 00 00 05 B0 60 12 A0 
 00 00 00 19 B0 60 12 A0 00 00 
-00 06 A0 10 00 01 42 70 01 A0 
-00 02 30 F0 01 B0 00 04 01 3E 
-A0 00 04 01 34 A0 10 04 01 36 
-A0 20 04 01 38 A0 30 04 01 3A 
-A0 40 04 01 3C A0 50 04 00 0A 
+00 06 A0 10 00 01 38 70 01 A0 
+00 02 30 F0 01 B0 00 04 01 34 
+A0 00 04 01 2A A0 10 04 01 2C 
+A0 20 04 01 2E A0 30 04 01 30 
+A0 40 04 01 32 A0 50 04 00 0A 
 A0 60 04 00 0C 00 
 
 symbol: value5
-global value: 013E
+global value dec: 308
+global value hex: 0134
 offset: 198
 type: 0
 new code
 A0 60 00 FE FE A0 00 00 00 04 
 10 0F A0 00 00 00 00 B0 60 12 
 A0 00 00 00 01 B0 60 12 30 F0 
-00 00 1A B0 00 04 01 36 A0 00 
+00 00 10 B0 00 04 01 2C A0 00 
 00 00 01 B0 60 12 A0 00 00 00 
 01 B0 60 12 30 F7 05 FE FF B0 
-00 04 01 38 A0 00 00 00 08 B0 
+00 04 01 2E A0 00 00 00 08 B0 
 60 12 A0 00 00 00 0B B0 60 12 
-A0 00 00 00 02 A0 10 00 01 42 
-70 01 30 F0 02 B0 00 04 01 3A 
+A0 00 00 00 02 A0 10 00 01 38 
+70 01 30 F0 02 B0 00 04 01 30 
 A0 00 00 00 02 B0 60 12 A0 00 
 00 00 02 B0 60 12 A0 00 00 00 
-04 30 F0 03 01 42 B0 00 04 01 
-3C A0 00 00 00 05 B0 60 12 A0 
+04 30 F0 03 01 38 B0 00 04 01 
+32 A0 00 00 00 05 B0 60 12 A0 
 00 00 00 19 B0 60 12 A0 00 00 
-00 06 A0 10 00 01 42 70 01 A0 
-00 02 30 F0 01 B0 00 04 01 3E 
-A0 00 04 01 34 A0 10 04 01 36 
-A0 20 04 01 38 A0 30 04 01 3A 
-A0 40 04 01 3C A0 50 04 01 3E 
+00 06 A0 10 00 01 38 70 01 A0 
+00 02 30 F0 01 B0 00 04 01 34 
+A0 00 04 01 2A A0 10 04 01 2C 
+A0 20 04 01 2E A0 30 04 01 30 
+A0 40 04 01 32 A0 50 04 01 34 
 A0 60 04 00 0C 00 
 
 symbol: value6
-global value: 0140
+global value dec: 310
+global value hex: 0136
 offset: 203
 type: 0
 new code
 A0 60 00 FE FE A0 00 00 00 04 
 10 0F A0 00 00 00 00 B0 60 12 
 A0 00 00 00 01 B0 60 12 30 F0 
-00 00 1A B0 00 04 01 36 A0 00 
+00 00 10 B0 00 04 01 2C A0 00 
 00 00 01 B0 60 12 A0 00 00 00 
 01 B0 60 12 30 F7 05 FE FF B0 
-00 04 01 38 A0 00 00 00 08 B0 
+00 04 01 2E A0 00 00 00 08 B0 
 60 12 A0 00 00 00 0B B0 60 12 
-A0 00 00 00 02 A0 10 00 01 42 
-70 01 30 F0 02 B0 00 04 01 3A 
+A0 00 00 00 02 A0 10 00 01 38 
+70 01 30 F0 02 B0 00 04 01 30 
 A0 00 00 00 02 B0 60 12 A0 00 
 00 00 02 B0 60 12 A0 00 00 00 
-04 30 F0 03 01 42 B0 00 04 01 
-3C A0 00 00 00 05 B0 60 12 A0 
+04 30 F0 03 01 38 B0 00 04 01 
+32 A0 00 00 00 05 B0 60 12 A0 
 00 00 00 19 B0 60 12 A0 00 00 
-00 06 A0 10 00 01 42 70 01 A0 
-00 02 30 F0 01 B0 00 04 01 3E 
-A0 00 04 01 34 A0 10 04 01 36 
-A0 20 04 01 38 A0 30 04 01 3A 
-A0 40 04 01 3C A0 50 04 01 3E 
-A0 60 04 01 40 00 
+00 06 A0 10 00 01 38 70 01 A0 
+00 02 30 F0 01 B0 00 04 01 34 
+A0 00 04 01 2A A0 10 04 01 2C 
+A0 20 04 01 2E A0 30 04 01 30 
+A0 40 04 01 32 A0 50 04 01 34 
+A0 60 04 01 36 00 
 
 my_data
-14:0:1:0
-14 0 1 0 
-16:0:2:0
-16 0 2 0 
-18:0:3:0
-18 0 3 0 
-20:0:4:0
-20 0 4 0 
+14:2:1:0
+14 2 1 0 
+16:2:2:0
+16 2 2 0 
+18:2:3:0
+18 2 3 0 
+20:2:4:0
+20 2 4 0 
 00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:
 00000000000000000000000000000000000000000000
 relocation symbols:
 symbol: mathAdd
-global value: 001A
+global value dec: 16
+global value hex: 0010
 offset: 14
-type: 0
+type: 2
+big endian: 0010
+little endian: 1000
 new code
 00 00 00 00 00 00 00 00 00 00 
-00 00 00 00 00 1A 00 00 00 00 
+00 00 00 00 10 00 00 00 00 00 
 00 00 
 
 symbol: mathSub
-global value: 002D
+global value dec: 35
+global value hex: 0023
 offset: 16
-type: 0
+type: 2
+big endian: 0023
+little endian: 2300
 new code
 00 00 00 00 00 00 00 00 00 00 
-00 00 00 00 00 1A 00 2D 00 00 
+00 00 00 00 10 00 23 00 00 00 
 00 00 
 
 symbol: mathMul
-global value: 0040
+global value dec: 54
+global value hex: 0036
 offset: 18
-type: 0
+type: 2
+big endian: 0036
+little endian: 3600
 new code
 00 00 00 00 00 00 00 00 00 00 
-00 00 00 00 00 1A 00 2D 00 40 
+00 00 00 00 10 00 23 00 36 00 
 00 00 
 
 symbol: mathDiv
-global value: 0053
+global value dec: 73
+global value hex: 0049
 offset: 20
-type: 0
+type: 2
+big endian: 0049
+little endian: 4900
 new code
 00 00 00 00 00 00 00 00 00 00 
-00 00 00 00 00 1A 00 2D 00 40 
-00 53 
+00 00 00 00 10 00 23 00 36 00 
+49 00 
 
 ./tests/isr_reset.o - File opened! 
 isr
@@ -764,11 +805,12 @@ isr
 50F0000000
 relocation symbols:
 symbol: my_start
-global value: 0066
+global value dec: 92
+global value hex: 005C
 offset: 3
 type: 0
 new code
-50 F0 00 00 66 
+50 F0 00 00 5C 
 
 ./tests/isr_terminal.o - File opened! 
 isr
@@ -776,7 +818,8 @@ isr
 20
 relocation symbols:
 symbol: isr
-global value: 0151
+global value dec: 327
+global value hex: 0147
 offset: 3
 type: 0
 new code
@@ -788,7 +831,8 @@ isr
 20
 relocation symbols:
 symbol: isr
-global value: 0151
+global value dec: 327
+global value hex: 0147
 offset: 3
 type: 0
 new code
@@ -802,20 +846,22 @@ B0:60:12:B0:61:12:A0:00:00:AB:CD:A0:10:00:00:00:B0:01:02:A0:61:42:A0:60:42:20:
 B06012B06112A00000ABCDA010000000B00102A06142A0604220
 relocation symbols:
 symbol: value0
-global value: 0134
+global value dec: 298
+global value hex: 012A
 offset: 3
 type: 0
 new code
-B0 60 12 01 34 12 A0 00 00 AB 
+B0 60 12 01 2A 12 A0 00 00 AB 
 CD A0 10 00 00 00 B0 01 02 A0 
 61 42 A0 60 42 20 
 
 symbol: value0
-global value: 0134
+global value dec: 298
+global value hex: 012A
 offset: 14
 type: 0
 new code
-B0 60 12 01 34 12 A0 00 00 AB 
-CD A0 10 00 01 34 B0 01 02 A0 
+B0 60 12 01 2A 12 A0 00 00 AB 
+CD A0 10 00 01 2A B0 01 02 A0 
 61 42 A0 60 42 20 
 

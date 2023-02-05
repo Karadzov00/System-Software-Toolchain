@@ -1,11 +1,11 @@
 TABELA SIMBOLA:
 symbolName    isGlobal      symbolID      sectionNum    value         size          
 UNDEFINED     1             0             0             0             0             
-math          1             5             5             0             86            
-mathAdd       1             1             5             10            -1            
-mathDiv       1             4             5             67            -1            
-mathMul       1             3             5             48            -1            
-mathSub       1             2             5             29            -1            
+math          1             5             5             0             76            
+mathAdd       1             1             5             0             -1            
+mathDiv       1             4             5             57            -1            
+mathMul       1             3             5             38            -1            
+mathSub       1             2             5             19            -1            
 
 RELOKACIONI ZAPISI SEKCIJE:
 sekcija: UNDEFINED
@@ -19,7 +19,6 @@ Ime sekcije: UNDEFINED
 
 
 Ime sekcije: math
-81 12 82 34 83 45 84 01 91 62 
 B0 61 12 A0 06 03 00 04 A0 16 
 03 00 06 70 01 A0 61 42 40 B0 
 61 12 A0 06 03 00 04 A0 16 03 

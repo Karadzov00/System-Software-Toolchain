@@ -876,7 +876,7 @@ void Assembler::processWordDirective(string currLine){
         symbolTable[token].useVector.push_back(symbUse); 
 
         //TODO make relocation entry 
-        addRelocation(locationCounter, 0, symbolTable[token].symbolId, 0, currentSectionName); 
+        addRelocation(locationCounter, 2, symbolTable[token].symbolId, 0, currentSectionName); 
 
         sectionTable[section].size+=2;
         symbolTable[section].size+=2; 
@@ -917,7 +917,7 @@ void Assembler::processWordDirective(string currLine){
           symbolTable[token].useVector.push_back(symbUse); 
 
           //TODO make relocation entry 
-          addRelocation(locationCounter, 0, symbolTable[token].symbolId, 0, currentSectionName);
+          addRelocation(locationCounter, 2, symbolTable[token].symbolId, 0, currentSectionName);
 
 
           sectionTable[section].size+=2;
@@ -941,7 +941,7 @@ void Assembler::processWordDirective(string currLine){
           symbolTable[token].useVector.push_back(symbUse); 
 
           //TODO make relocation entry 
-          addRelocation(locationCounter, 0, symbolTable[token].symbolId, 0, currentSectionName); 
+          addRelocation(locationCounter, 2, symbolTable[token].symbolId, 0, currentSectionName); 
 
           sectionTable[section].size+=2;
           symbolTable[section].size+=2; 

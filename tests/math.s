@@ -4,15 +4,6 @@
 
 .section math
 
-#user code
-and r1, r2
-or r3, r4
-xor r4, r5
-test r0, r1
-shl r8, r8
-shr r6, r2
-
-#user code end 
 mathAdd:
   push r1
   ldr r0, [r6 + 4]

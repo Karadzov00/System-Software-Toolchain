@@ -23,7 +23,7 @@ struct symbolUseEntry{
 
 struct relocationEntry{
   int offset; 
-  int type; 
+  int type; //0 for symbol, 1 for pcrel, 2 for word (little endian)  
   int symbol; 
   int addend; 
 }; 
