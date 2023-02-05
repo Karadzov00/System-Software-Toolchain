@@ -84,6 +84,7 @@ private:
     string currentSection; 
     map<string, symbolTableEntry>localSymbolTable; 
     vector<relocationEntry>sectionRelocations; 
+    map<string, string>sectionsCode; 
 
 
 public:

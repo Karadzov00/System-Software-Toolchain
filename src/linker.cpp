@@ -217,6 +217,8 @@ void Linker::processRelocations(){
             localSymbolTable[name].sectionNum=sectionNum;
             localSymbolTable[name].value=value;
             localSymbolTable[name].size=size;
+            localSymbolTable[name].file=inputFile;
+
         }
         while(getline(inFile, currentLine)){
             //while for relocations 
@@ -273,17 +275,28 @@ void Linker::remakeCode(string code, string currentSection){
             int symbolID = r.symbol; 
             int addend = r.addend; 
             string symbol = findSymbolById(symbolID); 
-            cout<<symbol<<endl; 
+            cout<<"symbol: "+symbol<<endl; 
             //check if symbol is in global symbol table 
-            if(globalSymbolTable.find(symbol)==globalSymbolTable.end()){
+            if(globalSymbolTable.find(symbol)==globalSymbolTable.end() && localSymbolTable[symbol].isGlobal==1){
                 //symbol not defined
                 string msg ="Error! Symbol not defined! Symbol: "+symbol;
                 throw BadSynataxException(msg);
             }
-
-            string globalValue = literalToHex(to_string(globalSymbolTable[symbol])); 
+            string globalValue; 
+            if(symbolTable[symbol].isGlobal==1){
+                globalValue = literalToHex(to_string(globalSymbolTable[symbol])); 
+            }
+            else{
+                //symbol is local 
+                string section = findSymbolById(localSymbolTable[symbol].sectionNum);
+                int offs = findFileSectionOffset(localSymbolTable[symbol].file, section);
+                int val = offs + localSymbolTable[symbol].value;  
+                globalValue=literalToHex(to_string(val)); 
+            }
             cout<<"global value: "+globalValue<<endl; 
             cout<<"offset: "+to_string(offset)<<endl; 
+            cout<<"type: "+to_string(r.type)<<endl; 
+
             //convert new value to hex 
             if(r.type==0){
                 //write new value in code 
@@ -293,6 +306,12 @@ void Linker::remakeCode(string code, string currentSection){
                 }
                 cout<<"new code"<<endl; 
                 printCode(code); 
+                cout<<endl; 
+
+                //add remade code to sections code  
+                sectionsCode[currentSection]=code; 
+
+                //add remade code to global code for emulator 
                 
             }
             else{
@@ -326,15 +345,22 @@ string Linker::findSymbolById(int id){
 void Linker::printCode(string input){
     std::string result;
     int cnt=1;
-    for (int i = 0; i < input.size(); i++) {
-        result += input[i];
-        if (cnt==2) {
-            result += ":";
-            cnt=0; 
-        }
-        cnt++; 
+    int cntLine=1; 
+    for(auto c: input){
+      cout<<c; 
+      if(cnt==2){
+        cout<<" ";
+        cnt=0; 
+      }
+      if(cntLine==20){
+        cout<<endl;
+        cntLine=0; 
+      }
+      cnt++; 
+      cntLine++; 
     }
-    std::cout << result << std::endl;
+    cout<<endl; 
+    // std::cout << result << std::endl;
 } 
 
 
