@@ -81,17 +81,7 @@ size is -1
 TOKENS ARE: value6 1 12 15 12 -1 
 size is -1
 SECTIONS FIFO
-ivt ./tests/ivt.o 0
-my_code ./tests/ivt.o 0
-math ./tests/ivt.o 0
-math ./tests/math.o 50
-my_code ./tests/main.o 10
-my_data ./tests/main.o 0
-section: ivt, size:16
-section: math, size:136
-section: my_code, size:216
-section: my_data, size:22
-
+section ivt ./tests/ivt.o 0; size:16section my_code ./tests/ivt.o 0; size:216section math ./tests/ivt.o 0; size:136section math ./tests/math.o 50; size:136section my_code ./tests/main.o 10; size:216section my_data ./tests/main.o 0; size:22
 TABELA SIMBOLA:
 symbolName    isGlobal      symbolID      sectionName   value         size          
 destinations  0             9                           14            -1            
@@ -113,27 +103,9 @@ value5        1             18            my_data       10            -1
 value6        1             19            my_data       12            -1            
 
 section: ivt, address:0
-section: math, address:16
-section: my_code, address:152
+section: math, address:232
+section: my_code, address:16
 section: my_data, address:368
-
-section: my_code, file: ./tests/main.o, offset:10
-section: my_data, file: ./tests/main.o, offset:0
 
 GLOBALNA TABELA SIMBOLA:
 symbolName    address       
-mathAdd       26            
-mathDiv       83            
-mathMul       64            
-mathSub       45            
-my_start      152           
-value0        368           
-value1        370           
-value2        372           
-value3        374           
-value4        376           
-value5        378           
-value6        380           
-./tests/ivt.o - File opened! 
-./tests/math.o - File opened! 
-./tests/main.o - File opened! 

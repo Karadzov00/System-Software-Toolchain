@@ -137,56 +137,28 @@ void Linker::openParseFile(){
     int lc=0; 
     //TOFIX iteriranje kroz mapu nije ovde fifo
     cout<<"SECTIONS FIFO"<<endl; 
+    //global sections is vector so it is fifo 
     for(auto s:globalSections){
-        cout<<s.name<<" "<<s.file<<" "<<s.offset<<endl; 
-    }
-
-    for(auto s:sections){
-        //fifo order for sections 
-        cout<<"section: "+s<<", size:"+to_string(sectionSizes[s])<<endl; 
-        sectionAdresses[s]=lc; 
-        lc+=sectionSizes[s]; 
-    }
-    cout<<endl; 
-
-    for(auto s:symbolTable){
-        string section = s.second.sectionName; 
-
-        if(s.second.isGlobal==1 && s.second.size==-1){
-            //symbol is global and not a section
-            //add it to global symbol table 
-            // cout<<"symbol: "<<s.first<<endl;
-            // cout<<"section: "<<section<<endl;
-            // cout<<"section address: "<<to_string(sectionAdresses[section])<<endl;
-
-            int globalAddress = sectionAdresses[section]+s.second.value; 
-            
-            globalSymbolTable[s.first]=globalAddress; 
-
+        cout<<"section "<<s.name<<" "<<s.file<<" "<<s.offset<<"; size:"<<sectionSizes[s.name]; 
+        //if address is not yet calculated 
+        if(sectionAdresses.find(s.name)==sectionAdresses.end()){
+            sectionAdresses[s.name]=lc; 
+            lc+=sectionSizes[s.name];
         }
     }
+
+    cout<<endl; 
+
+
     printSymbolTable(); 
     for(auto s:sectionAdresses){
         cout<<"section: "+s.first<<", address:"+to_string(s.second)<<endl; 
     }
     cout<<endl; 
-    for(auto ps: partionedSections){
-        cout<<"section: "+ps.name<<", file: "+ps.file<<", offset:"+to_string(ps.offset)<<endl; 
-    }
-    cout<<endl; 
+
     printGlobalSymbolTable(); 
 
-    for(auto inputFile:inputFiles){
-        fstream inFile;
-        inFile.open(inputFile); 
-        if(!inFile.is_open())throw FileNotOpenException();
-        cout<<inputFile+" - File opened! \n";  
-        currLineNum=1; 
 
-        while(getline(inFile, currentLine)){
-
-        }
-    }
 
 
 
