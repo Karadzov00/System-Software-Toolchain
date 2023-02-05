@@ -91,5 +91,6 @@ public:
     void printSymbolTable(); 
     string findSectionName(int num); 
     void printGlobalSymbolTable(); 
+    int findFileSectionOffset(string file, string section); 
 
 };

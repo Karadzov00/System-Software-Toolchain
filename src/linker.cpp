@@ -139,7 +139,7 @@ void Linker::openParseFile(){
     cout<<"SECTIONS FIFO"<<endl; 
     //global sections is vector so it is fifo 
     for(auto s:globalSections){
-        cout<<"section "<<s.name<<" "<<s.file<<" "<<s.offset<<"; size:"<<sectionSizes[s.name]; 
+        cout<<"section "<<s.name<<" "<<s.file<<"; offset: "<<s.offset<<"; size:"<<sectionSizes[s.name]<<endl; 
         //if address is not yet calculated 
         if(sectionAdresses.find(s.name)==sectionAdresses.end()){
             sectionAdresses[s.name]=lc; 
@@ -156,13 +156,28 @@ void Linker::openParseFile(){
     }
     cout<<endl; 
 
+    for(auto s: symbolTable){
+        int sectionOffset = findFileSectionOffset(s.second.file, s.second.sectionName); 
+        if(sectionOffset!=-1){
+            globalSymbolTable[s.first]=sectionOffset+s.second.value; 
+        }
+    }
+
     printGlobalSymbolTable(); 
 
-
-
-
-
 }
+
+int Linker::findFileSectionOffset(string file, string section){
+    for(auto s: globalSections){
+        if(file.compare(s.file)==0 && section.compare(s.name)==0){
+            //found right section in right file 
+            int offset = s.offset+sectionAdresses[s.name];  
+            return offset; 
+        }
+    }
+    return -1; 
+} 
+
 
 void Linker::printSymbolTable(){
 

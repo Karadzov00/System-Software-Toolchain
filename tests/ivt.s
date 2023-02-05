@@ -13,6 +13,6 @@
 .section my_code
 .skip 10 
 .section math
-.skip 50
+.skip 20
 
 .end

@@ -18,10 +18,10 @@ TOKENS ARE: ivt 1 5 5 0 16
 size is 16
 New section
 section: ivt, size:16
-TOKENS ARE: math 1 7 7 0 50 
-size is 50
+TOKENS ARE: math 1 7 7 0 20 
+size is 20
 New section
-section: math, size:50
+section: math, size:20
 TOKENS ARE: my_code 1 6 6 0 10 
 size is 10
 New section
@@ -32,8 +32,8 @@ size is 0
 TOKENS ARE: math 1 5 5 0 86 
 size is 86
 Section already exists
-section: math, offset:50
-section: math, new size:136
+section: math, offset:20
+section: math, new size:106
 TOKENS ARE: mathAdd 1 1 5 10 -1 
 size is -1
 TOKENS ARE: mathDiv 1 4 5 67 -1 
@@ -81,7 +81,13 @@ size is -1
 TOKENS ARE: value6 1 12 15 12 -1 
 size is -1
 SECTIONS FIFO
-section ivt ./tests/ivt.o 0; size:16section my_code ./tests/ivt.o 0; size:216section math ./tests/ivt.o 0; size:136section math ./tests/math.o 50; size:136section my_code ./tests/main.o 10; size:216section my_data ./tests/main.o 0; size:22
+section ivt ./tests/ivt.o; offset: 0; size:16
+section my_code ./tests/ivt.o; offset: 0; size:216
+section math ./tests/ivt.o; offset: 0; size:106
+section math ./tests/math.o; offset: 20; size:106
+section my_code ./tests/main.o; offset: 10; size:216
+section my_data ./tests/main.o; offset: 0; size:22
+
 TABELA SIMBOLA:
 symbolName    isGlobal      symbolID      sectionName   value         size          
 destinations  0             9                           14            -1            
@@ -105,7 +111,23 @@ value6        1             19            my_data       12            -1
 section: ivt, address:0
 section: math, address:232
 section: my_code, address:16
-section: my_data, address:368
+section: my_data, address:338
 
 GLOBALNA TABELA SIMBOLA:
 symbolName    address       
+ivt           0             
+math          252           
+mathAdd       262           
+mathDiv       319           
+mathMul       300           
+mathSub       281           
+my_code       26            
+my_data       338           
+my_start      26            
+value0        338           
+value1        340           
+value2        342           
+value3        344           
+value4        346           
+value5        348           
+value6        350           
