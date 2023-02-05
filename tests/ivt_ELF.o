@@ -6,7 +6,6 @@ isr_terminal  1             3             0             0             -1
 isr_timer     1             2             0             0             -1            
 isr_user0     1             4             0             0             -1            
 ivt           1             5             5             0             16            
-math          1             6             6             0             20            
 
 RELOKACIONI ZAPISI SEKCIJE:
 sekcija: UNDEFINED
@@ -19,9 +18,6 @@ offset        type          symbol        addend
 6             0             3             0             
 8             0             4             0             
 
-sekcija: math
-offset        type          symbol        addend        
-
 KOD SEKCIJA:
 Ime sekcije: UNDEFINED
 
@@ -29,9 +25,4 @@ Ime sekcije: UNDEFINED
 Ime sekcije: ivt
 00 00 00 00 00 00 00 00 00 00 
 00 00 00 00 00 00 
-
-Ime sekcije: math
-00 00 00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 00 00 
-
 

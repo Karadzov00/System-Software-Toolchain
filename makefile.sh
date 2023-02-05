@@ -2,12 +2,18 @@ g++ ./src/assembler.cpp ./src/mainAsm.cpp -o asembler
 ./asembler -o ./tests/main.o ./tests/main.s > console_asm.txt
 ./asembler -o ./tests/math.o ./tests/math.s
 ./asembler -o ./tests/ivt.o ./tests/ivt.s 
+./asembler -o ./tests/isr_reset.o ./tests/isr_reset.s 
+./asembler -o ./tests/isr_terminal.o ./tests/isr_terminal.s 
+./asembler -o ./tests/isr_timer.o ./tests/isr_timer.s 
+./asembler -o ./tests/isr_user0.o ./tests/isr_user0.s 
+
+
 # ./asembler -o ./tests/test.o ./tests/test.s > console_asm.txt 
 # ./asembler -o ./tests/test1.o ./tests/test1.s
 
 
 g++ ./src/mainLinker.cpp ./src/linker.cpp -o linker > console.txt
-./linker -hex -o ./tests/program.hex ./tests/ivt.o ./tests/math.o ./tests/main.o > console.txt
+./linker -hex -o ./tests/program.hex ./tests/ivt.o ./tests/math.o ./tests/main.o ./tests/isr_reset.o ./tests/isr_terminal.o ./tests/isr_timer.o ./tests/isr_user0.o > console.txt
 
 
 #g++ ./src/emulator.cpp ./src/mainEmulator.cpp -o emulator

@@ -4,7 +4,6 @@ isr_terminal:1:3:0:0:-1
 isr_timer:1:2:0:0:-1
 isr_user0:1:4:0:0:-1
 ivt:1:5:5:0:16
-math:1:6:6:0:20
 section begin
 UNDEFINED
 code of section:
@@ -18,9 +17,4 @@ ivt
 8:0:4:0
 code of section:
 00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:
-section end
-section begin
-math
-code of section:
-00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:
 section end

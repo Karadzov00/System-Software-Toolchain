@@ -273,8 +273,14 @@ void Linker::remakeCode(string code, string currentSection){
             int addend = r.addend; 
             string symbol = findSymbolById(symbolID); 
             cout<<symbol<<endl; 
+            //check if symbol is in global symbol table 
+            if(globalSymbolTable.find(symbol)==globalSymbolTable.end()){
+                //symbol not defined
+                string msg ="Error! Symbol not defined! Symbol: "+symbol;
+                throw BadSynataxException(msg);
+            }
+
             //convert new value to hex 
-            
             if(r.type==0){
                 //write new value in code 
                 
@@ -304,6 +310,7 @@ string Linker::findSymbolById(int id){
         if(s.second.symbolId==id)
             return s.second.symbolName; 
     }
+    return ""; 
 }
 
 
