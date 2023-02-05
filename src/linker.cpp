@@ -68,8 +68,14 @@ void Linker::openParseFile(){
             int value = stoi(tokens[4]);
             int size = stoi(tokens[5]);
             cout<<"size is "<<size<<endl;
-            
+
             //TODO detect double definition 
+            if(symbolTable.find(name)!=symbolTable.end() && size==-1 && sectionNum!=0 && isGlobal==1){
+                //double definition
+                string msg ="Error! Double definition of a symbol "+name;
+                throw BadSynataxException(msg);
+            }
+            
             if(sectionNum!=0){
                 //if symbol is defined 
                 symbolTable[name].isGlobal=isGlobal; 
@@ -124,6 +130,7 @@ void Linker::openParseFile(){
                     allSectionsSize+=size; 
                 }
             }
+            currLineNum++; 
         }
         sort(partionedSections.begin(), partionedSections.end(), [](fileSectionEntry a, fileSectionEntry b) {
             return a.id < b.id;
@@ -136,10 +143,9 @@ void Linker::openParseFile(){
     }
     int lc=0; 
     //TOFIX iteriranje kroz mapu nije ovde fifo
-    cout<<"SECTIONS FIFO"<<endl; 
     //global sections is vector so it is fifo 
     for(auto s:globalSections){
-        cout<<"section "<<s.name<<" "<<s.file<<"; offset: "<<s.offset<<"; size:"<<sectionSizes[s.name]<<endl; 
+        // cout<<"section "<<s.name<<" "<<s.file<<"; offset: "<<s.offset<<"; size:"<<sectionSizes[s.name]<<endl; 
         //if address is not yet calculated 
         if(sectionAdresses.find(s.name)==sectionAdresses.end()){
             sectionAdresses[s.name]=lc; 
@@ -151,6 +157,14 @@ void Linker::openParseFile(){
 
 
     printSymbolTable(); 
+    cout<<endl; 
+    cout<<"SECTIONS FIFO"<<endl; 
+    for(auto s:globalSections){
+        cout<<"section "<<s.name<<" "<<s.file<<"; offset: "<<s.offset<<"; size:"<<sectionSizes[s.name]<<endl; 
+
+    }
+    cout<<endl; 
+
     for(auto s:sectionAdresses){
         cout<<"section: "+s.first<<", address:"+to_string(s.second)<<endl; 
     }
