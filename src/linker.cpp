@@ -223,10 +223,16 @@ void Linker::processRelocations(){
             if(currentLine=="section begin"){
                 getline(inFile, currentLine);
                 currentSection=currentLine;
-                // cout<<currentLine<<endl; 
-                string se = "section end"; 
                 getline(inFile, currentLine);
-                while(currentLine!="code of section:"){
+                // cout<<currentLine<<endl; 
+                cout<<currentSection<<endl; 
+                while(true){
+                    if(currentLine=="code of section:"){
+                        getline(inFile, currentLine);
+                        string code=currentLine; 
+                        cout<<code<<endl; 
+                        break; 
+                    }
                     cout<<currentLine<<endl; 
                     relocationEntry reloc; 
                     vector<string>tokens=tokenizeLine(currentLine, ":");
@@ -247,13 +253,8 @@ void Linker::processRelocations(){
 
                     getline(inFile, currentLine);
                 } 
-            }
-
-            else if(currentLine=="code of section"){
 
             }
-
-
         }
 
     }
