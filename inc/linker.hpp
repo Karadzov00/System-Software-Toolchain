@@ -90,6 +90,8 @@ public:
     bool checkCmdArguments(int argc, char* argv[]); 
     void openParseFile(); 
     void processRelocations(); 
+    void remakeCode(string code, string currentSection); 
+    string findSymbolById(int id); //in local symbol table 
 
     //helper functions 
     vector<string> tokenizeLine(string line, string delimiters); 

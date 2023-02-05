@@ -2,6 +2,7 @@
 #include "../inc/regex.hpp"
 #include <iomanip>
 #include <bitset>
+#include <algorithm>
 
 
 int Linker::globalId=1; 
@@ -231,6 +232,9 @@ void Linker::processRelocations(){
                         getline(inFile, currentLine);
                         string code=currentLine; 
                         cout<<code<<endl; 
+                        code.erase(std::remove(code.begin(), code.end(), ':'), code.end());
+                        cout<<code<<endl; 
+                        remakeCode(code, currentSection); 
                         break; 
                     }
                     cout<<currentLine<<endl; 
@@ -261,6 +265,28 @@ void Linker::processRelocations(){
 
 }
 
+void Linker::remakeCode(string code, string currentSection){
+    for(auto r:sectionRelocations){
+        if(r.sectionName==currentSection){
+            int offset = r.offset; //offset in section
+            int symbolID = r.symbol; 
+            int addend = r.addend; 
+            string symbol = findSymbolById(symbolID); 
+            cout<<symbol<<endl; 
+            //convert new value to hex 
+            
+            if(r.type==0){
+                //write new value in code 
+                
+            }
+            else{
+
+            }
+        }
+    }
+
+} 
+
 
 int Linker::findFileSectionOffset(string file, string section){
     for(auto s: globalSections){
@@ -272,6 +298,13 @@ int Linker::findFileSectionOffset(string file, string section){
     }
     return -1; 
 } 
+
+string Linker::findSymbolById(int id){
+    for(auto s:localSymbolTable){
+        if(s.second.symbolId==id)
+            return s.second.symbolName; 
+    }
+}
 
 
 void Linker::printSymbolTable(){
