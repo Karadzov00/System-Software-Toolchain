@@ -103,6 +103,7 @@ public:
     int findFileSectionOffset(string file, string section); 
     string literalToHex(string token);
     string decToHex(int dec);
+    void printCode(string input); 
 
 
 };

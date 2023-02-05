@@ -283,9 +283,16 @@ void Linker::remakeCode(string code, string currentSection){
 
             string globalValue = literalToHex(to_string(globalSymbolTable[symbol])); 
             cout<<"global value: "+globalValue<<endl; 
+            cout<<"offset: "+to_string(offset)<<endl; 
             //convert new value to hex 
             if(r.type==0){
                 //write new value in code 
+                int position = offset*2; 
+                for(int i=0; i<4; i++){
+                    code[position+i]=globalValue[i]; 
+                }
+                cout<<"new code"<<endl; 
+                printCode(code); 
                 
             }
             else{
@@ -315,6 +322,21 @@ string Linker::findSymbolById(int id){
     }
     return ""; 
 }
+
+void Linker::printCode(string input){
+    std::string result;
+    int cnt=1;
+    for (int i = 0; i < input.size(); i++) {
+        result += input[i];
+        if (cnt==2) {
+            result += ":";
+            cnt=0; 
+        }
+        cnt++; 
+    }
+    std::cout << result << std::endl;
+} 
+
 
 string Linker::literalToHex(string token){
     int lit = stoi(token); 
