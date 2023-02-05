@@ -61,6 +61,8 @@ struct fileSectionEntry{
   int id; //for fifo order 
 };
 
+enum wordRange{WORD_MAX=65536, WORD_MIN=-32768}; 
+
 class Linker{
 private:
 
@@ -99,5 +101,8 @@ public:
     string findSectionName(int num); 
     void printGlobalSymbolTable(); 
     int findFileSectionOffset(string file, string section); 
+    string literalToHex(string token);
+    string decToHex(int dec);
+
 
 };

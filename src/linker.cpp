@@ -266,6 +266,7 @@ void Linker::processRelocations(){
 }
 
 void Linker::remakeCode(string code, string currentSection){
+    cout<<"relocation symbols:"<<endl; 
     for(auto r:sectionRelocations){
         if(r.sectionName==currentSection){
             int offset = r.offset; //offset in section
@@ -280,6 +281,8 @@ void Linker::remakeCode(string code, string currentSection){
                 throw BadSynataxException(msg);
             }
 
+            string globalValue = literalToHex(to_string(globalSymbolTable[symbol])); 
+            cout<<"global value: "+globalValue<<endl; 
             //convert new value to hex 
             if(r.type==0){
                 //write new value in code 
@@ -312,6 +315,42 @@ string Linker::findSymbolById(int id){
     }
     return ""; 
 }
+
+string Linker::literalToHex(string token){
+    int lit = stoi(token); 
+    //literal must be withing range of 2 bytes 
+    if(lit>WORD_MAX || lit<WORD_MIN){
+        string msg ="Literal out of range! Error at line: "+ to_string(currLineNum);
+        throw BadSynataxException(msg);
+    }
+    
+    //TODO add hex regex 
+    regex hexRegex("0x[0-9A-Fa-f]+"); 
+    smatch sm; 
+    if(!regex_search(token, sm, hexRegex)){
+        //dec literal 
+        token = decToHex(stoi(token)); 
+    }
+    // cout<<"Token is: "<<token<<endl; 
+    regex hexPrefix("0x"); 
+    token=regex_replace(token, hexPrefix, "");
+
+    for (int i=0; i<token.length(); i++){
+        token[i]=toupper(token[i]); 
+    }
+    for (int i=token.length(); i<4; i++){
+        token.insert(0, "0"); 
+    }
+    return token;
+}
+
+string Linker::decToHex(int dec){
+  std::stringstream ss;
+  ss<< std::hex << dec; // int decimal_value
+  std::string res ( ss.str() );
+  return res; 
+}
+
 
 
 void Linker::printSymbolTable(){
