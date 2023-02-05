@@ -25,6 +25,7 @@ struct relocationEntry{
   int type; 
   int symbol; 
   int addend; 
+  string sectionName; 
 }; 
 
 struct symbolTableEntry{
@@ -80,6 +81,7 @@ private:
     vector<fileSectionEntry>globalSections; 
     string currentSection; 
     map<string, symbolTableEntry>localSymbolTable; 
+    vector<relocationEntry>sectionRelocations; 
 
 
 public:

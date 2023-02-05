@@ -201,12 +201,14 @@ void Linker::processRelocations(){
 
             vector<string>tokens; 
             tokens=tokenizeLine(currentLine, ":"); 
+            
             string name = tokens[0];
             int isGlobal = stoi(tokens[1]);
             int symbolId = stoi(tokens[2]);
             int sectionNum = stoi(tokens[3]);
             int value = stoi(tokens[4]);
             int size = stoi(tokens[5]);
+            
 
             localSymbolTable[name].symbolName=name;
             localSymbolTable[name].isGlobal=isGlobal;
@@ -221,18 +223,29 @@ void Linker::processRelocations(){
             if(currentLine=="section begin"){
                 getline(inFile, currentLine);
                 currentSection=currentLine;
+                // cout<<currentLine<<endl; 
                 string se = "section end"; 
-                while(currentLine!="section end"){
+                getline(inFile, currentLine);
+                while(currentLine!="code of section:"){
+                    cout<<currentLine<<endl; 
                     relocationEntry reloc; 
                     vector<string>tokens=tokenizeLine(currentLine, ":");
+                    for(auto t:tokens){
+                        cout<<t+" "; 
+                    }
+                    cout<<endl; 
                     reloc.offset=stoi(tokens[0]);
                     reloc.type=stoi(tokens[1]);
                     reloc.symbol=stoi(tokens[2]);
                     reloc.addend=stoi(tokens[3]);
+                    reloc.sectionName=currentSection; 
+                    sectionRelocations.push_back(reloc); 
                     //make relocation table 
                     //read code into line
                     //change code with global symbol values 
 
+
+                    getline(inFile, currentLine);
                 } 
             }
 
