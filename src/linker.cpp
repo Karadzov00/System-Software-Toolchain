@@ -178,8 +178,75 @@ void Linker::openParseFile(){
     }
 
     printGlobalSymbolTable(); 
+    processRelocations(); 
+
+
 
 }
+
+void Linker::processRelocations(){
+    //process relocations 
+    for(auto inputFile:inputFiles){
+        fstream inFile;
+        inFile.open(inputFile); 
+        if(!inFile.is_open())throw FileNotOpenException();
+        cout<<inputFile+" - File opened! \n";  
+        currLineNum=1; 
+        localSymbolTable.clear(); 
+        //TODO generate local symbol table 
+        while(getline(inFile, currentLine)){
+            //while for symb table
+            if(currentLine=="section begin")break; 
+
+
+            vector<string>tokens; 
+            tokens=tokenizeLine(currentLine, ":"); 
+            string name = tokens[0];
+            int isGlobal = stoi(tokens[1]);
+            int symbolId = stoi(tokens[2]);
+            int sectionNum = stoi(tokens[3]);
+            int value = stoi(tokens[4]);
+            int size = stoi(tokens[5]);
+
+            localSymbolTable[name].symbolName=name;
+            localSymbolTable[name].isGlobal=isGlobal;
+            localSymbolTable[name].symbolId=symbolId;
+            localSymbolTable[name].sectionNum=sectionNum;
+            localSymbolTable[name].value=value;
+            localSymbolTable[name].size=size;
+        }
+        while(getline(inFile, currentLine)){
+            //while for relocations 
+            smatch match; 
+            if(currentLine=="section begin"){
+                getline(inFile, currentLine);
+                currentSection=currentLine;
+                string se = "section end"; 
+                while(currentLine!="section end"){
+                    relocationEntry reloc; 
+                    vector<string>tokens=tokenizeLine(currentLine, ":");
+                    reloc.offset=stoi(tokens[0]);
+                    reloc.type=stoi(tokens[1]);
+                    reloc.symbol=stoi(tokens[2]);
+                    reloc.addend=stoi(tokens[3]);
+                    //make relocation table 
+                    //read code into line
+                    //change code with global symbol values 
+
+                } 
+            }
+
+            else if(currentLine=="code of section"){
+
+            }
+
+
+        }
+
+    }
+
+}
+
 
 int Linker::findFileSectionOffset(string file, string section){
     for(auto s: globalSections){

@@ -78,6 +78,8 @@ private:
     vector<string>sections; //ordered by file appearences in files 
     vector<fileSectionEntry>partionedSections; 
     vector<fileSectionEntry>globalSections; 
+    string currentSection; 
+    map<string, symbolTableEntry>localSymbolTable; 
 
 
 public:
@@ -85,6 +87,7 @@ public:
     Linker(){}
     bool checkCmdArguments(int argc, char* argv[]); 
     void openParseFile(); 
+    void processRelocations(); 
 
     //helper functions 
     vector<string> tokenizeLine(string line, string delimiters); 
