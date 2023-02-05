@@ -59,6 +59,7 @@ struct fileSectionEntry{
   string file; 
   int offset;  
   int id; //for fifo order 
+  string code; 
 };
 
 enum wordRange{WORD_MAX=65536, WORD_MIN=-32768}; 
@@ -85,6 +86,7 @@ private:
     map<string, symbolTableEntry>localSymbolTable; 
     vector<relocationEntry>sectionRelocations; 
     map<string, string>sectionsCode; 
+    string globalCode; 
 
 
 public:
@@ -93,7 +95,7 @@ public:
     bool checkCmdArguments(int argc, char* argv[]); 
     void openParseFile(); 
     void processRelocations(); 
-    void remakeCode(string code, string currentSection); 
+    void remakeCode(string code, string currentSection, string file); 
     string findSymbolById(int id); //in local symbol table 
 
     //helper functions 
@@ -105,6 +107,7 @@ public:
     string literalToHex(string token);
     string decToHex(int dec);
     void printCode(string input); 
+    void writeCodeToGlobalSection(string section, string file, string code); 
 
 
 };

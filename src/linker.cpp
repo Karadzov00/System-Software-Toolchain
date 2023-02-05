@@ -3,6 +3,7 @@
 #include <iomanip>
 #include <bitset>
 #include <algorithm>
+#include <set>
 
 
 int Linker::globalId=1; 
@@ -181,6 +182,13 @@ void Linker::openParseFile(){
     printGlobalSymbolTable(); 
     processRelocations(); 
 
+    for(auto s:globalSections){
+        cout<<"section "<<s.name<<endl; 
+        printCode(s.code);
+        cout<<endl; 
+    }
+
+
 
 
 }
@@ -236,7 +244,8 @@ void Linker::processRelocations(){
                         cout<<code<<endl; 
                         code.erase(std::remove(code.begin(), code.end(), ':'), code.end());
                         cout<<code<<endl; 
-                        remakeCode(code, currentSection); 
+                        writeCodeToGlobalSection(currentSection, inputFile, code); 
+                        remakeCode(code, currentSection, inputFile); 
                         break; 
                     }
                     cout<<currentLine<<endl; 
@@ -267,7 +276,7 @@ void Linker::processRelocations(){
 
 }
 
-void Linker::remakeCode(string code, string currentSection){
+void Linker::remakeCode(string code, string currentSection, string file){
     cout<<"relocation symbols:"<<endl; 
     for(auto r:sectionRelocations){
         if(r.sectionName==currentSection){
@@ -311,7 +320,9 @@ void Linker::remakeCode(string code, string currentSection){
                 cout<<endl; 
 
                 //add remade code to sections code  
-                sectionsCode[currentSection]=code; 
+                // sectionsCode[currentSection]=code; 
+                writeCodeToGlobalSection(currentSection, file, code);
+                
 
                 //add remade code to global code for emulator 
                 
@@ -340,7 +351,9 @@ void Linker::remakeCode(string code, string currentSection){
                 cout<<endl; 
 
                 //add remade code to sections code  
-                sectionsCode[currentSection]=code; 
+                // sectionsCode[currentSection]=code; 
+                writeCodeToGlobalSection(currentSection, file, code);
+                
 
                 //add remade code to global code for emulator 
 
@@ -362,6 +375,19 @@ int Linker::findFileSectionOffset(string file, string section){
     }
     return -1; 
 } 
+
+void Linker::writeCodeToGlobalSection(string section, string file, string code){
+    for(auto &s: globalSections){
+        if(file.compare(s.file)==0 && section.compare(s.name)==0){
+            //found right section in right file 
+            s.code=code; 
+            // cout<<"found section"<<endl; 
+            // cout<<"section "+section<<endl; 
+            // printCode(s.code); 
+        }
+    }
+}
+
 
 string Linker::findSymbolById(int id){
     for(auto s:localSymbolTable){
