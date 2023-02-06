@@ -403,7 +403,7 @@ A0 40 04 00 08 A0 50 04 00 0A
 A0 60 04 00 0C 00 
 
 symbol: destinations
-symbolID
+olName
 global value hex: 0138
 offset: 88
 type: 0
@@ -459,7 +459,7 @@ A0 40 04 00 08 A0 50 04 00 0A
 A0 60 04 00 0C 00 
 
 symbol: destinations
-symbolID
+olName
 global value hex: 0138
 offset: 124
 type: 0
@@ -515,7 +515,7 @@ A0 40 04 00 08 A0 50 04 00 0A
 A0 60 04 00 0C 00 
 
 symbol: destinations
-symbolID
+olName
 global value hex: 0138
 offset: 155
 type: 0
@@ -988,3 +988,4 @@ A0 00 00 00 02 B0 60 12 A0 00
 01 2A 12 A0 00 00 AB CD A0 10 
 00 01 2A B0 01 02 A0 61 42 A0 
 60 42 20 
+./tests/program.hex opened

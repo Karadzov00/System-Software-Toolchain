@@ -190,6 +190,8 @@ void Linker::openParseFile(){
     }
     cout<<endl<<"GLOBAL CODE:"<<endl; 
     printCode(globalCode); 
+    
+    writeEmulatorInput(globalCode); 
 
 
 
@@ -468,6 +470,42 @@ void Linker::printCode(string input){
     cout<<endl; 
     // std::cout << result << std::endl;
 } 
+
+void Linker::writeEmulatorInput(string input){
+    ofstream hex;
+    hex.open(outputFile); 
+    if(hex.is_open()){
+        cout<<outputFile+" opened"<<endl; 
+    }
+    else{
+        throw FileNotOpenException(); 
+    }
+
+    int cnt=1;
+    int cntLine=1; 
+    hex<<"0000: "; 
+    for(auto c: input){
+      hex<<c; 
+      if(cnt==2){
+        hex<<" ";
+        cnt=0; 
+      }
+      if(cntLine%16==0){
+        hex<<endl;
+        string byte = decimalToHex(cntLine/2); 
+        byte = binToHex16bit(byte); 
+        for (int i=byte.length(); i<4; i++){
+            //add leading zeros 
+            byte.insert(0, "0"); 
+        }
+        hex<<byte+": "; 
+      }
+      cnt++; 
+      cntLine++; 
+    }
+    hex<<endl; 
+}
+
 
 string Linker::binToHex16bit(string bin){
   bitset<16> set(bin);  
