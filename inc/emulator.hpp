@@ -13,5 +13,8 @@ class Emulator{
 private:
 
 public:
+    Emulator(){}
+    bool checkCmdArguments(int argc, char* argv[]); 
+    
 
 };

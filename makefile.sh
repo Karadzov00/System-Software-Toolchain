@@ -16,7 +16,8 @@ g++ ./src/mainLinker.cpp ./src/linker.cpp -o linker > console.txt
 ./linker -hex -o ./tests/program.hex ./tests/ivt.o ./tests/math.o ./tests/main.o ./tests/isr_reset.o ./tests/isr_terminal.o ./tests/isr_timer.o ./tests/isr_user0.o > console.txt
 
 
-#g++ ./src/emulator.cpp ./src/mainEmulator.cpp -o emulator
+g++ ./src/emulator.cpp ./src/mainEmulator.cpp -o emulator > console_emu.txt
+./emulator program.hex > console_emu.txt
 
 
 # ASSEMBLER=./asembler

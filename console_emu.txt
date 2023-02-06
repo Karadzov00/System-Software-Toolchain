@@ -1,0 +1,2 @@
+Entered main emulator! 
+Lepo zadati argumenti 
