@@ -186,7 +186,10 @@ void Linker::openParseFile(){
         cout<<"section "<<s.name<<endl; 
         printCode(s.code);
         cout<<endl; 
+        globalCode.append(s.code); 
     }
+    cout<<endl<<"GLOBAL CODE:"<<endl; 
+    printCode(globalCode); 
 
 
 
@@ -329,6 +332,23 @@ void Linker::remakeCode(string code, string currentSection, string file){
             }
             //pcrel - little endian 
             else if(r.type==1){
+                int isGlobal = localSymbolTable[symbol].isGlobal; 
+                if(isGlobal==1){
+                    //symbol is global 
+                    //global address for symbol
+                    int globalAddr = globalSymbolTable[symbol];
+
+                    //global address for relocation offset=glob section address+reloc offset
+                    int relocSectionOffset = findFileSectionOffset(file, currentSection); 
+                    cout<<"global symb addr "+to_string(globalAddr)<<endl;
+                    cout<<"reloc section offset "+to_string(relocSectionOffset)<<endl;
+                    
+
+                }
+                else{
+
+                }
+                
 
             }
             //for word directive - little endian 
@@ -417,6 +437,19 @@ void Linker::printCode(string input){
     cout<<endl; 
     // std::cout << result << std::endl;
 } 
+
+string Linker::binToHex16bit(string bin){
+  bitset<16> set(bin);  
+  stringstream res;
+  res << hex << uppercase << set.to_ulong();
+  return res.str();
+}
+
+string Linker::decimalToHex(int decimal) {
+    std::bitset<16> binary(decimal);
+    std::string hex = std::bitset<16>(binary).to_string();
+    return hex;
+}
 
 
 string Linker::literalToHex(string token){

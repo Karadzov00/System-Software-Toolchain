@@ -108,6 +108,11 @@ public:
     string decToHex(int dec);
     void printCode(string input); 
     void writeCodeToGlobalSection(string section, string file, string code); 
+    string binToHex16bit(string bin); 
+    string decimalToHex(int decimal); 
+
+
+
 
 
 };
