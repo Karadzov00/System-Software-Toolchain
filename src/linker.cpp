@@ -335,10 +335,17 @@ void Linker::remakeCode(string code, string currentSection, string file){
             //pcrel - little endian 
             else if(r.type==1){
                 int isGlobal = localSymbolTable[symbol].isGlobal; 
-
+                int symbAddr; 
+                if(isGlobal==1){
                     //symbol is global 
                     //global address for symbol
-                    int symbAddr = globalSymbolTable[symbol];
+                    symbAddr = globalSymbolTable[symbol];
+                }
+                else{
+                    //symbol is local 
+                    symbAddr = localSymbolTable[symbol].value+findFileSectionOffset(file, currentSection);  
+
+                }
 
                     //global address for relocation offset=glob section address+reloc offset
                     int relocSectionOffset = findFileSectionOffset(file, currentSection); 
@@ -382,6 +389,7 @@ void Linker::remakeCode(string code, string currentSection, string file){
                     //add remade code to sections code  
                     // sectionsCode[currentSection]=code; 
                     writeCodeToGlobalSection(currentSection, file, code);
+              
 
             }
             //for word directive - little endian 
