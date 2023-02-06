@@ -336,13 +336,50 @@ void Linker::remakeCode(string code, string currentSection, string file){
                 if(isGlobal==1){
                     //symbol is global 
                     //global address for symbol
-                    int globalAddr = globalSymbolTable[symbol];
+                    int symbAddr = globalSymbolTable[symbol];
 
                     //global address for relocation offset=glob section address+reloc offset
                     int relocSectionOffset = findFileSectionOffset(file, currentSection); 
-                    cout<<"global symb addr "+to_string(globalAddr)<<endl;
+                    cout<<"global symb addr "+to_string(symbAddr)<<endl;
                     cout<<"reloc section offset "+to_string(relocSectionOffset)<<endl;
-                    
+                    int relocAddr = relocSectionOffset+r.offset;
+                    cout<<"reloc offset address "+to_string(relocAddr)<<endl;
+                    int dhdl = symbAddr-relocAddr-2; 
+
+                    //convert it to hexadecimal and make it little endian 
+                    string symbValue= decimalToHex(dhdl); 
+                    cout<<"bin value: "+symbValue<<endl; 
+                    symbValue=binToHex16bit(symbValue); 
+                    cout<<"hex value: "+symbValue<<endl; 
+                    string value; 
+
+                    for(int i=symbValue.length(); i<4; i++){
+                        //add leading zeros
+                        value+="0";
+                    }
+                    for(int i=0; i<symbValue.length(); i++){
+                        value+=symbValue[i]; 
+                    }
+
+                    //make it little endian - rotate bytes in symbValue
+                    string tmp=value.substr(0,2);
+                    value = value.substr(2,2); 
+                    value.append(tmp); 
+
+
+                    cout<<"value of little endian dhdl is "+value<<endl; 
+
+                    int position = offset*2; 
+                    for(int i=0; i<4; i++){
+                        code[position+i]=value[i]; 
+                    }
+                    cout<<"new code"<<endl; 
+                    printCode(code); 
+                    cout<<endl; 
+
+                    //add remade code to sections code  
+                    // sectionsCode[currentSection]=code; 
+                    writeCodeToGlobalSection(currentSection, file, code);
 
                 }
                 else{
