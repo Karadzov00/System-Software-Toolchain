@@ -17,7 +17,7 @@ g++ ./src/mainLinker.cpp ./src/linker.cpp -o linker > console.txt
 
 
 g++ ./src/emulator.cpp ./src/mainEmulator.cpp -o emulator > console_emu.txt
-./emulator program.hex > console_emu.txt
+./emulator ./tests/program.hex > console_emu.txt
 
 
 # ASSEMBLER=./asembler

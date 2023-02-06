@@ -9,6 +9,7 @@ int main(int argc, char* argv[]){
     {
         Emulator emulator; 
         emulator.checkCmdArguments(argc, argv); 
+        emulator.openParseFile(); 
     
 
     }
