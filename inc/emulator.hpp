@@ -18,14 +18,24 @@ struct Instruction{
     int dataHigh; 
     int dataLow;  
 }; 
-enum instrCode{HALT, INTERR, IRET, CALL, RET, JUMPS, XCHG, ARITHMETIC,
-                LOGIC, SHIFT, LDR, STR};
+enum instrCode{HALT, INTERR, IRET, CALL, RET, JMP, JEQ, JNE, JGT, XCHG, ADD, SUB, MUL,
+ DIV, CMP, LOGICNOT, LOGICAND, LOGICOR, LOGICXOR, LOGICTEST, SHL, SHR, LDR, STR};
 enum jumpType{JMP, JEQ, JNE, JGT}; 
 enum arithmeticType{ADD, SUB, MUL, DIV, CMP};
 enum logicType{LOGICNOT, LOGICAND, LOGICOR, LOGICXOR, LOGICTEST}; 
 enum shiftType{SHL, SHR}; 
 enum addressing{IMM, REGDIR, REGDIRDISP, REGIN, REGINDDISP, MEM};
 enum update{NOUPDATE, PREDECREMENT, PREINCREMENT, POSTDECREMENT, POSTINCREMENT}; 
+// map<string , instrCode>instrmap ={{"00", HALT}, {"01", XCHG}}; 
+
+map<string, instrCode> instructionMap = 
+{{"00", HALT}, {"10", INTERR}, {"20", IRET}, {"30", CALL}, {"40", RET},
+ {"50", JMP}, {"51", JEQ}, {"52", JNE}, {"53", JGT}, 
+{"60", XCHG}, {"70", ADD}, {"71", SUB}, {"72", MUL}, {"73", DIV}, {"74", CMP},
+ {"80", LOGICNOT}, {"81", LOGICAND}, {"82", LOGICOR}, {"83", LOGICXOR},
+{"84", LOGICTEST}, {"90", SHL}, {"91", SHR}, {"A0", LDR}, {"B0", STR}};
+
+
 
 class Emulator{
 private:

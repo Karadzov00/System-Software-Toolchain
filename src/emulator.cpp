@@ -207,6 +207,7 @@ void Emulator::fetchInstrucionAndOperands(){
     string dummy = readTwoBytesLittleEndian(registers[pc]); 
     cout<<"first 2 bytes are "+dummy<<endl; 
     Instruction instruction; 
+    
 
 
 }
