@@ -27,10 +27,21 @@ public:
     void writeCodeToMemory(); 
     void resetProcessor(); 
     void emulate(); 
+    void fetchInstrucionAndOperands(); 
+    void executeInstrucion(); 
+    void interrupt(); 
 
     //helper functions 
     vector<string> tokenizeLine(string line, string delimiters); 
     void printCode(string input); 
+    string readOneByte(int address); 
+    string readTwoBytes(int address);
+    string readTwoBytesLittleEndian(int address);
+    int hexToDecUnsigned(string hex);   
+    int hexToDecSigned(string hex); 
+    string binToHex16bit(string bin);
+    string decimalToBin16bit(int decimal); 
+
 
     //get bits 
     short getZ(); 

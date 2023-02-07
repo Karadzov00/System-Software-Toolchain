@@ -37,8 +37,8 @@ void Emulator::writeCodeToMemory(){
     regex numColonRegex("^.+:");
     vector<string>tokens;  
     while(getline(inFile, currentLine)){
-        currentLine=regex_replace(currentLine, numColonRegex, ""); 
         cout<<currentLine<<endl; 
+        currentLine=regex_replace(currentLine, numColonRegex, ""); 
         tokens = tokenizeLine(currentLine, " ");
         for(auto t:tokens){
             //writing each byte to memory 
@@ -50,7 +50,7 @@ void Emulator::writeCodeToMemory(){
 
     }
     string code(memory, sizeof(memory)/sizeof(char)); 
-    printCode(memory); 
+    // printCode(memory); //writing to memory works 
     
 }
 
@@ -67,11 +67,6 @@ void Emulator::resetProcessor(){
 
 }
 
-void Emulator::emulate(){
-    while(true){
-        
-    }
-}
 
 
 vector<string> Emulator::tokenizeLine(string line, string delimiters){
@@ -116,4 +111,86 @@ void Emulator::printCode(string input){
     cout<<endl; 
 } 
 
+string Emulator::binToHex16bit(string bin){
+  bitset<16> set(bin);  
+  stringstream res;
+  res << hex << uppercase << set.to_ulong();
+  return res.str();
+}
 
+string Emulator::decimalToBin16bit(int decimal) {
+    std::bitset<16> binary(decimal);
+    std::string hex = std::bitset<16>(binary).to_string();
+    return hex;
+}
+
+int Emulator::hexToDecUnsigned(string hex){
+    unsigned int x = std::stoul(hex, nullptr, 16);
+    return x; 
+}   
+
+int Emulator::hexToDecSigned(string hex){
+    int x = std::stoul(hex, nullptr, 16);
+    return x; 
+}
+
+
+//little endian 
+string Emulator::readOneByte(int address){
+    char c1 = memory[address]; 
+    char c2 = memory[address+1]; 
+    string ret;
+    ret.push_back(c1); 
+    ret.push_back(c2);  
+    return ret; 
+} 
+
+//big endian 
+string Emulator::readTwoBytes(int address){
+    char c1 = memory[address]; 
+    char c2 = memory[address+1]; 
+    char c3 = memory[address+2]; 
+    char c4 = memory[address+3]; 
+
+    string ret;
+    ret.push_back(c1); 
+    ret.push_back(c2);  
+    ret.push_back(c3);  
+    ret.push_back(c4);  
+    return ret; 
+} 
+string Emulator::readTwoBytesLittleEndian(int address){
+    char c1 = memory[address]; 
+    char c2 = memory[address+1]; 
+    char c3 = memory[address+2]; 
+    char c4 = memory[address+3]; 
+
+    string ret;
+    ret.push_back(c3);  
+    ret.push_back(c4);  
+    ret.push_back(c1); 
+    ret.push_back(c2);  
+    return ret;
+}
+
+
+
+
+void Emulator::emulate(){
+    while(true){
+        fetchInstrucionAndOperands(); 
+        break; //for testing only 
+        if(haltFlag){
+            break; 
+        }
+
+    }
+}
+
+void Emulator::fetchInstrucionAndOperands(){
+    string istrCode = readOneByte(registers[pc]); 
+    cout<<"first byte is "+istrCode<<endl; 
+    string dummy = readTwoBytesLittleEndian(registers[pc]); 
+    cout<<"first 2 bytes are "+dummy<<endl; 
+
+}
