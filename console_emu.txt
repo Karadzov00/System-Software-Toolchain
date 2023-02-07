@@ -2,6 +2,7 @@ Entered main emulator!
 input file: ./tests/program.hex
 Lepo zadati argumenti 
 ./tests/program.hex - File opened! 
+MEMORY
 0000: 40 01 00 00 46 01 45 01 
 0008: 47 01 00 00 00 00 00 00 
 0010: B0 61 12 A0 06 03 00 04 
@@ -47,5 +48,7 @@ Lepo zadati argumenti
 0150: AB CD A0 10 00 01 2A B0 
 0158: 01 02 A0 61 42 A0 60 42 
 0160: 20 
-first byte is 40
-first 2 bytes are 0140
+hex 0140
+initial address: 0140
+dec value: 320
+target address: 50F0

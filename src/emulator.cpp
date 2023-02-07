@@ -36,6 +36,7 @@ void Emulator::writeCodeToMemory(){
     cout<<inputFile+" - File opened! \n";  
     regex numColonRegex("^.+:");
     vector<string>tokens;  
+    cout<<"MEMORY"<<endl; 
     while(getline(inFile, currentLine)){
         cout<<currentLine<<endl; 
         currentLine=regex_replace(currentLine, numColonRegex, ""); 
@@ -58,11 +59,19 @@ void Emulator::resetProcessor(){
     for(int i=0; i<6; i++){
         registers[i]=0; 
     }
-    registers[pc]=0;
+    string initialAddr = readTwoBytesLittleEndian(0);
+    
+    int firstAddress = hexToDecUnsigned(initialAddr);  
+    cout<<"initial address: "+initialAddr<<endl; 
+    cout<<"dec value: "+to_string(firstAddress)<<endl; 
+    string target = readTwoBytes(firstAddress); 
+    cout<<"target address: "+target<<endl; 
+
+    registers[pc]=firstAddress;
     registers[sp]=0; 
     registers[psw]=0x8000; //masked interrupts on bit 15 
     haltFlag=false; 
-    memory[65535]={0};
+    
 
 
 }
@@ -125,6 +134,8 @@ string Emulator::decimalToBin16bit(int decimal) {
 }
 
 int Emulator::hexToDecUnsigned(string hex){
+    // hex.insert(0,"0x"); 
+    cout<<"hex " + hex<<endl; 
     unsigned int x = std::stoul(hex, nullptr, 16);
     return x; 
 }   
@@ -147,6 +158,7 @@ string Emulator::readOneByte(int address){
 
 //big endian 
 string Emulator::readTwoBytes(int address){
+    address*=2; 
     char c1 = memory[address]; 
     char c2 = memory[address+1]; 
     char c3 = memory[address+2]; 
@@ -160,6 +172,7 @@ string Emulator::readTwoBytes(int address){
     return ret; 
 } 
 string Emulator::readTwoBytesLittleEndian(int address){
+    address*=2; 
     char c1 = memory[address]; 
     char c2 = memory[address+1]; 
     char c3 = memory[address+2]; 
@@ -177,6 +190,7 @@ string Emulator::readTwoBytesLittleEndian(int address){
 
 
 void Emulator::emulate(){
+    resetProcessor(); 
     while(true){
         fetchInstrucionAndOperands(); 
         break; //for testing only 
@@ -189,8 +203,10 @@ void Emulator::emulate(){
 
 void Emulator::fetchInstrucionAndOperands(){
     string istrCode = readOneByte(registers[pc]); 
-    cout<<"first byte is "+istrCode<<endl; 
+    // cout<<"first byte is "+istrCode<<endl; 
     string dummy = readTwoBytesLittleEndian(registers[pc]); 
-    cout<<"first 2 bytes are "+dummy<<endl; 
+    // cout<<"first 2 bytes are "+dummy<<endl; 
+    Instruction instruction; 
+
 
 }

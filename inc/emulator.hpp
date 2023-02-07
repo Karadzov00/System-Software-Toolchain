@@ -9,6 +9,16 @@
 
 using namespace std; 
 
+struct Instruction{
+    string instrCode;
+    char regDest; 
+    char regSource; 
+    char updateMode; 
+    char addrMode; 
+    int dataHigh; 
+    int dataLow;  
+}; 
+
 class Emulator{
 private:
     string inputFile; 
@@ -20,6 +30,7 @@ private:
     char memory[65535]={0}; 
     int cntMem=0; 
     bool haltFlag; 
+    Instruction instruction; 
     
 public:
     Emulator(){}
