@@ -6,6 +6,12 @@
 #include <set>
 
 
+map<string, instrCode> instructionMap={{"00", HALT}, {"10", INTERR}, {"20", IRET},
+ {"30", CALL}, {"40", RET}, {"50", JMP}, {"51", JEQ}, {"52", JNE}, {"53", JGT}, 
+{"60", XCHG}, {"70", ADD}, {"71", SUB}, {"72", MUL}, {"73", DIV}, {"74", CMP},
+ {"80", LOGICNOT}, {"81", LOGICAND}, {"82", LOGICOR}, {"83", LOGICXOR},
+{"84", LOGICTEST}, {"90", SHL}, {"91", SHR}, {"A0", LDR}, {"B0", STR}};
+
 
 bool Emulator::checkCmdArguments(int argc, char* argv[]){
     for (int i = 0; i < argc; i++){
@@ -75,6 +81,17 @@ void Emulator::resetProcessor(){
 
 
 }
+
+instrCode Emulator::findInstruction(string code){
+    if(instructionMap.find(code)!=instructionMap.end()){
+        //code found 
+        return instructionMap[code];
+    }
+    else{
+        //code not found 
+        return ERRCODE; 
+    }
+} 
 
 
 
@@ -148,6 +165,7 @@ int Emulator::hexToDecSigned(string hex){
 
 //little endian 
 string Emulator::readOneByte(int address){
+    address*=2; 
     char c1 = memory[address]; 
     char c2 = memory[address+1]; 
     string ret;
@@ -204,9 +222,69 @@ void Emulator::emulate(){
 void Emulator::fetchInstrucionAndOperands(){
     // string istrCode = readOneByte(registers[pc]); 
     // cout<<"first byte is "+istrCode<<endl; 
-    string dummy = readTwoBytesLittleEndian(registers[pc]); 
-    cout<<"first 2 bytes are "+dummy<<endl; 
-    Instruction instruction; 
+    string opCode = readOneByte(registers[pc]); 
+    cout<<"first byte is "+opCode<<endl; 
+    instruction.code = findInstruction(opCode); 
+
+    switch(instruction.code){
+        case HALT:
+            break; 
+        case INTERR:
+            break;
+        case IRET:
+            break;
+        case CALL:
+            break; 
+        case RET:
+            break;
+        case JMP:
+            cout<<"jmp instruction"<<endl; 
+            break;
+        case JEQ:
+            break; 
+        case JNE:
+            break;
+        case JGT:
+            break;
+        case XCHG:
+            break; 
+        case ADD:
+            break;
+        case SUB:
+            break;
+        case MUL:
+            break; 
+        case DIV:
+            break;
+        case CMP:
+            break;
+        case LOGICNOT:
+            break; 
+        case LOGICAND:
+            break;
+        case LOGICOR:
+            break;
+        case LOGICXOR:
+            break;
+        case LOGICTEST:
+            break;
+        case SHL:
+            break; 
+        case SHR:
+            break;
+        case LDR:
+            break;
+        case STR:
+            break; 
+        case ERRCODE:
+            break; 
+    }
+// map<string, instrCode> instructionMap={{"00", HALT}, {"10", INTERR}, {"20", IRET},
+//  {"30", CALL}, {"40", RET}, {"50", JMP}, {"51", JEQ}, {"52", JNE}, {"53", JGT}, 
+// {"60", XCHG}, {"70", ADD}, {"71", SUB}, {"72", MUL}, {"73", DIV}, {"74", CMP},
+//  {"80", LOGICNOT}, {"81", LOGICAND}, {"82", LOGICOR}, {"83", LOGICXOR},
+// {"84", LOGICTEST}, {"90", SHL}, {"91", SHR}, {"A0", LDR}, {"B0", STR}};
+    
     
 
 
