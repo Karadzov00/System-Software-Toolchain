@@ -58,3 +58,5 @@ regs: F0
 0
 addr mode: 00
 dhdl: 92
+pc: 325
+-135

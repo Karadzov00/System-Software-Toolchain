@@ -188,8 +188,12 @@ int Emulator::hexToDecUnsigned(string hex){
 }   
 
 int Emulator::hexToDecSigned(string hex){
-    int x = std::stoul(hex, nullptr, 16);
-    return x; 
+    unsigned short x;   
+    std::stringstream ss;
+    ss << std::hex << hex;
+    ss >> x;
+    // output it as a signed type
+    std::cout << static_cast<short>(x) << std::endl;
 }
 
 
@@ -351,17 +355,30 @@ void Emulator::fetchOperands(){
     cout<<"addr mode: "+addrMode<<endl; 
     instruction.updateMode=findUpdateType(addrMode[0]); 
     instruction.addrMode=findAddressing(addrMode[1]);
+    unsigned short oldPC = registers[pc]; 
     switch(instruction.addrMode){
         case IMM:{
             //needs payload 
-            registers[pc]++; 
-            int dhdl =hexToDecUnsigned(readTwoBytes(registers[pc]));
+            registers[pc]+=3;//to point at next instruction  
+            oldPC++; 
+            int dhdl =hexToDecUnsigned(readTwoBytes(oldPC));
             instruction.operand=dhdl; 
             cout<<"dhdl: "+to_string(instruction.operand)<<endl;  
+            cout<<"pc: "+to_string(registers[pc])<<endl; 
+            int dummy = hexToDecSigned("FF79"); 
+
+            unsigned short x;   
+            std::stringstream ss;
+            ss << std::hex << "ff79";
+            ss >> x;
+            // output it as a signed type
+            std::cout << static_cast<short>(x) << std::endl;
+            
 
         break; 
         }
         case REGDIR:{
+            registers[pc]++;//to point at next instruction  
             instruction.operand = instruction.regSource; 
             
         break;
@@ -370,15 +387,18 @@ void Emulator::fetchOperands(){
             //check if pcrel for jumps
             if(instruction.regSource==pc){
                 //payload is little endian 
-                registers[pc]++; 
+                registers[pc]+=3; 
+                oldPC++; 
                 //watch out for second complement 
-                int dhdl =hexToDecSigned(readTwoBytesLittleEndian(registers[pc]));
+                int dhdl =hexToDecSigned(readTwoBytesLittleEndian(oldPC));
                 //check this! is pc value good? 
                 instruction.operand=registers[pc]+dhdl; 
 
             }
             else{
-                int dhdl = hexToDecUnsigned(readTwoBytes(registers[pc]+1));
+                registers[pc]+=3; 
+                oldPC++; 
+                int dhdl = hexToDecUnsigned(readTwoBytes(oldPC));
                 instruction.operand=registers[instruction.regSource]+dhdl; 
                 
             }
@@ -386,6 +406,7 @@ void Emulator::fetchOperands(){
         break;
         }
         case REGIN:{
+            registers[pc]++;//to point at next instruction  
             int memVal = hexToDecUnsigned(readTwoBytes(registers[instruction.regSource]));
             instruction.operand=memVal; 
             cout<<"memVal: "+to_string(instruction.operand)<<endl;  
@@ -405,9 +426,10 @@ void Emulator::fetchOperands(){
         break;
         }
         case MEM:{
-            registers[pc]++; 
-            //read payload
-            int dhdl =hexToDecUnsigned(readTwoBytes(registers[pc]));
+            //payload is little endian 
+            registers[pc]+=3; 
+            oldPC++;
+            int dhdl =hexToDecUnsigned(readTwoBytes(oldPC));
             cout<<"dhdl: "+to_string(dhdl)<<endl; 
             //read from payload address in memory 
             instruction.operand=hexToDecUnsigned(readTwoBytes(dhdl)); 

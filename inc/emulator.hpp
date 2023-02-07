@@ -15,7 +15,7 @@ enum instrCode{HALT, INTERR, IRET, CALL, RET, JMP, JEQ, JNE, JGT, XCHG, ADD, SUB
 // enum arithmeticType{ADD, SUB, MUL, DIV, CMP};
 // enum logicType{LOGICNOT, LOGICAND, LOGICOR, LOGICXOR, LOGICTEST}; 
 // enum shiftType{SHL, SHR}; 
-enum addressing{IMM, REGDIR, REGDIRDISP, REGIN, REGINDDISP, MEM, ERRADDR};
+enum addressing{IMM, REGDIR, REGIN, REGINDDISP, MEM, REGDIRDISP, ERRADDR};
 enum update{NOUPDATE, PREDECREMENT, PREINCREMENT, POSTDECREMENT, POSTINCREMENT, ERRUPD}; 
 struct Instruction{
     instrCode code;
