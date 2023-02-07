@@ -280,6 +280,9 @@ void Emulator::fetchInstrucionAndOperands(){
         case JMP:{
             cout<<"jmp instruction"<<endl; 
             fetchOperands(); 
+            //proveri ispravnost operanada 
+            
+
             break;
         }
         case JEQ:
@@ -353,29 +356,61 @@ void Emulator::fetchOperands(){
             //needs payload 
             registers[pc]++; 
             int dhdl =hexToDecUnsigned(readTwoBytes(registers[pc]));
-            cout<<"dhdl: "+to_string(dhdl)<<endl;  
+            instruction.operand=dhdl; 
+            cout<<"dhdl: "+to_string(instruction.operand)<<endl;  
 
         break; 
         }
         case REGDIR:{
-
+            instruction.operand = instruction.regSource; 
+            
         break;
         }
         case REGDIRDISP:{
-            //check if pcrel
+            //check if pcrel for jumps
+            if(instruction.regSource==pc){
+                //payload is little endian 
+                registers[pc]++; 
+                //watch out for second complement 
+                int dhdl =hexToDecSigned(readTwoBytesLittleEndian(registers[pc]));
+                //check this! is pc value good? 
+                instruction.operand=registers[pc]+dhdl; 
+
+            }
+            else{
+                int dhdl = hexToDecUnsigned(readTwoBytes(registers[pc]+1));
+                instruction.operand=registers[instruction.regSource]+dhdl; 
+                
+            }
 
         break;
         }
         case REGIN:{
-
+            int memVal = hexToDecUnsigned(readTwoBytes(registers[instruction.regSource]));
+            instruction.operand=memVal; 
+            cout<<"memVal: "+to_string(instruction.operand)<<endl;  
         break;
         }
         case REGINDDISP:{
-            //check if pcrel
+            //check if pcrel for ldr/str
+            if(instruction.regSource==pc){
+                
+            }
+            else{
+                int dhdl = hexToDecUnsigned(readTwoBytes(registers[pc]+1));
+                int address = registers[instruction.regSource]+dhdl; 
+                instruction.operand=hexToDecUnsigned(readTwoBytes(address)); 
+            }
 
         break;
         }
         case MEM:{
+            registers[pc]++; 
+            //read payload
+            int dhdl =hexToDecUnsigned(readTwoBytes(registers[pc]));
+            cout<<"dhdl: "+to_string(dhdl)<<endl; 
+            //read from payload address in memory 
+            instruction.operand=hexToDecUnsigned(readTwoBytes(dhdl)); 
 
         break;
         }
@@ -385,4 +420,24 @@ void Emulator::fetchOperands(){
         }
 
     }
+    // switch(instruction.updateMode){
+    //     case NOUPDATE:{
+    //         break;
+    //     }
+    //     case PREDECREMENT:{
+    //         break;
+    //     }
+    //     case PREINCREMENT:{
+    //         break;
+    //     }
+    //     case POSTDECREMENT:{
+    //         break;
+    //     }
+    //     case POSTINCREMENT:{
+    //         break;
+    //     }
+    //     case ERRUPD:{
+    //         break; 
+    //     }
+    // }
 }

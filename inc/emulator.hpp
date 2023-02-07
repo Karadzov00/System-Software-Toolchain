@@ -23,7 +23,7 @@ struct Instruction{
     char regSource; 
     update updateMode; 
     addressing addrMode; 
-    int payload;  
+    int operand;  
 }; 
 
 
@@ -71,7 +71,36 @@ public:
     short getC(); 
     short getN(); 
 
+    //instructions 
+    void executeHALT();
+    void executeINT();
+    void executeIRET();
+    void executeCALL();
+    void executeRET();
+    void executeJMP();
+    void executeJEQ();
+    void executeJNE();
+    void executeJGT();
+    void executeXCHG();
+    void executeADD();
+    void executeSUB();
+    void executeMUL();
+    void executeDIV();
+    void executeCMP();
+    void executeNOT();
+    void executeAND();
+    void executeOR();
+    void executeXOR();
+    void executeTEST();
+    void executeSHL();
+    void executeSHR();
+    void executeLDR();
+    void executeLOGSTRICXOR();
 
+
+// enum instrCode{HALT, INTERR, IRET, CALL, RET, JMP, JEQ, JNE,
+//  JGT, XCHG, ADD, SUB, MUL, DIV, CMP,
+// LOGICNOT, LOGICAND, LOGICOR, LOGICXOR, LOGICTEST, SHL, SHR, LDR, STR, ERRCODE};
 
     
 

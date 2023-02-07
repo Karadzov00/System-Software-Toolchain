@@ -57,4 +57,4 @@ regs: F0
 15
 0
 addr mode: 00
-data high: 92
+dhdl: 92
