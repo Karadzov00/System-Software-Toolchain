@@ -23,7 +23,7 @@ struct Instruction{
     char regSource; 
     update updateMode; 
     addressing addrMode; 
-    int operand;  
+    short operand;  
 }; 
 
 
@@ -59,7 +59,7 @@ public:
     string readTwoBytes(int address);
     string readTwoBytesLittleEndian(int address);
     int hexToDecUnsigned(string hex);   
-    int hexToDecSigned(string hex); 
+    short hexToDecSigned(string hex); 
     string binToHex16bit(string bin);
     string decimalToBin16bit(int decimal); 
     instrCode findInstruction(string code); 
