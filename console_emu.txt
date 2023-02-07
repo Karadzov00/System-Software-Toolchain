@@ -54,3 +54,8 @@ dec value: 320
 target address: 50F0
 first byte is 50
 jmp instruction
+F0
+hex F
+hex 0
+15
+0

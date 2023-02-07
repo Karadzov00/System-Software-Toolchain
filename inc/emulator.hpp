@@ -15,8 +15,8 @@ enum instrCode{HALT, INTERR, IRET, CALL, RET, JMP, JEQ, JNE, JGT, XCHG, ADD, SUB
 // enum arithmeticType{ADD, SUB, MUL, DIV, CMP};
 // enum logicType{LOGICNOT, LOGICAND, LOGICOR, LOGICXOR, LOGICTEST}; 
 // enum shiftType{SHL, SHR}; 
-enum addressing{IMM, REGDIR, REGDIRDISP, REGIN, REGINDDISP, MEM};
-enum update{NOUPDATE, PREDECREMENT, PREINCREMENT, POSTDECREMENT, POSTINCREMENT}; 
+enum addressing{IMM, REGDIR, REGDIRDISP, REGIN, REGINDDISP, MEM, ERRADDR};
+enum update{NOUPDATE, PREDECREMENT, PREINCREMENT, POSTDECREMENT, POSTINCREMENT, ERRUPD}; 
 struct Instruction{
     instrCode code;
     char regDest; 
@@ -63,8 +63,8 @@ public:
     string binToHex16bit(string bin);
     string decimalToBin16bit(int decimal); 
     instrCode findInstruction(string code); 
-
-
+    addressing findAddressing(char code);
+    update findUpdateType(char code); 
     //get bits 
     short getZ(); 
     short getO(); 

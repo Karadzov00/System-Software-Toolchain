@@ -12,6 +12,13 @@ map<string, instrCode> instructionMap={{"00", HALT}, {"10", INTERR}, {"20", IRET
  {"80", LOGICNOT}, {"81", LOGICAND}, {"82", LOGICOR}, {"83", LOGICXOR},
 {"84", LOGICTEST}, {"90", SHL}, {"91", SHR}, {"A0", LDR}, {"B0", STR}};
 
+map<char, addressing> addressingMap={{'0', IMM}, {'1', REGDIR}, {'5', REGDIRDISP},
+ {'2', REGIN}, {'3', REGINDDISP}, {'4', MEM}};
+// enum addressing{IMM, REGDIR, REGDIRDISP, REGIN, REGINDDISP, MEM};
+
+map<char, update> updateMap={{'0', NOUPDATE}, {'1', PREDECREMENT}, {'2', PREINCREMENT},
+ {'3', POSTDECREMENT}, {'4', POSTINCREMENT}};
+// enum update{NOUPDATE, PREDECREMENT, PREINCREMENT, POSTDECREMENT, POSTINCREMENT}; 
 
 bool Emulator::checkCmdArguments(int argc, char* argv[]){
     for (int i = 0; i < argc; i++){
@@ -93,6 +100,29 @@ instrCode Emulator::findInstruction(string code){
     }
 } 
 
+addressing Emulator::findAddressing(char code){
+    if(addressingMap.find(code)!=addressingMap.end()){
+        //code found 
+        return addressingMap[code];
+    }
+    else{
+        //code not found 
+        return ERRADDR; 
+    }
+} 
+
+
+update Emulator::findUpdateType(char code){
+    if(addressingMap.find(code)!=addressingMap.end()){
+        //code found 
+        return updateMap[code];
+    }
+    else{
+        //code not found 
+        return ERRUPD; 
+    }
+}
+
 
 
 vector<string> Emulator::tokenizeLine(string line, string delimiters){
@@ -152,7 +182,7 @@ string Emulator::decimalToBin16bit(int decimal) {
 
 int Emulator::hexToDecUnsigned(string hex){
     // hex.insert(0,"0x"); 
-    cout<<"hex " + hex<<endl; 
+    // cout<<"hex " + hex<<endl; 
     unsigned int x = std::stoul(hex, nullptr, 16);
     return x; 
 }   
@@ -227,19 +257,41 @@ void Emulator::fetchInstrucionAndOperands(){
     instruction.code = findInstruction(opCode); 
 
     switch(instruction.code){
-        case HALT:
+        case HALT:{
+            haltFlag=true; 
             break; 
-        case INTERR:
+        }
+        case INTERR:{}
             break;
-        case IRET:
+        case IRET:{}
             break;
-        case CALL:
+        case CALL:{}
             break; 
-        case RET:
+        case RET:{}
             break;
-        case JMP:
+        case JMP:{
             cout<<"jmp instruction"<<endl; 
+            registers[pc]++; 
+            string regDS = readOneByte(registers[pc]); 
+            cout<<regDS<<endl; 
+            string d;
+            d.push_back(regDS[0]); 
+            string s;
+            s.push_back(regDS[1]); 
+            char regD = hexToDecUnsigned(d); 
+            char regS = hexToDecUnsigned(s);
+            cout<<to_string(regD)<<endl;
+            cout<<to_string(regS)<<endl;
+            instruction.regDest=regD;
+            instruction.regSource=regS;
+            
+            registers[pc]++; 
+            
+
+
             break;
+
+        }
         case JEQ:
             break; 
         case JNE:
