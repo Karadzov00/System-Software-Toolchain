@@ -23,8 +23,7 @@ struct Instruction{
     char regSource; 
     update updateMode; 
     addressing addrMode; 
-    int dataHigh; 
-    int dataLow;  
+    int payload;  
 }; 
 
 
@@ -49,6 +48,7 @@ public:
     void resetProcessor(); 
     void emulate(); 
     void fetchInstrucionAndOperands(); 
+    void fetchOperands(); 
     void executeInstrucion(); 
     void interrupt(); 
 

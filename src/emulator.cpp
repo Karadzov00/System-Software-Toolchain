@@ -261,36 +261,26 @@ void Emulator::fetchInstrucionAndOperands(){
             haltFlag=true; 
             break; 
         }
-        case INTERR:{}
+        case INTERR:{
+
             break;
-        case IRET:{}
+        }
+        case IRET:{
+
             break;
-        case CALL:{}
+        }
+        case CALL:{
+
             break; 
-        case RET:{}
+        }
+        case RET:{
+
             break;
+        }
         case JMP:{
             cout<<"jmp instruction"<<endl; 
-            registers[pc]++; 
-            string regDS = readOneByte(registers[pc]); 
-            cout<<regDS<<endl; 
-            string d;
-            d.push_back(regDS[0]); 
-            string s;
-            s.push_back(regDS[1]); 
-            char regD = hexToDecUnsigned(d); 
-            char regS = hexToDecUnsigned(s);
-            cout<<to_string(regD)<<endl;
-            cout<<to_string(regS)<<endl;
-            instruction.regDest=regD;
-            instruction.regSource=regS;
-            
-            registers[pc]++; 
-            
-
-
+            fetchOperands(); 
             break;
-
         }
         case JEQ:
             break; 
@@ -336,8 +326,63 @@ void Emulator::fetchInstrucionAndOperands(){
 // {"60", XCHG}, {"70", ADD}, {"71", SUB}, {"72", MUL}, {"73", DIV}, {"74", CMP},
 //  {"80", LOGICNOT}, {"81", LOGICAND}, {"82", LOGICOR}, {"83", LOGICXOR},
 // {"84", LOGICTEST}, {"90", SHL}, {"91", SHR}, {"A0", LDR}, {"B0", STR}};
-    
-    
+}
 
+void Emulator::fetchOperands(){
+    registers[pc]++; 
+    string regDS = readOneByte(registers[pc]); 
+    cout<<"regs: "+regDS<<endl; 
+    string d;
+    d.push_back(regDS[0]); 
+    string s;
+    s.push_back(regDS[1]); 
+    char regD = hexToDecUnsigned(d); 
+    char regS = hexToDecUnsigned(s);
+    cout<<to_string(regD)<<endl;
+    cout<<to_string(regS)<<endl;
+    instruction.regDest=regD;
+    instruction.regSource=regS;
+    
+    registers[pc]++; 
+    string addrMode = readOneByte(registers[pc]); 
+    cout<<"addr mode: "+addrMode<<endl; 
+    instruction.updateMode=findUpdateType(addrMode[0]); 
+    instruction.addrMode=findAddressing(addrMode[1]);
+    switch(instruction.addrMode){
+        case IMM:{
+            //needs payload 
+            registers[pc]++; 
+            int dhdl =hexToDecUnsigned(readTwoBytes(registers[pc]));
+            cout<<"dhdl: "+to_string(dhdl)<<endl;  
 
+        break; 
+        }
+        case REGDIR:{
+
+        break;
+        }
+        case REGDIRDISP:{
+            //check if pcrel
+
+        break;
+        }
+        case REGIN:{
+
+        break;
+        }
+        case REGINDDISP:{
+            //check if pcrel
+
+        break;
+        }
+        case MEM:{
+
+        break;
+        }
+        case ERRADDR:{
+
+        break;
+        }
+
+    }
 }
