@@ -57,6 +57,7 @@ public:
     void printCode(string input); 
     string readOneByte(int address); 
     string readTwoBytes(int address);
+    void writeTwoBytes(int address, short payload);
     string readTwoBytesLittleEndian(int address);
     int hexToDecUnsigned(string hex);   
     short hexToDecSigned(string hex); 
@@ -95,7 +96,8 @@ public:
     void executeSHL();
     void executeSHR();
     void executeLDR();
-    void executeLOGSTRICXOR();
+    void executeSTR();
+
 
 
 // enum instrCode{HALT, INTERR, IRET, CALL, RET, JMP, JEQ, JNE,

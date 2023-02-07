@@ -239,6 +239,20 @@ string Emulator::readTwoBytesLittleEndian(int address){
     return ret;
 }
 
+void Emulator::writeTwoBytes(int address, short payload){
+    std::stringstream ss;
+    ss<< std::hex << payload; // int decimal_value
+    std::string res ( ss.str() );
+    for(int i=0; i<res.length();i++){
+        res[i]=toupper(res[i]); 
+    }
+    for(int i=res.length();i<4;i++){
+        res.insert(0, "0"); 
+    }
+    cout<<"payload for memory: "<<res<<endl; 
+}
+
+
 
 
 
@@ -285,9 +299,7 @@ void Emulator::fetchInstrucionAndOperands(){
         case JMP:{
             cout<<"jmp instruction"<<endl; 
             fetchOperands(); 
-            //proveri ispravnost operanada 
-            
-
+            executeJMP(); 
             break;
         }
         case JEQ:
@@ -326,8 +338,10 @@ void Emulator::fetchInstrucionAndOperands(){
             break;
         case STR:
             break; 
-        case ERRCODE:
+        case ERRCODE:{
+            //jump to interrupt routine 
             break; 
+        }
     }
 // map<string, instrCode> instructionMap={{"00", HALT}, {"10", INTERR}, {"20", IRET},
 //  {"30", CALL}, {"40", RET}, {"50", JMP}, {"51", JEQ}, {"52", JNE}, {"53", JGT}, 
@@ -355,6 +369,10 @@ void Emulator::fetchOperands(){
     string addrMode = readOneByte(registers[pc]); 
     cout<<"addr mode: "+addrMode<<endl; 
     instruction.updateMode=findUpdateType(addrMode[0]); 
+    if(instruction.updateMode==ERRUPD){
+        //incorrect update mode
+        //jump to interrupt routine 
+    }
     instruction.addrMode=findAddressing(addrMode[1]);
     unsigned short oldPC = registers[pc]; 
     switch(instruction.addrMode){
@@ -370,8 +388,6 @@ void Emulator::fetchOperands(){
             // short x = hexToDecSigned("FF79");
             // cout<<"negative value "+to_string(x)<<endl; 
             // cout<<"pc + x :"+to_string(registers[pc]+x)<<endl; 
-
-            
 
         break; 
         }
@@ -467,8 +483,9 @@ void Emulator::fetchOperands(){
             //payload is little endian 
             registers[pc]+=3; 
             oldPC++;
+            //to read payload
             int dhdl =hexToDecSigned(readTwoBytes(oldPC));
-            cout<<"dhdl: "+to_string(dhdl)<<endl; 
+            // cout<<"dhdl: "+to_string(dhdl)<<endl; 
             //read from payload address in memory 
             instruction.operand=hexToDecSigned(readTwoBytes(dhdl)); 
 
@@ -501,3 +518,40 @@ void Emulator::fetchOperands(){
     //     }
     // }
 }
+
+
+void Emulator::executeHALT(){
+
+}
+void Emulator::executeINT(){
+
+}
+void Emulator::executeIRET(){}
+void Emulator::executeCALL(){}
+void Emulator::executeRET(){}
+void Emulator::executeJMP(){
+    writeTwoBytes(0, 10);
+    writeTwoBytes(0, 16);
+    writeTwoBytes(0, 153);
+    writeTwoBytes(0, -2);
+
+
+}
+void Emulator::executeJEQ(){}
+void Emulator::executeJNE(){}
+void Emulator::executeJGT(){}
+void Emulator::executeXCHG(){}
+void Emulator::executeADD(){}
+void Emulator::executeSUB(){}
+void Emulator::executeMUL(){}
+void Emulator::executeDIV(){}
+void Emulator::executeCMP(){}
+void Emulator::executeNOT(){}
+void Emulator::executeAND(){}
+void Emulator::executeOR(){}
+void Emulator::executeXOR(){}
+void Emulator::executeTEST(){}
+void Emulator::executeSHL(){}
+void Emulator::executeSHR(){}
+void Emulator::executeLDR(){}
+void Emulator::executeSTR(){}

@@ -59,3 +59,7 @@ regs: F0
 addr mode: 00
 dhdl: 92
 pc: 325
+payload for memory: 000A
+payload for memory: 0010
+payload for memory: 0099
+payload for memory: FFFE
