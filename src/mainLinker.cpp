@@ -5,19 +5,20 @@
 
 int main(int argc, char* argv[]){
 
-  std::cout <<"Entered main! \n"; 
-  try
-  {
-    Linker linker; 
-    linker.checkCmdArguments(argc, argv);
-    linker.openParseFile(); 
-   
+    std::cout <<"Entered main! \n"; 
+    try
+    {
+      Linker linker; 
+      linker.checkCmdArguments(argc, argv);
+      linker.openParseFile(); 
+      
+    
 
-  }
-  catch(const std::exception& e)
-  {
-    std::cout << e.what() << '\n';
-  }
+    }
+    catch(const std::exception& e)
+    {
+      std::cout << e.what() << '\n';
+    }
   
   
   return 0; 

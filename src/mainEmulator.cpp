@@ -9,8 +9,8 @@ int main(int argc, char* argv[]){
     {
         Emulator emulator; 
         emulator.checkCmdArguments(argc, argv); 
-        emulator.openParseFile(); 
-    
+        emulator.writeCodeToMemory(); 
+        emulator.emulate(); 
 
     }
     catch(const std::exception& e)

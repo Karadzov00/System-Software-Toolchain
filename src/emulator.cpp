@@ -28,7 +28,7 @@ bool Emulator::checkCmdArguments(int argc, char* argv[]){
 
 }
 
-void Emulator::openParseFile(){
+void Emulator::writeCodeToMemory(){
     //write hex code to memory 
     fstream inFile; 
     inFile.open(inputFile); 
@@ -41,13 +41,38 @@ void Emulator::openParseFile(){
         cout<<currentLine<<endl; 
         tokens = tokenizeLine(currentLine, " ");
         for(auto t:tokens){
-            globalCode.append(t); 
+            //writing each byte to memory 
+            memory[cntMem]=t[0]; 
+            memory[cntMem+1]=t[1]; 
+            cntMem+=2; 
         }
 
+
     }
-    printCode(globalCode); 
+    string code(memory, sizeof(memory)/sizeof(char)); 
+    printCode(memory); 
     
 }
+
+void Emulator::resetProcessor(){
+    for(int i=0; i<6; i++){
+        registers[i]=0; 
+    }
+    registers[pc]=0;
+    registers[sp]=0; 
+    registers[psw]=0x8000; //masked interrupts on bit 15 
+    haltFlag=false; 
+    memory[65535]={0};
+
+
+}
+
+void Emulator::emulate(){
+    while(true){
+        
+    }
+}
+
 
 vector<string> Emulator::tokenizeLine(string line, string delimiters){
     char *cstr = new char[line.length() + 1];
