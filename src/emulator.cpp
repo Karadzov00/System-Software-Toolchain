@@ -202,10 +202,10 @@ void Emulator::emulate(){
 }
 
 void Emulator::fetchInstrucionAndOperands(){
-    string istrCode = readOneByte(registers[pc]); 
+    // string istrCode = readOneByte(registers[pc]); 
     // cout<<"first byte is "+istrCode<<endl; 
     string dummy = readTwoBytesLittleEndian(registers[pc]); 
-    // cout<<"first 2 bytes are "+dummy<<endl; 
+    cout<<"first 2 bytes are "+dummy<<endl; 
     Instruction instruction; 
 
 

@@ -52,3 +52,4 @@ hex 0140
 initial address: 0140
 dec value: 320
 target address: 50F0
+first 2 bytes are F050

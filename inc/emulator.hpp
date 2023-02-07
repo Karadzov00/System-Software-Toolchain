@@ -10,14 +10,22 @@
 using namespace std; 
 
 struct Instruction{
-    string instrCode;
+    instrCode instrCode;
     char regDest; 
     char regSource; 
-    char updateMode; 
-    char addrMode; 
+    update updateMode; 
+    addressing addrMode; 
     int dataHigh; 
     int dataLow;  
 }; 
+enum instrCode{HALT, INTERR, IRET, CALL, RET, JUMPS, XCHG, ARITHMETIC,
+                LOGIC, SHIFT, LDR, STR};
+enum jumpType{JMP, JEQ, JNE, JGT}; 
+enum arithmeticType{ADD, SUB, MUL, DIV, CMP};
+enum logicType{LOGICNOT, LOGICAND, LOGICOR, LOGICXOR, LOGICTEST}; 
+enum shiftType{SHL, SHR}; 
+enum addressing{IMM, REGDIR, REGDIRDISP, REGIN, REGINDDISP, MEM};
+enum update{NOUPDATE, PREDECREMENT, PREINCREMENT, POSTDECREMENT, POSTINCREMENT}; 
 
 class Emulator{
 private:
