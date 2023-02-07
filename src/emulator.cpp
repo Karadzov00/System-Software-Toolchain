@@ -404,13 +404,38 @@ void Emulator::fetchOperands(){
         break;
         }
         case REGIN:{
+            //before operand address is formed 
+            if(instruction.updateMode==PREDECREMENT){
+                registers[instruction.regSource]-=2; 
+            }
+            else if(instruction.updateMode==PREINCREMENT){
+                registers[instruction.regSource]+=2; 
+            }
+
+            //main logic for forming operand
             registers[pc]++;//to point at next instruction  
             int memVal = hexToDecSigned(readTwoBytes(registers[instruction.regSource]));
-            instruction.operand=memVal; 
+            instruction.operand=memVal;
+
+            //after operand address is formed 
+            if(instruction.updateMode==POSTDECREMENT){
+                registers[instruction.regSource]-=2; 
+            }
+            else if(instruction.updateMode==POSTINCREMENT){
+                registers[instruction.regSource]+=2; 
+            } 
             cout<<"memVal: "+to_string(instruction.operand)<<endl;  
         break;
         }
         case REGINDDISP:{
+            //before operand address is formed 
+            if(instruction.updateMode==PREDECREMENT){
+                registers[instruction.regSource]-=2; 
+            }
+            else if(instruction.updateMode==PREINCREMENT){
+                registers[instruction.regSource]+=2; 
+            }
+
             //check if pcrel for ldr/str
             if(instruction.regSource==pc){
                 //payload is little endian 
@@ -427,6 +452,14 @@ void Emulator::fetchOperands(){
                 int address = registers[instruction.regSource]+dhdl; 
                 instruction.operand=hexToDecSigned(readTwoBytes(address)); 
             }
+
+            //after operand address is formed 
+            if(instruction.updateMode==POSTDECREMENT){
+                registers[instruction.regSource]-=2; 
+            }
+            else if(instruction.updateMode==POSTINCREMENT){
+                registers[instruction.regSource]+=2; 
+            } 
 
         break;
         }
