@@ -595,38 +595,96 @@ void Emulator::executeRET(){
 }
 void Emulator::executeJMP(){
 
-    //testing int instr
-    int stp = hexToDecUnsigned("FEFE");
-    stp--; 
-    writeTwoBytesLittleEndian(stp, registers[psw]); 
-    registers[r5]=0; 
-    int address = (registers[r5]%8)*2; 
-    cout<<"address: " + to_string(address)<<endl;
-    cout<<memory[8]<<memory[9]<<memory[10]<<memory[11]<<endl; 
-    cout<<readTwoBytes(0)<<endl; 
-    registers[pc]=hexToDecSigned(readTwoBytes(8)); 
-    cout<<"stack: " + readTwoBytesLittleEndian(stp)<<endl;
-    cout<<"pc: "+to_string(registers[pc])<<endl;
+    //TESTING INT INSTR
+    // int stp = hexToDecUnsigned("FEFE");
+    // stp--; 
+    // writeTwoBytesLittleEndian(stp, registers[psw]); 
+    // registers[r5]=0; 
+    // int address = (registers[r5]%8)*2; 
+    // cout<<"address: " + to_string(address)<<endl;
+    // cout<<memory[8]<<memory[9]<<memory[10]<<memory[11]<<endl; 
+    // cout<<readTwoBytes(0)<<endl; 
+    // registers[pc]=hexToDecSigned(readTwoBytes(8)); 
+    // cout<<"stack: " + readTwoBytesLittleEndian(stp)<<endl;
+    // cout<<"pc: "+to_string(registers[pc])<<endl;
+
+    registers[pc]=instruction.operand; 
+}
+void Emulator::executeJEQ(){
+    if(bitC()){
+        registers[pc]=instruction.operand; 
+    }
+}
+void Emulator::executeJNE(){
+    if(!bitC()){
+        registers[pc]=instruction.operand; 
+    }
+}
+void Emulator::executeJGT(){
+    //if not zero and if not negative means is >0
+    if(!bitZ() && !bitN()){
+        registers[pc]=instruction.operand; 
+    }
+}
+void Emulator::executeXCHG(){
+    unsigned short tmp = registers[instruction.regDest]; 
+    registers[instruction.regDest] = registers[instruction.regSource];
+    registers[instruction.regSource] = tmp;
+}
+void Emulator::executeADD(){
+    registers[instruction.regDest] = registers[instruction.regDest] + registers[instruction.regSource];
+}
+void Emulator::executeSUB(){
+    registers[instruction.regDest] = registers[instruction.regDest] - registers[instruction.regSource];
+}
+void Emulator::executeMUL(){
+    registers[instruction.regDest] = registers[instruction.regDest] * registers[instruction.regSource];
+}
+void Emulator::executeDIV(){
+    if(instruction.operand==0){
+        //call interrupt routine
+    }
+    registers[instruction.regDest] = registers[instruction.regDest] * registers[instruction.regSource];
+}
+void Emulator::executeCMP(){
+    int tmp = registers[instruction.regDest] * registers[instruction.regSource];
+    //TODO update psw flags 
+}
+void Emulator::executeNOT(){
+    registers[instruction.regDest] = !registers[instruction.regDest]; 
+}
+void Emulator::executeAND(){
+    registers[instruction.regDest] &= registers[instruction.regSource]; 
 
 }
-void Emulator::executeJEQ(){}
-void Emulator::executeJNE(){}
-void Emulator::executeJGT(){}
-void Emulator::executeXCHG(){}
-void Emulator::executeADD(){}
-void Emulator::executeSUB(){}
-void Emulator::executeMUL(){}
-void Emulator::executeDIV(){}
-void Emulator::executeCMP(){}
-void Emulator::executeNOT(){}
-void Emulator::executeAND(){}
-void Emulator::executeOR(){}
-void Emulator::executeXOR(){}
-void Emulator::executeTEST(){}
-void Emulator::executeSHL(){}
-void Emulator::executeSHR(){}
-void Emulator::executeLDR(){}
-void Emulator::executeSTR(){}
+void Emulator::executeOR(){
+    registers[instruction.regDest] |= registers[instruction.regSource]; 
+
+}
+void Emulator::executeXOR(){
+    registers[instruction.regDest] ^= registers[instruction.regSource]; 
+
+}
+void Emulator::executeTEST(){
+    int temp = registers[instruction.regDest] & registers[instruction.regSource]; 
+    //TODO update PSW 
+}
+void Emulator::executeSHL(){
+    registers[instruction.regDest] <<= registers[instruction.regSource]; 
+    //TODO update PSW 
+
+}
+void Emulator::executeSHR(){
+    registers[instruction.regDest] >>= registers[instruction.regSource]; 
+    //TODO update PSW 
+}
+void Emulator::executeLDR(){
+    registers[instruction.regDest] = instruction.operand; 
+}
+void Emulator::executeSTR(){
+    //check
+    writeTwoBytesLittleEndian(instruction.operand, registers[instruction.regDest]); 
+}
 
 int Emulator::bitZ(){
     int bit = registers[psw] & 0x1;
