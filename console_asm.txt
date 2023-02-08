@@ -103,7 +103,7 @@ OPERATION IS push
 push - reg indirektno
 r0
 code
-B06002
+B00612
 
 Current line: ldr r0, $1
 Lista tokena iz ldr/str:
@@ -121,7 +121,7 @@ OPERATION IS push
 push - reg indirektno
 r0
 code
-B06002
+B00612
 
 Current line: call mathAdd
 Lista tokena iz ldr/str:
@@ -161,7 +161,7 @@ OPERATION IS push
 push - reg indirektno
 r0
 code
-B06002
+B00612
 
 Current line: ldr r0, $1
 Lista tokena iz ldr/str:
@@ -179,7 +179,7 @@ OPERATION IS push
 push - reg indirektno
 r0
 code
-B06002
+B00612
 
 Current line: call %mathAdd
 Lista tokena iz ldr/str:
@@ -218,7 +218,7 @@ OPERATION IS push
 push - reg indirektno
 r0
 code
-B06002
+B00612
 
 Current line: ldr r0, $11
 Lista tokena iz ldr/str:
@@ -236,7 +236,7 @@ OPERATION IS push
 push - reg indirektno
 r0
 code
-B06002
+B00612
 
 Current line: ldr r0, $2
 Lista tokena iz ldr/str:
@@ -301,7 +301,7 @@ OPERATION IS push
 push - reg indirektno
 r0
 code
-B06002
+B00612
 
 Current line: ldr r0, $2
 Lista tokena iz ldr/str:
@@ -319,7 +319,7 @@ OPERATION IS push
 push - reg indirektno
 r0
 code
-B06002
+B00612
 
 Current line: ldr r0, $4
 Lista tokena iz ldr/str:
@@ -373,7 +373,7 @@ OPERATION IS push
 push - reg indirektno
 r0
 code
-B06002
+B00612
 
 Current line: ldr r0, $25
 Lista tokena iz ldr/str:
@@ -391,7 +391,7 @@ OPERATION IS push
 push - reg indirektno
 r0
 code
-B06002
+B00612
 
 Current line: ldr r0, $6
 Lista tokena iz ldr/str:
@@ -852,20 +852,20 @@ Ime sekcije: UNDEFINED
 
 Ime sekcije: my_code
 A0 60 00 FE FE A0 00 00 00 04 
-10 0F A0 00 00 00 00 B0 60 02 
-A0 00 00 00 01 B0 60 02 30 F0 
+10 0F A0 00 00 00 00 B0 06 12 
+A0 00 00 00 01 B0 06 12 30 F0 
 00 00 00 B0 00 04 00 02 A0 00 
-00 00 01 B0 60 02 A0 00 00 00 
-01 B0 60 02 30 F7 05 FE FF B0 
+00 00 01 B0 06 12 A0 00 00 00 
+01 B0 06 12 30 F7 05 FE FF B0 
 00 04 00 04 A0 00 00 00 08 B0 
-60 02 A0 00 00 00 0B B0 60 02 
+06 12 A0 00 00 00 0B B0 06 12 
 A0 00 00 00 02 A0 10 00 00 0E 
 70 01 30 F0 02 B0 00 04 00 06 
-A0 00 00 00 02 B0 60 02 A0 00 
-00 00 02 B0 60 02 A0 00 00 00 
+A0 00 00 00 02 B0 06 12 A0 00 
+00 00 02 B0 06 12 A0 00 00 00 
 04 30 F0 03 00 0E B0 00 04 00 
-08 A0 00 00 00 05 B0 60 02 A0 
-00 00 00 19 B0 60 02 A0 00 00 
+08 A0 00 00 00 05 B0 06 12 A0 
+00 00 00 19 B0 06 12 A0 00 00 
 00 06 A0 10 00 00 0E 70 01 A0 
 00 02 30 F0 01 B0 00 04 00 0A 
 A0 00 04 00 00 A0 10 04 00 02 

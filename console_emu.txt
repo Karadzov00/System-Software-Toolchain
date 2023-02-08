@@ -5,34 +5,34 @@ Lepo zadati argumenti
 MEMORY
 0000: 40 01 00 00 46 01 45 01 
 0008: 47 01 00 00 00 00 00 00 
-0010: B0 61 02 A0 06 03 00 04 
+0010: B0 16 12 A0 06 03 00 04 
 0018: A0 16 03 00 06 70 01 A0 
-0020: 61 01 40 B0 61 02 A0 06 
+0020: 16 42 40 B0 16 12 A0 06 
 0028: 03 00 04 A0 16 03 00 06 
-0030: 71 01 A0 61 01 40 B0 61 
-0038: 02 A0 06 03 00 04 A0 16 
-0040: 03 00 06 72 01 A0 61 01 
-0048: 40 B0 61 02 A0 06 03 00 
+0030: 71 01 A0 16 42 40 B0 16 
+0038: 12 A0 06 03 00 04 A0 16 
+0040: 03 00 06 72 01 A0 16 42 
+0048: 40 B0 16 12 A0 06 03 00 
 0050: 04 A0 16 03 00 06 73 01 
-0058: A0 61 01 40 A0 60 00 FE 
+0058: A0 16 42 40 A0 60 00 FE 
 0060: FE A0 00 00 00 04 10 0F 
-0068: A0 00 00 00 00 B0 60 02 
-0070: A0 00 00 00 01 B0 60 02 
+0068: A0 00 00 00 00 B0 06 12 
+0070: A0 00 00 00 01 B0 06 12 
 0078: 30 F0 00 00 10 B0 00 04 
 0080: 01 2C A0 00 00 00 01 B0 
-0088: 60 02 A0 00 00 00 01 B0 
-0090: 60 02 30 F7 05 79 FF B0 
+0088: 06 12 A0 00 00 00 01 B0 
+0090: 06 12 30 F7 05 79 FF B0 
 0098: 00 04 01 2E A0 00 00 00 
-00A0: 08 B0 60 02 A0 00 00 00 
-00A8: 0B B0 60 02 A0 00 00 00 
+00A0: 08 B0 06 12 A0 00 00 00 
+00A8: 0B B0 06 12 A0 00 00 00 
 00B0: 02 A0 10 00 01 38 70 01 
 00B8: 30 F0 02 B0 00 04 01 30 
-00C0: A0 00 00 00 02 B0 60 02 
-00C8: A0 00 00 00 02 B0 60 02 
+00C0: A0 00 00 00 02 B0 06 12 
+00C8: A0 00 00 00 02 B0 06 12 
 00D0: A0 00 00 00 04 30 F0 03 
 00D8: 01 38 B0 00 04 01 32 A0 
-00E0: 00 00 00 05 B0 60 02 A0 
-00E8: 00 00 00 19 B0 60 02 A0 
+00E0: 00 00 00 05 B0 06 12 A0 
+00E8: 00 00 00 19 B0 06 12 A0 
 00F0: 00 00 00 06 A0 10 00 01 
 00F8: 38 70 01 A0 00 02 30 F0 
 0100: 01 B0 00 04 01 34 A0 00 
@@ -44,9 +44,9 @@ MEMORY
 0130: 00 00 00 00 00 00 00 00 
 0138: 10 00 23 00 36 00 49 00 
 0140: 50 F0 00 00 5C 20 20 B0 
-0148: 60 02 01 2A 02 A0 00 00 
+0148: 06 12 01 2A 12 A0 00 00 
 0150: AB CD A0 10 00 01 2A B0 
-0158: 01 02 A0 61 01 A0 60 01 
+0158: 01 02 A0 16 42 A0 06 42 
 0160: 20 
 initial address: 0140
 dec value: 320
@@ -161,23 +161,23 @@ r5: 0
 
 instruction: B0
 instruction address: 147
-register dest: 6
-register source: 0
+register dest: 0
+register source: 6
 addr mode: 2
-update mode: 0
+update mode: 1
 reg ind
-memVal: 4601
+memVal: 0
 str
-regD: 6
-operand: 17921
-address: fefc
-payload for memory: 4601
-little endian :0146
+regD: 0
+operand: 0
+address: 4
+payload for memory: 0000
+little endian :0000
 
 
 registers:
 pc: 14a
-sp: fefc
+sp: fefa
 psw: 8000
 r0: 4
 r1: 0
@@ -188,10 +188,10 @@ r5: 0
 
 instruction: 01
 instruction address: 14a
-address: fefa
+address: fef8
 payload for memory: 8000
 little endian :0080
-address: fef8
+address: fef6
 payload for memory: 014A
 little endian :4A01
 ERROR ROUTINE
@@ -199,7 +199,7 @@ ERROR ROUTINE
 
 registers:
 pc: 1
-sp: fef8
+sp: fef6
 psw: 8000
 r0: 4
 r1: 0
@@ -210,6456 +210,6434 @@ r5: 0
 
 instruction: 01
 instruction address: 1
-address: fef6
-payload for memory: 8000
-little endian :0080
 address: fef4
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fef4
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fef2
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fef2
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fef0
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fef0
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: feee
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: feee
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: feec
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: feec
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: feea
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: feea
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fee8
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fee8
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fee6
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fee6
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fee4
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fee4
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fee2
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fee2
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fee0
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fee0
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fede
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fede
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fedc
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fedc
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: feda
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: feda
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fed8
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fed8
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fed6
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fed6
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fed4
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fed4
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fed2
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fed2
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fed0
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fed0
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fece
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fece
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fecc
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fecc
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: feca
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: feca
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fec8
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fec8
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fec6
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fec6
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fec4
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fec4
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fec2
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fec2
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fec0
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fec0
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: febe
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: febe
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: febc
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: febc
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: feba
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: feba
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: feb8
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: feb8
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: feb6
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: feb6
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: feb4
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: feb4
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: feb2
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: feb2
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: feb0
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: feb0
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: feae
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: feae
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: feac
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: feac
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: feaa
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: feaa
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fea8
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fea8
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fea6
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fea6
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fea4
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fea4
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fea2
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fea2
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fea0
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fea0
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fe9e
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fe9e
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fe9c
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fe9c
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fe9a
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fe9a
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fe98
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fe98
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fe96
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fe96
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fe94
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fe94
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fe92
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fe92
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fe90
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fe90
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fe8e
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fe8e
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fe8c
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fe8c
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fe8a
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fe8a
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fe88
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fe88
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fe86
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fe86
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fe84
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fe84
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fe82
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fe82
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fe80
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fe80
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fe7e
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fe7e
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fe7c
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fe7c
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fe7a
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fe7a
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fe78
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fe78
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fe76
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fe76
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fe74
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fe74
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fe72
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fe72
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fe70
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fe70
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fe6e
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fe6e
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fe6c
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fe6c
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fe6a
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fe6a
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fe68
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fe68
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fe66
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fe66
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fe64
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fe64
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fe62
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fe62
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fe60
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fe60
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fe5e
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fe5e
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fe5c
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fe5c
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fe5a
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fe5a
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fe58
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fe58
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fe56
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fe56
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fe54
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fe54
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fe52
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fe52
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fe50
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fe50
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fe4e
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fe4e
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fe4c
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fe4c
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fe4a
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fe4a
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fe48
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fe48
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fe46
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fe46
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fe44
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fe44
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fe42
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fe42
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fe40
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fe40
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fe3e
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fe3e
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fe3c
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fe3c
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fe3a
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fe3a
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fe38
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fe38
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fe36
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fe36
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fe34
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fe34
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fe32
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fe32
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fe30
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fe30
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fe2e
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fe2e
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fe2c
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fe2c
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fe2a
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fe2a
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fe28
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fe28
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fe26
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fe26
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fe24
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fe24
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fe22
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fe22
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fe20
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fe20
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fe1e
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fe1e
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fe1c
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fe1c
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fe1a
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fe1a
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fe18
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fe18
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fe16
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fe16
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fe14
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fe14
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fe12
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fe12
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fe10
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fe10
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fe0e
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fe0e
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fe0c
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fe0c
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fe0a
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fe0a
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fe08
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fe08
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fe06
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fe06
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fe04
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fe04
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fe02
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fe02
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fe00
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fe00
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fdfe
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fdfe
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fdfc
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fdfc
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fdfa
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fdfa
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fdf8
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fdf8
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fdf6
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fdf6
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fdf4
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fdf4
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fdf2
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fdf2
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fdf0
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fdf0
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fdee
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fdee
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fdec
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fdec
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fdea
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fdea
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fde8
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fde8
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fde6
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fde6
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fde4
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fde4
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fde2
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fde2
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fde0
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fde0
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fdde
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fdde
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fddc
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fddc
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fdda
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fdda
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fdd8
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fdd8
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fdd6
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fdd6
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fdd4
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fdd4
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fdd2
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fdd2
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fdd0
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fdd0
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fdce
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fdce
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fdcc
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fdcc
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fdca
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fdca
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fdc8
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fdc8
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fdc6
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fdc6
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fdc4
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fdc4
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fdc2
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fdc2
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fdc0
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fdc0
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fdbe
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fdbe
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fdbc
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fdbc
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fdba
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fdba
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fdb8
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fdb8
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fdb6
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fdb6
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fdb4
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fdb4
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fdb2
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fdb2
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fdb0
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fdb0
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fdae
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fdae
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fdac
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fdac
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fdaa
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fdaa
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fda8
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fda8
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fda6
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fda6
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fda4
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fda4
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fda2
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fda2
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fda0
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fda0
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fd9e
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fd9e
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fd9c
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fd9c
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fd9a
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fd9a
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fd98
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fd98
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fd96
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fd96
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fd94
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fd94
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fd92
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fd92
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fd90
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fd90
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fd8e
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fd8e
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fd8c
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fd8c
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fd8a
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fd8a
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fd88
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fd88
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fd86
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fd86
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fd84
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fd84
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fd82
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fd82
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fd80
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fd80
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fd7e
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fd7e
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fd7c
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fd7c
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fd7a
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fd7a
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fd78
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fd78
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fd76
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fd76
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fd74
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fd74
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fd72
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fd72
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fd70
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fd70
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fd6e
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fd6e
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fd6c
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fd6c
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fd6a
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fd6a
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fd68
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fd68
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fd66
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fd66
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fd64
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fd64
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fd62
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fd62
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fd60
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fd60
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fd5e
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fd5e
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fd5c
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fd5c
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fd5a
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fd5a
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fd58
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fd58
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fd56
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fd56
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fd54
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fd54
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fd52
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fd52
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fd50
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fd50
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fd4e
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fd4e
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fd4c
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fd4c
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fd4a
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fd4a
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fd48
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fd48
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fd46
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fd46
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fd44
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fd44
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fd42
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fd42
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fd40
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fd40
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fd3e
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fd3e
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fd3c
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fd3c
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fd3a
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fd3a
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fd38
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fd38
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fd36
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fd36
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fd34
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fd34
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fd32
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fd32
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fd30
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fd30
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fd2e
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fd2e
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fd2c
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fd2c
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fd2a
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fd2a
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fd28
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fd28
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fd26
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fd26
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fd24
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fd24
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fd22
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fd22
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fd20
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fd20
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fd1e
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fd1e
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fd1c
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fd1c
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fd1a
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fd1a
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fd18
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fd18
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fd16
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fd16
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fd14
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fd14
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fd12
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fd12
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fd10
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fd10
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fd0e
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fd0e
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fd0c
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fd0c
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fd0a
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fd0a
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fd08
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fd08
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fd06
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fd06
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fd04
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fd04
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fd02
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fd02
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fd00
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fd00
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fcfe
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fcfe
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fcfc
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fcfc
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fcfa
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fcfa
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fcf8
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fcf8
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fcf6
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fcf6
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fcf4
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fcf4
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fcf2
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fcf2
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fcf0
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fcf0
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fcee
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fcee
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fcec
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fcec
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fcea
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fcea
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fce8
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fce8
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fce6
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fce6
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fce4
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fce4
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fce2
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fce2
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fce0
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fce0
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fcde
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fcde
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fcdc
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fcdc
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fcda
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fcda
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fcd8
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fcd8
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fcd6
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fcd6
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fcd4
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fcd4
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fcd2
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fcd2
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fcd0
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fcd0
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fcce
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fcce
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fccc
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fccc
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fcca
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fcca
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fcc8
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fcc8
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fcc6
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fcc6
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fcc4
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fcc4
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fcc2
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fcc2
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fcc0
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fcc0
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fcbe
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fcbe
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fcbc
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fcbc
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fcba
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fcba
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fcb8
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fcb8
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fcb6
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fcb6
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fcb4
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fcb4
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fcb2
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fcb2
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fcb0
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fcb0
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fcae
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fcae
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fcac
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fcac
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fcaa
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fcaa
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fca8
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fca8
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fca6
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fca6
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fca4
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fca4
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fca2
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fca2
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fca0
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fca0
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fc9e
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fc9e
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fc9c
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fc9c
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fc9a
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fc9a
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fc98
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fc98
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fc96
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fc96
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fc94
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fc94
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fc92
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fc92
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fc90
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fc90
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fc8e
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fc8e
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fc8c
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fc8c
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fc8a
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fc8a
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fc88
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fc88
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fc86
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fc86
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fc84
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fc84
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fc82
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fc82
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fc80
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fc80
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fc7e
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fc7e
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fc7c
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fc7c
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fc7a
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fc7a
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fc78
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fc78
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fc76
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fc76
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fc74
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fc74
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fc72
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fc72
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fc70
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fc70
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fc6e
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fc6e
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fc6c
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fc6c
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fc6a
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fc6a
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fc68
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fc68
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fc66
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fc66
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fc64
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fc64
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fc62
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fc62
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fc60
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fc60
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fc5e
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fc5e
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fc5c
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fc5c
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fc5a
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fc5a
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fc58
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fc58
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fc56
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fc56
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fc54
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fc54
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fc52
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fc52
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fc50
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fc50
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fc4e
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fc4e
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fc4c
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fc4c
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fc4a
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fc4a
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fc48
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fc48
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fc46
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fc46
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fc44
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fc44
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fc42
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fc42
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fc40
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fc40
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fc3e
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fc3e
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fc3c
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fc3c
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fc3a
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fc3a
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fc38
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fc38
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fc36
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fc36
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fc34
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fc34
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fc32
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fc32
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fc30
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fc30
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fc2e
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fc2e
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fc2c
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fc2c
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fc2a
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fc2a
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fc28
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fc28
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fc26
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fc26
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fc24
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fc24
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fc22
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fc22
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fc20
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fc20
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fc1e
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fc1e
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fc1c
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fc1c
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fc1a
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fc1a
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fc18
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fc18
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fc16
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fc16
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fc14
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fc14
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fc12
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fc12
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fc10
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fc10
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fc0e
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fc0e
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fc0c
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fc0c
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fc0a
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fc0a
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fc08
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fc08
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fc06
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fc06
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fc04
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fc04
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fc02
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fc02
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fc00
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fc00
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fbfe
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fbfe
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fbfc
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fbfc
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fbfa
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fbfa
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fbf8
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fbf8
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fbf6
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fbf6
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fbf4
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fbf4
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fbf2
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fbf2
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fbf0
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fbf0
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fbee
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fbee
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fbec
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fbec
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fbea
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fbea
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fbe8
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fbe8
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fbe6
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fbe6
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fbe4
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fbe4
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fbe2
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fbe2
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fbe0
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fbe0
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fbde
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fbde
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fbdc
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fbdc
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fbda
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fbda
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fbd8
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fbd8
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fbd6
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fbd6
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fbd4
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fbd4
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fbd2
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fbd2
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fbd0
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fbd0
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fbce
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fbce
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fbcc
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fbcc
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fbca
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fbca
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fbc8
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fbc8
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fbc6
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fbc6
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fbc4
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fbc4
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fbc2
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fbc2
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fbc0
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fbc0
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fbbe
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fbbe
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fbbc
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fbbc
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fbba
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fbba
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fbb8
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fbb8
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fbb6
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fbb6
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fbb4
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fbb4
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fbb2
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fbb2
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fbb0
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fbb0
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fbae
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fbae
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fbac
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fbac
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fbaa
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fbaa
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fba8
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fba8
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fba6
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fba6
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fba4
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fba4
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fba2
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fba2
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fba0
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fba0
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fb9e
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fb9e
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fb9c
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fb9c
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fb9a
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fb9a
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fb98
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fb98
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fb96
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fb96
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fb94
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fb94
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fb92
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fb92
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fb90
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fb90
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fb8e
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fb8e
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fb8c
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fb8c
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fb8a
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fb8a
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fb88
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fb88
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fb86
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fb86
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fb84
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fb84
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fb82
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fb82
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fb80
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fb80
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fb7e
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fb7e
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fb7c
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fb7c
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fb7a
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fb7a
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fb78
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fb78
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fb76
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fb76
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fb74
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fb74
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fb72
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fb72
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fb70
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fb70
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fb6e
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fb6e
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fb6c
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fb6c
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fb6a
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fb6a
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fb68
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fb68
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fb66
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fb66
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fb64
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fb64
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fb62
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fb62
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fb60
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fb60
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fb5e
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fb5e
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fb5c
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fb5c
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fb5a
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fb5a
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fb58
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fb58
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fb56
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fb56
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fb54
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fb54
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fb52
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fb52
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fb50
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fb50
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fb4e
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fb4e
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fb4c
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fb4c
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fb4a
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fb4a
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fb48
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fb48
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fb46
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fb46
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fb44
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fb44
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fb42
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fb42
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fb40
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fb40
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fb3e
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fb3e
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fb3c
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fb3c
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fb3a
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fb3a
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fb38
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fb38
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fb36
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fb36
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fb34
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fb34
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fb32
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fb32
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fb30
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fb30
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fb2e
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fb2e
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fb2c
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fb2c
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fb2a
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fb2a
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fb28
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fb28
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fb26
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fb26
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fb24
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fb24
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fb22
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fb22
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fb20
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fb20
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fb1e
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fb1e
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fb1c
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fb1c
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fb1a
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fb1a
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fb18
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fb18
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fb16
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fb16
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fb14
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fb14
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fb12
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fb12
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fb10
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fb10
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fb0e
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fb0e
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fb0c
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fb0c
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fb0a
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fb0a
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fb08
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fb08
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fb06
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fb06
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fb04
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fb04
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fb02
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fb02
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fb00
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fb00
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fafe
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fafe
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fafc
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fafc
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fafa
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fafa
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: faf8
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: faf8
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: faf6
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: faf6
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: faf4
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: faf4
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: faf2
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: faf2
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: faf0
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: faf0
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: faee
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: faee
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: faec
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: faec
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: faea
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: faea
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fae8
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fae8
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fae6
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fae6
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fae4
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fae4
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fae2
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fae2
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fae0
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fae0
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fade
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fade
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fadc
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fadc
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fada
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fada
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fad8
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fad8
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fad6
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fad6
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fad4
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fad4
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fad2
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fad2
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fad0
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fad0
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: face
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: face
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: facc
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: facc
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: faca
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: faca
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fac8
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fac8
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fac6
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fac6
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fac4
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fac4
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fac2
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fac2
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fac0
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fac0
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fabe
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fabe
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fabc
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fabc
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: faba
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: faba
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fab8
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fab8
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fab6
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fab6
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fab4
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fab4
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fab2
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fab2
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fab0
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fab0
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: faae
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: faae
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: faac
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: faac
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: faaa
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: faaa
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: faa8
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: faa8
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: faa6
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: faa6
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: faa4
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: faa4
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: faa2
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: faa2
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: faa0
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: faa0
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fa9e
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fa9e
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fa9c
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fa9c
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fa9a
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fa9a
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fa98
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fa98
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fa96
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fa96
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fa94
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fa94
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fa92
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fa92
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fa90
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fa90
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fa8e
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fa8e
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fa8c
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fa8c
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fa8a
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fa8a
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fa88
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fa88
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fa86
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fa86
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fa84
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fa84
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fa82
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fa82
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fa80
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fa80
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fa7e
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fa7e
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fa7c
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fa7c
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fa7a
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fa7a
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fa78
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fa78
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fa76
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fa76
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fa74
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fa74
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fa72
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fa72
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fa70
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fa70
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fa6e
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fa6e
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fa6c
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fa6c
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fa6a
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fa6a
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fa68
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fa68
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fa66
-payload for memory: 8000
-little endian :0080
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fa66
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fa64
-payload for memory: 0001
-little endian :0100
-ERROR ROUTINE
-
-
-registers:
-pc: 1
-sp: fa64
-psw: 8000
-r0: 4
-r1: 0
-r2: 0
-r3: 0
-r4: 0
-r5: 0
-
-instruction: 01
-instruction address: 1
+payload for memory: 8000
+little endian :0080
 address: fa62
-payload for memory: 8000
-little endian :0080
-address: fa60
 payload for memory: 0001
 little endian :0100
 ERROR ROUTINE
@@ -6667,7 +6645,7 @@ ERROR ROUTINE
 
 registers:
 pc: 1
-sp: fa60
+sp: fa62
 psw: 8000
 r0: 4
 r1: 0
@@ -6678,10 +6656,32 @@ r5: 0
 
 instruction: 01
 instruction address: 1
-address: fa5e
+address: fa60
 payload for memory: 8000
 little endian :0080
+address: fa5e
+payload for memory: 0001
+little endian :0100
+ERROR ROUTINE
+
+
+registers:
+pc: 1
+sp: fa5e
+psw: 8000
+r0: 4
+r1: 0
+r2: 0
+r3: 0
+r4: 0
+r5: 0
+
+instruction: 01
+instruction address: 1
 address: fa5c
+payload for memory: 8000
+little endian :0080
+address: fa5a
 payload for memory: 0001
 little endian :0100
 ERROR ROUTINE

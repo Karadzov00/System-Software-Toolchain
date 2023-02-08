@@ -549,7 +549,7 @@ void Emulator::fetchOperands(){
             cout<<"reg dir"<<endl; 
 
             registers[pc]++;//to point at next instruction  
-            instruction.operand = instruction.regSource; 
+            instruction.operand = registers[instruction.regSource]; 
             
         break;
         }

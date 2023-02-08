@@ -310,10 +310,10 @@ bool Assembler::checkIfInstruction(string currLine){
       code="B0"; 
 
       string reg_code2 = registerCode(tokens[1]);
-      code.append("6");//RD is sp 
-      code.append(reg_code2); //RS
-      code.append("0");//UP predecrement 
-      code.append("1"); //AM
+      code.append(reg_code2);//RD is sp 
+      code.append("6"); //RS
+      code.append("1");//UP predecrement 
+      code.append("2"); //AM
       cout<<"code"<<endl;
       cout<<code<<endl; 
       for(int i=0; i<code.length(); i++){
@@ -332,9 +332,9 @@ bool Assembler::checkIfInstruction(string currLine){
       code="A0"; 
 
       string reg_code2 = registerCode(tokens[1]);
-      code.append("6");//RD is sp 
-      code.append(reg_code2); //RS
-      code.append("0");//UP postincrement 
+      code.append(reg_code2);//RD is sp 
+      code.append("6"); //RS
+      code.append("4");//UP postincrement 
       code.append("2"); //AM
       cout<<"code"<<endl;
       cout<<code<<endl; 
