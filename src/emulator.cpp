@@ -43,6 +43,7 @@ bool Emulator::checkCmdArguments(int argc, char* argv[]){
 
 void Emulator::writeCodeToMemory(){
     //write hex code to memory 
+    memset(memory, '0', sizeof(memory));
     fstream inFile; 
     inFile.open(inputFile); 
     if(!inFile.is_open())throw FileNotOpenException();
@@ -72,6 +73,8 @@ void Emulator::resetProcessor(){
     for(int i=0; i<6; i++){
         registers[i]=0; 
     }
+
+
     string initialAddr = readTwoBytesLittleEndian(0);
     
     int firstAddress = hexToDecUnsigned(initialAddr);  
@@ -250,6 +253,11 @@ void Emulator::writeTwoBytes(int address, short payload){
         res.insert(0, "0"); 
     }
     cout<<"payload for memory: "<<res<<endl; 
+    cout<<"address: "+to_string(address)<<endl; 
+
+    for(int i=0; i<4; i++){
+        memory[address+i]=res[i];
+    }
 }
 
 
@@ -524,16 +532,26 @@ void Emulator::executeHALT(){
 
 }
 void Emulator::executeINT(){
+    //push psw to stack 
+    writeTwoBytes(registers[sp], registers[psw]); 
 
 }
 void Emulator::executeIRET(){}
 void Emulator::executeCALL(){}
 void Emulator::executeRET(){}
 void Emulator::executeJMP(){
-    writeTwoBytes(0, 10);
-    writeTwoBytes(0, 16);
-    writeTwoBytes(0, 153);
-    writeTwoBytes(0, -2);
+    //for testing
+    // writeTwoBytes(0, 10);
+    // writeTwoBytes(0, 16);
+    // writeTwoBytes(0, 153);
+    // writeTwoBytes(0, -2);
+    // writeTwoBytes(0, -135);
+    int stp=hexToDecUnsigned("FEFE"); 
+    cout<<"sp: "+to_string(stp)<<endl; 
+    writeTwoBytes(stp, 255);
+    cout<<memory[60000]<<endl; 
+    // cout<<"read from sp: "+readTwoBytes(stp)<<endl;  
+    
 
 
 }
