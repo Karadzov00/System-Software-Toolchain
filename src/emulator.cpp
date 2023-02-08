@@ -243,6 +243,7 @@ string Emulator::readTwoBytesLittleEndian(int address){
 }
 
 void Emulator::writeTwoBytes(int address, short payload){
+    address*=2; 
     std::stringstream ss;
     ss<< std::hex << payload; // int decimal_value
     std::string res ( ss.str() );
@@ -549,8 +550,7 @@ void Emulator::executeJMP(){
     int stp=hexToDecUnsigned("FEFE"); 
     cout<<"sp: "+to_string(stp)<<endl; 
     writeTwoBytes(stp, 255);
-    cout<<memory[60000]<<endl; 
-    // cout<<"read from sp: "+readTwoBytes(stp)<<endl;  
+    cout<<"read from sp: "+readTwoBytes(stp)<<endl;  
     
 
 

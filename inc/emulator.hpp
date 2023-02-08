@@ -36,7 +36,7 @@ private:
 
     unsigned short registers[9];//8 regs + psw
     enum REGISTERS{r0, r1, r2, r3, r4, r5, sp, pc, r8, psw}; 
-    char memory[65535] = {}; 
+    char memory[131071] = {}; 
     int cntMem=0; 
     bool haltFlag; 
     Instruction instruction; 

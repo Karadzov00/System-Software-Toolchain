@@ -61,5 +61,6 @@ dhdl: 92
 pc: 325
 sp: 65278
 payload for memory: 00FF
-address: 65278
-0
+address: 130556
+00
+read from sp: 00FF
