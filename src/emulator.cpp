@@ -524,6 +524,7 @@ void Emulator::fetchOperands(){
     }
     instruction.addrMode=findAddressing(addrMode[1]);
     cout<<"addr mode: "+to_string(instruction.addrMode)<<endl; 
+    cout<<"update mode: "+to_string(instruction.updateMode)<<endl; 
     unsigned short oldPC = registers[pc]; 
     switch(instruction.addrMode){
         case IMM:{

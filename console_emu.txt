@@ -70,6 +70,7 @@ jmp instruction
 register dest: 15
 register source: 0
 addr mode: 0
+update mode: 0
 immediate
 dhdl: 5c
 pc: 145
@@ -92,6 +93,7 @@ instruction address: 5c
 register dest: 6
 register source: 0
 addr mode: 0
+update mode: 0
 immediate
 dhdl: fffffefe
 pc: 61
@@ -116,6 +118,7 @@ instruction address: 61
 register dest: 0
 register source: 0
 addr mode: 0
+update mode: 0
 immediate
 dhdl: 4
 pc: 66
@@ -161,6 +164,7 @@ instruction address: 147
 register dest: 6
 register source: 0
 addr mode: 2
+update mode: 1
 reg ind
 memVal: 0
 str
