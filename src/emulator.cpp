@@ -577,15 +577,22 @@ void Emulator::executeINT(){
 
 }
 void Emulator::executeIRET(){
-    registers[psw]=hexToDecSigned(readTwoBytes(registers[sp])); 
+    registers[psw]=hexToDecSigned(readTwoBytesLittleEndian(registers[sp])); 
     registers[sp]+=2; 
-    registers[pc]=hexToDecSigned(readTwoBytes(registers[sp])); 
+    registers[pc]=hexToDecSigned(readTwoBytesLittleEndian(registers[sp])); 
     registers[sp]+=2; 
 
 
 }
-void Emulator::executeCALL(){}
-void Emulator::executeRET(){}
+void Emulator::executeCALL(){
+    registers[sp]-=2; 
+    writeTwoBytesLittleEndian(registers[sp], registers[psw]); 
+    registers[pc]=instruction.operand; 
+}
+void Emulator::executeRET(){
+    registers[pc]=hexToDecSigned(readTwoBytesLittleEndian(registers[sp])); 
+    registers[sp]+=2;
+}
 void Emulator::executeJMP(){
 
     //testing int instr
@@ -598,7 +605,7 @@ void Emulator::executeJMP(){
     cout<<memory[8]<<memory[9]<<memory[10]<<memory[11]<<endl; 
     cout<<readTwoBytes(0)<<endl; 
     registers[pc]=hexToDecSigned(readTwoBytes(8)); 
-    cout<<"stack: " + readTwoBytes(stp)<<endl;
+    cout<<"stack: " + readTwoBytesLittleEndian(stp)<<endl;
     cout<<"pc: "+to_string(registers[pc])<<endl;
 
 }
@@ -620,3 +627,29 @@ void Emulator::executeSHL(){}
 void Emulator::executeSHR(){}
 void Emulator::executeLDR(){}
 void Emulator::executeSTR(){}
+
+int Emulator::bitZ(){
+    int bit = registers[psw] & 0x1;
+    return bit;  
+}
+int Emulator::bitO(){
+    int bit = registers[psw] & 0x2;
+    bit = bit >> 1; 
+    return bit;  
+
+}
+int Emulator::bitC(){
+    int bit = registers[psw] & 0x4;
+    bit = bit >> 2; 
+    return bit;
+}
+int Emulator::bitN(){
+    int bit = registers[psw] & 0x8;
+    bit = bit >> 3; 
+    return bit;
+}
+int Emulator::bitI(){
+    int bit = registers[psw] & 0x8000;
+    bit = bit >> 15; 
+    return bit;
+}

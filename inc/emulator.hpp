@@ -99,6 +99,13 @@ public:
     void executeLDR();
     void executeSTR();
 
+    //psw bits 
+    int bitZ();
+    int bitO();
+    int bitC();
+    int bitN();
+    int bitI();
+
 
 
 // enum instrCode{HALT, INTERR, IRET, CALL, RET, JMP, JEQ, JNE,
