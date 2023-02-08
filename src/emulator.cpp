@@ -313,6 +313,7 @@ void Emulator::writeTwoBytes(int address, short payload){
 }
 
 void Emulator::writeTwoBytesLittleEndian(int address, short payload){
+    cout<<"address: "+decimalToHex(address)<<endl; 
     address*=2; 
     std::stringstream ss;
     ss<< std::hex << payload; // int decimal_value
@@ -324,7 +325,6 @@ void Emulator::writeTwoBytesLittleEndian(int address, short payload){
         res.insert(0, "0"); 
     }
     cout<<"payload for memory: "<<res<<endl; 
-    cout<<"address: "+decimalToHex(address)<<endl; 
 
     string tmp = res.substr(2,2);
     tmp.append(res.substr(0,2)); 
@@ -488,6 +488,9 @@ void Emulator::fetchInstrucionAndOperands(){
             errorRoutine(); 
             break; 
         }
+        default:
+            errorRoutine();
+            break; 
     }
 // map<string, instrCode> instructionMap={{"00", HALT}, {"10", INTERR}, {"20", IRET},
 //  {"30", CALL}, {"40", RET}, {"50", JMP}, {"51", JEQ}, {"52", JNE}, {"53", JGT}, 
@@ -719,7 +722,7 @@ void Emulator::executeINT(){
     //push psw to stack 
     writeTwoBytesLittleEndian(registers[sp], registers[psw]); 
     int address = (registers[instruction.regDest]%8)*2; 
-    registers[pc]=hexToDecSigned(readTwoBytes(address)); 
+    registers[pc]=hexToDecSigned(readTwoBytesLittleEndian(address)); 
 
 
 
@@ -920,7 +923,9 @@ void Emulator::executeLDR(){
 }
 void Emulator::executeSTR(){
     //check
-    writeTwoBytesLittleEndian(instruction.operand, registers[instruction.regDest]); 
+    cout<<"str"<<endl; 
+    printRegOperand();
+    writeTwoBytesLittleEndian(registers[instruction.regDest], instruction.operand); 
 }
 
 int Emulator::bitZ(){
