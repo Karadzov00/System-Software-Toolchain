@@ -343,6 +343,7 @@ void Emulator::emulate(){
     while(true){
         fetchInstrucionAndOperands(); 
         if(haltFlag){
+            cout<<"Emulation finished"<<endl; 
             break; 
         }
         
@@ -351,6 +352,7 @@ void Emulator::emulate(){
             break; //for testing only 
         cnt++;     
     }
+    // cout<<"Emulation finished"<<endl; 
 }
 
 void Emulator::fetchInstrucionAndOperands(){
@@ -598,7 +600,7 @@ void Emulator::fetchOperands(){
             else if(instruction.updateMode==POSTINCREMENT){
                 registers[instruction.regSource]+=2; 
             } 
-            cout<<"memVal: "+to_string(instruction.operand)<<endl;  
+            cout<<"memVal: "+decimalToHex(instruction.operand)<<endl;  
         break;
         }
         case REGINDDISP:{

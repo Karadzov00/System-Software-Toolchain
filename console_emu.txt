@@ -5,34 +5,34 @@ Lepo zadati argumenti
 MEMORY
 0000: 40 01 00 00 46 01 45 01 
 0008: 47 01 00 00 00 00 00 00 
-0010: B0 61 12 A0 06 03 00 04 
+0010: B0 61 02 A0 06 03 00 04 
 0018: A0 16 03 00 06 70 01 A0 
-0020: 61 42 40 B0 61 12 A0 06 
+0020: 61 02 40 B0 61 02 A0 06 
 0028: 03 00 04 A0 16 03 00 06 
-0030: 71 01 A0 61 42 40 B0 61 
-0038: 12 A0 06 03 00 04 A0 16 
-0040: 03 00 06 72 01 A0 61 42 
-0048: 40 B0 61 12 A0 06 03 00 
+0030: 71 01 A0 61 02 40 B0 61 
+0038: 02 A0 06 03 00 04 A0 16 
+0040: 03 00 06 72 01 A0 61 02 
+0048: 40 B0 61 02 A0 06 03 00 
 0050: 04 A0 16 03 00 06 73 01 
-0058: A0 61 42 40 A0 60 00 FE 
+0058: A0 61 02 40 A0 60 00 FE 
 0060: FE A0 00 00 00 04 10 0F 
-0068: A0 00 00 00 00 B0 60 12 
-0070: A0 00 00 00 01 B0 60 12 
+0068: A0 00 00 00 00 B0 60 02 
+0070: A0 00 00 00 01 B0 60 02 
 0078: 30 F0 00 00 10 B0 00 04 
 0080: 01 2C A0 00 00 00 01 B0 
-0088: 60 12 A0 00 00 00 01 B0 
-0090: 60 12 30 F7 05 79 FF B0 
+0088: 60 02 A0 00 00 00 01 B0 
+0090: 60 02 30 F7 05 79 FF B0 
 0098: 00 04 01 2E A0 00 00 00 
-00A0: 08 B0 60 12 A0 00 00 00 
-00A8: 0B B0 60 12 A0 00 00 00 
+00A0: 08 B0 60 02 A0 00 00 00 
+00A8: 0B B0 60 02 A0 00 00 00 
 00B0: 02 A0 10 00 01 38 70 01 
 00B8: 30 F0 02 B0 00 04 01 30 
-00C0: A0 00 00 00 02 B0 60 12 
-00C8: A0 00 00 00 02 B0 60 12 
+00C0: A0 00 00 00 02 B0 60 02 
+00C8: A0 00 00 00 02 B0 60 02 
 00D0: A0 00 00 00 04 30 F0 03 
 00D8: 01 38 B0 00 04 01 32 A0 
-00E0: 00 00 00 05 B0 60 12 A0 
-00E8: 00 00 00 19 B0 60 12 A0 
+00E0: 00 00 00 05 B0 60 02 A0 
+00E8: 00 00 00 19 B0 60 02 A0 
 00F0: 00 00 00 06 A0 10 00 01 
 00F8: 38 70 01 A0 00 02 30 F0 
 0100: 01 B0 00 04 01 34 A0 00 
@@ -44,9 +44,9 @@ MEMORY
 0130: 00 00 00 00 00 00 00 00 
 0138: 10 00 23 00 36 00 49 00 
 0140: 50 F0 00 00 5C 20 20 B0 
-0148: 60 12 01 2A 12 A0 00 00 
+0148: 60 02 01 2A 02 A0 00 00 
 0150: AB CD A0 10 00 01 2A B0 
-0158: 01 02 A0 61 42 A0 60 42 
+0158: 01 02 A0 61 02 A0 60 02 
 0160: 20 
 initial address: 0140
 dec value: 320
@@ -164,22 +164,22 @@ instruction address: 147
 register dest: 6
 register source: 0
 addr mode: 2
-update mode: 1
+update mode: 0
 reg ind
-memVal: 0
+memVal: 4601
 str
 regD: 6
-operand: 0
+operand: 17921
 address: fefc
-payload for memory: 0000
-little endian :0000
+payload for memory: 4601
+little endian :0146
 
 
 registers:
 pc: 14a
 sp: fefc
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -201,7 +201,7 @@ registers:
 pc: 1
 sp: fef8
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -223,7 +223,7 @@ registers:
 pc: 1
 sp: fef4
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -245,7 +245,7 @@ registers:
 pc: 1
 sp: fef0
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -267,7 +267,7 @@ registers:
 pc: 1
 sp: feec
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -289,7 +289,7 @@ registers:
 pc: 1
 sp: fee8
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -311,7 +311,7 @@ registers:
 pc: 1
 sp: fee4
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -333,7 +333,7 @@ registers:
 pc: 1
 sp: fee0
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -355,7 +355,7 @@ registers:
 pc: 1
 sp: fedc
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -377,7 +377,7 @@ registers:
 pc: 1
 sp: fed8
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -399,7 +399,7 @@ registers:
 pc: 1
 sp: fed4
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -421,7 +421,7 @@ registers:
 pc: 1
 sp: fed0
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -443,7 +443,7 @@ registers:
 pc: 1
 sp: fecc
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -465,7 +465,7 @@ registers:
 pc: 1
 sp: fec8
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -487,7 +487,7 @@ registers:
 pc: 1
 sp: fec4
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -509,7 +509,7 @@ registers:
 pc: 1
 sp: fec0
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -531,7 +531,7 @@ registers:
 pc: 1
 sp: febc
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -553,7 +553,7 @@ registers:
 pc: 1
 sp: feb8
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -575,7 +575,7 @@ registers:
 pc: 1
 sp: feb4
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -597,7 +597,7 @@ registers:
 pc: 1
 sp: feb0
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -619,7 +619,7 @@ registers:
 pc: 1
 sp: feac
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -641,7 +641,7 @@ registers:
 pc: 1
 sp: fea8
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -663,7 +663,7 @@ registers:
 pc: 1
 sp: fea4
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -685,7 +685,7 @@ registers:
 pc: 1
 sp: fea0
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -707,7 +707,7 @@ registers:
 pc: 1
 sp: fe9c
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -729,7 +729,7 @@ registers:
 pc: 1
 sp: fe98
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -751,7 +751,7 @@ registers:
 pc: 1
 sp: fe94
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -773,7 +773,7 @@ registers:
 pc: 1
 sp: fe90
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -795,7 +795,7 @@ registers:
 pc: 1
 sp: fe8c
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -817,7 +817,7 @@ registers:
 pc: 1
 sp: fe88
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -839,7 +839,7 @@ registers:
 pc: 1
 sp: fe84
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -861,7 +861,7 @@ registers:
 pc: 1
 sp: fe80
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -883,7 +883,7 @@ registers:
 pc: 1
 sp: fe7c
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -905,7 +905,7 @@ registers:
 pc: 1
 sp: fe78
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -927,7 +927,7 @@ registers:
 pc: 1
 sp: fe74
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -949,7 +949,7 @@ registers:
 pc: 1
 sp: fe70
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -971,7 +971,7 @@ registers:
 pc: 1
 sp: fe6c
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -993,7 +993,7 @@ registers:
 pc: 1
 sp: fe68
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -1015,7 +1015,7 @@ registers:
 pc: 1
 sp: fe64
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -1037,7 +1037,7 @@ registers:
 pc: 1
 sp: fe60
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -1059,7 +1059,7 @@ registers:
 pc: 1
 sp: fe5c
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -1081,7 +1081,7 @@ registers:
 pc: 1
 sp: fe58
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -1103,7 +1103,7 @@ registers:
 pc: 1
 sp: fe54
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -1125,7 +1125,7 @@ registers:
 pc: 1
 sp: fe50
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -1147,7 +1147,7 @@ registers:
 pc: 1
 sp: fe4c
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -1169,7 +1169,7 @@ registers:
 pc: 1
 sp: fe48
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -1191,7 +1191,7 @@ registers:
 pc: 1
 sp: fe44
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -1213,7 +1213,7 @@ registers:
 pc: 1
 sp: fe40
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -1235,7 +1235,7 @@ registers:
 pc: 1
 sp: fe3c
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -1257,7 +1257,7 @@ registers:
 pc: 1
 sp: fe38
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -1279,7 +1279,7 @@ registers:
 pc: 1
 sp: fe34
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -1301,7 +1301,7 @@ registers:
 pc: 1
 sp: fe30
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -1323,7 +1323,7 @@ registers:
 pc: 1
 sp: fe2c
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -1345,7 +1345,7 @@ registers:
 pc: 1
 sp: fe28
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -1367,7 +1367,7 @@ registers:
 pc: 1
 sp: fe24
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -1389,7 +1389,7 @@ registers:
 pc: 1
 sp: fe20
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -1411,7 +1411,7 @@ registers:
 pc: 1
 sp: fe1c
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -1433,7 +1433,7 @@ registers:
 pc: 1
 sp: fe18
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -1455,7 +1455,7 @@ registers:
 pc: 1
 sp: fe14
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -1477,7 +1477,7 @@ registers:
 pc: 1
 sp: fe10
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -1499,7 +1499,7 @@ registers:
 pc: 1
 sp: fe0c
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -1521,7 +1521,7 @@ registers:
 pc: 1
 sp: fe08
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -1543,7 +1543,7 @@ registers:
 pc: 1
 sp: fe04
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -1565,7 +1565,7 @@ registers:
 pc: 1
 sp: fe00
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -1587,7 +1587,7 @@ registers:
 pc: 1
 sp: fdfc
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -1609,7 +1609,7 @@ registers:
 pc: 1
 sp: fdf8
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -1631,7 +1631,7 @@ registers:
 pc: 1
 sp: fdf4
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -1653,7 +1653,7 @@ registers:
 pc: 1
 sp: fdf0
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -1675,7 +1675,7 @@ registers:
 pc: 1
 sp: fdec
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -1697,7 +1697,7 @@ registers:
 pc: 1
 sp: fde8
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -1719,7 +1719,7 @@ registers:
 pc: 1
 sp: fde4
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -1741,7 +1741,7 @@ registers:
 pc: 1
 sp: fde0
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -1763,7 +1763,7 @@ registers:
 pc: 1
 sp: fddc
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -1785,7 +1785,7 @@ registers:
 pc: 1
 sp: fdd8
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -1807,7 +1807,7 @@ registers:
 pc: 1
 sp: fdd4
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -1829,7 +1829,7 @@ registers:
 pc: 1
 sp: fdd0
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -1851,7 +1851,7 @@ registers:
 pc: 1
 sp: fdcc
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -1873,7 +1873,7 @@ registers:
 pc: 1
 sp: fdc8
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -1895,7 +1895,7 @@ registers:
 pc: 1
 sp: fdc4
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -1917,7 +1917,7 @@ registers:
 pc: 1
 sp: fdc0
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -1939,7 +1939,7 @@ registers:
 pc: 1
 sp: fdbc
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -1961,7 +1961,7 @@ registers:
 pc: 1
 sp: fdb8
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -1983,7 +1983,7 @@ registers:
 pc: 1
 sp: fdb4
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -2005,7 +2005,7 @@ registers:
 pc: 1
 sp: fdb0
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -2027,7 +2027,7 @@ registers:
 pc: 1
 sp: fdac
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -2049,7 +2049,7 @@ registers:
 pc: 1
 sp: fda8
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -2071,7 +2071,7 @@ registers:
 pc: 1
 sp: fda4
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -2093,7 +2093,7 @@ registers:
 pc: 1
 sp: fda0
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -2115,7 +2115,7 @@ registers:
 pc: 1
 sp: fd9c
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -2137,7 +2137,7 @@ registers:
 pc: 1
 sp: fd98
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -2159,7 +2159,7 @@ registers:
 pc: 1
 sp: fd94
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -2181,7 +2181,7 @@ registers:
 pc: 1
 sp: fd90
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -2203,7 +2203,7 @@ registers:
 pc: 1
 sp: fd8c
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -2225,7 +2225,7 @@ registers:
 pc: 1
 sp: fd88
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -2247,7 +2247,7 @@ registers:
 pc: 1
 sp: fd84
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -2269,7 +2269,7 @@ registers:
 pc: 1
 sp: fd80
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -2291,7 +2291,7 @@ registers:
 pc: 1
 sp: fd7c
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -2313,7 +2313,7 @@ registers:
 pc: 1
 sp: fd78
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -2335,7 +2335,7 @@ registers:
 pc: 1
 sp: fd74
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -2357,7 +2357,7 @@ registers:
 pc: 1
 sp: fd70
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -2379,7 +2379,7 @@ registers:
 pc: 1
 sp: fd6c
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -2401,7 +2401,7 @@ registers:
 pc: 1
 sp: fd68
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -2423,7 +2423,7 @@ registers:
 pc: 1
 sp: fd64
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -2445,7 +2445,7 @@ registers:
 pc: 1
 sp: fd60
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -2467,7 +2467,7 @@ registers:
 pc: 1
 sp: fd5c
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -2489,7 +2489,7 @@ registers:
 pc: 1
 sp: fd58
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -2511,7 +2511,7 @@ registers:
 pc: 1
 sp: fd54
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -2533,7 +2533,7 @@ registers:
 pc: 1
 sp: fd50
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -2555,7 +2555,7 @@ registers:
 pc: 1
 sp: fd4c
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -2577,7 +2577,7 @@ registers:
 pc: 1
 sp: fd48
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -2599,7 +2599,7 @@ registers:
 pc: 1
 sp: fd44
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -2621,7 +2621,7 @@ registers:
 pc: 1
 sp: fd40
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -2643,7 +2643,7 @@ registers:
 pc: 1
 sp: fd3c
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -2665,7 +2665,7 @@ registers:
 pc: 1
 sp: fd38
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -2687,7 +2687,7 @@ registers:
 pc: 1
 sp: fd34
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -2709,7 +2709,7 @@ registers:
 pc: 1
 sp: fd30
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -2731,7 +2731,7 @@ registers:
 pc: 1
 sp: fd2c
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -2753,7 +2753,7 @@ registers:
 pc: 1
 sp: fd28
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -2775,7 +2775,7 @@ registers:
 pc: 1
 sp: fd24
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -2797,7 +2797,7 @@ registers:
 pc: 1
 sp: fd20
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -2819,7 +2819,7 @@ registers:
 pc: 1
 sp: fd1c
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -2841,7 +2841,7 @@ registers:
 pc: 1
 sp: fd18
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -2863,7 +2863,7 @@ registers:
 pc: 1
 sp: fd14
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -2885,7 +2885,7 @@ registers:
 pc: 1
 sp: fd10
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -2907,7 +2907,7 @@ registers:
 pc: 1
 sp: fd0c
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -2929,7 +2929,7 @@ registers:
 pc: 1
 sp: fd08
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -2951,7 +2951,7 @@ registers:
 pc: 1
 sp: fd04
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -2973,7 +2973,7 @@ registers:
 pc: 1
 sp: fd00
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -2995,7 +2995,7 @@ registers:
 pc: 1
 sp: fcfc
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -3017,7 +3017,7 @@ registers:
 pc: 1
 sp: fcf8
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -3039,7 +3039,7 @@ registers:
 pc: 1
 sp: fcf4
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -3061,7 +3061,7 @@ registers:
 pc: 1
 sp: fcf0
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -3083,7 +3083,7 @@ registers:
 pc: 1
 sp: fcec
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -3105,7 +3105,7 @@ registers:
 pc: 1
 sp: fce8
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -3127,7 +3127,7 @@ registers:
 pc: 1
 sp: fce4
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -3149,7 +3149,7 @@ registers:
 pc: 1
 sp: fce0
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -3171,7 +3171,7 @@ registers:
 pc: 1
 sp: fcdc
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -3193,7 +3193,7 @@ registers:
 pc: 1
 sp: fcd8
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -3215,7 +3215,7 @@ registers:
 pc: 1
 sp: fcd4
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -3237,7 +3237,7 @@ registers:
 pc: 1
 sp: fcd0
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -3259,7 +3259,7 @@ registers:
 pc: 1
 sp: fccc
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -3281,7 +3281,7 @@ registers:
 pc: 1
 sp: fcc8
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -3303,7 +3303,7 @@ registers:
 pc: 1
 sp: fcc4
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -3325,7 +3325,7 @@ registers:
 pc: 1
 sp: fcc0
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -3347,7 +3347,7 @@ registers:
 pc: 1
 sp: fcbc
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -3369,7 +3369,7 @@ registers:
 pc: 1
 sp: fcb8
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -3391,7 +3391,7 @@ registers:
 pc: 1
 sp: fcb4
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -3413,7 +3413,7 @@ registers:
 pc: 1
 sp: fcb0
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -3435,7 +3435,7 @@ registers:
 pc: 1
 sp: fcac
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -3457,7 +3457,7 @@ registers:
 pc: 1
 sp: fca8
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -3479,7 +3479,7 @@ registers:
 pc: 1
 sp: fca4
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -3501,7 +3501,7 @@ registers:
 pc: 1
 sp: fca0
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -3523,7 +3523,7 @@ registers:
 pc: 1
 sp: fc9c
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -3545,7 +3545,7 @@ registers:
 pc: 1
 sp: fc98
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -3567,7 +3567,7 @@ registers:
 pc: 1
 sp: fc94
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -3589,7 +3589,7 @@ registers:
 pc: 1
 sp: fc90
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -3611,7 +3611,7 @@ registers:
 pc: 1
 sp: fc8c
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -3633,7 +3633,7 @@ registers:
 pc: 1
 sp: fc88
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -3655,7 +3655,7 @@ registers:
 pc: 1
 sp: fc84
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -3677,7 +3677,7 @@ registers:
 pc: 1
 sp: fc80
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -3699,7 +3699,7 @@ registers:
 pc: 1
 sp: fc7c
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -3721,7 +3721,7 @@ registers:
 pc: 1
 sp: fc78
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -3743,7 +3743,7 @@ registers:
 pc: 1
 sp: fc74
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -3765,7 +3765,7 @@ registers:
 pc: 1
 sp: fc70
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -3787,7 +3787,7 @@ registers:
 pc: 1
 sp: fc6c
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -3809,7 +3809,7 @@ registers:
 pc: 1
 sp: fc68
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -3831,7 +3831,7 @@ registers:
 pc: 1
 sp: fc64
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -3853,7 +3853,7 @@ registers:
 pc: 1
 sp: fc60
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -3875,7 +3875,7 @@ registers:
 pc: 1
 sp: fc5c
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -3897,7 +3897,7 @@ registers:
 pc: 1
 sp: fc58
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -3919,7 +3919,7 @@ registers:
 pc: 1
 sp: fc54
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -3941,7 +3941,7 @@ registers:
 pc: 1
 sp: fc50
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -3963,7 +3963,7 @@ registers:
 pc: 1
 sp: fc4c
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -3985,7 +3985,7 @@ registers:
 pc: 1
 sp: fc48
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -4007,7 +4007,7 @@ registers:
 pc: 1
 sp: fc44
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -4029,7 +4029,7 @@ registers:
 pc: 1
 sp: fc40
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -4051,7 +4051,7 @@ registers:
 pc: 1
 sp: fc3c
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -4073,7 +4073,7 @@ registers:
 pc: 1
 sp: fc38
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -4095,7 +4095,7 @@ registers:
 pc: 1
 sp: fc34
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -4117,7 +4117,7 @@ registers:
 pc: 1
 sp: fc30
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -4139,7 +4139,7 @@ registers:
 pc: 1
 sp: fc2c
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -4161,7 +4161,7 @@ registers:
 pc: 1
 sp: fc28
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -4183,7 +4183,7 @@ registers:
 pc: 1
 sp: fc24
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -4205,7 +4205,7 @@ registers:
 pc: 1
 sp: fc20
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -4227,7 +4227,7 @@ registers:
 pc: 1
 sp: fc1c
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -4249,7 +4249,7 @@ registers:
 pc: 1
 sp: fc18
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -4271,7 +4271,7 @@ registers:
 pc: 1
 sp: fc14
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -4293,7 +4293,7 @@ registers:
 pc: 1
 sp: fc10
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -4315,7 +4315,7 @@ registers:
 pc: 1
 sp: fc0c
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -4337,7 +4337,7 @@ registers:
 pc: 1
 sp: fc08
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -4359,7 +4359,7 @@ registers:
 pc: 1
 sp: fc04
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -4381,7 +4381,7 @@ registers:
 pc: 1
 sp: fc00
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -4403,7 +4403,7 @@ registers:
 pc: 1
 sp: fbfc
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -4425,7 +4425,7 @@ registers:
 pc: 1
 sp: fbf8
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -4447,7 +4447,7 @@ registers:
 pc: 1
 sp: fbf4
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -4469,7 +4469,7 @@ registers:
 pc: 1
 sp: fbf0
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -4491,7 +4491,7 @@ registers:
 pc: 1
 sp: fbec
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -4513,7 +4513,7 @@ registers:
 pc: 1
 sp: fbe8
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -4535,7 +4535,7 @@ registers:
 pc: 1
 sp: fbe4
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -4557,7 +4557,7 @@ registers:
 pc: 1
 sp: fbe0
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -4579,7 +4579,7 @@ registers:
 pc: 1
 sp: fbdc
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -4601,7 +4601,7 @@ registers:
 pc: 1
 sp: fbd8
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -4623,7 +4623,7 @@ registers:
 pc: 1
 sp: fbd4
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -4645,7 +4645,7 @@ registers:
 pc: 1
 sp: fbd0
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -4667,7 +4667,7 @@ registers:
 pc: 1
 sp: fbcc
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -4689,7 +4689,7 @@ registers:
 pc: 1
 sp: fbc8
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -4711,7 +4711,7 @@ registers:
 pc: 1
 sp: fbc4
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -4733,7 +4733,7 @@ registers:
 pc: 1
 sp: fbc0
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -4755,7 +4755,7 @@ registers:
 pc: 1
 sp: fbbc
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -4777,7 +4777,7 @@ registers:
 pc: 1
 sp: fbb8
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -4799,7 +4799,7 @@ registers:
 pc: 1
 sp: fbb4
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -4821,7 +4821,7 @@ registers:
 pc: 1
 sp: fbb0
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -4843,7 +4843,7 @@ registers:
 pc: 1
 sp: fbac
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -4865,7 +4865,7 @@ registers:
 pc: 1
 sp: fba8
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -4887,7 +4887,7 @@ registers:
 pc: 1
 sp: fba4
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -4909,7 +4909,7 @@ registers:
 pc: 1
 sp: fba0
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -4931,7 +4931,7 @@ registers:
 pc: 1
 sp: fb9c
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -4953,7 +4953,7 @@ registers:
 pc: 1
 sp: fb98
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -4975,7 +4975,7 @@ registers:
 pc: 1
 sp: fb94
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -4997,7 +4997,7 @@ registers:
 pc: 1
 sp: fb90
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -5019,7 +5019,7 @@ registers:
 pc: 1
 sp: fb8c
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -5041,7 +5041,7 @@ registers:
 pc: 1
 sp: fb88
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -5063,7 +5063,7 @@ registers:
 pc: 1
 sp: fb84
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -5085,7 +5085,7 @@ registers:
 pc: 1
 sp: fb80
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -5107,7 +5107,7 @@ registers:
 pc: 1
 sp: fb7c
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -5129,7 +5129,7 @@ registers:
 pc: 1
 sp: fb78
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -5151,7 +5151,7 @@ registers:
 pc: 1
 sp: fb74
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -5173,7 +5173,7 @@ registers:
 pc: 1
 sp: fb70
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -5195,7 +5195,7 @@ registers:
 pc: 1
 sp: fb6c
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -5217,7 +5217,7 @@ registers:
 pc: 1
 sp: fb68
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -5239,7 +5239,7 @@ registers:
 pc: 1
 sp: fb64
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -5261,7 +5261,7 @@ registers:
 pc: 1
 sp: fb60
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -5283,7 +5283,7 @@ registers:
 pc: 1
 sp: fb5c
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -5305,7 +5305,7 @@ registers:
 pc: 1
 sp: fb58
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -5327,7 +5327,7 @@ registers:
 pc: 1
 sp: fb54
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -5349,7 +5349,7 @@ registers:
 pc: 1
 sp: fb50
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -5371,7 +5371,7 @@ registers:
 pc: 1
 sp: fb4c
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -5393,7 +5393,7 @@ registers:
 pc: 1
 sp: fb48
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -5415,7 +5415,7 @@ registers:
 pc: 1
 sp: fb44
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -5437,7 +5437,7 @@ registers:
 pc: 1
 sp: fb40
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -5459,7 +5459,7 @@ registers:
 pc: 1
 sp: fb3c
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -5481,7 +5481,7 @@ registers:
 pc: 1
 sp: fb38
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -5503,7 +5503,7 @@ registers:
 pc: 1
 sp: fb34
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -5525,7 +5525,7 @@ registers:
 pc: 1
 sp: fb30
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -5547,7 +5547,7 @@ registers:
 pc: 1
 sp: fb2c
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -5569,7 +5569,7 @@ registers:
 pc: 1
 sp: fb28
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -5591,7 +5591,7 @@ registers:
 pc: 1
 sp: fb24
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -5613,7 +5613,7 @@ registers:
 pc: 1
 sp: fb20
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -5635,7 +5635,7 @@ registers:
 pc: 1
 sp: fb1c
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -5657,7 +5657,7 @@ registers:
 pc: 1
 sp: fb18
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -5679,7 +5679,7 @@ registers:
 pc: 1
 sp: fb14
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -5701,7 +5701,7 @@ registers:
 pc: 1
 sp: fb10
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -5723,7 +5723,7 @@ registers:
 pc: 1
 sp: fb0c
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -5745,7 +5745,7 @@ registers:
 pc: 1
 sp: fb08
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -5767,7 +5767,7 @@ registers:
 pc: 1
 sp: fb04
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -5789,7 +5789,7 @@ registers:
 pc: 1
 sp: fb00
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -5811,7 +5811,7 @@ registers:
 pc: 1
 sp: fafc
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -5833,7 +5833,7 @@ registers:
 pc: 1
 sp: faf8
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -5855,7 +5855,7 @@ registers:
 pc: 1
 sp: faf4
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -5877,7 +5877,7 @@ registers:
 pc: 1
 sp: faf0
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -5899,7 +5899,7 @@ registers:
 pc: 1
 sp: faec
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -5921,7 +5921,7 @@ registers:
 pc: 1
 sp: fae8
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -5943,7 +5943,7 @@ registers:
 pc: 1
 sp: fae4
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -5965,7 +5965,7 @@ registers:
 pc: 1
 sp: fae0
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -5987,7 +5987,7 @@ registers:
 pc: 1
 sp: fadc
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -6009,7 +6009,7 @@ registers:
 pc: 1
 sp: fad8
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -6031,7 +6031,7 @@ registers:
 pc: 1
 sp: fad4
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -6053,7 +6053,7 @@ registers:
 pc: 1
 sp: fad0
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -6075,7 +6075,7 @@ registers:
 pc: 1
 sp: facc
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -6097,7 +6097,7 @@ registers:
 pc: 1
 sp: fac8
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -6119,7 +6119,7 @@ registers:
 pc: 1
 sp: fac4
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -6141,7 +6141,7 @@ registers:
 pc: 1
 sp: fac0
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -6163,7 +6163,7 @@ registers:
 pc: 1
 sp: fabc
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -6185,7 +6185,7 @@ registers:
 pc: 1
 sp: fab8
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -6207,7 +6207,7 @@ registers:
 pc: 1
 sp: fab4
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -6229,7 +6229,7 @@ registers:
 pc: 1
 sp: fab0
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -6251,7 +6251,7 @@ registers:
 pc: 1
 sp: faac
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -6273,7 +6273,7 @@ registers:
 pc: 1
 sp: faa8
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -6295,7 +6295,7 @@ registers:
 pc: 1
 sp: faa4
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -6317,7 +6317,7 @@ registers:
 pc: 1
 sp: faa0
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -6339,7 +6339,7 @@ registers:
 pc: 1
 sp: fa9c
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -6361,7 +6361,7 @@ registers:
 pc: 1
 sp: fa98
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -6383,7 +6383,7 @@ registers:
 pc: 1
 sp: fa94
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -6405,7 +6405,7 @@ registers:
 pc: 1
 sp: fa90
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -6427,7 +6427,7 @@ registers:
 pc: 1
 sp: fa8c
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -6449,7 +6449,7 @@ registers:
 pc: 1
 sp: fa88
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -6471,7 +6471,7 @@ registers:
 pc: 1
 sp: fa84
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -6493,7 +6493,7 @@ registers:
 pc: 1
 sp: fa80
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -6515,7 +6515,7 @@ registers:
 pc: 1
 sp: fa7c
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -6537,7 +6537,7 @@ registers:
 pc: 1
 sp: fa78
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -6559,7 +6559,7 @@ registers:
 pc: 1
 sp: fa74
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -6581,7 +6581,7 @@ registers:
 pc: 1
 sp: fa70
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -6603,7 +6603,7 @@ registers:
 pc: 1
 sp: fa6c
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -6625,7 +6625,7 @@ registers:
 pc: 1
 sp: fa68
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -6647,7 +6647,7 @@ registers:
 pc: 1
 sp: fa64
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0
@@ -6669,7 +6669,7 @@ registers:
 pc: 1
 sp: fa60
 psw: 8000
-r0: 2
+r0: 4
 r1: 0
 r2: 0
 r3: 0

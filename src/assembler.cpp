@@ -312,8 +312,8 @@ bool Assembler::checkIfInstruction(string currLine){
       string reg_code2 = registerCode(tokens[1]);
       code.append("6");//RD is sp 
       code.append(reg_code2); //RS
-      code.append("1");//UP predecrement 
-      code.append("2"); //AM
+      code.append("0");//UP predecrement 
+      code.append("1"); //AM
       cout<<"code"<<endl;
       cout<<code<<endl; 
       for(int i=0; i<code.length(); i++){
@@ -334,8 +334,8 @@ bool Assembler::checkIfInstruction(string currLine){
       string reg_code2 = registerCode(tokens[1]);
       code.append("6");//RD is sp 
       code.append(reg_code2); //RS
-      code.append("4");//UP postincrement 
-      code.append("2"); //AM
+      code.append("0");//UP postincrement 
+      code.append("1"); //AM
       cout<<"code"<<endl;
       cout<<code<<endl; 
       for(int i=0; i<code.length(); i++){
