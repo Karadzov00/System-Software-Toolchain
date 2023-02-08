@@ -325,7 +325,7 @@ bool Assembler::checkIfInstruction(string currLine){
     else if(operation=="pop"){
       //treat it as ldr
       //postincrement 
-      cout<<"pop - reg indirektno"<<endl;
+      cout<<"pop - reg direktno"<<endl;
       cout<<tokens[1]; 
       cout<<endl;
 
@@ -335,7 +335,7 @@ bool Assembler::checkIfInstruction(string currLine){
       code.append("6");//RD is sp 
       code.append(reg_code2); //RS
       code.append("0");//UP postincrement 
-      code.append("1"); //AM
+      code.append("2"); //AM
       cout<<"code"<<endl;
       cout<<code<<endl; 
       for(int i=0; i<code.length(); i++){
