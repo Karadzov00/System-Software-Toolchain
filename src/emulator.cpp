@@ -261,9 +261,30 @@ void Emulator::writeTwoBytes(int address, short payload){
     }
 }
 
+void Emulator::writeTwoBytesLittleEndian(int address, short payload){
+    address*=2; 
+    std::stringstream ss;
+    ss<< std::hex << payload; // int decimal_value
+    std::string res ( ss.str() );
+    for(int i=0; i<res.length();i++){
+        res[i]=toupper(res[i]); 
+    }
+    for(int i=res.length();i<4;i++){
+        res.insert(0, "0"); 
+    }
+    cout<<"payload for memory: "<<res<<endl; 
+    cout<<"address: "+to_string(address)<<endl; 
+
+    string tmp = res.substr(2,2);
+    tmp.append(res.substr(0,2)); 
+    res=tmp; 
+    cout<<"little endian :"+res<<endl;  
 
 
-
+    for(int i=0; i<4; i++){
+        memory[address+i]=res[i];
+    }
+}
 
 void Emulator::emulate(){
     resetProcessor(); 
@@ -289,9 +310,9 @@ void Emulator::fetchInstrucionAndOperands(){
             haltFlag=true; 
             break; 
         }
-        case INTERR:{
-
-            break;
+        case INTERR:{   
+            executeINT(); 
+            break;  
         }
         case IRET:{
 
@@ -533,26 +554,52 @@ void Emulator::executeHALT(){
 
 }
 void Emulator::executeINT(){
-    //push psw to stack 
-    writeTwoBytes(registers[sp], registers[psw]); 
-
-}
-void Emulator::executeIRET(){}
-void Emulator::executeCALL(){}
-void Emulator::executeRET(){}
-void Emulator::executeJMP(){
-    //for testing
+    // for testing
     // writeTwoBytes(0, 10);
     // writeTwoBytes(0, 16);
     // writeTwoBytes(0, 153);
     // writeTwoBytes(0, -2);
     // writeTwoBytes(0, -135);
-    int stp=hexToDecUnsigned("FEFE"); 
-    cout<<"sp: "+to_string(stp)<<endl; 
-    writeTwoBytes(stp, 255);
-    cout<<"read from sp: "+readTwoBytes(stp)<<endl;  
-    
 
+    // //for testing push pop
+    // int stp=hexToDecUnsigned("FEFE"); 
+    // cout<<"sp: "+to_string(stp)<<endl; 
+    // writeTwoBytes(stp, 255);
+    // cout<<"read from sp: "+readTwoBytes(stp)<<endl;  
+    
+    registers[sp]-=2; 
+    //push psw to stack 
+    writeTwoBytesLittleEndian(registers[sp], registers[psw]); 
+    int address = (registers[instruction.regDest]%8)*2; 
+    registers[pc]=hexToDecSigned(readTwoBytes(address)); 
+
+
+
+}
+void Emulator::executeIRET(){
+    registers[psw]=hexToDecSigned(readTwoBytes(registers[sp])); 
+    registers[sp]+=2; 
+    registers[pc]=hexToDecSigned(readTwoBytes(registers[sp])); 
+    registers[sp]+=2; 
+
+
+}
+void Emulator::executeCALL(){}
+void Emulator::executeRET(){}
+void Emulator::executeJMP(){
+
+    //testing int instr
+    int stp = hexToDecUnsigned("FEFE");
+    stp--; 
+    writeTwoBytesLittleEndian(stp, registers[psw]); 
+    registers[r5]=0; 
+    int address = (registers[r5]%8)*2; 
+    cout<<"address: " + to_string(address)<<endl;
+    cout<<memory[8]<<memory[9]<<memory[10]<<memory[11]<<endl; 
+    cout<<readTwoBytes(0)<<endl; 
+    registers[pc]=hexToDecSigned(readTwoBytes(8)); 
+    cout<<"stack: " + readTwoBytes(stp)<<endl;
+    cout<<"pc: "+to_string(registers[pc])<<endl;
 
 }
 void Emulator::executeJEQ(){}

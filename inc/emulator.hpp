@@ -58,6 +58,7 @@ public:
     string readOneByte(int address); 
     string readTwoBytes(int address);
     void writeTwoBytes(int address, short payload);
+    void writeTwoBytesLittleEndian(int address, short payload);
     string readTwoBytesLittleEndian(int address);
     int hexToDecUnsigned(string hex);   
     short hexToDecSigned(string hex); 
