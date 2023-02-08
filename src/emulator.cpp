@@ -350,42 +350,95 @@ void Emulator::fetchInstrucionAndOperands(){
             executeJEQ(); 
             break; 
         }
-        case JNE:
+        case JNE:{
+            fetchOperands(); 
+            executeJEQ(); 
             break;
-        case JGT:
+        }
+        case JGT:{
+            fetchOperands(); 
+            executeJEQ(); 
             break;
-        case XCHG:
+        }
+        case XCHG:{
+            fetchOperands2Bytes();
+            executeXCHG(); 
+
             break; 
-        case ADD:
+        }
+        case ADD:{
+            fetchOperands2Bytes();
+            executeADD();
             break;
-        case SUB:
+        }
+        case SUB:{
+            fetchOperands2Bytes();
+            executeSUB(); 
             break;
-        case MUL:
+        }
+        case MUL:{
+            fetchOperands2Bytes();
+            executeMUL(); 
             break; 
-        case DIV:
+        }
+        case DIV:{
+            fetchOperands2Bytes();
+            executeDIV();
             break;
-        case CMP:
+        }
+        case CMP:{
+            fetchOperands2Bytes();
+            executeCMP();
             break;
-        case LOGICNOT:
+        }
+        case LOGICNOT:{
+            fetchOperands2Bytes();
+            executeNOT(); 
             break; 
-        case LOGICAND:
+        }
+        case LOGICAND:{
+            fetchOperands2Bytes();
+            executeAND(); 
             break;
-        case LOGICOR:
+        }
+        case LOGICOR:{
+            fetchOperands2Bytes();
+            executeOR();
             break;
-        case LOGICXOR:
+        }
+        case LOGICXOR:{
+            fetchOperands2Bytes();
+            executeXOR();
             break;
-        case LOGICTEST:
+        }
+        case LOGICTEST:{
+            fetchOperands2Bytes();
+            executeTEST(); 
             break;
-        case SHL:
+        }
+        case SHL:{
+            fetchOperands2Bytes();
+            executeSHL(); 
             break; 
-        case SHR:
+        }
+        case SHR:{
+            fetchOperands2Bytes();
+            executeSHR();
             break;
-        case LDR:
+        }
+        case LDR:{
+            fetchOperands(); 
+            executeLDR();
             break;
-        case STR:
+        }
+        case STR:{
+            fetchOperands(); 
+            executeSTR(); 
             break; 
+        }
         case ERRCODE:{
             //jump to interrupt routine 
+            errorRoutine(); 
             break; 
         }
     }
@@ -538,7 +591,7 @@ void Emulator::fetchOperands(){
         break;
         }
         case ERRADDR:{
-
+            errorRoutine(); 
         break;
         }
 
