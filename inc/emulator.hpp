@@ -107,6 +107,20 @@ public:
     int bitN();
     int bitI();
 
+    void updatePSW(); 
+
+    int setZ();
+    int setO();
+    int setC();
+    int setN();
+    int setI();
+    int resetZ();
+    int resetO();
+    int resetC();
+    int resetN();
+    int resetI();
+
+
 
 
 // enum instrCode{HALT, INTERR, IRET, CALL, RET, JMP, JEQ, JNE,

@@ -692,6 +692,18 @@ void Emulator::executeXOR(){
 void Emulator::executeTEST(){
     int temp = registers[instruction.regDest] & registers[instruction.regSource]; 
     //TODO update PSW 
+    if(temp==0){
+        setZ();
+    }
+    else{
+        resetZ();
+    }
+    if(temp<0){
+        setZ();
+    }
+    else{
+        resetZ(); 
+    }
 }
 void Emulator::executeSHL(){
     registers[instruction.regDest] <<= registers[instruction.regSource]; 
@@ -735,3 +747,38 @@ int Emulator::bitI(){
     bit = bit >> 15; 
     return bit;
 }
+
+int Emulator::setZ(){
+    registers[psw] |= 0x1; 
+}
+int Emulator::setO(){
+    registers[psw] |= 0x2; 
+
+}
+int Emulator::setC(){
+    registers[psw] |= 0x4; 
+
+}
+int Emulator::setN(){
+    registers[psw] |= 0x8; 
+
+}
+int Emulator::setI(){
+    registers[psw] |= 0x8000; 
+}
+int Emulator::resetZ(){
+    registers[psw] &= 0xFFFE; 
+}
+int Emulator::resetO(){
+    registers[psw] &= 0xFFFD; 
+}
+int Emulator::resetC(){
+    registers[psw] &= 0xFFFB; 
+}
+int Emulator::resetN(){
+    registers[psw] &= 0xFFF7; 
+}
+int Emulator::resetI(){
+    registers[psw] &= 0x7FFF; 
+} 
+
