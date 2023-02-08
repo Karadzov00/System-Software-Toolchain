@@ -706,13 +706,58 @@ void Emulator::executeTEST(){
     }
 }
 void Emulator::executeSHL(){
+    int tmp = registers[instruction.regDest]; 
     registers[instruction.regDest] <<= registers[instruction.regSource]; 
     //TODO update PSW 
+    if(registers[instruction.regDest]==0){
+        setZ();
+    }
+    else{
+        resetZ();
+    }
+    if(registers[instruction.regDest]<0){
+        setZ();
+    }
+    else{
+        resetZ(); 
+    }
+    if(tmp>registers[instruction.regDest]){
+        setC();
+    }
+    else{
+        resetC(); 
+    }
 
 }
 void Emulator::executeSHR(){
+    //for carry bit 
+    unsigned short regS = registers[instruction.regSource];
+    std::bitset<16> bits_a(registers[instruction.regDest]);
+    bits_a >>= regS;
+    unsigned short a = (unsigned short)bits_a.to_ulong();
+    if(bits_a[15]){
+        //if 15th bit is 1 
+        setC();
+    }
+    else{
+        resetC(); 
+    }
+
     registers[instruction.regDest] >>= registers[instruction.regSource]; 
     //TODO update PSW 
+    if(registers[instruction.regDest]==0){
+    setZ();
+    }
+    else{
+        resetZ();
+    }
+    if(registers[instruction.regDest]<0){
+        setZ();
+    }
+    else{
+        resetZ(); 
+    }
+
 }
 void Emulator::executeLDR(){
     registers[instruction.regDest] = instruction.operand; 
