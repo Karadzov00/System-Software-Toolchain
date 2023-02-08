@@ -91,6 +91,19 @@ void Emulator::resetProcessor(){
 
 }
 
+void Emulator::errorRoutine(){
+    //write psw and pc to stack 
+    registers[sp]-=2; 
+    writeTwoBytesLittleEndian(registers[sp], registers[psw]); 
+    registers[sp]-=2; 
+    writeTwoBytesLittleEndian(registers[sp], registers[pc]); 
+    
+    //write address from IVT entry 1 to PC 
+    int irAddress = hexToDecUnsigned(readTwoBytesLittleEndian(0));  
+    registers[pc]=irAddress;
+    
+}
+
 instrCode Emulator::findInstruction(string code){
     if(instructionMap.find(code)!=instructionMap.end()){
         //code found 

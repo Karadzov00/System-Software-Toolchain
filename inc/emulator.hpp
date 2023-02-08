@@ -120,6 +120,8 @@ public:
     int resetN();
     int resetI();
 
+    void errorRoutine(); 
+
 
 
 
