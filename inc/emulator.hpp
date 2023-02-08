@@ -68,6 +68,9 @@ public:
     instrCode findInstruction(string code); 
     addressing findAddressing(char code);
     update findUpdateType(char code); 
+    string decimalToHex(int decimal); 
+    void printRegisters();
+    void printRegOperand(); 
     //get bits 
     short getZ(); 
     short getO(); 
@@ -109,18 +112,19 @@ public:
 
     void updatePSW(); 
 
-    int setZ();
-    int setO();
-    int setC();
-    int setN();
-    int setI();
-    int resetZ();
-    int resetO();
-    int resetC();
-    int resetN();
-    int resetI();
+    void setZ();
+    void setO();
+    void setC();
+    void setN();
+    void setI();
+    void resetZ();
+    void resetO();
+    void resetC();
+    void resetN();
+    void resetI();
 
     void errorRoutine(); 
+    void printInstruction(); 
 
 
 

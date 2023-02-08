@@ -101,6 +101,7 @@ void Emulator::errorRoutine(){
     //write address from IVT entry 1 to PC 
     int irAddress = hexToDecUnsigned(readTwoBytesLittleEndian(0));  
     registers[pc]=irAddress;
+    cout<<"ERROR ROUTINE"<<endl; 
     
 }
 
@@ -212,6 +213,44 @@ short Emulator::hexToDecSigned(string hex){
 
 }
 
+string Emulator::decimalToHex(int decimal) {
+    std::stringstream ss;
+    ss<< std::hex << decimal; // int decimal_value
+    std::string res ( ss.str() );
+    return res; 
+}
+
+void Emulator::printInstruction(){
+    cout<<"instruction number:"+instruction.code<<endl; 
+    cout<<"reg dest:"+instruction.regDest<<endl; 
+    cout<<"reg source:"+instruction.regSource<<endl; 
+    cout<<"update mode:"+instruction.updateMode<<endl; 
+    cout<<"addr mode:"+instruction.addrMode<<endl; 
+
+}
+
+void Emulator::printRegOperand(){
+    cout<<"regD: "<<to_string(instruction.regDest)<<endl; 
+    cout<<"operand: "<<to_string(instruction.operand)<<endl; 
+}
+
+
+void Emulator::printRegisters(){
+    cout<<endl; 
+    cout<<"registers:"<<endl;
+    cout<<"pc: "+decimalToHex(registers[pc])<<endl; 
+    cout<<"sp: "+decimalToHex(registers[sp])<<endl; 
+    cout<<"psw: "+decimalToHex(registers[psw])<<endl; 
+    cout<<"r0: "+decimalToHex(registers[r0])<<endl; 
+    cout<<"r1: "+decimalToHex(registers[r1])<<endl; 
+    cout<<"r2: "+decimalToHex(registers[r2])<<endl; 
+    cout<<"r3: "+decimalToHex(registers[r3])<<endl; 
+    cout<<"r4: "+decimalToHex(registers[r4])<<endl; 
+    cout<<"r5: "+decimalToHex(registers[r5])<<endl;
+    cout<<endl; 
+
+}
+
 
 //little endian 
 string Emulator::readOneByte(int address){
@@ -285,7 +324,7 @@ void Emulator::writeTwoBytesLittleEndian(int address, short payload){
         res.insert(0, "0"); 
     }
     cout<<"payload for memory: "<<res<<endl; 
-    cout<<"address: "+to_string(address)<<endl; 
+    cout<<"address: "+decimalToHex(address)<<endl; 
 
     string tmp = res.substr(2,2);
     tmp.append(res.substr(0,2)); 
@@ -300,13 +339,17 @@ void Emulator::writeTwoBytesLittleEndian(int address, short payload){
 
 void Emulator::emulate(){
     resetProcessor(); 
+    int cnt=0; 
     while(true){
         fetchInstrucionAndOperands(); 
-        break; //for testing only 
         if(haltFlag){
             break; 
         }
-
+        
+        //for testing only
+        if(cnt==300)
+            break; //for testing only 
+        cnt++;     
     }
 }
 
@@ -314,7 +357,10 @@ void Emulator::fetchInstrucionAndOperands(){
     // string istrCode = readOneByte(registers[pc]); 
     // cout<<"first byte is "+istrCode<<endl; 
     string opCode = readOneByte(registers[pc]); 
-    cout<<"first byte is "+opCode<<endl; 
+    cout<<endl; 
+    printRegisters(); 
+    cout<<"instruction: "+opCode<<endl; 
+    cout<<"instruction address: "+decimalToHex(registers[pc])<<endl; 
     instruction.code = findInstruction(opCode); 
 
     switch(instruction.code){
@@ -323,6 +369,7 @@ void Emulator::fetchInstrucionAndOperands(){
             break; 
         }
         case INTERR:{   
+            fetchOperands2Bytes(); 
             executeINT(); 
             break;  
         }
@@ -352,12 +399,12 @@ void Emulator::fetchInstrucionAndOperands(){
         }
         case JNE:{
             fetchOperands(); 
-            executeJEQ(); 
+            executeJNE(); 
             break;
         }
         case JGT:{
             fetchOperands(); 
-            executeJEQ(); 
+            executeJGT(); 
             break;
         }
         case XCHG:{
@@ -452,37 +499,39 @@ void Emulator::fetchInstrucionAndOperands(){
 void Emulator::fetchOperands(){
     registers[pc]++; 
     string regDS = readOneByte(registers[pc]); 
-    cout<<"regs: "+regDS<<endl; 
+    // cout<<"regs: "+regDS<<endl; 
     string d;
     d.push_back(regDS[0]); 
     string s;
     s.push_back(regDS[1]); 
     char regD = hexToDecUnsigned(d); 
     char regS = hexToDecUnsigned(s);
-    cout<<to_string(regD)<<endl;
-    cout<<to_string(regS)<<endl;
+    cout<<"register dest: "+to_string(regD)<<endl;
+    cout<<"register source: "+to_string(regS)<<endl;
     instruction.regDest=regD;
     instruction.regSource=regS;
     
     registers[pc]++; 
     string addrMode = readOneByte(registers[pc]); 
-    cout<<"addr mode: "+addrMode<<endl; 
     instruction.updateMode=findUpdateType(addrMode[0]); 
     if(instruction.updateMode==ERRUPD){
         //incorrect update mode
         //jump to interrupt routine 
+        errorRoutine(); 
     }
     instruction.addrMode=findAddressing(addrMode[1]);
+    cout<<"addr mode: "+to_string(instruction.addrMode)<<endl; 
     unsigned short oldPC = registers[pc]; 
     switch(instruction.addrMode){
         case IMM:{
             //needs payload 
+            cout<<"immediate"<<endl; 
             registers[pc]+=3;//to point at next instruction  
             oldPC++; 
             int dhdl =hexToDecSigned(readTwoBytes(oldPC));
             instruction.operand=dhdl; 
-            cout<<"dhdl: "+to_string(instruction.operand)<<endl;  
-            cout<<"pc: "+to_string(registers[pc])<<endl; 
+            cout<<"dhdl: "+decimalToHex(dhdl)<<endl;  
+            cout<<"pc: "+decimalToHex(registers[pc])<<endl; 
 
             // short x = hexToDecSigned("FF79");
             // cout<<"negative value "+to_string(x)<<endl; 
@@ -491,12 +540,16 @@ void Emulator::fetchOperands(){
         break; 
         }
         case REGDIR:{
+            cout<<"reg dir"<<endl; 
+
             registers[pc]++;//to point at next instruction  
             instruction.operand = instruction.regSource; 
             
         break;
         }
         case REGDIRDISP:{
+            cout<<"reg dir disp"<<endl; 
+
             //check if pcrel for jumps
             if(instruction.regSource==pc){
                 //payload is little endian 
@@ -519,6 +572,8 @@ void Emulator::fetchOperands(){
         break;
         }
         case REGIN:{
+            cout<<"reg ind"<<endl; 
+
             //before operand address is formed 
             if(instruction.updateMode==PREDECREMENT){
                 registers[instruction.regSource]-=2; 
@@ -543,6 +598,8 @@ void Emulator::fetchOperands(){
         break;
         }
         case REGINDDISP:{
+            cout<<"reg ind disp"<<endl; 
+
             //before operand address is formed 
             if(instruction.updateMode==PREDECREMENT){
                 registers[instruction.regSource]-=2; 
@@ -579,6 +636,8 @@ void Emulator::fetchOperands(){
         break;
         }
         case MEM:{
+            cout<<"memory addr"<<endl; 
+
             //payload is little endian 
             registers[pc]+=3; 
             oldPC++;
@@ -621,15 +680,15 @@ void Emulator::fetchOperands(){
 void Emulator::fetchOperands2Bytes(){
     registers[pc]++; 
     string regDS = readOneByte(registers[pc]); 
-    cout<<"regs: "+regDS<<endl; 
+    // cout<<"regs: "+regDS<<endl; 
     string d;
     d.push_back(regDS[0]); 
     string s;
     s.push_back(regDS[1]); 
     char regD = hexToDecUnsigned(d); 
     char regS = hexToDecUnsigned(s);
-    cout<<to_string(regD)<<endl;
-    cout<<to_string(regS)<<endl;
+    cout<<"register dest: "+to_string(regD)<<endl;
+    cout<<"register source: "+to_string(regS)<<endl;
     instruction.regDest=regD;
     instruction.regSource=regS;
     //to point at the following instruction 
@@ -655,7 +714,7 @@ void Emulator::executeINT(){
     // cout<<"sp: "+to_string(stp)<<endl; 
     // writeTwoBytes(stp, 255);
     // cout<<"read from sp: "+readTwoBytes(stp)<<endl;  
-    
+    cout<<"int instruction"<<endl; 
     registers[sp]-=2; 
     //push psw to stack 
     writeTwoBytesLittleEndian(registers[sp], registers[psw]); 
@@ -698,6 +757,7 @@ void Emulator::executeJMP(){
     // cout<<"pc: "+to_string(registers[pc])<<endl;
 
     registers[pc]=instruction.operand; 
+    cout<<"pc after jmp instruction: "+decimalToHex(registers[pc])<<endl; 
 }
 void Emulator::executeJEQ(){
     if(bitC()){
@@ -854,6 +914,8 @@ void Emulator::executeSHR(){
 
 }
 void Emulator::executeLDR(){
+    cout<<"ldr"<<endl; 
+    printRegOperand(); 
     registers[instruction.regDest] = instruction.operand; 
 }
 void Emulator::executeSTR(){
@@ -887,37 +949,37 @@ int Emulator::bitI(){
     return bit;
 }
 
-int Emulator::setZ(){
+void Emulator::setZ(){
     registers[psw] |= 0x1; 
 }
-int Emulator::setO(){
+void Emulator::setO(){
     registers[psw] |= 0x2; 
 
 }
-int Emulator::setC(){
+void Emulator::setC(){
     registers[psw] |= 0x4; 
 
 }
-int Emulator::setN(){
+void Emulator::setN(){
     registers[psw] |= 0x8; 
 
 }
-int Emulator::setI(){
+void Emulator::setI(){
     registers[psw] |= 0x8000; 
 }
-int Emulator::resetZ(){
+void Emulator::resetZ(){
     registers[psw] &= 0xFFFE; 
 }
-int Emulator::resetO(){
+void Emulator::resetO(){
     registers[psw] &= 0xFFFD; 
 }
-int Emulator::resetC(){
+void Emulator::resetC(){
     registers[psw] &= 0xFFFB; 
 }
-int Emulator::resetN(){
+void Emulator::resetN(){
     registers[psw] &= 0xFFF7; 
 }
-int Emulator::resetI(){
+void Emulator::resetI(){
     registers[psw] &= 0x7FFF; 
 } 
 
