@@ -5,7 +5,6 @@
 #include <algorithm>
 #include <set>
 
-
 map<string, instrCode> instructionMap={{"00", HALT}, {"10", INTERR}, {"20", IRET},
  {"30", CALL}, {"40", RET}, {"50", JMP}, {"51", JEQ}, {"52", JNE}, {"53", JGT}, 
 {"60", XCHG}, {"70", ADD}, {"71", SUB}, {"72", MUL}, {"73", DIV}, {"74", CMP},
@@ -671,8 +670,37 @@ void Emulator::executeDIV(){
     registers[instruction.regDest] = registers[instruction.regDest] * registers[instruction.regSource];
 }
 void Emulator::executeCMP(){
-    int tmp = registers[instruction.regDest] * registers[instruction.regSource];
+    short temp = registers[instruction.regDest] - registers[instruction.regSource];
     //TODO update psw flags 
+    if(temp==0){
+        setZ();
+    }
+    else{
+        resetZ();
+    }
+    if(temp<0){
+        setZ();
+    }
+    else{
+        resetZ(); 
+    }
+    if(registers[instruction.regDest] > registers[instruction.regSource]){
+        setC(); 
+    }
+    else{
+        resetC(); 
+    }
+    // short max_value = 32767;
+    // short min_value = -32767;
+    if( (registers[instruction.regDest] < 0 && registers[instruction.regSource] > 0 && temp > 0)
+         || (registers[instruction.regDest] > 0 && registers[instruction.regSource] < 0 && temp < 0) ){
+        setO(); 
+    }
+    else{
+        resetO(); 
+    }
+
+    
 }
 void Emulator::executeNOT(){
     registers[instruction.regDest] = !registers[instruction.regDest]; 
@@ -736,7 +764,7 @@ void Emulator::executeSHR(){
     bits_a >>= regS;
     unsigned short a = (unsigned short)bits_a.to_ulong();
     if(bits_a[15]){
-        //if 15th bit is 1 
+        //if 15th bit is 1  
         setC();
     }
     else{
