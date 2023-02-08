@@ -49,6 +49,7 @@ public:
     void emulate(); 
     void fetchInstrucionAndOperands(); 
     void fetchOperands(); 
+    void fetchOperands2Bytes(); 
     void executeInstrucion(); 
     void interrupt(); 
 

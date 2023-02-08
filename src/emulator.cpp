@@ -315,15 +315,16 @@ void Emulator::fetchInstrucionAndOperands(){
             break;  
         }
         case IRET:{
-
+            executeIRET(); 
             break;
         }
         case CALL:{
-
+            fetchOperands(); 
+            executeCALL(); 
             break; 
         }
         case RET:{
-
+            executeRET(); 
             break;
         }
         case JMP:{
@@ -332,8 +333,11 @@ void Emulator::fetchInstrucionAndOperands(){
             executeJMP(); 
             break;
         }
-        case JEQ:
+        case JEQ:{
+            fetchOperands(); 
+            executeJEQ(); 
             break; 
+        }
         case JNE:
             break;
         case JGT:
@@ -548,6 +552,26 @@ void Emulator::fetchOperands(){
     //     }
     // }
 }
+
+void Emulator::fetchOperands2Bytes(){
+    registers[pc]++; 
+    string regDS = readOneByte(registers[pc]); 
+    cout<<"regs: "+regDS<<endl; 
+    string d;
+    d.push_back(regDS[0]); 
+    string s;
+    s.push_back(regDS[1]); 
+    char regD = hexToDecUnsigned(d); 
+    char regS = hexToDecUnsigned(s);
+    cout<<to_string(regD)<<endl;
+    cout<<to_string(regS)<<endl;
+    instruction.regDest=regD;
+    instruction.regSource=regS;
+    //to point at the following instruction 
+    registers[pc]++; 
+
+}
+
 
 
 void Emulator::executeHALT(){
