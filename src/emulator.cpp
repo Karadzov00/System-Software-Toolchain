@@ -220,6 +220,17 @@ string Emulator::decimalToHex(int decimal) {
     return res; 
 }
 
+string Emulator::decimalToHexWithZeros(int decimal){
+    std::stringstream ss;
+    ss<< std::hex << decimal; // int decimal_value
+    std::string res ( ss.str() );
+    for(int i=res.length(); i<4;i++){
+        res.insert(0, "0"); 
+    }
+    return res; 
+}
+
+
 void Emulator::printInstruction(){
     cout<<"instruction number:"+instruction.code<<endl; 
     cout<<"reg dest:"+instruction.regDest<<endl; 
@@ -351,13 +362,23 @@ void Emulator::emulate(){
             cout<<"Emulation finished"<<endl; 
             break; 
         }
-        
-        //for testing only
-        if(cnt==300)
-            break; //for testing only 
-        cnt++;     
+
     }
     printRegisters(); 
+    
+    cout<<"-------------------------------------------------"<<endl; 
+    cout<<"Emulated processor executed halt instruction"<<endl; 
+    cout<<"Emulated processor state: psw=0b"+decimalToBin16bit(registers[psw])<<endl; 
+    cout<< left<< setw(14)<<setfill(' ')<<"r0=0x"+decimalToHexWithZeros(registers[r0]);
+    cout<< left<< setw(14)<<setfill(' ')<<"r1=0x"+decimalToHexWithZeros(registers[r1]);
+    cout<< left<< setw(14)<<setfill(' ')<<"r2=0x"+decimalToHexWithZeros(registers[r2]);
+    cout<< left<< setw(14)<<setfill(' ')<<"r3=0x"+decimalToHexWithZeros(registers[r3]);
+    cout<<endl; 
+    cout<< left<< setw(14)<<setfill(' ')<<"r4=0x"+decimalToHexWithZeros(registers[r4]);
+    cout<< left<< setw(14)<<setfill(' ')<<"r5=0x"+decimalToHexWithZeros(registers[r5]);
+    cout<< left<< setw(14)<<setfill(' ')<<"r6=0x"+decimalToHexWithZeros(registers[sp]);
+    cout<< left<< setw(14)<<setfill(' ')<<"r7=0x"+decimalToHexWithZeros(registers[pc]);
+
     // cout<<"Emulation finished"<<endl; 
 }
 

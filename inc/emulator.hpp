@@ -71,6 +71,7 @@ public:
     string decimalToHex(int decimal); 
     void printRegisters();
     void printRegOperand(); 
+    string decimalToHexWithZeros(int decimal); 
     //get bits 
     short getZ(); 
     short getO(); 
