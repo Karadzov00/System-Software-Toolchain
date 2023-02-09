@@ -486,7 +486,6 @@ void Emulator::fetchInstrucionAndOperands(){
             break;
         }
         case STR:{
-            fetchOperandsLdrJumps(); 
             executeSTR(); 
             break; 
         }
@@ -930,18 +929,164 @@ void Emulator::executeLDR(){
     registers[instruction.regDest] = instruction.operand; 
 }
 void Emulator::executeSTR(){
-    //check
-    cout<<"str"<<endl; 
-    printRegOperand();
-    //store data from dest register on address operand 
-    if(instruction.regSource==sp){
-        cout<<"push"<<endl;
-        writeTwoBytesLittleEndian(registers[instruction.regSource], registers[instruction.regDest]); 
-
+    registers[pc]++; 
+    string regDS = readOneByte(registers[pc]); 
+    // cout<<"regs: "+regDS<<endl; 
+    string d;
+    d.push_back(regDS[0]); 
+    string s;
+    s.push_back(regDS[1]); 
+    char regD = hexToDecUnsigned(d); 
+    char regS = hexToDecUnsigned(s);
+    cout<<"register dest: "+to_string(regD)<<endl;
+    cout<<"register source: "+to_string(regS)<<endl;
+    instruction.regDest=regD;
+    instruction.regSource=regS;
+    
+    registers[pc]++; 
+    string addrMode = readOneByte(registers[pc]); 
+    instruction.updateMode=findUpdateType(addrMode[0]); 
+    if(instruction.updateMode==ERRUPD){
+        //incorrect update mode
+        //jump to interrupt routine 
+        errorRoutine(); 
     }
-    else{
-        cout<<"push"<<endl;
-        writeTwoBytesLittleEndian(instruction.operand, registers[instruction.regDest]); 
+    instruction.addrMode=findAddressing(addrMode[1]);
+    cout<<"addr mode: "+to_string(instruction.addrMode)<<endl; 
+    cout<<"update mode: "+to_string(instruction.updateMode)<<endl; 
+    unsigned short oldPC = registers[pc]; 
+    switch(instruction.addrMode){
+        case IMM:{
+            //needs payload 
+            cout<<"immediate"<<endl; 
+            registers[pc]+=3;//to point at next instruction  
+            oldPC++; 
+            int dhdl =hexToDecSigned(readTwoBytes(oldPC));
+            instruction.operand=dhdl; 
+            writeTwoBytes(instruction.operand, registers[instruction.regDest]);
+            cout<<"dhdl: "+decimalToHex(dhdl)<<endl;  
+            cout<<"pc: "+decimalToHex(registers[pc])<<endl; 
+
+
+        break; 
+        }
+        case REGDIR:{
+            cout<<"reg dir"<<endl; 
+
+            registers[pc]++;//to point at next instruction  
+            registers[instruction.regSource]=registers[instruction.regDest]; 
+            
+        break;
+        }
+        case REGDIRDISP:{
+            cout<<"reg dir disp"<<endl; 
+
+            //check if pcrel for jumps
+            if(instruction.regSource==pc){
+                //payload is little endian 
+                registers[pc]+=3; 
+                oldPC++; 
+                //watch out for second complement 
+                int dhdl =hexToDecSigned(readTwoBytesLittleEndian(oldPC));
+                //check this! is pc value good? 
+                registers[instruction.regSource]=registers[pc]+dhdl;
+            }
+            else{
+                registers[pc]+=3; 
+                oldPC++; 
+                int dhdl = hexToDecSigned(readTwoBytes(oldPC));
+                registers[instruction.regSource]=registers[instruction.regDest]+dhdl;
+
+
+                
+            }
+
+        break;
+        }
+        case REGIN:{
+            cout<<"reg ind"<<endl; 
+
+            //before operand address is formed 
+            if(instruction.updateMode==PREDECREMENT){
+                registers[instruction.regSource]-=2; 
+            }
+            else if(instruction.updateMode==PREINCREMENT){
+                registers[instruction.regSource]+=2; 
+            }
+
+            //main logic for forming operand
+            registers[pc]++;//to point at next instruction  
+
+            writeTwoBytes(registers[instruction.regSource], registers[instruction.regDest]); 
+
+            //after operand address is formed 
+            if(instruction.updateMode==POSTDECREMENT){
+                registers[instruction.regSource]-=2; 
+            }
+            else if(instruction.updateMode==POSTINCREMENT){
+                registers[instruction.regSource]+=2; 
+            } 
+            cout<<"memVal: "+decimalToHex(instruction.operand)<<endl;  
+        break;
+        }
+        case REGINDDISP:{
+            cout<<"reg ind disp"<<endl; 
+
+            //before operand address is formed 
+            if(instruction.updateMode==PREDECREMENT){
+                registers[instruction.regSource]-=2; 
+            }
+            else if(instruction.updateMode==PREINCREMENT){
+                registers[instruction.regSource]+=2; 
+            }
+
+            //check if pcrel for ldr/str
+            if(instruction.regSource==pc){
+                //payload is little endian 
+                registers[pc]+=3; 
+                oldPC++; 
+                //watch out for second complement 
+                int dhdl =hexToDecSigned(readTwoBytesLittleEndian(oldPC));
+                //pc + offset 
+                int address =hexToDecSigned(readTwoBytes(registers[pc]+dhdl)); 
+                writeTwoBytes(address, registers[instruction.regDest]);
+            }
+            else{
+                int dhdl = hexToDecSigned(readTwoBytes(registers[pc]+1));
+                int address =hexToDecSigned(readTwoBytes(registers[instruction.regSource]+dhdl)); 
+                writeTwoBytes(address, registers[instruction.regDest]);
+
+            }
+
+            //after operand address is formed 
+            if(instruction.updateMode==POSTDECREMENT){
+                registers[instruction.regSource]-=2; 
+            }
+            else if(instruction.updateMode==POSTINCREMENT){
+                registers[instruction.regSource]+=2; 
+            } 
+
+        break;
+        }
+        case MEM:{
+            cout<<"memory addr"<<endl; 
+
+            //payload is little endian 
+            registers[pc]+=3; 
+            oldPC++;
+            //to read payload
+            int dhdl =hexToDecSigned(readTwoBytes(oldPC));
+            // cout<<"dhdl: "+to_string(dhdl)<<endl; 
+            //read from payload address in memory 
+            instruction.operand=hexToDecSigned(readTwoBytes(dhdl)); 
+            writeTwoBytes(instruction.operand, registers[instruction.regDest]); 
+
+        break;
+        }
+        case ERRADDR:{
+            errorRoutine(); 
+        break;
+        }
 
     }
 }
