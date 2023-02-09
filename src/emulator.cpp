@@ -365,6 +365,7 @@ void Emulator::emulate(){
 
     }
     printRegisters(); 
+    for(int i=0; i<50; i++)cout<<endl; 
     
     cout<<"-------------------------------------------------"<<endl; 
     cout<<"Emulated processor executed halt instruction"<<endl; 
