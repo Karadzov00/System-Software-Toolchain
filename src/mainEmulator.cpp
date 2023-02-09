@@ -4,7 +4,7 @@
 
 
 int main(int argc, char* argv[]){
-    std::cout <<"Entered main emulator! \n"; 
+    // std::cout <<"Entered main emulator! \n"; 
     try
     {
         Emulator emulator; 

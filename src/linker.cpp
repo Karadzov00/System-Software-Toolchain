@@ -24,9 +24,9 @@ bool Linker::checkCmdArguments(int argc, char* argv[]){
     }
         
     regex inputRgx("^.*\\.o$");
-    // cout<<outputFile<<endl;
+    // // cout<<outputFile<<endl;
     for(auto f:inputFiles){
-        cout<<f<<endl; 
+        // cout<<f<<endl; 
         if(!std::regex_match(f, inputRgx))
             throw BadCmdArgsException(); 
 
@@ -36,7 +36,7 @@ bool Linker::checkCmdArguments(int argc, char* argv[]){
 
     if(std::regex_match(optionArg, optionArgRegex) 
   && std::regex_match(outputFile, outRgx)){
-    std::cout<<"Lepo zadati argumenti \n"; 
+    // std::cout<<"Lepo zadati argumenti \n"; 
     return true; 
   }
 
@@ -50,7 +50,7 @@ void Linker::openParseFile(){
         fstream inFile;
         inFile.open(inputFile); 
         if(!inFile.is_open())throw FileNotOpenException();
-        cout<<inputFile+" - File opened! \n";  
+        // cout<<inputFile+" - File opened! \n";  
         currLineNum=1; 
         partionedSections.clear(); 
         fileSections.clear(); //since it's local clear content 
@@ -58,18 +58,18 @@ void Linker::openParseFile(){
             if(currentLine=="section begin")break; 
             vector<string>tokens; 
             tokens=tokenizeLine(currentLine, ":"); 
-                cout<<"TOKENS ARE: ";  
+                // cout<<"TOKENS ARE: ";  
             for(auto t:tokens){
-                cout<<t<<" "; 
+                // cout<<t<<" "; 
             }
-            cout<<endl; 
+            // cout<<endl; 
             string name = tokens[0];
             int isGlobal = stoi(tokens[1]);
             int symbolId = stoi(tokens[2]);
             int sectionNum = stoi(tokens[3]);
             int value = stoi(tokens[4]);
             int size = stoi(tokens[5]);
-            cout<<"size is "<<size<<endl;
+            // cout<<"size is "<<size<<endl;
 
             //TODO detect double definition 
             if(symbolTable.find(name)!=symbolTable.end() && size==-1 && sectionNum!=0 && isGlobal==1){
@@ -103,10 +103,10 @@ void Linker::openParseFile(){
                  //local mapping for each file 
                 //check if it exists in hash map
                 if(sectionSizes.find(name)==sectionSizes.end()){
-                    cout<<"New section"<<endl; 
+                    // cout<<"New section"<<endl; 
                     //not in hash map
                     sectionSizes[name]=size;  
-                    cout<<"section: "+name<<", size:"+to_string(size)<<endl; 
+                    // cout<<"section: "+name<<", size:"+to_string(size)<<endl; 
                     allSectionsSize+=size; 
                     sections.push_back(name); 
                     fileSectionEntry entry; 
@@ -119,16 +119,16 @@ void Linker::openParseFile(){
                 }
                 else{
                     //section already exists 
-                    cout<<"Section already exists"<<endl; 
+                    // cout<<"Section already exists"<<endl; 
                     fileSectionEntry entry; 
                     entry.name=name; 
                     entry.file=inputFile; 
                     entry.id=symbolId; 
                     entry.offset=sectionSizes[name]; //offset compared to other same name sections
                     partionedSections.push_back(entry); 
-                    cout<<"section: "+name<<", offset:"+to_string(sectionSizes[name])<<endl; 
+                    // cout<<"section: "+name<<", offset:"+to_string(sectionSizes[name])<<endl; 
                     sectionSizes[name]+=size;  
-                    cout<<"section: "+name<<", new size:"+to_string(sectionSizes[name])<<endl; 
+                    // cout<<"section: "+name<<", new size:"+to_string(sectionSizes[name])<<endl; 
                     allSectionsSize+=size; 
                 }
             }
@@ -147,7 +147,7 @@ void Linker::openParseFile(){
     //TOFIX iteriranje kroz mapu nije ovde fifo
     //global sections is vector so it is fifo 
     for(auto s:globalSections){
-        // cout<<"section "<<s.name<<" "<<s.file<<"; offset: "<<s.offset<<"; size:"<<sectionSizes[s.name]<<endl; 
+        // // cout<<"section "<<s.name<<" "<<s.file<<"; offset: "<<s.offset<<"; size:"<<sectionSizes[s.name]<<endl; 
         //if address is not yet calculated 
         if(sectionAdresses.find(s.name)==sectionAdresses.end()){
             sectionAdresses[s.name]=lc; 
@@ -155,22 +155,22 @@ void Linker::openParseFile(){
         }
     }
 
-    cout<<endl; 
+    // cout<<endl; 
 
 
     printSymbolTable(); 
-    cout<<endl; 
-    cout<<"SECTIONS FIFO"<<endl; 
+    // cout<<endl; 
+    // cout<<"SECTIONS FIFO"<<endl; 
     for(auto s:globalSections){
-        cout<<"section "<<s.name<<" "<<s.file<<"; offset: "<<s.offset<<"; size:"<<sectionSizes[s.name]<<endl; 
+        // cout<<"section "<<s.name<<" "<<s.file<<"; offset: "<<s.offset<<"; size:"<<sectionSizes[s.name]<<endl; 
 
     }
-    cout<<endl; 
+    // cout<<endl; 
 
     for(auto s:sectionAdresses){
-        cout<<"section: "+s.first<<", address:"+to_string(s.second)<<endl; 
+        // cout<<"section: "+s.first<<", address:"+to_string(s.second)<<endl; 
     }
-    cout<<endl; 
+    // cout<<endl; 
 
     for(auto s: symbolTable){
         int sectionOffset = findFileSectionOffset(s.second.file, s.second.sectionName); 
@@ -183,12 +183,12 @@ void Linker::openParseFile(){
     processRelocations(); 
 
     for(auto s:globalSections){
-        cout<<"section "<<s.name<<endl; 
+        // cout<<"section "<<s.name<<endl; 
         printCode(s.code);
-        cout<<endl; 
+        // cout<<endl; 
         globalCode.append(s.code); 
     }
-    cout<<endl<<"GLOBAL CODE:"<<endl; 
+    // cout<<endl<<"GLOBAL CODE:"<<endl; 
     printCode(globalCode); 
     
     writeEmulatorInput(globalCode); 
@@ -204,7 +204,7 @@ void Linker::processRelocations(){
         fstream inFile;
         inFile.open(inputFile); 
         if(!inFile.is_open())throw FileNotOpenException();
-        cout<<inputFile+" - File opened! \n";  
+        // cout<<inputFile+" - File opened! \n";  
         currLineNum=1; 
         localSymbolTable.clear(); 
         sectionRelocations.clear(); 
@@ -241,26 +241,26 @@ void Linker::processRelocations(){
                 getline(inFile, currentLine);
                 currentSection=currentLine;
                 getline(inFile, currentLine);
-                // cout<<currentLine<<endl; 
-                cout<<currentSection<<endl; 
+                // // cout<<currentLine<<endl; 
+                // cout<<currentSection<<endl; 
                 while(true){
                     if(currentLine=="code of section:"){
                         getline(inFile, currentLine);
                         string code=currentLine; 
-                        cout<<code<<endl; 
+                        // cout<<code<<endl; 
                         code.erase(std::remove(code.begin(), code.end(), ':'), code.end());
-                        cout<<code<<endl; 
+                        // cout<<code<<endl; 
                         writeCodeToGlobalSection(currentSection, inputFile, code); 
                         remakeCode(code, currentSection, inputFile); 
                         break; 
                     }
-                    cout<<currentLine<<endl; 
+                    // cout<<currentLine<<endl; 
                     relocationEntry reloc; 
                     vector<string>tokens=tokenizeLine(currentLine, ":");
                     for(auto t:tokens){
-                        cout<<t+" "; 
+                        // cout<<t+" "; 
                     }
-                    cout<<endl; 
+                    // cout<<endl; 
                     reloc.offset=stoi(tokens[0]);
                     reloc.type=stoi(tokens[1]);
                     reloc.symbol=stoi(tokens[2]);
@@ -270,12 +270,12 @@ void Linker::processRelocations(){
                     //make relocation table 
                     //read code into line
                     //change code with global symbol values 
-                    cout<<"UBACIVANJE u reloc tabelu"<<endl; 
-                    cout<<inputFile<<endl; 
-                    cout<<"offset: "<<reloc.offset<<endl; 
-                    cout<<"type: "<<reloc.offset<<endl; 
-                    cout<<"symbol: "<<reloc.offset<<endl; 
-                    cout<<"addend: "<<reloc.offset<<endl; 
+                    // cout<<"UBACIVANJE u reloc tabelu"<<endl; 
+                    // cout<<inputFile<<endl; 
+                    // cout<<"offset: "<<reloc.offset<<endl; 
+                    // cout<<"type: "<<reloc.offset<<endl; 
+                    // cout<<"symbol: "<<reloc.offset<<endl; 
+                    // cout<<"addend: "<<reloc.offset<<endl; 
 
 
                     getline(inFile, currentLine);
@@ -289,14 +289,14 @@ void Linker::processRelocations(){
 }
 
 void Linker::remakeCode(string code, string currentSection, string file){
-    cout<<"relocation symbols:"<<endl; 
+    // cout<<"relocation symbols:"<<endl; 
     for(auto r:sectionRelocations){
         if(r.sectionName==currentSection){
             int offset = r.offset; //offset in section
             int symbolID = r.symbol; 
             int addend = r.addend; 
             string symbol = findSymbolById(symbolID); 
-            cout<<"symbol: "+symbol<<endl; 
+            // cout<<"symbol: "+symbol<<endl; 
             //check if symbol is in global symbol table 
             if(globalSymbolTable.find(symbol)==globalSymbolTable.end() && localSymbolTable[symbol].isGlobal==1){
                 //symbol not defined
@@ -306,7 +306,7 @@ void Linker::remakeCode(string code, string currentSection, string file){
             string globalValue; 
             if(symbolTable[symbol].isGlobal==1){
                 globalValue = literalToHex(to_string(globalSymbolTable[symbol])); 
-                cout<<"global value dec: "+to_string(globalSymbolTable[symbol])<<endl; 
+                // cout<<"global value dec: "+to_string(globalSymbolTable[symbol])<<endl; 
             }
             else{
                 //symbol is local 
@@ -314,11 +314,11 @@ void Linker::remakeCode(string code, string currentSection, string file){
                 int offs = findFileSectionOffset(localSymbolTable[symbol].file, section);
                 int val = offs + localSymbolTable[symbol].value;  
                 globalValue=literalToHex(to_string(val)); 
-                cout<<"global value dec: "+val<<endl; 
+                // cout<<"global value dec: "+val<<endl; 
             }
-            cout<<"global value hex: "+globalValue<<endl; 
-            cout<<"offset: "+to_string(offset)<<endl; 
-            cout<<"type: "+to_string(r.type)<<endl; 
+            // cout<<"global value hex: "+globalValue<<endl; 
+            // cout<<"offset: "+to_string(offset)<<endl; 
+            // cout<<"type: "+to_string(r.type)<<endl; 
 
             //absoulte addressing 
             if(r.type==0){
@@ -327,9 +327,9 @@ void Linker::remakeCode(string code, string currentSection, string file){
                 for(int i=0; i<4; i++){
                     code[position+i]=globalValue[i]; 
                 }
-                cout<<"new code"<<endl; 
+                // cout<<"new code"<<endl; 
                 printCode(code); 
-                cout<<endl; 
+                // cout<<endl; 
 
                 //add remade code to sections code  
                 // sectionsCode[currentSection]=code; 
@@ -356,17 +356,17 @@ void Linker::remakeCode(string code, string currentSection, string file){
 
                     //global address for relocation offset=glob section address+reloc offset
                     int relocSectionOffset = findFileSectionOffset(file, currentSection); 
-                    cout<<"global symb addr "+to_string(symbAddr)<<endl;
-                    cout<<"reloc section offset "+to_string(relocSectionOffset)<<endl;
+                    // cout<<"global symb addr "+to_string(symbAddr)<<endl;
+                    // cout<<"reloc section offset "+to_string(relocSectionOffset)<<endl;
                     int relocAddr = relocSectionOffset+r.offset;
-                    cout<<"reloc offset address "+to_string(relocAddr)<<endl;
+                    // cout<<"reloc offset address "+to_string(relocAddr)<<endl;
                     int dhdl = symbAddr-relocAddr-2; 
 
                     //convert it to hexadecimal and make it little endian 
                     string symbValue= decimalToHex(dhdl); 
-                    cout<<"bin value: "+symbValue<<endl; 
+                    // cout<<"bin value: "+symbValue<<endl; 
                     symbValue=binToHex16bit(symbValue); 
-                    cout<<"hex value: "+symbValue<<endl; 
+                    // cout<<"hex value: "+symbValue<<endl; 
                     string value; 
 
                     for(int i=symbValue.length(); i<4; i++){
@@ -383,15 +383,15 @@ void Linker::remakeCode(string code, string currentSection, string file){
                     value.append(tmp); 
 
 
-                    cout<<"value of little endian dhdl is "+value<<endl; 
+                    // cout<<"value of little endian dhdl is "+value<<endl; 
 
                     int position = offset*2; 
                     for(int i=0; i<4; i++){
                         code[position+i]=value[i]; 
                     }
-                    cout<<"new code"<<endl; 
+                    // cout<<"new code"<<endl; 
                     printCode(code); 
-                    cout<<endl; 
+                    // cout<<endl; 
 
                     //add remade code to sections code  
                     // sectionsCode[currentSection]=code; 
@@ -404,19 +404,19 @@ void Linker::remakeCode(string code, string currentSection, string file){
                 //write new value in code 
                 int position = offset*2; 
                 //make it little endian - rotate bytes in symbValue
-                cout<<"big endian: "+globalValue<<endl; 
+                // cout<<"big endian: "+globalValue<<endl; 
                 string tmp=globalValue.substr(0,2);
                 globalValue = globalValue.substr(2,2); 
                 globalValue.append(tmp);
-                cout<<"little endian: "+globalValue<<endl; 
+                // cout<<"little endian: "+globalValue<<endl; 
 
 
                 for(int i=0; i<4; i++){
                     code[position+i]=globalValue[i]; 
                 }
-                cout<<"new code"<<endl; 
+                // cout<<"new code"<<endl; 
                 printCode(code); 
-                cout<<endl; 
+                // cout<<endl; 
 
                 //add remade code to sections code  
                 // sectionsCode[currentSection]=code; 
@@ -449,8 +449,8 @@ void Linker::writeCodeToGlobalSection(string section, string file, string code){
         if(file.compare(s.file)==0 && section.compare(s.name)==0){
             //found right section in right file 
             s.code=code; 
-            // cout<<"found section"<<endl; 
-            // cout<<"section "+section<<endl; 
+            // // cout<<"found section"<<endl; 
+            // // cout<<"section "+section<<endl; 
             // printCode(s.code); 
         }
     }
@@ -470,27 +470,27 @@ void Linker::printCode(string input){
     int cnt=1;
     int cntLine=1; 
     for(auto c: input){
-      cout<<c; 
+    //   cout<<c; 
       if(cnt==2){
-        cout<<" ";
+        // cout<<" ";
         cnt=0; 
       }
       if(cntLine==20){
-        cout<<endl;
+        // cout<<endl;
         cntLine=0; 
       }
       cnt++; 
       cntLine++; 
     }
-    cout<<endl; 
-    // std::cout << result << std::endl;
+    // cout<<endl; 
+    // // std::cout << result << std::endl;
 } 
 
 void Linker::writeEmulatorInput(string input){
     ofstream hex;
     hex.open(outputFile); 
     if(hex.is_open()){
-        cout<<outputFile+" opened"<<endl; 
+        // cout<<outputFile+" opened"<<endl; 
     }
     else{
         throw FileNotOpenException(); 
@@ -551,7 +551,7 @@ string Linker::literalToHex(string token){
         //dec literal 
         token = decToHex(stoi(token)); 
     }
-    // cout<<"Token is: "<<token<<endl; 
+    // // cout<<"Token is: "<<token<<endl; 
     regex hexPrefix("0x"); 
     token=regex_replace(token, hexPrefix, "");
 
@@ -575,40 +575,40 @@ string Linker::decToHex(int dec){
 
 void Linker::printSymbolTable(){
 
-  cout<<"TABELA SIMBOLA:"<<endl; 
-  // cout<<"name \t isGlobal \t id \t section \t size"<<endl;
-  cout<< left<< setw(14)<<setfill(' ')<<"symbolName";
-  cout<< left<< setw(14)<<setfill(' ')<<"isGlobal";
-  cout<< left<< setw(14)<<setfill(' ')<<"symbolID";
-  cout<< left<< setw(14)<<setfill(' ')<<"sectionName";
-  cout<< left<< setw(14)<<setfill(' ')<<"value";
-  cout<< left<< setw(14)<<setfill(' ')<<"size";
-  cout<<endl; 
+//   cout<<"TABELA SIMBOLA:"<<endl; 
+//   // cout<<"name \t isGlobal \t id \t section \t size"<<endl;
+//   cout<< left<< setw(14)<<setfill(' ')<<"symbolName";
+//   cout<< left<< setw(14)<<setfill(' ')<<"isGlobal";
+//   cout<< left<< setw(14)<<setfill(' ')<<"symbolID";
+//   cout<< left<< setw(14)<<setfill(' ')<<"sectionName";
+//   cout<< left<< setw(14)<<setfill(' ')<<"value";
+//   cout<< left<< setw(14)<<setfill(' ')<<"size";
+//   cout<<endl; 
   for (auto const& x : symbolTable){
-    cout<< left<< setw(14)<<setfill(' ')<<x.second.symbolName;
-    cout<< left<< setw(14)<<setfill(' ')<<x.second.isGlobal;
-    cout<< left<< setw(14)<<setfill(' ')<<x.second.symbolId;
-    cout<< left<< setw(14)<<setfill(' ')<<x.second.sectionName;
-    cout<< left<< setw(14)<<setfill(' ')<<x.second.value;
-    cout<< left<< setw(14)<<setfill(' ')<<x.second.size;
-    cout<<endl; 
+    // cout<< left<< setw(14)<<setfill(' ')<<x.second.symbolName;
+    // cout<< left<< setw(14)<<setfill(' ')<<x.second.isGlobal;
+    // cout<< left<< setw(14)<<setfill(' ')<<x.second.symbolId;
+    // cout<< left<< setw(14)<<setfill(' ')<<x.second.sectionName;
+    // cout<< left<< setw(14)<<setfill(' ')<<x.second.value;
+    // cout<< left<< setw(14)<<setfill(' ')<<x.second.size;
+    // cout<<endl; 
 
-    // cout<<x.second.symbolName<<"\t"<<x.second.isGlobal<<"\t"<<x.second.symbolId<<"\t"<<x.second.sectionNum<<"\t"<<x.second.size<<endl;
+    // // cout<<x.second.symbolName<<"\t"<<x.second.isGlobal<<"\t"<<x.second.symbolId<<"\t"<<x.second.sectionNum<<"\t"<<x.second.size<<endl;
   }
-  cout<<endl; 
+//   cout<<endl; 
 
 }
 
 void Linker::printGlobalSymbolTable(){
-  cout<<"GLOBALNA TABELA SIMBOLA:"<<endl; 
-  cout<< left<< setw(14)<<setfill(' ')<<"symbolName";
-  cout<< left<< setw(14)<<setfill(' ')<<"address";
-  cout<<endl; 
+//   cout<<"GLOBALNA TABELA SIMBOLA:"<<endl; 
+//   cout<< left<< setw(14)<<setfill(' ')<<"symbolName";
+//   cout<< left<< setw(14)<<setfill(' ')<<"address";
+//   cout<<endl; 
 
   for (auto const& x : globalSymbolTable){
-    cout<< left<< setw(14)<<setfill(' ')<<x.first;
-    cout<< left<< setw(14)<<setfill(' ')<<x.second;
-    cout<<endl; 
+    // cout<< left<< setw(14)<<setfill(' ')<<x.first;
+    // cout<< left<< setw(14)<<setfill(' ')<<x.second;
+    // cout<<endl; 
   }
 
 
@@ -641,7 +641,7 @@ vector<string> Linker::tokenizeLine(string line, string delimiters){
     {
         string token(pch); 
         tokens.push_back(token); 
-        // cout<<token; 
+        // // cout<<token; 
         pch = strtok (NULL, delim);
     }
     return tokens; 

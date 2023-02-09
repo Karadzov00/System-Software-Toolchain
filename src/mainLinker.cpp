@@ -5,7 +5,7 @@
 
 int main(int argc, char* argv[]){
 
-    std::cout <<"Entered main! \n"; 
+    // std::cout <<"Entered main! \n"; 
     try
     {
       Linker linker; 

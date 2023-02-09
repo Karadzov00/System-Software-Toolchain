@@ -27,12 +27,12 @@ bool Assembler::checkCmdArguments(int argc, char* argv[]){
   cmdOutputFile = argv[2]; 
   cmdInputFile = argv[3]; 
 
-  std::cout<<cmdInputFile<<"\n"<<cmdOutputFile<<"\n"; 
+  // std::cout<<cmdInputFile<<"\n"<<cmdOutputFile<<"\n"; 
 
   if(std::regex_match(optionArg, optionArgRegex) 
   && std::regex_match(cmdInputFile, inputFileRegex)
   && std::regex_match(cmdOutputFile, outputFileRegex)){
-    std::cout<<"Lepo zadati argumenti \n"; 
+    // std::cout<<"Lepo zadati argumenti \n"; 
     return true; 
   }
   
@@ -43,7 +43,7 @@ void Assembler::openParseFile(){
   fstream inFile;
   inFile.open(inputFile); 
   if(!inFile.is_open())throw FileNotOpenException();
-  cout<<"File opened! \n";  
+  // cout<<"File opened! \n";  
   currLineNum=1; 
   createUndefinedSection("UNDEFINED"); 
 
@@ -62,8 +62,8 @@ void Assembler::openParseFile(){
     if(labelLine){
       //remove label from current line, instruction could be after label
       cleanCurrentLine=regex_replace(cleanCurrentLine, labelRegex,"");
-      cout<<"label line after shortening \n";
-      cout<<cleanCurrentLine<<endl; 
+      // cout<<"label line after shortening \n";
+      // cout<<cleanCurrentLine<<endl; 
       if(regex_search(cleanCurrentLine, regexMatch, emptyLineRegex))
         continue; //if empty line skip iteration
     }
@@ -96,21 +96,21 @@ void Assembler::openParseFile(){
   printLinkerInput(); 
 
 
-  // cout<<"TABELA KORISCENJA:"<<endl; 
-  //   cout<< left<< setw(14)<<setfill(' ')<<"symbol";
-  //   cout<< left<< setw(14)<<setfill(' ')<<"address";
-  //   cout<< left<< setw(14)<<setfill(' ')<<"section";
-  //   cout<< left<< setw(14)<<setfill(' ')<<"type";
-  //   cout<<endl; 
+  // // cout<<"TABELA KORISCENJA:"<<endl; 
+  // //   cout<< left<< setw(14)<<setfill(' ')<<"symbol";
+  // //   cout<< left<< setw(14)<<setfill(' ')<<"address";
+  // //   cout<< left<< setw(14)<<setfill(' ')<<"section";
+  // //   cout<< left<< setw(14)<<setfill(' ')<<"type";
+  // //   cout<<endl; 
 
   // for (auto const& x : symbolTable){
   //   for(auto u: x.second.useVector){
-  //     // cout<<x.first<<": "<<u.address<<" "<<u.section<<" "<<u.type<<endl;
-  //     cout<< left<< setw(14)<<setfill(' ')<<x.first;
-  //     cout<< left<< setw(14)<<setfill(' ')<<u.address;
-  //     cout<< left<< setw(14)<<setfill(' ')<<u.section;
-  //     cout<< left<< setw(14)<<setfill(' ')<<u.type;
-  //     cout<<endl; 
+  // //     // cout<<x.first<<": "<<u.address<<" "<<u.section<<" "<<u.type<<endl;
+  // //     cout<< left<< setw(14)<<setfill(' ')<<x.first;
+  // //     cout<< left<< setw(14)<<setfill(' ')<<u.address;
+  // //     cout<< left<< setw(14)<<setfill(' ')<<u.section;
+  // //     cout<< left<< setw(14)<<setfill(' ')<<u.type;
+  // //     cout<<endl; 
 
   //   }
   // }
@@ -124,14 +124,14 @@ void Assembler::formatLine(){
     smatch regexMatch;
     cleanCurrentLine = currentLine; 
     if(regex_search(cleanCurrentLine, regexMatch, commentRegex)){
-      // cout<<"comments \n"; 
-      // cout<<cleanCurrentLine<<"\n";//before replacement
+      // // cout<<"comments \n"; 
+      // // cout<<cleanCurrentLine<<"\n";//before replacement
       //remove all comments 
       cleanCurrentLine=regex_replace(cleanCurrentLine, commentRegex, ""); 
-      // cout<<cleanCurrentLine<<"\n";//after replacement 
+      // // cout<<cleanCurrentLine<<"\n";//after replacement 
     }
-    // cout<<"whitespaces \n"; 
-    // cout<<cleanCurrentLine<<"\n";//before replacement
+    // // cout<<"whitespaces \n"; 
+    // // cout<<cleanCurrentLine<<"\n";//before replacement
   
     //remove all unnecessary whitespaces
     cleanCurrentLine = regex_replace(cleanCurrentLine, startLineSpaceRegex, ""); 
@@ -141,7 +141,7 @@ void Assembler::formatLine(){
     cleanCurrentLine = regex_replace(cleanCurrentLine, additionalSpaceRegex, " "); 
     //remove none or multiple spaces after comma
     cleanCurrentLine = regex_replace(cleanCurrentLine, commaSpaceRegex, ", "); 
-    // cout<<cleanCurrentLine<<"\n"; 
+    // // cout<<cleanCurrentLine<<"\n"; 
 
     //check if label is well written 
     if(regex_search(cleanCurrentLine, regexMatch, somethingBeforeLabelRegex)){
@@ -154,8 +154,8 @@ void Assembler::formatLine(){
 bool Assembler::checkIfLabel(string currLine){
   smatch regexMatch; 
   if(regex_search(currLine, regexMatch, labelRegex)){
-    cout<<"label \n";
-    cout<<currLine<<"\n"; 
+    // cout<<"label \n";
+    // cout<<currLine<<"\n"; 
     processLabel(currLine); 
     return true; 
   }
@@ -167,8 +167,8 @@ bool Assembler::checkIfExternDirective(string currLine){
   if(regex_search(currLine, regexMatch, externRegex)){
     if(instrDirNum>0)throw BadInputFileSyntax(currLineNum);
     instrDirNum++; 
-    cout<<"extern \n";
-    cout<<currLine<<"\n"; 
+    // cout<<"extern \n";
+    // cout<<currLine<<"\n"; 
     processExternDirective(currLine); 
     return true; 
   }
@@ -179,8 +179,8 @@ bool Assembler::checkIfGlobalDirective(string currLine){
   if(regex_search(currLine, regexMatch, globalRegex)){
     if(instrDirNum>0)throw BadInputFileSyntax(currLineNum);
     instrDirNum++; 
-    cout<<"global \n";
-    cout<<currLine<<"\n"; 
+    // cout<<"global \n";
+    // cout<<currLine<<"\n"; 
     processGlobalDirective(currLine); 
     return true; 
   }
@@ -191,8 +191,8 @@ bool Assembler::checkIfEndDirective(string currLine){
   if(regex_search(currLine, regexMatch, endRegex)){
     if(instrDirNum>0)throw BadInputFileSyntax(currLineNum);
     instrDirNum++; 
-    cout<<"end \n";
-    cout<<currLine<<"\n"; 
+    // cout<<"end \n";
+    // cout<<currLine<<"\n"; 
     endFlag=true; 
     symbolTable[currentSectionName].size=locationCounter; 
     return true; 
@@ -204,8 +204,8 @@ bool Assembler::checkIfSectionDirective(string currLine){
   if(regex_search(currLine, regexMatch, sectionRegex)){
     if(instrDirNum>0)throw BadInputFileSyntax(currLineNum);
     instrDirNum++; 
-    cout<<"section \n";
-    cout<<currLine<<"\n"; 
+    // cout<<"section \n";
+    // cout<<currLine<<"\n"; 
     processSectionDirective(currLine); 
     return true; 
   } 
@@ -216,8 +216,8 @@ bool Assembler::checkIfSkipDirective(string currLine){
   if(regex_search(currLine, regexMatch, skipRegex)){
     if(instrDirNum>0)throw BadInputFileSyntax(currLineNum);
     instrDirNum++; 
-    cout<<"skip \n";
-    cout<<currLine<<"\n"; 
+    // cout<<"skip \n";
+    // cout<<currLine<<"\n"; 
     processSkipDirective(currLine); 
     return true; 
   } 
@@ -228,8 +228,8 @@ bool Assembler::checkIfWordDirective(string currLine){
   if(regex_search(currLine, regexMatch, wordRegex)){
     if(instrDirNum>0)throw BadInputFileSyntax(currLineNum);
     instrDirNum++; 
-    cout<<"word \n";
-    cout<<currLine<<"\n"; 
+    // cout<<"word \n";
+    // cout<<currLine<<"\n"; 
     processWordDirective(currLine); 
     return true; 
   } 
@@ -240,7 +240,7 @@ bool Assembler::checkIfInstruction(string currLine){
   smatch match; 
   if(regex_search(currLine, match, noOperandRegex)){
     string operation = match[0]; 
-    cout<<"OPERATION IS "+operation<<endl; 
+    // cout<<"OPERATION IS "+operation<<endl; 
     string code; 
     if(operation=="halt"){
       code="00"; 
@@ -277,21 +277,21 @@ bool Assembler::checkIfInstruction(string currLine){
       token = strtok (NULL, " ,");
     }
     string operation = tokens[0]; 
-    cout<<endl<<"OPERATION IS "+operation<<endl; 
+    // cout<<endl<<"OPERATION IS "+operation<<endl; 
     string code; 
 
 
     if(operation=="int"){
       
-      cout<<"OPERANDS ARE: "; 
-      cout<<tokens[1]<<endl; 
+      // cout<<"OPERANDS ARE: "; 
+      // cout<<tokens[1]<<endl; 
 
       string binary_reg = registerCode(tokens[1]); 
-      cout<<"hex reg: "<<binary_reg<<endl; 
+      // cout<<"hex reg: "<<binary_reg<<endl; 
       code="10";
       code+=binary_reg;
       code+="F"; 
-      cout<<"code for int instruction: "<<code<<endl;
+      // cout<<"code for int instruction: "<<code<<endl;
 
       //pushing into code 
       for(int i=0; i<code.size(); i++){
@@ -303,9 +303,9 @@ bool Assembler::checkIfInstruction(string currLine){
     else if(operation=="push"){
       //treat it as str
 
-      cout<<"push - reg indirektno"<<endl;
-      cout<<tokens[1]; 
-      cout<<endl;
+      // cout<<"push - reg indirektno"<<endl;
+      // cout<<tokens[1]; 
+      // cout<<endl;
 
       code="B0"; 
 
@@ -314,8 +314,8 @@ bool Assembler::checkIfInstruction(string currLine){
       code.append("6"); //RS
       code.append("1");//UP predecrement 
       code.append("2"); //AM
-      cout<<"code"<<endl;
-      cout<<code<<endl; 
+      // cout<<"code"<<endl;
+      // cout<<code<<endl; 
       for(int i=0; i<code.length(); i++){
         sectionTable[currentSectionName].code.push_back(code[i]); 
       }
@@ -325,9 +325,9 @@ bool Assembler::checkIfInstruction(string currLine){
     else if(operation=="pop"){
       //treat it as ldr
       //postincrement 
-      cout<<"pop - reg direktno"<<endl;
-      cout<<tokens[1]; 
-      cout<<endl;
+      // cout<<"pop - reg direktno"<<endl;
+      // cout<<tokens[1]; 
+      // cout<<endl;
 
       code="A0"; 
 
@@ -336,8 +336,8 @@ bool Assembler::checkIfInstruction(string currLine){
       code.append("6"); //RS
       code.append("4");//UP postincrement 
       code.append("2"); //AM
-      cout<<"code"<<endl;
-      cout<<code<<endl; 
+      // cout<<"code"<<endl;
+      // cout<<code<<endl; 
       for(int i=0; i<code.length(); i++){
         sectionTable[currentSectionName].code.push_back(code[i]); 
       }
@@ -345,15 +345,15 @@ bool Assembler::checkIfInstruction(string currLine){
       
     }
     else if(operation=="not"){
-      cout<<"OPERANDS ARE: "; 
-      cout<<tokens[1]<<endl; 
+      // cout<<"OPERANDS ARE: "; 
+      // cout<<tokens[1]<<endl; 
 
       string binary_reg = registerCode(tokens[1]); 
-      cout<<"hex reg: "<<binary_reg<<endl; 
+      // cout<<"hex reg: "<<binary_reg<<endl; 
       code="80";
       code+=binary_reg;
       code+=binary_reg; 
-      cout<<"code for not instruction: "<<code<<endl;
+      // cout<<"code for not instruction: "<<code<<endl;
 
       //pushing into code 
       for(int i=0; i<code.size(); i++){
@@ -374,7 +374,7 @@ bool Assembler::checkIfInstruction(string currLine){
       token = strtok (NULL, " ,");
     }
     string operation = tokens[0]; 
-    cout<<"OPERATION IS "+operation<<endl; 
+    // cout<<"OPERATION IS "+operation<<endl; 
     string code; 
 
     string reg1 = registerCode(tokens[1]);
@@ -390,7 +390,7 @@ bool Assembler::checkIfInstruction(string currLine){
         sectionTable[currentSectionName].code.push_back(code[i]); 
       }
       locationCounter+=2;
-      cout<<"Code for xchg instruction: "<<code<<endl; 
+      // cout<<"Code for xchg instruction: "<<code<<endl; 
       
     }
     else if(operation=="add"){
@@ -403,7 +403,7 @@ bool Assembler::checkIfInstruction(string currLine){
         sectionTable[currentSectionName].code.push_back(code[i]); 
       }
       locationCounter+=2;
-      cout<<"Code for add instruction: "<<code<<endl; 
+      // cout<<"Code for add instruction: "<<code<<endl; 
     }
     else if(operation=="sub"){
       code="71";
@@ -415,7 +415,7 @@ bool Assembler::checkIfInstruction(string currLine){
         sectionTable[currentSectionName].code.push_back(code[i]); 
       }
       locationCounter+=2;
-      cout<<"Code for sub instruction: "<<code<<endl;
+      // cout<<"Code for sub instruction: "<<code<<endl;
     }
     else if(operation=="mul"){
       code="72";
@@ -427,7 +427,7 @@ bool Assembler::checkIfInstruction(string currLine){
         sectionTable[currentSectionName].code.push_back(code[i]); 
       }
       locationCounter+=2;
-      cout<<"Code for mul instruction: "<<code<<endl;
+      // cout<<"Code for mul instruction: "<<code<<endl;
     }
     else if(operation=="div"){
       code="73";
@@ -439,7 +439,7 @@ bool Assembler::checkIfInstruction(string currLine){
         sectionTable[currentSectionName].code.push_back(code[i]); 
       }
       locationCounter+=2;
-      cout<<"Code for div instruction: "<<code<<endl;
+      // cout<<"Code for div instruction: "<<code<<endl;
     }
     else if(operation=="cmp"){
       code="74";
@@ -451,7 +451,7 @@ bool Assembler::checkIfInstruction(string currLine){
         sectionTable[currentSectionName].code.push_back(code[i]); 
       }
       locationCounter+=2;
-      cout<<"Code for cmp instruction: "<<code<<endl;
+      // cout<<"Code for cmp instruction: "<<code<<endl;
     }
     else if(operation=="and"){
       code="81";
@@ -463,7 +463,7 @@ bool Assembler::checkIfInstruction(string currLine){
         sectionTable[currentSectionName].code.push_back(code[i]); 
       }
       locationCounter+=2;
-      cout<<"Code for and instruction: "<<code<<endl;
+      // cout<<"Code for and instruction: "<<code<<endl;
     }
     else if(operation=="or"){
       code="82";
@@ -475,7 +475,7 @@ bool Assembler::checkIfInstruction(string currLine){
         sectionTable[currentSectionName].code.push_back(code[i]); 
       }
       locationCounter+=2;
-      cout<<"Code for or instruction: "<<code<<endl;
+      // cout<<"Code for or instruction: "<<code<<endl;
     }
     else if(operation=="xor"){
       code="83";
@@ -487,7 +487,7 @@ bool Assembler::checkIfInstruction(string currLine){
         sectionTable[currentSectionName].code.push_back(code[i]); 
       }
       locationCounter+=2;
-      cout<<"Code for xor instruction: "<<code<<endl;
+      // cout<<"Code for xor instruction: "<<code<<endl;
     }
     else if(operation=="test"){
       code="84";
@@ -499,7 +499,7 @@ bool Assembler::checkIfInstruction(string currLine){
         sectionTable[currentSectionName].code.push_back(code[i]); 
       }
       locationCounter+=2;
-      cout<<"Code for test instruction: "<<code<<endl;
+      // cout<<"Code for test instruction: "<<code<<endl;
     }
     else if(operation=="shl"){
       code="90";
@@ -511,7 +511,7 @@ bool Assembler::checkIfInstruction(string currLine){
         sectionTable[currentSectionName].code.push_back(code[i]); 
       }
       locationCounter+=2;
-      cout<<"Code for shl instruction: "<<code<<endl;
+      // cout<<"Code for shl instruction: "<<code<<endl;
     }
     else if(operation=="shr"){
       code="91";
@@ -523,7 +523,7 @@ bool Assembler::checkIfInstruction(string currLine){
         sectionTable[currentSectionName].code.push_back(code[i]); 
       }
       locationCounter+=2;
-      cout<<"Code for shr instruction: "<<code<<endl;
+      // cout<<"Code for shr instruction: "<<code<<endl;
     }
 
   }
@@ -540,14 +540,14 @@ void Assembler::processLabel(string currLine){
   string symbolName; 
   if(regex_search(currLine, regexMatch, symbolNameRegex)){
     symbolName=regexMatch[0];
-    cout<<"symbol name is: "<<symbolName<<"\n"; 
+    // cout<<"symbol name is: "<<symbolName<<"\n"; 
   }
   symbolName = symbolName.substr(0, currLine.size()-1);//to remove ':'
-  cout<<"only symbol name: "+symbolName+"\n"; 
+  // cout<<"only symbol name: "+symbolName+"\n"; 
   
   bool found = false; 
   if(symbolTable.find(symbolName)!=symbolTable.end()){
-      cout<<"symbol found in symbol table"<<endl; 
+      // cout<<"symbol found in symbol table"<<endl; 
       found=true; 
       symbolTable[symbolName].isDefined=true; 
       symbolTable[symbolName].sectionNum=currentSectionNumber; 
@@ -568,7 +568,7 @@ void Assembler::processLabel(string currLine){
     symbolTable[symbolName].symbolName=symbolName;
     symbolTable[symbolName].value=locationCounter;
     symbolId++;
-    cout<<"simbol dodat u tabelu simbola"<<endl; 
+    // cout<<"simbol dodat u tabelu simbola"<<endl; 
 
     // symbolUseEntry symbUse; 
     // symbUse.address = locationCounter; 
@@ -583,18 +583,18 @@ void Assembler::processLabel(string currLine){
 void Assembler::processGlobalDirective(string currLine){
   regex globalRgx(".global ");
   currLine = regex_replace(currLine, globalRgx, ""); 
-  cout<<"after cutting global \n"<<currLine<<endl; 
+  // cout<<"after cutting global \n"<<currLine<<endl; 
   vector<string> symbols; 
   smatch match; 
   while(regex_search(currLine, match, symbolRegex)){
     symbols.push_back(match.str(0));
     currLine = match.suffix().str(); 
   }
-  cout<<"Symbols from symbol list:"<<endl; 
+  // cout<<"Symbols from symbol list:"<<endl; 
   for(auto s:symbols){
-    cout<<s<<endl; 
+    // cout<<s<<endl; 
   }
-  cout<<"------------------"<<endl; 
+  // cout<<"------------------"<<endl; 
   for(auto s:symbols){
     if(sectionTable.find(s)!=sectionTable.end()){
       string msg ="Section cant't be global! Error at line: "+ to_string(currLineNum);
@@ -611,7 +611,7 @@ void Assembler::processGlobalDirective(string currLine){
       symbolTable[s].symbolName=s;
       symbolTable[s].value=0;
       symbolId++;
-      cout<<"symbol "<<s<<" added to the symbol table"<<endl; 
+      // cout<<"symbol "<<s<<" added to the symbol table"<<endl; 
 
       //make symbol use entry 
       // symbolUseEntry symbUse; 
@@ -636,18 +636,18 @@ void Assembler::processGlobalDirective(string currLine){
 void Assembler::processExternDirective(string currLine){
   regex externRgx(".extern ");
   currLine = regex_replace(currLine, externRgx, ""); 
-  cout<<"after cutting extern \n"<<currLine<<endl; 
+  // cout<<"after cutting extern \n"<<currLine<<endl; 
   vector<string> symbols; 
   smatch match; 
   while(regex_search(currLine, match, symbolRegex)){
     symbols.push_back(match.str(0));
     currLine = match.suffix().str(); 
   }
-  cout<<"Symbols from symbol list:"<<endl; 
+  // cout<<"Symbols from symbol list:"<<endl; 
   for(auto s:symbols){
-    cout<<s<<endl; 
+    // cout<<s<<endl; 
   }
-  cout<<"------------------"<<endl; 
+  // cout<<"------------------"<<endl; 
   
   for(auto s:symbols){
     //check if symbol is already defined 
@@ -673,7 +673,7 @@ void Assembler::processExternDirective(string currLine){
       symbolTable[s].symbolName=s;
       symbolTable[s].value=0;
       symbolId++;
-      cout<<"symbol "<<s<<" added to the symbol table"<<endl; 
+      // cout<<"symbol "<<s<<" added to the symbol table"<<endl; 
     }
   }
 }
@@ -683,7 +683,7 @@ void Assembler::processSectionDirective(string currLine){
   strcpy(line, currLine.c_str()); 
   char* sectionLabel = strtok(line, " "); 
   char* sectionName = strtok(NULL, " "); 
-  cout<<"section name is: "<<sectionName<<"\n"; 
+  // cout<<"section name is: "<<sectionName<<"\n"; 
 
   
   //check if section is in symbolTable 
@@ -720,7 +720,7 @@ void Assembler::processSectionDirective(string currLine){
     symbolTable[sectionName].symbolName=sectionName;
     symbolTable[sectionName].value=0;
     symbolId++;
-    cout<<"section "<<sectionName<<" added to the symbol table"<<endl;
+    // cout<<"section "<<sectionName<<" added to the symbol table"<<endl;
 
     //create section table entry 
     sectionTable[sectionName].sectionId=symbolId; 
@@ -746,7 +746,7 @@ void Assembler::createUndefinedSection(string sectionName){
   symbolTable[sectionName].symbolName=sectionName;
   symbolTable[sectionName].value=0;
   symbolId++;
-  cout<<"section "<<sectionName<<" added to the symbol table"<<endl;
+  // cout<<"section "<<sectionName<<" added to the symbol table"<<endl;
 
   //create section table entry 
   sectionTable[sectionName].sectionId=symbolId; 
@@ -765,12 +765,12 @@ void Assembler::processSkipDirective(string currLine){
   if(literal[0]=='0'){
     //hexadecimal literal
     bytes = strtol(literal, &pEnd, 16);
-    cout<<"skip literal is: "<<bytes<<"\n"; 
+    // cout<<"skip literal is: "<<bytes<<"\n"; 
   }
   else{
     //decimal literal 
     bytes = strtol(literal, &pEnd, 10);
-    cout<<"skip literal is: "<<bytes<<"\n"; 
+    // cout<<"skip literal is: "<<bytes<<"\n"; 
   }
 
   for(int i=0; i<bytes*2; i++){
@@ -795,7 +795,7 @@ void Assembler::processWordDirective(string currLine){
 
   regex wordRgx(".word ");
   currLine = regex_replace(currLine, wordRgx, ""); 
-  cout<<"after cutting word \n"<<currLine<<endl; 
+  // cout<<"after cutting word \n"<<currLine<<endl; 
   vector<string> symbols; 
 
   char* line = new char[currLine.length()+1]; 
@@ -806,7 +806,7 @@ void Assembler::processWordDirective(string currLine){
     smatch regex_match; 
     if(regex_search(token, regex_match, literalRegex)){
       //literal parsed 
-      cout<<"string is literal"<<endl; 
+      // cout<<"string is literal"<<endl; 
       literals.push_back(token);
       int lit = stoi(token); 
       //literal must be withing range of 2 bytes 
@@ -827,7 +827,7 @@ void Assembler::processWordDirective(string currLine){
         //convert dec to hex 
         token = decToHex(stoi(token)); 
       }
-      cout<<"Token is: "<<token<<endl; 
+      // cout<<"Token is: "<<token<<endl; 
       regex hexPrefix("0x"); 
       token=regex_replace(token, hexPrefix, ""); 
 
@@ -861,7 +861,7 @@ void Assembler::processWordDirective(string currLine){
         symbolTable[token].symbolName=token;
         symbolTable[token].value=0;
         symbolId++;
-        cout<<"symbol "<<token<<" added to the symbol table"<<endl; 
+        // cout<<"symbol "<<token<<" added to the symbol table"<<endl; 
         string section = findSectionName(); 
         for(int i=0;i<4;i++){
           sectionTable[section].code.push_back('0');
@@ -898,12 +898,12 @@ void Assembler::processWordDirective(string currLine){
           for(int i=hex_value.length();i<4;i++){
             hex_value.insert(0,"0"); //add leading zeros 
           }
-          cout<<"big endian value: "+hex_value<<endl; 
+          // cout<<"big endian value: "+hex_value<<endl; 
           //make it little endian - rotate bytes in symbValue
           string tmp=hex_value.substr(0,2);
           hex_value = hex_value.substr(2,2); 
           hex_value.append(tmp); 
-          cout<<"little endian value: "+hex_value<<endl; 
+          // cout<<"little endian value: "+hex_value<<endl; 
 
           for(int i=0; i<hex_value.length(); i++){
             sectionTable[section].code.push_back(hex_value[i]); 
@@ -953,22 +953,22 @@ void Assembler::processWordDirective(string currLine){
     sym = strtok(NULL, " ,"); 
   }
 
-  cout<<"word symbols:"<<endl; 
+  // cout<<"word symbols:"<<endl; 
   for(auto s:symbols){
-    cout<<s<<endl; 
+    // cout<<s<<endl; 
   }
   
-  cout<<"word literals:"<<endl; 
+  // cout<<"word literals:"<<endl; 
   for(auto l:literals){
-    cout<<l<<endl; 
+    // cout<<l<<endl; 
   }
-  cout<<endl; 
+  // cout<<endl; 
 
-  cout<<"CODE:"<<endl; 
+  // cout<<"CODE:"<<endl; 
   for(auto c:code){
-    cout<<c; 
+    // cout<<c; 
   }
-  cout<<endl; 
+  // cout<<endl; 
 
 }
 
@@ -1025,10 +1025,10 @@ void Assembler::addRelocation(int offset, int type, int symbol, int addend, stri
 
 
 void Assembler::processInstruction(string currLine){
-  // cout<<"Process instrucion line:"<<endl<<currLine<<endl; 
+  // // cout<<"Process instrucion line:"<<endl<<currLine<<endl; 
   smatch match; 
   if(regex_search(currLine, match, ldrStrRegex)){
-    cout<<endl<<"Current line: "<<currLine<<endl;
+    // cout<<endl<<"Current line: "<<currLine<<endl;
     vector<string>tokens; 
 
     char* line = new char[currLine.length()+1]; 
@@ -1040,9 +1040,9 @@ void Assembler::processInstruction(string currLine){
       token = strtok (NULL, " ,[]+");
     }
 
-    cout<<"Lista tokena iz ldr/str:"<<endl; 
+    // cout<<"Lista tokena iz ldr/str:"<<endl; 
     for(auto t:tokens){
-      cout<<t<<endl; 
+      // cout<<t<<endl; 
     }
 
     string operation = tokens[0]; 
@@ -1051,9 +1051,9 @@ void Assembler::processInstruction(string currLine){
     string code; 
 
     if(regex_search(operand, match, ldrStrImmediateRegex)){
-      cout<<"neposredno"<<endl;
-      cout<<operand;
-      cout<<endl;
+      // cout<<"neposredno"<<endl;
+      // cout<<operand;
+      // cout<<endl;
 
       if(operation=="ldr")code="A0";
       else if(operation=="str")code="B0";
@@ -1069,12 +1069,12 @@ void Assembler::processInstruction(string currLine){
       //check if operand is symbol
       if(regex_search(operand, match, symbRgx)){
         //operand is symbol
-        cout<<"operand is symbol"<<endl; 
+        // cout<<"operand is symbol"<<endl; 
         //make relocation entry 
         string value = processSymbol(operand, locationCounter+3);
         code.append(value); 
-        cout<<"code"<<endl;
-        cout<<code<<endl; 
+        // cout<<"code"<<endl;
+        // cout<<code<<endl; 
         for(int i=0; i<code.length(); i++){
           sectionTable[currentSectionName].code.push_back(code[i]); 
         }
@@ -1083,17 +1083,17 @@ void Assembler::processInstruction(string currLine){
       } 
       else{
         //operand is literal
-        cout<<"operand is literal"<<endl; 
+        // cout<<"operand is literal"<<endl; 
         operand = literalToHex(operand); 
-        cout<<"operand: "<<operand<<endl;
+        // cout<<"operand: "<<operand<<endl;
         for(int i=operand.length(); i<4; i++){
           code+="0"; 
         }
         for(int i=0; i<operand.length(); i++){
           code+=operand[i]; 
         }
-        cout<<"code"<<endl;
-        cout<<code<<endl; 
+        // cout<<"code"<<endl;
+        // cout<<code<<endl; 
         for(int i=0; i<code.length(); i++){
           sectionTable[currentSectionName].code.push_back(code[i]); 
         }
@@ -1102,9 +1102,9 @@ void Assembler::processInstruction(string currLine){
       }
     }
     else if(regex_search(currLine, match, ldrStrRegIndRegex)){
-      cout<<"reg indirektno"<<endl;
-      cout<<operand; 
-      cout<<endl;
+      // cout<<"reg indirektno"<<endl;
+      // cout<<operand; 
+      // cout<<endl;
 
       if(operation=="ldr")code="A0";
       else if(operation=="str")code="B0";
@@ -1115,8 +1115,8 @@ void Assembler::processInstruction(string currLine){
       code.append(reg_code2); //RS
       code.append("0");//UP
       code.append("2"); //AM
-      cout<<"code"<<endl;
-      cout<<code<<endl; 
+      // cout<<"code"<<endl;
+      // cout<<code<<endl; 
       for(int i=0; i<code.length(); i++){
         sectionTable[currentSectionName].code.push_back(code[i]); 
       }
@@ -1125,9 +1125,9 @@ void Assembler::processInstruction(string currLine){
 
     }
     else if(regex_search(currLine, match, ldrStrRegIndDispRegex)){
-      cout<<"reg indirektno sa pomerajem"<<endl;
-      cout<<tokens[2]<<" "<<tokens[3]; 
-      cout<<endl;
+      // cout<<"reg indirektno sa pomerajem"<<endl;
+      // cout<<tokens[2]<<" "<<tokens[3]; 
+      // cout<<endl;
 
       if(operation=="ldr")code="A0";
       else if(operation=="str")code="B0";
@@ -1143,12 +1143,12 @@ void Assembler::processInstruction(string currLine){
       //check if operand is symbol
       if(regex_search(tokens[3], match, symbRgx)){
         //operand is symbol
-        cout<<"operand is symbol"<<endl; 
+        // cout<<"operand is symbol"<<endl; 
         //make relocation entry 
         string value = processSymbol(tokens[3], locationCounter+3);
         code.append(value); 
-        cout<<"code"<<endl;
-        cout<<code<<endl; 
+        // cout<<"code"<<endl;
+        // cout<<code<<endl; 
         for(int i=0; i<code.length(); i++){
           sectionTable[currentSectionName].code.push_back(code[i]); 
         }
@@ -1157,17 +1157,17 @@ void Assembler::processInstruction(string currLine){
       }
       else{
         //operand is literal
-        cout<<"operand is literal"<<endl; 
+        // cout<<"operand is literal"<<endl; 
         operand = literalToHex(tokens[3]); 
-        cout<<"operand: "<<operand<<endl;
+        // cout<<"operand: "<<operand<<endl;
         for(int i=operand.length(); i<4; i++){
           code.append("0"); 
         }
         for(int i=0; i<operand.length(); i++){
           code+=operand[i]; 
         }
-        cout<<"code"<<endl;
-        cout<<code<<endl; 
+        // cout<<"code"<<endl;
+        // cout<<code<<endl; 
         for(int i=0; i<code.length(); i++){
           sectionTable[currentSectionName].code.push_back(code[i]); 
         }
@@ -1179,9 +1179,9 @@ void Assembler::processInstruction(string currLine){
 
     }
     else if(regex_search(operand, match, ldrStrRegDirRegex)){
-      cout<<"reg direktno"<<endl;
-      cout<<operand; 
-      cout<<endl;
+      // cout<<"reg direktno"<<endl;
+      // cout<<operand; 
+      // cout<<endl;
 
       if(operation=="ldr")code="A0";
       else if(operation=="str")code="B0";
@@ -1192,8 +1192,8 @@ void Assembler::processInstruction(string currLine){
       code.append(reg_code2); //RS
       code.append("0");//UP
       code.append("1"); //AM
-      cout<<"code"<<endl;
-      cout<<code<<endl; 
+      // cout<<"code"<<endl;
+      // cout<<code<<endl; 
       for(int i=0; i<code.length(); i++){
         sectionTable[currentSectionName].code.push_back(code[i]); 
       }
@@ -1201,9 +1201,9 @@ void Assembler::processInstruction(string currLine){
 
     }
     else if(regex_search(operand, match, ldrStrMemDirRegex)){
-      cout<<"mem direktno"<<endl;
-      cout<<operand; 
-      cout<<endl;
+      // cout<<"mem direktno"<<endl;
+      // cout<<operand; 
+      // cout<<endl;
 
       if(operation=="ldr")code="A0";
       else if(operation=="str")code="B0";
@@ -1217,12 +1217,12 @@ void Assembler::processInstruction(string currLine){
       //check if operand is symbol
       if(regex_search(operand, match, symbRgx)){
         //operand is symbol
-        cout<<"operand is symbol"<<endl; 
+        // cout<<"operand is symbol"<<endl; 
         //make relocation entry 
         string value = processSymbol(operand, locationCounter+3);
         code.append(value); 
-        cout<<"code"<<endl;
-        cout<<code<<endl; 
+        // cout<<"code"<<endl;
+        // cout<<code<<endl; 
         for(int i=0; i<code.length(); i++){
           sectionTable[currentSectionName].code.push_back(code[i]); 
         }
@@ -1231,17 +1231,17 @@ void Assembler::processInstruction(string currLine){
       } 
       else{
         //operand is literal
-        cout<<"operand is literal"<<endl; 
+        // cout<<"operand is literal"<<endl; 
         operand = literalToHex(operand); 
-        cout<<"operand: "<<operand<<endl;
+        // cout<<"operand: "<<operand<<endl;
         for(int i=operand.length(); i<4; i++){
           code.append("0"); 
         }
         for(int i=0; i<operand.length(); i++){
           code+=operand[i]; 
         }
-        cout<<"code"<<endl;
-        cout<<code<<endl; 
+        // cout<<"code"<<endl;
+        // cout<<code<<endl; 
         for(int i=0; i<code.length(); i++){
           sectionTable[currentSectionName].code.push_back(code[i]); 
         }
@@ -1252,9 +1252,9 @@ void Assembler::processInstruction(string currLine){
 
     }
     else if(regex_search(operand, match, ldrStrPcRelRegex)){
-      cout<<"pc relativno"<<endl;
-      cout<<operand; 
-      cout<<endl;
+      // cout<<"pc relativno"<<endl;
+      // cout<<operand; 
+      // cout<<endl;
 
       if(operation=="ldr")code="A0";
       else if(operation=="str")code="B0";
@@ -1267,8 +1267,8 @@ void Assembler::processInstruction(string currLine){
 
       string value = processSymbolForRelocation(operand, locationCounter);
       code.append(value); 
-      cout<<"code"<<endl;
-      cout<<code<<endl; 
+      // cout<<"code"<<endl;
+      // cout<<code<<endl; 
       for(int i=0; i<code.length(); i++){
         sectionTable[currentSectionName].code.push_back(code[i]); 
       }
@@ -1279,7 +1279,7 @@ void Assembler::processInstruction(string currLine){
   }
   else if(regex_search(currLine, match, jmpRegex)){
     //jmp type instruction 
-    cout<<endl<<"Current line: "<<currLine<<endl;
+    // cout<<endl<<"Current line: "<<currLine<<endl;
     vector<string>tokens; 
 
     char* line = new char[currLine.length()+1]; 
@@ -1291,15 +1291,15 @@ void Assembler::processInstruction(string currLine){
       token = strtok (NULL, " ,[]+*%");
     }
 
-    cout<<"Lista tokena iz ldr/str:"<<endl; 
+    // cout<<"Lista tokena iz ldr/str:"<<endl; 
     for(auto t:tokens){
-      cout<<t<<endl; 
+      // cout<<t<<endl; 
     }
 
     string operation = tokens[0]; 
     regex instrOnly("^(jmp|call|jeq|jne|jgt)[ ]+"); 
     string operand = regex_replace(currLine, instrOnly, "");
-    cout<<"operand: "<<operand<<endl;
+    // cout<<"operand: "<<operand<<endl;
     string code; 
     //instrDesc
     if(operation=="jmp")code.append("50");
@@ -1310,9 +1310,9 @@ void Assembler::processInstruction(string currLine){
 
 
     if(regex_search(operand, match, jmpImmediateRegex)){
-      cout<<"neposredno"<<endl;
-      cout<<operand;
-      cout<<endl;
+      // cout<<"neposredno"<<endl;
+      // cout<<operand;
+      // cout<<endl;
 
       code.append("F0");//RD RS 
       code.append("00"); //UP AM
@@ -1321,12 +1321,12 @@ void Assembler::processInstruction(string currLine){
       //check if operand is symbol
       if(regex_search(operand, match, symbRgx)){
         //operand is symbol
-        cout<<"operand is symbol"<<endl; 
+        // cout<<"operand is symbol"<<endl; 
         //make relocation entry 
         string value = processSymbol(operand, locationCounter+3);
         code.append(value); 
-        cout<<"code"<<endl;
-        cout<<code<<endl; 
+        // cout<<"code"<<endl;
+        // cout<<code<<endl; 
         for(int i=0; i<code.length(); i++){
           sectionTable[currentSectionName].code.push_back(code[i]); 
         }
@@ -1335,17 +1335,17 @@ void Assembler::processInstruction(string currLine){
       } 
       else{
         //operand is literal
-        cout<<"operand is literal"<<endl; 
+        // cout<<"operand is literal"<<endl; 
         operand = literalToHex(operand); 
-        cout<<"operand: "<<operand<<endl;
+        // cout<<"operand: "<<operand<<endl;
         for(int i=operand.length(); i<4; i++){
           code+="0"; 
         }
         for(int i=0; i<operand.length(); i++){
           code+=operand[i]; 
         }
-        cout<<"code"<<endl;
-        cout<<code<<endl; 
+        // cout<<"code"<<endl;
+        // cout<<code<<endl; 
         for(int i=0; i<code.length(); i++){
           sectionTable[currentSectionName].code.push_back(code[i]); 
         }
@@ -1355,33 +1355,33 @@ void Assembler::processInstruction(string currLine){
 
     }
     else if(regex_search(operand, match, jmpRegDirRegex)){
-      cout<<"reg direktno"<<endl;
-      cout<<operand;
-      cout<<endl;
+      // cout<<"reg direktno"<<endl;
+      // cout<<operand;
+      // cout<<endl;
 
       string reg_code = registerCode(tokens[1]); 
       code.append("F");//RD RS 
       code.append(reg_code);//RD RS 
       code.append("01"); //UP AM
-      cout<<"code"<<endl;
-      cout<<code<<endl; 
+      // cout<<"code"<<endl;
+      // cout<<code<<endl; 
       for(int i=0; i<code.length(); i++){
         sectionTable[currentSectionName].code.push_back(code[i]); 
       }
       locationCounter+=3;
     }
     else if(regex_search(operand, match, jmpRegIndRegex)){
-      cout<<"reg indirektno"<<endl;
-      cout<<operand;
-      cout<<endl;
+      // cout<<"reg indirektno"<<endl;
+      // cout<<operand;
+      // cout<<endl;
 
       string reg_code = registerCode(tokens[1]); 
       code.append("F"); 
       code.append(reg_code); //RS
       code.append("0");//UP
       code.append("2"); //AM
-      cout<<"code"<<endl;
-      cout<<code<<endl; 
+      // cout<<"code"<<endl;
+      // cout<<code<<endl; 
       for(int i=0; i<code.length(); i++){
         sectionTable[currentSectionName].code.push_back(code[i]); 
       }
@@ -1390,9 +1390,9 @@ void Assembler::processInstruction(string currLine){
 
     }
     else if(regex_search(operand, match, jmpRegIndDispRegex)){
-      cout<<"reg indirektno sa pomerajem"<<endl;
-      cout<<operand;
-      cout<<endl;
+      // cout<<"reg indirektno sa pomerajem"<<endl;
+      // cout<<operand;
+      // cout<<endl;
 
       string reg_code = registerCode(tokens[1]); 
       code.append("F"); 
@@ -1404,12 +1404,12 @@ void Assembler::processInstruction(string currLine){
       //check if operand is symbol
       if(regex_search(tokens[2], match, symbRgx)){
         //operand is symbol
-        cout<<"operand is symbol"<<endl; 
+        // cout<<"operand is symbol"<<endl; 
         //make relocation entry 
         string value = processSymbol(tokens[2], locationCounter+3);
         code.append(value); 
-        cout<<"code"<<endl;
-        cout<<code<<endl; 
+        // cout<<"code"<<endl;
+        // cout<<code<<endl; 
         for(int i=0; i<code.length(); i++){
           sectionTable[currentSectionName].code.push_back(code[i]); 
         }
@@ -1418,17 +1418,17 @@ void Assembler::processInstruction(string currLine){
       }
       else{
         //operand is literal
-        cout<<"operand is literal"<<endl; 
+        // cout<<"operand is literal"<<endl; 
         operand = literalToHex(tokens[2]); 
-        cout<<"operand: "<<operand<<endl;
+        // cout<<"operand: "<<operand<<endl;
         for(int i=operand.length(); i<4; i++){
           code.append("0"); 
         }
         for(int i=0; i<operand.length(); i++){
           code+=operand[i]; 
         }
-        cout<<"code"<<endl;
-        cout<<code<<endl; 
+        // cout<<"code"<<endl;
+        // cout<<code<<endl; 
         for(int i=0; i<code.length(); i++){
           sectionTable[currentSectionName].code.push_back(code[i]); 
         }
@@ -1437,9 +1437,9 @@ void Assembler::processInstruction(string currLine){
       }
     }
     else if(regex_search(operand, match, jmpMemDirRegex)){
-      cout<<"mem direktno"<<endl;
-      cout<<operand;
-      cout<<endl;
+      // cout<<"mem direktno"<<endl;
+      // cout<<operand;
+      // cout<<endl;
 
       code.append("F0");//RD RS 
       code.append("04"); //UP AM
@@ -1449,12 +1449,12 @@ void Assembler::processInstruction(string currLine){
       //check if operand is symbol
       if(regex_search(operand, match, symbRgx)){
         //operand is symbol
-        cout<<"operand is symbol"<<endl; 
+        // cout<<"operand is symbol"<<endl; 
         //make relocation entry 
         string value = processSymbol(operand, locationCounter+3);
         code.append(value); 
-        cout<<"code"<<endl;
-        cout<<code<<endl; 
+        // cout<<"code"<<endl;
+        // cout<<code<<endl; 
         for(int i=0; i<code.length(); i++){
           sectionTable[currentSectionName].code.push_back(code[i]); 
         }
@@ -1463,17 +1463,17 @@ void Assembler::processInstruction(string currLine){
       } 
       else{
         //operand is literal
-        cout<<"operand is literal"<<endl; 
+        // cout<<"operand is literal"<<endl; 
         operand = literalToHex(operand); 
-        cout<<"operand: "<<operand<<endl;
+        // cout<<"operand: "<<operand<<endl;
         for(int i=operand.length(); i<4; i++){
           code+="0"; 
         }
         for(int i=0; i<operand.length(); i++){
           code+=operand[i]; 
         }
-        cout<<"code"<<endl;
-        cout<<code<<endl; 
+        // cout<<"code"<<endl;
+        // cout<<code<<endl; 
         for(int i=0; i<code.length(); i++){
           sectionTable[currentSectionName].code.push_back(code[i]); 
         }
@@ -1483,9 +1483,9 @@ void Assembler::processInstruction(string currLine){
 
     }
     else if(regex_search(operand, match, jmpPcRelRegex)){
-      cout<<"pc relativno"<<endl;
-      cout<<operand;
-      cout<<endl;
+      // cout<<"pc relativno"<<endl;
+      // cout<<operand;
+      // cout<<endl;
       code.append("F"); //RD
       code.append("7"); //RS is pc reg 
       code.append("05"); //UP AM 
@@ -1493,8 +1493,8 @@ void Assembler::processInstruction(string currLine){
 
       string value = processSymbolForRelocation(operand, locationCounter);
       code.append(value); 
-      cout<<"code"<<endl;
-      cout<<code<<endl; 
+      // cout<<"code"<<endl;
+      // cout<<code<<endl; 
       for(int i=0; i<code.length(); i++){
         sectionTable[currentSectionName].code.push_back(code[i]); 
       }
@@ -1520,7 +1520,7 @@ string Assembler::literalToHex(string token){
     //dec literal 
     token = decToHex(stoi(token)); 
   }
-  // cout<<"Token is: "<<token<<endl; 
+  // // cout<<"Token is: "<<token<<endl; 
   regex hexPrefix("0x"); 
   token=regex_replace(token, hexPrefix, "");
 
@@ -1559,69 +1559,69 @@ string Assembler::findSymbolName(int sectionNum){
 }
 
 void Assembler::printSymbolTable(){
-  cout<<"TABELA SIMBOLA:"<<endl; 
-  // cout<<"name \t isGlobal \t id \t section \t size"<<endl;
-  cout<< left<< setw(14)<<setfill(' ')<<"symbolName";
-  cout<< left<< setw(14)<<setfill(' ')<<"isGlobal";
-  cout<< left<< setw(14)<<setfill(' ')<<"symbolID";
-  cout<< left<< setw(14)<<setfill(' ')<<"sectionNum";
-  cout<< left<< setw(14)<<setfill(' ')<<"value";
-  cout<< left<< setw(14)<<setfill(' ')<<"size";
-  cout<<endl; 
+  // cout<<"TABELA SIMBOLA:"<<endl; 
+  // // cout<<"name \t isGlobal \t id \t section \t size"<<endl;
+  // cout<< left<< setw(14)<<setfill(' ')<<"symbolName";
+  // cout<< left<< setw(14)<<setfill(' ')<<"isGlobal";
+  // cout<< left<< setw(14)<<setfill(' ')<<"symbolID";
+  // cout<< left<< setw(14)<<setfill(' ')<<"sectionNum";
+  // cout<< left<< setw(14)<<setfill(' ')<<"value";
+  // cout<< left<< setw(14)<<setfill(' ')<<"size";
+  // cout<<endl; 
   for (auto const& x : symbolTable){
-    cout<< left<< setw(14)<<setfill(' ')<<x.second.symbolName;
-    cout<< left<< setw(14)<<setfill(' ')<<x.second.isGlobal;
-    cout<< left<< setw(14)<<setfill(' ')<<x.second.symbolId;
-    cout<< left<< setw(14)<<setfill(' ')<<x.second.sectionNum;
-    cout<< left<< setw(14)<<setfill(' ')<<x.second.value;
-    cout<< left<< setw(14)<<setfill(' ')<<x.second.size;
-    cout<<endl; 
+    // cout<< left<< setw(14)<<setfill(' ')<<x.second.symbolName;
+    // cout<< left<< setw(14)<<setfill(' ')<<x.second.isGlobal;
+    // cout<< left<< setw(14)<<setfill(' ')<<x.second.symbolId;
+    // cout<< left<< setw(14)<<setfill(' ')<<x.second.sectionNum;
+    // cout<< left<< setw(14)<<setfill(' ')<<x.second.value;
+    // cout<< left<< setw(14)<<setfill(' ')<<x.second.size;
+    // cout<<endl; 
 
-    // cout<<x.second.symbolName<<"\t"<<x.second.isGlobal<<"\t"<<x.second.symbolId<<"\t"<<x.second.sectionNum<<"\t"<<x.second.size<<endl;
+    // // cout<<x.second.symbolName<<"\t"<<x.second.isGlobal<<"\t"<<x.second.symbolId<<"\t"<<x.second.sectionNum<<"\t"<<x.second.size<<endl;
   }
-  cout<<endl; 
+  // cout<<endl; 
 }
 void Assembler::printRelocations(){
-  cout<<"RELOKACIONI ZAPISI SEKCIJE:"<<endl; 
+  // cout<<"RELOKACIONI ZAPISI SEKCIJE:"<<endl; 
   for(auto s:sectionTable){
-    cout<<"sekcija: "<<s.second.sectionName<<endl; 
-    cout<< left<< setw(14)<<setfill(' ')<<"offset";
-    cout<< left<< setw(14)<<setfill(' ')<<"type";
-    cout<< left<< setw(14)<<setfill(' ')<<"symbol";
-    cout<< left<< setw(14)<<setfill(' ')<<"addend";
-    cout<<endl; 
+    // cout<<"sekcija: "<<s.second.sectionName<<endl; 
+    // cout<< left<< setw(14)<<setfill(' ')<<"offset";
+    // cout<< left<< setw(14)<<setfill(' ')<<"type";
+    // cout<< left<< setw(14)<<setfill(' ')<<"symbol";
+    // cout<< left<< setw(14)<<setfill(' ')<<"addend";
+    // cout<<endl; 
     for(auto r:s.second.sectionRelocations){
-      cout<< left<< setw(14)<<setfill(' ')<<r.offset;
-      cout<< left<< setw(14)<<setfill(' ')<<r.type;
-      cout<< left<< setw(14)<<setfill(' ')<<r.symbol;
-      cout<< left<< setw(14)<<setfill(' ')<<r.addend;
-      cout<<endl; 
+      // cout<< left<< setw(14)<<setfill(' ')<<r.offset;
+      // cout<< left<< setw(14)<<setfill(' ')<<r.type;
+      // cout<< left<< setw(14)<<setfill(' ')<<r.symbol;
+      // cout<< left<< setw(14)<<setfill(' ')<<r.addend;
+      // cout<<endl; 
     }
-    cout<<endl; 
+    // cout<<endl; 
   }
 }
 void Assembler::printCode(){
 
-  cout<<"KOD SEKCIJA:"<<endl;
+  // cout<<"KOD SEKCIJA:"<<endl;
   int cnt=1; 
   int cntNewLine=1; 
   for(auto s:sectionTable){
-    cout<<"Ime sekcije: "<<s.first<<endl; 
+    // cout<<"Ime sekcije: "<<s.first<<endl; 
     cntNewLine=1; 
     for(auto c: s.second.code){
-      cout<<c; 
+      // cout<<c; 
       if(cnt==2){
-        cout<<" ";
+        // cout<<" ";
         cnt=0; 
       }
       if(cntNewLine==20){
-        cout<<endl;
+        // cout<<endl;
         cntNewLine=0; 
       }
       cnt++; 
       cntNewLine++; 
     }
-  cout<<endl;
+  // cout<<endl;
   }
 }
 
@@ -1632,7 +1632,7 @@ void Assembler::printToFile(){
   myfile.open (outFile);
 
   myfile<<"TABELA SIMBOLA:"<<endl; 
-  // cout<<"name \t isGlobal \t id \t section \t size"<<endl;
+  // // cout<<"name \t isGlobal \t id \t section \t size"<<endl;
   myfile<< left<< setw(14)<<setfill(' ')<<"symbolName";
   myfile<< left<< setw(14)<<setfill(' ')<<"isGlobal";
   myfile<< left<< setw(14)<<setfill(' ')<<"symbolID";
@@ -1649,7 +1649,7 @@ void Assembler::printToFile(){
     myfile<< left<< setw(14)<<setfill(' ')<<x.second.size;
     myfile<<endl; 
 
-    // cout<<x.second.symbolName<<"\t"<<x.second.isGlobal<<"\t"<<x.second.symbolId<<"\t"<<x.second.sectionNum<<"\t"<<x.second.size<<endl;
+    // // cout<<x.second.symbolName<<"\t"<<x.second.isGlobal<<"\t"<<x.second.symbolId<<"\t"<<x.second.sectionNum<<"\t"<<x.second.size<<endl;
   }
   myfile<<endl; 
   myfile<<"RELOKACIONI ZAPISI SEKCIJE:"<<endl; 
@@ -1752,7 +1752,7 @@ string Assembler::processSymbol(string token, int lc){
     symbolTable[token].symbolName=token;
     symbolTable[token].value=0;
     symbolId++;
-    cout<<"symbol "<<token<<" added to the symbol table"<<endl; 
+    // cout<<"symbol "<<token<<" added to the symbol table"<<endl; 
 
     //add symbol to symbol use entry 
     //make symbol use entry 
@@ -1791,7 +1791,7 @@ string Assembler::processSymbol(string token, int lc){
       for(int i=0; i<symbValue.length(); i++){
         value+=symbValue[i]; 
       }
-      cout<<"value of symbol "+token+" is "+value<<endl; 
+      // cout<<"value of symbol "+token+" is "+value<<endl; 
       return value; 
 
     }
@@ -1825,7 +1825,7 @@ string Assembler::processSymbolForRelocation(string token, int lc){
     symbolTable[token].symbolName=token;
     symbolTable[token].value=0;
     symbolId++;
-    cout<<"symbol "<<token<<" added to the symbol table"<<endl; 
+    // cout<<"symbol "<<token<<" added to the symbol table"<<endl; 
 
     //add symbol to symbol use entry 
     //make symbol use entry 
@@ -1858,9 +1858,9 @@ string Assembler::processSymbolForRelocation(string token, int lc){
     
       int val = symbolTable[token].value-2; 
       symbValue= decimalToHex(val); 
-      cout<<"bin value: "+symbValue<<endl; 
+      // cout<<"bin value: "+symbValue<<endl; 
       symbValue=binToHex16bit(symbValue); 
-      cout<<"hex value: "+symbValue<<endl; 
+      // cout<<"hex value: "+symbValue<<endl; 
       string value; 
 
       for(int i=symbValue.length(); i<4; i++){
@@ -1877,7 +1877,7 @@ string Assembler::processSymbolForRelocation(string token, int lc){
       value.append(tmp); 
 
 
-      cout<<"value of little endian symbol "+token+" is "+value<<endl; 
+      // cout<<"value of little endian symbol "+token+" is "+value<<endl; 
       return value; 
 
     }
@@ -1910,13 +1910,13 @@ void Assembler::backpatch(){
         hexValue.insert(0,"0"); 
       }
       int offset = symbUse.address*2; 
-      cout<<"symbol "+symbol<<endl; 
-      cout<<"offset:"+to_string(offset)<<endl; 
+      // cout<<"symbol "+symbol<<endl; 
+      // cout<<"offset:"+to_string(offset)<<endl; 
       string oldValue, newValue; 
       for(int i=0; i<4; i++){
         oldValue.push_back(sectionTable[section].code[offset+i]); 
       }
-      cout<<"old value: "+oldValue<<endl; 
+      // cout<<"old value: "+oldValue<<endl; 
 
       if(symbUse.type==0){
         //absolute addressing - big endian 
@@ -1927,7 +1927,7 @@ void Assembler::backpatch(){
         for(int i=0; i<4; i++){
           newValue.push_back(sectionTable[section].code[offset+i]); 
         }
-        cout<<"absolute addr -> new value: "+newValue<<endl; 
+        // cout<<"absolute addr -> new value: "+newValue<<endl; 
 
 
       }
@@ -1944,15 +1944,15 @@ void Assembler::backpatch(){
           for(int i=0; i<4; i++){
             newValue.push_back(sectionTable[section].code[offset+i]); 
           }
-          cout<<"pcrel addr -> new value: "+newValue<<endl; 
+          // cout<<"pcrel addr -> new value: "+newValue<<endl; 
         }
         //if symbol is local
         else if(s.second.isGlobal==false){
             int val = s.second.value-2; 
             hexValue= decimalToHex(val); 
-            cout<<"bin value: "+hexValue<<endl; 
+            // cout<<"bin value: "+hexValue<<endl; 
             hexValue=binToHex16bit(hexValue); 
-            cout<<"hex value: "+hexValue<<endl; 
+            // cout<<"hex value: "+hexValue<<endl; 
             string value; 
 
             for(int i=hexValue.length(); i<4; i++){
@@ -1975,7 +1975,7 @@ void Assembler::backpatch(){
             for(int i=0; i<4; i++){
               newValue.push_back(sectionTable[section].code[offset+i]); 
             }
-            cout<<"pcrel addr -> new value: "+newValue<<endl; 
+            // cout<<"pcrel addr -> new value: "+newValue<<endl; 
 
         }
         //TODO 3rd case: not defined symbol 
@@ -1989,7 +1989,7 @@ void Assembler::backpatch(){
         for(int i=0; i<4; i++){
           newValue.push_back(sectionTable[section].code[offset+i]); 
         }
-        cout<<"word -> new value: "+newValue<<endl; 
+        // cout<<"word -> new value: "+newValue<<endl; 
       }
       
     }
