@@ -231,6 +231,7 @@ void Emulator::printInstruction(){
 
 void Emulator::printRegOperand(){
     cout<<"regD: "<<to_string(instruction.regDest)<<endl; 
+    cout<<"regS: "<<to_string(instruction.regSource)<<endl; 
     cout<<"operand: "<<to_string(instruction.operand)<<endl; 
 }
 
@@ -247,6 +248,10 @@ void Emulator::printRegisters(){
     cout<<"r3: "+decimalToHex(registers[r3])<<endl; 
     cout<<"r4: "+decimalToHex(registers[r4])<<endl; 
     cout<<"r5: "+decimalToHex(registers[r5])<<endl;
+    cout<<"sp+2: -> "+readOneByte(registers[sp]+3)<<endl;  
+    cout<<"sp+2: -> "+readOneByte(registers[sp]+2)<<endl;  
+    cout<<"sp+1: -> "+readOneByte(registers[sp]+1)<<endl;  
+    cout<<"sp: -> "+readOneByte(registers[sp])<<endl;  
     cout<<endl; 
 
 }
@@ -380,7 +385,7 @@ void Emulator::fetchInstrucionAndOperands(){
             break;
         }
         case CALL:{
-            fetchOperands(); 
+            fetchOperandsLdrJumps(); 
             executeCALL(); 
             break; 
         }
@@ -390,22 +395,22 @@ void Emulator::fetchInstrucionAndOperands(){
         }
         case JMP:{
             cout<<"jmp instruction"<<endl; 
-            fetchOperands(); 
+            fetchOperandsLdrJumps(); 
             executeJMP(); 
             break;
         }
         case JEQ:{
-            fetchOperands(); 
+            fetchOperandsLdrJumps(); 
             executeJEQ(); 
             break; 
         }
         case JNE:{
-            fetchOperands(); 
+            fetchOperandsLdrJumps(); 
             executeJNE(); 
             break;
         }
         case JGT:{
-            fetchOperands(); 
+            fetchOperandsLdrJumps(); 
             executeJGT(); 
             break;
         }
@@ -476,12 +481,12 @@ void Emulator::fetchInstrucionAndOperands(){
             break;
         }
         case LDR:{
-            fetchOperands(); 
+            fetchOperandsLdrJumps(); 
             executeLDR();
             break;
         }
         case STR:{
-            fetchOperands(); 
+            fetchOperandsLdrJumps(); 
             executeSTR(); 
             break; 
         }
@@ -501,7 +506,7 @@ void Emulator::fetchInstrucionAndOperands(){
 // {"84", LOGICTEST}, {"90", SHL}, {"91", SHR}, {"A0", LDR}, {"B0", STR}};
 }
 
-void Emulator::fetchOperands(){
+void Emulator::fetchOperandsLdrJumps(){
     registers[pc]++; 
     string regDS = readOneByte(registers[pc]); 
     // cout<<"regs: "+regDS<<endl; 
@@ -761,7 +766,7 @@ void Emulator::executeJMP(){
     // registers[pc]=hexToDecSigned(readTwoBytes(8)); 
     // cout<<"stack: " + readTwoBytesLittleEndian(stp)<<endl;
     // cout<<"pc: "+to_string(registers[pc])<<endl;
-
+    printRegOperand();
     registers[pc]=instruction.operand; 
     cout<<"pc after jmp instruction: "+decimalToHex(registers[pc])<<endl; 
 }
@@ -928,7 +933,17 @@ void Emulator::executeSTR(){
     //check
     cout<<"str"<<endl; 
     printRegOperand();
-    writeTwoBytesLittleEndian(registers[instruction.regDest], instruction.operand); 
+    //store data from dest register on address operand 
+    if(instruction.regSource==sp){
+        cout<<"push"<<endl;
+        writeTwoBytesLittleEndian(registers[instruction.regSource], registers[instruction.regDest]); 
+
+    }
+    else{
+        cout<<"push"<<endl;
+        writeTwoBytesLittleEndian(instruction.operand, registers[instruction.regDest]); 
+
+    }
 }
 
 int Emulator::bitZ(){

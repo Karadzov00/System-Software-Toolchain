@@ -48,7 +48,7 @@ public:
     void resetProcessor(); 
     void emulate(); 
     void fetchInstrucionAndOperands(); 
-    void fetchOperands(); 
+    void fetchOperandsLdrJumps(); 
     void fetchOperands2Bytes(); 
     void executeInstrucion(); 
     void interrupt(); 
