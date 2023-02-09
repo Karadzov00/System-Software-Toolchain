@@ -594,7 +594,7 @@ void Emulator::fetchOperandsLdrJumps(){
 
             //main logic for forming operand
             registers[pc]++;//to point at next instruction  
-            int memVal = hexToDecSigned(readTwoBytes(registers[instruction.regSource]));
+            int memVal = hexToDecSigned(readTwoBytesLittleEndian(registers[instruction.regSource]));
             instruction.operand=memVal;
 
             //after operand address is formed 
@@ -627,12 +627,12 @@ void Emulator::fetchOperandsLdrJumps(){
                 int dhdl =hexToDecSigned(readTwoBytesLittleEndian(oldPC));
                 //pc + offset 
                 int address = registers[pc]+dhdl; 
-                instruction.operand=hexToDecSigned(readTwoBytes(address)); 
+                instruction.operand=hexToDecSigned(readTwoBytesLittleEndian(address)); 
             }
             else{
                 int dhdl = hexToDecSigned(readTwoBytes(registers[pc]+1));
                 int address = registers[instruction.regSource]+dhdl; 
-                instruction.operand=hexToDecSigned(readTwoBytes(address)); 
+                instruction.operand=hexToDecSigned(readTwoBytesLittleEndian(address)); 
             }
 
             //after operand address is formed 
@@ -655,7 +655,7 @@ void Emulator::fetchOperandsLdrJumps(){
             int dhdl =hexToDecSigned(readTwoBytes(oldPC));
             // cout<<"dhdl: "+to_string(dhdl)<<endl; 
             //read from payload address in memory 
-            instruction.operand=hexToDecSigned(readTwoBytes(dhdl)); 
+            instruction.operand=hexToDecSigned(readTwoBytesLittleEndian(dhdl)); 
 
         break;
         }
@@ -963,7 +963,7 @@ void Emulator::executeSTR(){
             oldPC++; 
             int dhdl =hexToDecSigned(readTwoBytes(oldPC));
             instruction.operand=dhdl; 
-            writeTwoBytes(instruction.operand, registers[instruction.regDest]);
+            writeTwoBytesLittleEndian(instruction.operand, registers[instruction.regDest]);
             cout<<"dhdl: "+decimalToHex(dhdl)<<endl;  
             cout<<"pc: "+decimalToHex(registers[pc])<<endl; 
 
@@ -1017,7 +1017,7 @@ void Emulator::executeSTR(){
             //main logic for forming operand
             registers[pc]++;//to point at next instruction  
 
-            writeTwoBytes(registers[instruction.regSource], registers[instruction.regDest]); 
+            writeTwoBytesLittleEndian(registers[instruction.regSource], registers[instruction.regDest]); 
 
             //after operand address is formed 
             if(instruction.updateMode==POSTDECREMENT){
@@ -1048,13 +1048,13 @@ void Emulator::executeSTR(){
                 //watch out for second complement 
                 int dhdl =hexToDecSigned(readTwoBytesLittleEndian(oldPC));
                 //pc + offset 
-                int address =hexToDecSigned(readTwoBytes(registers[pc]+dhdl)); 
-                writeTwoBytes(address, registers[instruction.regDest]);
+                int address =hexToDecSigned(readTwoBytesLittleEndian(registers[pc]+dhdl)); 
+                writeTwoBytesLittleEndian(address, registers[instruction.regDest]);
             }
             else{
                 int dhdl = hexToDecSigned(readTwoBytes(registers[pc]+1));
-                int address =hexToDecSigned(readTwoBytes(registers[instruction.regSource]+dhdl)); 
-                writeTwoBytes(address, registers[instruction.regDest]);
+                int address =hexToDecSigned(readTwoBytesLittleEndian(registers[instruction.regSource]+dhdl)); 
+                writeTwoBytesLittleEndian(address, registers[instruction.regDest]);
 
             }
 
@@ -1079,7 +1079,7 @@ void Emulator::executeSTR(){
             // cout<<"dhdl: "+to_string(dhdl)<<endl; 
             //read from payload address in memory 
             instruction.operand=hexToDecSigned(readTwoBytes(dhdl)); 
-            writeTwoBytes(instruction.operand, registers[instruction.regDest]); 
+            writeTwoBytesLittleEndian(instruction.operand, registers[instruction.regDest]); 
 
         break;
         }
