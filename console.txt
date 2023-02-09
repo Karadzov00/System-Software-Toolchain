@@ -187,12 +187,36 @@ value6        310
 ivt
 0:2:1:0
 0 2 1 0 
+UBACIVANJE u reloc tabelu
+./tests/ivt.o
+offset: 0
+type: 0
+symbol: 0
+addend: 0
 4:2:2:0
 4 2 2 0 
+UBACIVANJE u reloc tabelu
+./tests/ivt.o
+offset: 4
+type: 4
+symbol: 4
+addend: 4
 6:2:3:0
 6 2 3 0 
+UBACIVANJE u reloc tabelu
+./tests/ivt.o
+offset: 6
+type: 6
+symbol: 6
+addend: 6
 8:2:4:0
 8 2 4 0 
+UBACIVANJE u reloc tabelu
+./tests/ivt.o
+offset: 8
+type: 8
+symbol: 8
+addend: 8
 00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:
 00000000000000000000000000000000
 relocation symbols:
@@ -249,38 +273,140 @@ relocation symbols:
 my_code
 31:0:1:0
 31 0 1 0 
+UBACIVANJE u reloc tabelu
+./tests/main.o
+offset: 31
+type: 31
+symbol: 31
+addend: 31
 36:0:7:0
 36 0 7 0 
+UBACIVANJE u reloc tabelu
+./tests/main.o
+offset: 36
+type: 36
+symbol: 36
+addend: 36
 57:1:1:0
 57 1 1 0 
+UBACIVANJE u reloc tabelu
+./tests/main.o
+offset: 57
+type: 57
+symbol: 57
+addend: 57
 62:0:8:0
 62 0 8 0 
+UBACIVANJE u reloc tabelu
+./tests/main.o
+offset: 62
+type: 62
+symbol: 62
+addend: 62
 88:0:14:0
 88 0 14 0 
+UBACIVANJE u reloc tabelu
+./tests/main.o
+offset: 88
+type: 88
+symbol: 88
+addend: 88
 98:0:9:0
 98 0 9 0 
+UBACIVANJE u reloc tabelu
+./tests/main.o
+offset: 98
+type: 98
+symbol: 98
+addend: 98
 124:0:14:0
 124 0 14 0 
+UBACIVANJE u reloc tabelu
+./tests/main.o
+offset: 124
+type: 124
+symbol: 124
+addend: 124
 129:0:10:0
 129 0 10 0 
+UBACIVANJE u reloc tabelu
+./tests/main.o
+offset: 129
+type: 129
+symbol: 129
+addend: 129
 155:0:14:0
 155 0 14 0 
+UBACIVANJE u reloc tabelu
+./tests/main.o
+offset: 155
+type: 155
+symbol: 155
+addend: 155
 168:0:11:0
 168 0 11 0 
+UBACIVANJE u reloc tabelu
+./tests/main.o
+offset: 168
+type: 168
+symbol: 168
+addend: 168
 173:0:6:0
 173 0 6 0 
+UBACIVANJE u reloc tabelu
+./tests/main.o
+offset: 173
+type: 173
+symbol: 173
+addend: 173
 178:0:7:0
 178 0 7 0 
+UBACIVANJE u reloc tabelu
+./tests/main.o
+offset: 178
+type: 178
+symbol: 178
+addend: 178
 183:0:8:0
 183 0 8 0 
+UBACIVANJE u reloc tabelu
+./tests/main.o
+offset: 183
+type: 183
+symbol: 183
+addend: 183
 188:0:9:0
 188 0 9 0 
+UBACIVANJE u reloc tabelu
+./tests/main.o
+offset: 188
+type: 188
+symbol: 188
+addend: 188
 193:0:10:0
 193 0 10 0 
+UBACIVANJE u reloc tabelu
+./tests/main.o
+offset: 193
+type: 193
+symbol: 193
+addend: 193
 198:0:11:0
 198 0 11 0 
+UBACIVANJE u reloc tabelu
+./tests/main.o
+offset: 198
+type: 198
+symbol: 198
+addend: 198
 203:0:12:0
 203 0 12 0 
+UBACIVANJE u reloc tabelu
+./tests/main.o
+offset: 203
+type: 203
+symbol: 203
+addend: 203
 A0:60:00:FE:FE:A0:00:00:00:04:10:0F:A0:00:00:00:00:B0:06:12:A0:00:00:00:01:B0:06:12:30:F0:00:00:00:B0:00:04:00:02:A0:00:00:00:01:B0:06:12:A0:00:00:00:01:B0:06:12:30:F7:05:FE:FF:B0:00:04:00:04:A0:00:00:00:08:B0:06:12:A0:00:00:00:0B:B0:06:12:A0:00:00:00:02:A0:10:00:00:0E:70:01:30:F0:02:B0:00:04:00:06:A0:00:00:00:02:B0:06:12:A0:00:00:00:02:B0:06:12:A0:00:00:00:04:30:F0:03:00:0E:B0:00:04:00:08:A0:00:00:00:05:B0:06:12:A0:00:00:00:19:B0:06:12:A0:00:00:00:06:A0:10:00:00:0E:70:01:A0:00:02:30:F0:01:B0:00:04:00:0A:A0:00:04:00:00:A0:10:04:00:02:A0:20:04:00:04:A0:30:04:00:06:A0:40:04:00:08:A0:50:04:00:0A:A0:60:04:00:0C:00:
 A06000FEFEA000000004100FA000000000B00612A000000001B0061230F0000000B000040002A000000001B00612A000000001B0061230F705FEFFB000040004A000000008B00612A00000000BB00612A000000002A01000000E700130F002B000040006A000000002B00612A000000002B00612A00000000430F003000EB000040008A000000005B00612A000000019B00612A000000006A01000000E7001A0000230F001B00004000AA000040000A010040002A020040004A030040006A040040008A05004000AA06004000C00
 relocation symbols:
@@ -403,7 +529,7 @@ A0 40 04 00 08 A0 50 04 00 0A
 A0 60 04 00 0C 00 
 
 symbol: destinations
-olName
+symbolID
 global value hex: 0138
 offset: 88
 type: 0
@@ -459,7 +585,7 @@ A0 40 04 00 08 A0 50 04 00 0A
 A0 60 04 00 0C 00 
 
 symbol: destinations
-olName
+symbolID
 global value hex: 0138
 offset: 124
 type: 0
@@ -515,7 +641,7 @@ A0 40 04 00 08 A0 50 04 00 0A
 A0 60 04 00 0C 00 
 
 symbol: destinations
-olName
+symbolID
 global value hex: 0138
 offset: 155
 type: 0
@@ -769,12 +895,36 @@ A0 60 04 01 36 00
 my_data
 14:2:1:0
 14 2 1 0 
+UBACIVANJE u reloc tabelu
+./tests/main.o
+offset: 14
+type: 14
+symbol: 14
+addend: 14
 16:2:2:0
 16 2 2 0 
+UBACIVANJE u reloc tabelu
+./tests/main.o
+offset: 16
+type: 16
+symbol: 16
+addend: 16
 18:2:3:0
 18 2 3 0 
+UBACIVANJE u reloc tabelu
+./tests/main.o
+offset: 18
+type: 18
+symbol: 18
+addend: 18
 20:2:4:0
 20 2 4 0 
+UBACIVANJE u reloc tabelu
+./tests/main.o
+offset: 20
+type: 20
+symbol: 20
+addend: 20
 00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:
 00000000000000000000000000000000000000000000
 relocation symbols:
@@ -830,6 +980,12 @@ new code
 isr
 3:0:1:0
 3 0 1 0 
+UBACIVANJE u reloc tabelu
+./tests/isr_reset.o
+offset: 3
+type: 3
+symbol: 3
+addend: 3
 50:F0:00:00:00:
 50F0000000
 relocation symbols:
@@ -846,51 +1002,31 @@ isr
 20:
 20
 relocation symbols:
-symbol: isr
-global value dec: 327
-global value hex: 0147
-offset: 3
-type: 0
-new code
-20 
-
 ./tests/isr_timer.o - File opened! 
 isr
 20:
 20
 relocation symbols:
-symbol: isr
-global value dec: 327
-global value hex: 0147
-offset: 3
-type: 0
-new code
-20 
-
 ./tests/isr_user0.o - File opened! 
 isr
 14:0:1:0
 14 0 1 0 
+UBACIVANJE u reloc tabelu
+./tests/isr_user0.o
+offset: 14
+type: 14
+symbol: 14
+addend: 14
 B0:06:12:B0:16:12:A0:00:00:AB:CD:A0:10:00:00:00:B0:01:02:A0:16:42:A0:06:42:20:
 B00612B01612A00000ABCDA010000000B00102A01642A0064220
 relocation symbols:
 symbol: value0
 global value dec: 298
 global value hex: 012A
-offset: 3
-type: 0
-new code
-B0 06 12 01 2A 12 A0 00 00 AB 
-CD A0 10 00 00 00 B0 01 02 A0 
-16 42 A0 06 42 20 
-
-symbol: value0
-global value dec: 298
-global value hex: 012A
 offset: 14
 type: 0
 new code
-B0 06 12 01 2A 12 A0 00 00 AB 
+B0 06 12 B0 16 12 A0 00 00 AB 
 CD A0 10 00 01 2A B0 01 02 A0 
 16 42 A0 06 42 20 
 
@@ -946,7 +1082,7 @@ section isr
 20 
 
 section isr
-B0 06 12 01 2A 12 A0 00 00 AB 
+B0 06 12 B0 16 12 A0 00 00 AB 
 CD A0 10 00 01 2A B0 01 02 A0 
 16 42 A0 06 42 20 
 
@@ -985,7 +1121,7 @@ A0 00 00 00 02 B0 06 12 A0 00
 00 00 00 00 00 00 00 00 00 00 
 00 00 10 00 23 00 36 00 49 00 
 50 F0 00 00 5C 20 20 B0 06 12 
-01 2A 12 A0 00 00 AB CD A0 10 
+B0 16 12 A0 00 00 AB CD A0 10 
 00 01 2A B0 01 02 A0 16 42 A0 
 06 42 20 
 ./tests/program.hex opened

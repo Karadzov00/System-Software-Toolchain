@@ -207,6 +207,7 @@ void Linker::processRelocations(){
         cout<<inputFile+" - File opened! \n";  
         currLineNum=1; 
         localSymbolTable.clear(); 
+        sectionRelocations.clear(); 
         //TODO generate local symbol table 
         while(getline(inFile, currentLine)){
             //while for symb table
@@ -269,6 +270,12 @@ void Linker::processRelocations(){
                     //make relocation table 
                     //read code into line
                     //change code with global symbol values 
+                    cout<<"UBACIVANJE u reloc tabelu"<<endl; 
+                    cout<<inputFile<<endl; 
+                    cout<<"offset: "<<reloc.offset<<endl; 
+                    cout<<"type: "<<reloc.offset<<endl; 
+                    cout<<"symbol: "<<reloc.offset<<endl; 
+                    cout<<"addend: "<<reloc.offset<<endl; 
 
 
                     getline(inFile, currentLine);
