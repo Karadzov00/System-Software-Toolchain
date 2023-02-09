@@ -1,0 +1,13 @@
+UNDEFINED:1:0:0:0:0
+isr:1:1:1:0:1
+isr_terminal:1:2:1:0:-1
+section begin
+UNDEFINED
+code of section:
+
+section end
+section begin
+isr
+code of section:
+20:
+section end
