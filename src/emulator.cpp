@@ -583,7 +583,7 @@ void Emulator::fetchOperandsLdrJumps(){
         }
         case REGIN:{
             cout<<"reg ind"<<endl; 
-            registers[pc]+=3;//to point at next instruction  
+            registers[pc]++;//to point at next instruction  
 
             //before operand address is formed 
             if(instruction.updateMode==PREDECREMENT){
@@ -594,7 +594,6 @@ void Emulator::fetchOperandsLdrJumps(){
             }
 
             //main logic for forming operand
-            registers[pc]++;//to point at next instruction  
             int memVal = hexToDecSigned(readTwoBytesLittleEndian(registers[instruction.regSource]));
             instruction.operand=memVal;
 
@@ -1086,8 +1085,7 @@ void Emulator::executeSTR(){
             int dhdl =hexToDecSigned(readTwoBytes(oldPC));
             // cout<<"dhdl: "+to_string(dhdl)<<endl; 
             //read from payload address in memory 
-            instruction.operand=hexToDecSigned(readTwoBytes(dhdl)); 
-            writeTwoBytesLittleEndian(instruction.operand, registers[instruction.regDest]); 
+            writeTwoBytesLittleEndian(dhdl, registers[instruction.regDest]); 
 
         break;
         }
