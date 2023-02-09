@@ -724,9 +724,10 @@ void Emulator::executeINT(){
     // cout<<"sp: "+to_string(stp)<<endl; 
     // writeTwoBytes(stp, 255);
     // cout<<"read from sp: "+readTwoBytes(stp)<<endl;  
+
     cout<<"int instruction"<<endl; 
     registers[sp]-=2; 
-    //push pc to stack 
+    //push pc to stack
     writeTwoBytesLittleEndian(registers[sp], registers[pc]); 
     registers[sp]-=2; 
     //push psw to stack 
@@ -738,6 +739,7 @@ void Emulator::executeINT(){
 
 }
 void Emulator::executeIRET(){
+    registers[pc]++; 
     registers[psw]=hexToDecSigned(readTwoBytesLittleEndian(registers[sp])); 
     registers[sp]+=2; 
     registers[pc]=hexToDecSigned(readTwoBytesLittleEndian(registers[sp])); 
@@ -747,10 +749,11 @@ void Emulator::executeIRET(){
 }
 void Emulator::executeCALL(){
     registers[sp]-=2; 
-    writeTwoBytesLittleEndian(registers[sp], registers[psw]); 
+    writeTwoBytesLittleEndian(registers[sp], registers[pc]); 
     registers[pc]=instruction.operand; 
 }
 void Emulator::executeRET(){
+    registers[pc]++; 
     registers[pc]=hexToDecSigned(readTwoBytesLittleEndian(registers[sp])); 
     registers[sp]+=2;
 }
