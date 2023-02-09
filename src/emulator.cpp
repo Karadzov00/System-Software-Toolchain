@@ -726,6 +726,9 @@ void Emulator::executeINT(){
     // cout<<"read from sp: "+readTwoBytes(stp)<<endl;  
     cout<<"int instruction"<<endl; 
     registers[sp]-=2; 
+    //push pc to stack 
+    writeTwoBytesLittleEndian(registers[sp], registers[pc]); 
+    registers[sp]-=2; 
     //push psw to stack 
     writeTwoBytesLittleEndian(registers[sp], registers[psw]); 
     int address = (registers[instruction.regDest]%8)*2; 
