@@ -583,6 +583,7 @@ void Emulator::fetchOperandsLdrJumps(){
         }
         case REGIN:{
             cout<<"reg ind"<<endl; 
+            registers[pc]+=3;//to point at next instruction  
 
             //before operand address is formed 
             if(instruction.updateMode==PREDECREMENT){
@@ -609,6 +610,8 @@ void Emulator::fetchOperandsLdrJumps(){
         }
         case REGINDDISP:{
             cout<<"reg ind disp"<<endl; 
+            registers[pc]+=3;//to point at next instruction  
+
 
             //before operand address is formed 
             if(instruction.updateMode==PREDECREMENT){
@@ -618,11 +621,10 @@ void Emulator::fetchOperandsLdrJumps(){
                 registers[instruction.regSource]+=2; 
             }
 
+            oldPC++; 
             //check if pcrel for ldr/str
             if(instruction.regSource==pc){
                 //payload is little endian 
-                registers[pc]+=3; 
-                oldPC++; 
                 //watch out for second complement 
                 int dhdl =hexToDecSigned(readTwoBytesLittleEndian(oldPC));
                 //pc + offset 
@@ -630,7 +632,7 @@ void Emulator::fetchOperandsLdrJumps(){
                 instruction.operand=hexToDecSigned(readTwoBytesLittleEndian(address)); 
             }
             else{
-                int dhdl = hexToDecSigned(readTwoBytes(registers[pc]+1));
+                int dhdl = hexToDecSigned(readTwoBytes(oldPC));
                 int address = registers[instruction.regSource]+dhdl; 
                 instruction.operand=hexToDecSigned(readTwoBytesLittleEndian(address)); 
             }
@@ -1037,6 +1039,8 @@ void Emulator::executeSTR(){
         }
         case REGINDDISP:{
             cout<<"reg ind disp"<<endl; 
+            registers[pc]+=3; 
+            oldPC++; 
 
             //before operand address is formed 
             if(instruction.updateMode==PREDECREMENT){
@@ -1049,8 +1053,6 @@ void Emulator::executeSTR(){
             //check if pcrel for ldr/str
             if(instruction.regSource==pc){
                 //payload is little endian 
-                registers[pc]+=3; 
-                oldPC++; 
                 //watch out for second complement 
                 int dhdl =hexToDecSigned(readTwoBytesLittleEndian(oldPC));
                 //pc + offset 
@@ -1058,7 +1060,7 @@ void Emulator::executeSTR(){
                 writeTwoBytesLittleEndian(address, registers[instruction.regDest]);
             }
             else{
-                int dhdl = hexToDecSigned(readTwoBytes(registers[pc]+1));
+                int dhdl = hexToDecSigned(readTwoBytes(oldPC));
                 int address =hexToDecSigned(readTwoBytesLittleEndian(registers[instruction.regSource]+dhdl)); 
                 writeTwoBytesLittleEndian(address, registers[instruction.regDest]);
 
