@@ -357,6 +357,7 @@ void Emulator::emulate(){
             break; //for testing only 
         cnt++;     
     }
+    printRegisters(); 
     // cout<<"Emulation finished"<<endl; 
 }
 
@@ -372,6 +373,7 @@ void Emulator::fetchInstrucionAndOperands(){
 
     switch(instruction.code){
         case HALT:{
+            registers[pc]++; 
             haltFlag=true; 
             break; 
         }
@@ -812,8 +814,9 @@ void Emulator::executeMUL(){
 void Emulator::executeDIV(){
     if(instruction.operand==0){
         //call interrupt routine
+        errorRoutine(); 
     }
-    registers[instruction.regDest] = registers[instruction.regDest] * registers[instruction.regSource];
+    registers[instruction.regDest] = registers[instruction.regDest] / registers[instruction.regSource];
 }
 void Emulator::executeCMP(){
     short temp = registers[instruction.regDest] - registers[instruction.regSource];
