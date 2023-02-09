@@ -749,6 +749,9 @@ void Emulator::executeIRET(){
 
 }
 void Emulator::executeCALL(){
+    cout<<"call instruction"<<endl;
+    cout<<"address to jump:"<<endl;
+    cout<<instruction.operand<<endl; 
     registers[sp]-=2; 
     writeTwoBytesLittleEndian(registers[sp], registers[pc]); 
     registers[pc]=instruction.operand; 
